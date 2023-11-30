@@ -1,0 +1,167 @@
+.email {
+  font-family: 'GeneralSans';
+  min-height: 100vh;
+  aside {
+    padding: 2em;
+    width: 100%;
+    h2 {
+      font-weight: 700;
+      color: var(--black);
+      font-size: 2rem;
+    }
+    .form {
+      width: 100%;
+      .formInput {
+        padding: 12px 0 !important;
+        border: solid 1px var(--Grey3);
+        text-align: center;
+        &::placeholder {
+          color: var(--Grey3);
+        }
+      }
+      // .numInp {
+      //   width: 10%;
+      //   // height: 100%;
+      // }
+
+      .mailIcon {
+        width: 107px;
+        height: 107px;
+        color: #25015b;
+        padding: 13.375px 8.911px 13.375px 8.922px;
+        margin-bottom: 2em;
+
+        svg {
+          fill: #25015b;
+        }
+      }
+    }
+
+    .noCode {
+      color: var(--pryColor);
+      font-weight: 700;
+      margin-top: 6em;
+      cursor: pointer;
+    }
+
+    @media screen and (min-width: 800px) {
+      width: 47%;
+
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+.reset {
+  font-family: 'GeneralSans';
+  min-height: 100vh;
+  aside {
+    padding: 2em;
+    width: 100%;
+
+    h2 {
+      font-weight: 700;
+      color: var(--black);
+      font-size: 2rem;
+    }
+
+    h4 {
+      font-weight: 600;
+      color: var(--black);
+      font-size: 1.5rem;
+    }
+
+    .form {
+      width: 100%;
+      .formInput {
+        border: solid 1px var(--Grey3);
+
+        &::placeholder {
+          color: var(--Grey3);
+        }
+      }
+    }
+
+    @media screen and (min-width: 800px) {
+      width: 47%;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .form {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.changePassword {
+  font-family: 'GeneralSans';
+  min-height: 100vh;
+  aside {
+    padding: 2em;
+    width: 100%;
+
+    h2 {
+      font-weight: 700;
+      color: var(--black);
+      font-size: 2rem;
+    }
+
+    h4 {
+      font-weight: 600;
+      color: var(--black);
+      font-size: 1.5rem;
+    }
+
+    .form {
+      width: 100%;
+      .formInput {
+        border: solid 1px var(--Grey3);
+
+        &::placeholder {
+          color: var(--Grey3);
+        }
+      }
+    }
+
+    @media screen and (min-width: 800px) {
+      width: 47%;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .form {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.right {
+  min-height: 100vh;
+  background: url('../../assets/SignuprightSide.png') top center no-repeat;
+  background-size: cover;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  padding: 1em 0;
+
+  h2 {
+    font-size: 3.8rem;
+    text-align: center;
+    font-weight: 500;
+    width: 80%;
+    margin-top: 7em;
+    color: var(--white);
+  }
+
+  @media screen and (min-width: 800px) {
+    width: 57%;
+  }
+}

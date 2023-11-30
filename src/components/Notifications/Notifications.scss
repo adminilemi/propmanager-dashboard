@@ -1,0 +1,51 @@
+.Notifs {
+  .notifCardContainer {
+    height: 40vh;
+    overflow-y: scroll;
+    background: var(--white);
+  }
+  .notifCard {
+    border-bottom: solid 1px var(--Line);
+    padding: 0.9em 1em;
+
+    &:last-child {
+      border-bottom: solid 0px var(--Line);
+    }
+
+    h5 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--Grey1);
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: start;
+      em {
+        color: var(--black);
+        font-style: normal;
+      }
+      .links {
+        color: var(--pryDark);
+        cursor: pointer;
+      }
+    }
+
+    .CV {
+      color: var(--Grey1) !important;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: 8px;
+      border: 1px solid var(--Grey5);
+      background: var(--Grey5);
+    }
+
+    .messageNotifs {
+      small {
+        font-size: 0.6rem;
+        font-weight: 400;
+      }
+    }
+  }
+}

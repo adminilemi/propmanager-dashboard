@@ -1,0 +1,25 @@
+.UserPop {
+  .userCard {
+    border-bottom: solid 1px var(--Line);
+    padding: 1.4em 1em;
+    &:last-child {
+      border-bottom: solid 0px var(--Line);
+    }
+  }
+  .unverified {
+    border-radius: 30px;
+    background: var(--Grey4);
+    padding: 7px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .verified {
+    border-radius: 30px;
+    background: color-mix(in sRGB, transparent 90%, var(--pryColor) 10%);
+    padding: 7px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--pryColor);
+  }
+}
