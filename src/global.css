@@ -11,15 +11,16 @@
   -webkit-text-size-adjust: 100%;
 
   --mainColor: #5f259f;
-  --mainLight: #f7f7fd;
+  --mainLight: #e0def7;
   --black: #1e1e1e;
   --white: #fff;
-  -grey1: #303237;
+  -grey1: #394150;
   --Grey2: #565c69;
   --Grey3: #bdc0ce;
   --Grey4: #f4f5f8;
   --Grey5: #e5e7ef;
   --Grey6: #7e8494;
+  --Grey7: #f7f7fd;
   --Line: #e5e7ef;
   --rated: #be9122;
   --positive: #20af0b;
@@ -44,6 +45,7 @@ body {
   min-height: 100vh;
   max-width: 1800px;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--Grey7);
 }
 
 body::-webkit-scrollbar {
@@ -60,11 +62,11 @@ body::-webkit-scrollbar {
 }
 
 .line {
-  border: solid 1px var(--Grey4);
+  border: solid 2px var(--Grey4);
 }
 
 .card {
-  border: solid 1px var(--Grey5) !important;
+  border: solid 2px var(--mainLight) !important;
 }
 
 ul,

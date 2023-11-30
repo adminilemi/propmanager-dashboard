@@ -1,9 +1,10 @@
 .navbar {
   position: relative;
+  background-color: var(--white);
+  border-bottom: solid 1px var(--Grey4);
 
   header {
     padding: 1em 2em;
-    border-bottom: solid 1px var(--Grey4);
 
     .heading {
       // width: 20%;
@@ -12,7 +13,7 @@
         position: relative;
         font-size: 1.2rem;
         font-weight: 700;
-        background-color: var(--mainLight);
+        background-color: var(--Grey7);
         display: flex;
         align-items: center;
         justify-content: center;
