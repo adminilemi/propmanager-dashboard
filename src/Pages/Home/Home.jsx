@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import BarCharts from '@/components/DashboardComps/HomeComps/Charts/BarCharts';
 import { Dropdown } from 'react-bootstrap';
 import { PiCaretRightBold } from 'react-icons/pi';
+import { FaCircle } from 'react-icons/fa';
 
 function Home() {
   const rents = [
@@ -430,6 +431,22 @@ function Home() {
 
             <div className='col-12'>
               <BarCharts data={employerStatData} options={chartOptions} />
+              <div className='d-flex justify-content-between align-items-center mt-3'>
+                <div className=' d-flex align-items-center gap-3 chartLabel'>
+                  <div className='d-flex align-items-center'>
+                    {' '}
+                    <FaCircle size={10} color='#5F259F' className='me-1' />
+                    <span>Occupied</span>
+                  </div>
+                  <div className='d-flex align-items-center'>
+                    {' '}
+                    <FaCircle size={10} color='#E0DEF7' className='me-1' />
+                    <span>Vacant </span>
+                  </div>
+                </div>
+
+                <Link className='viewMore'>View more →</Link>
+              </div>
             </div>
           </section>
           <aside className='col-12 col-md-4 tenantRequest card'>

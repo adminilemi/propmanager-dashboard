@@ -45,6 +45,16 @@
   .listedProp {
     padding: 0.7em 1em;
 
+    .chartLabel {
+      span {
+        font-weight: 700;
+        font-size: 0.8rem;
+      }
+    }
+    .viewMore {
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
     .dropdown-toggle {
       background: transparent !important;
       border: solid 1.5px var(--mainLight);
