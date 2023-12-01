@@ -46,6 +46,24 @@ body {
   max-width: 1800px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--Grey7);
+  color: #000929;
+}
+
+.greenBg {
+  background: color-mix(in sRGB, transparent 90%, var(--positive) 10%);
+  color: var(--positive);
+  padding: 0.6em 0.7em;
+  border-radius: 20px;
+}
+
+.purpleBg {
+  background: #f0effb;
+  color: var(--mainColor);
+  padding: 0.4em 0.7em;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body::-webkit-scrollbar {
@@ -141,6 +159,11 @@ h4 {
   font-size: 1rem;
   font-weight: 600;
   color: var(--Grey1);
+}
+
+.viewMore {
+  color: var(--mainColor);
+  font-weight: 600;
 }
 
 .emptyState p {

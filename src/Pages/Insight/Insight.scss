@@ -1,3 +1,130 @@
 .insight {
-  margin: 0 auto;
+  margin: 1.5em auto;
+  width: 95%;
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .rentalOverview {
+    padding: 0.6em 1em;
+    background: var(--white);
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 0.7rem;
+      font-weight: 400;
+    }
+
+    .listingUnit {
+      padding: 0.5em 1em;
+
+      h4 {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      span {
+        font-weight: 700;
+      }
+
+      .border-bottom {
+        border-bottom: solid 1.5px var(--mainLight);
+      }
+
+      .house {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--Grey6);
+      }
+    }
+
+    .rentsData {
+      padding: 0.5em 1em;
+
+      h4 {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      span {
+        font-weight: 700;
+      }
+
+      p {
+        margin-top: 0.4em;
+      }
+
+      .purpleBg {
+        font-size: 0.8rem;
+      }
+      .border-bottom {
+        border-bottom: solid 1.5px var(--mainLight);
+      }
+
+      .house {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--Grey6);
+      }
+    }
+  }
+
+  .propertiesOverview {
+    padding: 0.6em 1em;
+    background: var(--white);
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 0.7rem;
+      font-weight: 400;
+    }
+
+    .viewMore {
+      font-size: 0.7rem;
+    }
+
+    .propList {
+      background: #f7f7fd;
+      padding: 0.6em 1em;
+      border-radius: 10px;
+
+      li {
+        border-right: solid 1.5px var(--mainLight);
+        &:last-child {
+          border-right: solid 0px var(--mainLight);
+        }
+      }
+    }
+
+    .propProgress {
+      h3 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0.6em 0;
+      }
+
+      h6 {
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+      span {
+        font-size: 0.8rem;
+      }
+
+      .listed {
+        .progress-bar {
+          background-color: #100a55;
+        }
+      }
+      .progress-bar {
+        background-color: var(--mainColor);
+      }
+    }
+  }
 }
