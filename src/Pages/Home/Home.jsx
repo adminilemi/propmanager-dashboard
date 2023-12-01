@@ -267,7 +267,7 @@ function Home() {
     },
   };
 
-  const employerStatData = {
+  const chartData = {
     labels: [
       'Jan',
       'Feb',
@@ -430,7 +430,7 @@ function Home() {
             </div>
 
             <div className='col-12'>
-              <BarCharts data={employerStatData} options={chartOptions} />
+              <BarCharts data={chartData} options={chartOptions} />
               <div className='d-flex justify-content-between align-items-center mt-3'>
                 <div className=' d-flex align-items-center gap-3 chartLabel'>
                   <div className='d-flex align-items-center'>

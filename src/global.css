@@ -225,7 +225,7 @@ h4 {
 }
 
 .main-btn {
-  background: var(--pryColor);
+  background: var(--mainColor);
   border-radius: 8px;
   padding: 0.6em 2em;
   font-size: 1rem;
@@ -249,12 +249,12 @@ button:disabled {
 }
 
 .outline-btn {
-  border: solid 1px var(--pryColor);
+  border: solid 1px var(--mainLight);
   border-radius: 8px;
   padding: 0.6em 2em;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--pryColor);
+  color: var(--black);
 }
 
 .outline-dark {

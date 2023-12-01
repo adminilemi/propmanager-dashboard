@@ -137,65 +137,67 @@ function VerifyEmail() {
     <div
       className={` email d-flex flex-column flex-md-row justify-content-between`}
     >
-      <aside className='d-flex flex-column justify-content-between '>
-        <div className='col-3'>
-          <BrandLogo />
-        </div>
-
-        <form
-          className={` form d-flex flex-column justify-content-center align-items-center text-center mx-auto`}
-        >
-          <div className='mailIcon'>
-            {/* <MdEmail className='mailIcon' /> */}
-            <svg
-              width='107'
-              height='107'
-              viewBox='0 0 107 107'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                fillRule='evenodd'
-                clipRule='evenodd'
-                d='M75.5249 13.375C81.5035 13.375 87.2548 15.7379 91.4857 19.9778C95.7212 24.2087 98.0885 29.9154 98.0885 35.8896V71.1104C98.0885 83.5492 87.9681 93.625 75.5249 93.625H31.481C19.0378 93.625 8.92188 83.5492 8.92188 71.1104V35.8896C8.92188 23.4508 18.9932 13.375 31.481 13.375H75.5249ZM82.6118 42.532L82.9685 42.1753C84.034 40.8824 84.034 39.0099 82.9194 37.717C82.2997 37.0527 81.4482 36.647 80.561 36.5578C79.6247 36.5088 78.733 36.8253 78.0598 37.4495L57.9572 53.4995C55.3714 55.6439 51.6665 55.6439 49.0405 53.4995L28.978 37.4495C27.5915 36.424 25.6744 36.5578 24.5197 37.7615C23.3159 38.9653 23.1822 40.8824 24.2032 42.2199L24.7872 42.7995L45.0726 58.6265C47.5693 60.5882 50.5965 61.6582 53.7664 61.6582C56.9273 61.6582 60.008 60.5882 62.5002 58.6265L82.6118 42.532Z'
-              />
-            </svg>
+      <section className='d-flex flex-column aside py-3'>
+        <header className='border-bottom py-3 px-4 mb-3'>
+          <div className='col-2 '>
+            <BrandLogo />
           </div>
-          <h2>Verify your email</h2>
-          <p className='mt-2'>
-            {' '}
-            To verify your email we’ve sent a code to {authUser.userEmail}.
-            Enter the code to continue
-          </p>
-          <div
-            className={` inputContainer d-flex flex-row mx-auto col-4 gap-2 mt-3`}
+        </header>
+        <aside className='col-10 col-md-6 mx-auto mt-5'>
+          <form
+            className={` form d-flex flex-column justify-content-center text-start `}
           >
-            {numInput.map(({ id, name }, idx) => (
-              <div className='numInp' key={id}>
-                <input
-                  ref={inputRefs.current[idx]}
-                  id={id}
-                  type='text'
-                  name={name}
-                  onChange={(e) => handleChange(e, idx)}
-                  maxLength='1'
-                  defaultValue={verifyCode[name]}
-                  className='formInput form-control '
-                />
-              </div>
-            ))}
+            <h2>Verify your email</h2>
+            <p className='mt-2'>
+              Enter the verification code sent to your registered phone number
+              0803XXXXX85
+            </p>
+            <div
+              className={` inputContainer d-flex flex-row mx-auto col-12 gap-2 mt-3 `}
+            >
+              {numInput.map(({ id, name }, idx) => (
+                <div className='numInp ' key={id}>
+                  <input
+                    ref={inputRefs.current[idx]}
+                    id={id}
+                    type='text'
+                    name={name}
+                    onChange={(e) => handleChange(e, idx)}
+                    maxLength='1'
+                    defaultValue={verifyCode[name]}
+                    className='text-center form-control py-4'
+                  />
+                </div>
+              ))}
+            </div>
+            {errors.error && (
+              <span className='error_message mt-3'> {errors.errMessage} </span>
+            )}
+
+            <div className=' col-12 text-center'>
+              <button className='main-btn col-12 mt-3'>
+                {loading ? <Spinner /> : 'Validate'}
+              </button>
+              {errors.errMessage === 'empty' ? (
+                <span className='error_message'>
+                  {' '}
+                  All field must be filled{' '}
+                </span>
+              ) : (
+                <span className='error_message'> {errors.errMessage} </span>
+              )}
+            </div>
+          </form>
+
+          {loading && <Spinner />}
+
+          <div className='mt-3'>
+            <small onClick={handleReSendOTP}>
+              Didn’t get code? <strong>Resend</strong>
+            </small>
           </div>
-          {errors.error && (
-            <span className='error_message mt-3'> {errors.errMessage} </span>
-          )}
-        </form>
-
-        {loading && <Spinner />}
-
-        <small onClick={handleReSendOTP} className='text-center noCode'>
-          Didn’t receive a code?
-        </small>
-      </aside>
+        </aside>
+      </section>
       <RightSide title='Fast and Reliable jobs to get you hired immediately' />
     </div>
   );

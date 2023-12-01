@@ -1,9 +1,8 @@
 .email {
-  font-family: 'GeneralSans';
   min-height: 100vh;
-  aside {
-    padding: 2em;
+  .aside {
     width: 100%;
+
     h2 {
       font-weight: 700;
       color: var(--black);
@@ -11,6 +10,11 @@
     }
     .form {
       width: 100%;
+
+      p {
+        font-size: 0.8rem;
+      }
+
       .formInput {
         padding: 12px 0 !important;
         border: solid 1px var(--Grey3);
@@ -54,12 +58,12 @@
   }
 }
 .reset {
-  font-family: 'GeneralSans';
   min-height: 100vh;
-  aside {
-    padding: 2em;
+  .aside {
     width: 100%;
-
+    p {
+      font-size: 0.8rem;
+    }
     h2 {
       font-weight: 700;
       color: var(--black);
@@ -98,12 +102,12 @@
 }
 
 .changePassword {
-  font-family: 'GeneralSans';
   min-height: 100vh;
-  aside {
-    padding: 2em;
+  .aside {
     width: 100%;
-
+    p {
+      font-size: 0.8rem;
+    }
     h2 {
       font-weight: 700;
       color: var(--black);
@@ -152,14 +156,14 @@
   height: inherit;
   padding: 1em 0;
 
-  h2 {
-    font-size: 3.8rem;
-    text-align: center;
-    font-weight: 500;
-    width: 80%;
-    margin-top: 7em;
-    color: var(--white);
-  }
+  // h2 {
+  //   font-size: 3.8rem;
+  //   text-align: center;
+  //   font-weight: 500;
+  //   width: 80%;
+  //   margin-top: 7em;
+  //   color: var(--white);
+  // }
 
   @media screen and (min-width: 800px) {
     width: 57%;

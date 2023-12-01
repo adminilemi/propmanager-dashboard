@@ -8,8 +8,58 @@ import { RiCheckboxBlankFill } from 'react-icons/ri';
 
 import { BsHouseFill, BsThreeDotsVertical } from 'react-icons/bs';
 import { ProgressBar } from 'react-bootstrap';
+import LineChart from '@/components/DashboardComps/HomeComps/Charts/LineChart';
 
 function Insight() {
+  const chartData = {
+    labels: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
+    datasets: [
+      {
+        data: [11, 31, 20, 14, 13, 21, 23, 31, 10, 19, 20, 37],
+        borderColor: '#5F259F',
+        pointBorderColor: '#100A55',
+        backgroundColor: ' #5F259F',
+      },
+    ],
+  };
+
+  const chartOptions = {
+    plugins: {
+      legend: {
+        display: false, // Hide the legend
+      },
+    },
+    scales: {
+      // x: {
+      //   grid: {
+      //     display: false,
+      //   },
+      //   beginAtZero: true,
+      // },
+      y: {
+        gridLines: {
+          display: true,
+        },
+        ticks: {
+          display: false, // Hide y-axis labels
+        },
+      },
+    },
+  };
+
   return (
     <main className='insight d-flex flex-column '>
       <section className=''>
@@ -151,6 +201,22 @@ function Insight() {
                 </div>
               </div>
             </div>
+          </section>
+        </article>
+
+        <article className='mt-5 col-12 lineChartWrapper card'>
+          <section>
+            <p>Property Listed</p>
+            <div className='d-flex gap-2 align-items-center my-3'>
+              <h4>78</h4>
+              <div>
+                <span className='greenBg'>+10.6%</span>
+              </div>
+              <small>from Nov 2021 - Dec 2021.</small>
+            </div>
+          </section>
+          <section className='mt-3'>
+            <LineChart data={chartData} options={chartOptions} />
           </section>
         </article>
       </section>

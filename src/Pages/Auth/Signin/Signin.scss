@@ -1,8 +1,9 @@
 .SignIn {
-  font-family: 'GeneralSans';
-  //   min-height: 100vh;
-  aside {
-    padding: 2em 2em;
+  header {
+    width: 100%;
+  }
+
+  .aside {
     width: 100%;
 
     h2 {
@@ -18,7 +19,7 @@
     }
 
     .form {
-      width: 100%;
+      // width: 100%;
       p {
         color: var(--lightGrey);
       }
@@ -37,7 +38,7 @@
 
       .forgot {
         a {
-          color: var(--black);
+          color: var(--mainColor);
         }
         font-size: 0.8rem;
       }
@@ -55,39 +56,22 @@
       }
       font-size: 0.8rem;
     }
+  }
 
-    @media screen and (min-width: 800px) {
+  @media screen and (min-width: 800px) {
+    // header {
+    //   width: 47%;
+    // }
+    .aside {
       width: 47%;
 
       h2 {
         font-size: 2.5rem;
       }
 
-      .form {
-        width: 80%;
-      }
+      // .form {
+      //   width: 80%;
+      // }
     }
-  }
-}
-.signInRight {
-  min-height: 100vh;
-  background: url('../../assets/LoginrightSide.png') top center no-repeat;
-  background-size: cover;
-  color: var(--white);
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  padding: 3em 0;
-
-  h2 {
-    font-size: 3.8rem;
-    text-align: center;
-    font-weight: 500;
-    width: 80%;
-    color: var(--white);
-  }
-
-  @media screen and (min-width: 800px) {
-    width: 57%;
   }
 }

@@ -1,8 +1,8 @@
 .userSignup {
-  font-family: 'GeneralSans';
-  //   min-height: 100vh;
-  aside {
-    padding: 2em;
+  header {
+    width: 100%;
+  }
+  .aside {
     width: 100%;
     h2 {
       font-weight: 700;
@@ -31,6 +31,11 @@
       }
     }
 
+    .charLong {
+      font-size: 0.6rem;
+      color: var(--Grey6);
+    }
+
     .password {
       position: relative;
 
@@ -56,17 +61,19 @@
         }
       }
     }
+  }
 
-    @media screen and (min-width: 800px) {
+  @media screen and (min-width: 800px) {
+    .aside {
       width: 47%;
 
       h2 {
         font-size: 2.1rem;
       }
 
-      .form {
-        width: 85%;
-      }
+      // .form {
+      //   width: 85%;
+      // }
     }
   }
 }
