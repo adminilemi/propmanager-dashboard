@@ -6,6 +6,8 @@ import Due from '../../assets/due.png';
 import Active from '../../assets/active.png';
 import { Link } from 'react-router-dom';
 import BarCharts from '@/components/DashboardComps/HomeComps/Charts/BarCharts';
+import { Dropdown } from 'react-bootstrap';
+import { PiCaretRightBold } from 'react-icons/pi';
 
 function Home() {
   const rents = [
@@ -13,6 +15,37 @@ function Home() {
     { id: 2, title: '5 Listing', subTitle: 'Active Listing.', icon: Active },
     { id: 3, title: '1 Land (s)', subTitle: 'Landed Property.', icon: Active },
     { id: 4, title: '4 rents', subTitle: 'Rented Property.', icon: Active },
+  ];
+
+  const tenantReq = [
+    {
+      id: 1,
+      title: 'Valentino Parker',
+      subTitle: 'Palm Harbor',
+      date: 'Dec 7, 2021',
+      imageUrl: 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png',
+    },
+    {
+      id: 2,
+      title: 'Sofia Clear',
+      subTitle: 'Beverly Springfield',
+      date: 'Dec 7, 2021',
+      imageUrl: 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png',
+    },
+    {
+      id: 3,
+      title: 'Chris Justice',
+      subTitle: 'Cove Red',
+      date: 'Dec 7, 2021',
+      imageUrl: 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png',
+    },
+    {
+      id: 4,
+      title: 'Edin Kaolo',
+      subTitle: 'Kelapa Bafing',
+      date: 'Dec 7, 2021',
+      imageUrl: 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png',
+    },
   ];
 
   const doughtData = [
@@ -29,6 +62,7 @@ function Home() {
             data: [15, 100],
             backgroundColor: ['#5F259F', '#E8E6F9'],
             cutout: '80%',
+            cutoutPercentage: 0,
           },
         ],
       },
@@ -42,21 +76,25 @@ function Home() {
 
           // The labels
           ctx.save();
-          ctx.font = 'bold 12px sans-serif';
-          ctx.fillStyle = 'black';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
 
           // Labels
-          const labels = ['15', 'Units available'];
+          const labels = [
+            { text: '15', font: 'bold 36px sans-serif', color: '#000' },
+            {
+              text: 'Units unavailable',
+              font: 'italic 10px sans-serif',
+              color: '#565c69',
+            },
+          ];
           const totalHeight = labels.length * 15;
 
           labels.forEach((label, index) => {
-            // centerY += 12;
-            const centerY = initialCenterY - totalHeight / 2 + index * 15;
-            ctx.fillText(label, centerX, centerY);
-
-            // Adjust the value (vertical spacing) as needed
+            ctx.font = label.font;
+            ctx.fillStyle = label.color;
+            const centerY = initialCenterY - totalHeight / 2 + index * (15 + 7);
+            ctx.fillText(label.text, centerX, centerY);
           });
 
           ctx.restore();
@@ -88,22 +126,28 @@ function Home() {
           let initialCenterY = chart.getDatasetMeta(0).data[0].y;
 
           // The labels
+
+          // The labels
           ctx.save();
-          ctx.font = 'bold 12px sans-serif';
-          ctx.fillStyle = 'black';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
 
           // Labels
-          const labels = ['Employee', 'Subscription', 'Chart'];
+          const labels = [
+            { text: '78', font: 'bold 36px sans-serif', color: '#000' },
+            {
+              text: 'Properties',
+              font: 'italic 10px sans-serif',
+              color: '#565c69',
+            },
+          ];
           const totalHeight = labels.length * 15;
 
           labels.forEach((label, index) => {
-            // centerY += 12;
-            const centerY = initialCenterY - totalHeight / 2 + index * 15;
-            ctx.fillText(label, centerX, centerY);
-
-            // Adjust the value (vertical spacing) as needed
+            ctx.font = label.font;
+            ctx.fillStyle = label.color;
+            const centerY = initialCenterY - totalHeight / 2 + index * (15 + 7);
+            ctx.fillText(label.text, centerX, centerY);
           });
 
           ctx.restore();
@@ -136,21 +180,25 @@ function Home() {
 
           // The labels
           ctx.save();
-          ctx.font = 'bold 12px sans-serif';
-          ctx.fillStyle = 'black';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
 
           // Labels
-          const labels = ['Employee', 'Subscription', 'Chart'];
+          const labels = [
+            { text: '22', font: 'bold 36px sans-serif', color: '#000' },
+            {
+              text: 'Vacant',
+              font: 'italic 10px sans-serif',
+              color: '#565c69',
+            },
+          ];
           const totalHeight = labels.length * 15;
 
           labels.forEach((label, index) => {
-            // centerY += 12;
-            const centerY = initialCenterY - totalHeight / 2 + index * 15;
-            ctx.fillText(label, centerX, centerY);
-
-            // Adjust the value (vertical spacing) as needed
+            ctx.font = label.font;
+            ctx.fillStyle = label.color;
+            const centerY = initialCenterY - totalHeight / 2 + index * (15 + 7);
+            ctx.fillText(label.text, centerX, centerY);
           });
 
           ctx.restore();
@@ -183,21 +231,25 @@ function Home() {
 
           // The labels
           ctx.save();
-          ctx.font = 'bold 12px sans-serif';
-          ctx.fillStyle = 'black';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
 
           // Labels
-          const labels = ['Employee', 'Subscription', 'Chart'];
+          const labels = [
+            { text: '15', font: 'bold 36px sans-serif', color: '#000' },
+            {
+              text: 'Unlisted',
+              font: 'italic 10px sans-serif',
+              color: '#565c69',
+            },
+          ];
           const totalHeight = labels.length * 15;
 
           labels.forEach((label, index) => {
-            // centerY += 12;
-            const centerY = initialCenterY - totalHeight / 2 + index * 15;
-            ctx.fillText(label, centerX, centerY);
-
-            // Adjust the value (vertical spacing) as needed
+            ctx.font = label.font;
+            ctx.fillStyle = label.color;
+            const centerY = initialCenterY - totalHeight / 2 + index * (15 + 7);
+            ctx.fillText(label.text, centerX, centerY);
           });
 
           ctx.restore();
@@ -205,18 +257,6 @@ function Home() {
       },
     },
   ];
-
-  // const doughChartData = {
-  //   labels: '',
-  //   datasets: [
-  //     {
-  //       data: [15, 100],
-
-  //       backgroundColor: ['#5F259F', '#E8E6F9'],
-  //       cutout: '80%',
-  //     },
-  //   ],
-  // };
 
   const doughOp = {
     elements: {
@@ -369,19 +409,55 @@ function Home() {
           )}
         </article>
         <article className='d-flex flex-column flex-md-row mt-5 justify-content-between'>
-          <section className='col-12 col-md-7 listedProp card'>
-            <div>
-              <p>Property Overview</p>
-              <h2> 78 Listed Properties</h2>
-              <small>
-                <span> +10.6%</span> from last week
-              </small>
+          <section className='col-12 col-md-7 listedProp  card'>
+            <div className='d-flex justify-content-between'>
+              <div>
+                <p>Property Overview</p>
+                <h2> 78 Listed Properties</h2>
+                <small>
+                  <span> +10.6%</span> from last week
+                </small>
+              </div>
+
+              <Dropdown>
+                <Dropdown.Toggle id='dropdown-basic'>Weekly</Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href='#/action-1'>Monthly</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
 
-            <BarCharts data={employerStatData} options={chartOptions} />
+            <div className='col-12'>
+              <BarCharts data={employerStatData} options={chartOptions} />
+            </div>
           </section>
           <aside className='col-12 col-md-4 tenantRequest card'>
-            <h5>Tenant Request</h5>
+            <div className='d-flex justify-content-between'>
+              <h5>Tenant Request</h5>
+              <Link> View all </Link>
+            </div>
+
+            <div className='d-flex flex-column justify-content-between mt-4'>
+              {tenantReq.map(({ id, title, subTitle, date, imageUrl }) => (
+                <div
+                  key={id}
+                  className=' d-flex justify-content-between align-items-center py-3 reqList'
+                >
+                  <figure className='col-2'>
+                    <img src={imageUrl} alt='' />
+                  </figure>
+                  <div className='col-7'>
+                    <h6> {title} </h6>
+                    <p>
+                      {' '}
+                      {subTitle} {date}{' '}
+                    </p>
+                  </div>
+                  <PiCaretRightBold />{' '}
+                </div>
+              ))}
+            </div>
           </aside>
         </article>
       </section>

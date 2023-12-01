@@ -16,6 +16,67 @@
     background: var(--white);
   }
 
+  .tenantRequest {
+    padding: 0.7em 1em;
+
+    h5 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .reqList {
+      border-bottom: solid 1px #f0effb;
+
+      &:last-child {
+        border-bottom: solid 0px #f0effb;
+      }
+
+      h6 {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      p {
+        font-size: 0.7rem;
+        color: var(--Grey6);
+      }
+    }
+  }
+
+  .listedProp {
+    padding: 0.7em 1em;
+
+    .dropdown-toggle {
+      background: transparent !important;
+      border: solid 1.5px var(--mainLight);
+      color: var(--Grey6);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0.5em 0;
+    }
+
+    p {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--Grey6);
+
+      span {
+        background: color-mix(in sRGB, transparent 80%, var(--positive) 20%);
+        color: var(--positive);
+        padding: 0.6em 0.7em;
+        border-radius: 20px;
+      }
+    }
+  }
+
   .available {
     width: 100%;
     h4 {
@@ -39,11 +100,13 @@
       font-size: 0.6rem;
       font-weight: 400;
     }
-
-    a {
-      color: var(--mainColor);
-    }
   }
+
+  a {
+    color: var(--mainColor);
+    font-weight: 500;
+  }
+
   .doughMessage {
     position: absolute;
     top: 42%;
