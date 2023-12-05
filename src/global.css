@@ -22,9 +22,9 @@
   --Grey6: #7e8494;
   --Grey7: #f7f7fd;
   --Line: #e5e7ef;
-  --rated: #be9122;
-  --positive: #20af0b;
-  --negative: #ff3b2d;
+  --rated: #ffb154;
+  --positive: #27ae60;
+  --negative: #f06565;
   --receiver: #eeeff2;
   --sender: #3b70fb;
 }
@@ -122,6 +122,11 @@ small {
   margin: 0;
   padding: 0;
   color: var(--black);
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 h2 {
@@ -526,5 +531,133 @@ input {
     color: var(--Grey3);
   }
 }
+
+/* Global buttons */
+
+.verify {
+  font-size: 0.7rem;
+  padding: 0.75em 1em;
+  align-items: center;
+  border-radius: 1rem;
+  font-weight: 400;
+  color: var(--positive);
+  background: color-mix(in sRGB, transparent 90%, var(--positive) 10%);
+}
+
+.verify small {
+  font-size: 0.7rem;
+  color: var(--positive);
+}
+
+.view {
+  align-items: center;
+  font-size: 0.7rem;
+  color: var(--pryColor);
+  font-weight: 400;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  background: color-mix(in sRGB, transparent 90%, var(--pryColor) 10%);
+}
+
+.view small {
+  font-size: 0.7rem;
+  color: var(--pryColor);
+}
+
+.del {
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  color: var(--negative);
+  font-weight: 700;
+  border-radius: 1rem;
+  background: color-mix(in sRGB, transparent 90%, var(--negative) 10%);
+}
+
+.del small {
+  font-size: 0.7rem;
+  color: var(--negative);
+}
+
+.cancelled {
+  color: #841f17;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  background: #ffe6e4;
+}
+
+.completed {
+  background: color-mix(in sRGB, transparent 90%, var(--positive) 10%);
+  color: var(--positive);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.archive {
+  background: color-mix(in sRGB, transparent 90%, var(--rated) 10%);
+  color: var(--rated);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.completed small {
+  font-size: 0.7rem;
+  color: var(--positive);
+}
+
+.archive small {
+  font-size: 0.7rem;
+  color: var(--rated);
+}
+
+.cancelled small {
+  font-size: 0.7rem;
+  color: #841f17;
+}
+
+/* === Pagination styles start ==== */
+.paginContainer {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-weight: 700;
+}
+
+.paginContainer a {
+  display: block;
+  width: 2.5em;
+  height: 2.5em;
+  border: 1px solid var(--Grey3);
+  color: var(--Grey3);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginContainer a:hover {
+  background-color: var(--white);
+}
+
+.paginContainer .activePage a {
+  border: 1px solid var(--pryColor);
+  color: var(--pryColor);
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.paginContainer .disabled a {
+  pointer-events: none;
+  background-color: grey; /* Adjust the color for the disabled state */
+  border: 1px solid lightgrey; /* Adjust the border color for the disabled state */
+}
+
+/* === Pagination styles end ==== */
 
 /* ==== Dashboard Inner taabs header End==== */

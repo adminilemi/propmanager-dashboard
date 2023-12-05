@@ -71,13 +71,13 @@ function Insight() {
                 <h3>Rental Overview</h3>
                 <p>
                   Show overview from Nov 2021 - Dec 2021.{' '}
-                  <span>
+                  {/* <span>
                     {' '}
                     <Link className='viewMore'>
                       {' '}
                       Detailed Stats <PiCaretRightBold />{' '}
                     </Link>{' '}
-                  </span>{' '}
+                  </span>{' '} */}
                 </p>
               </div>
               <div className='col-3 d-flex flex-column'>
@@ -155,7 +155,7 @@ function Insight() {
                 <BsThreeDotsVertical />
                 <span>
                   {' '}
-                  <Link className='viewMore'>
+                  <Link className='viewMore' to='seeallproperties'>
                     {' '}
                     See all properties
                     <PiCaretRightBold />{' '}
