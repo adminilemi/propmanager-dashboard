@@ -1,4 +1,25 @@
 .seeAllProperties {
   margin: 1.5em auto;
   width: 95%;
+
+  .filtering {
+    background: var(--white);
+  }
+
+  .layoutIcon {
+    border: solid 1px var(--mainLight);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+  }
+
+  .border-right {
+    border-right: solid 1px var(--mainLight) !important;
+  }
+
+  .form-control {
+    border: solid 1px var(--mainLight) !important;
+  }
 }

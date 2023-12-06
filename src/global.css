@@ -12,6 +12,7 @@
 
   --mainColor: #5f259f;
   --mainLight: #e0def7;
+  --mainDark: #100a55;
   --black: #1e1e1e;
   --white: #fff;
   -grey1: #394150;
@@ -92,6 +93,10 @@ li {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+select {
+  border: none;
 }
 
 button {
@@ -633,9 +638,9 @@ input {
   display: block;
   width: 2.5em;
   height: 2.5em;
-  border: 1px solid var(--Grey3);
+  background: var(--white);
   color: var(--Grey3);
-  border-radius: 5px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -646,8 +651,8 @@ input {
 }
 
 .paginContainer .activePage a {
-  border: 1px solid var(--pryColor);
-  color: var(--pryColor);
+  background: var(--mainDark);
+  color: var(--white);
   width: 2.5em;
   height: 2.5em;
 }
