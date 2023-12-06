@@ -3,7 +3,7 @@ import './Auths.scss';
 // import { useSweetAlert } from '../../Hooks/useSweetAlert';
 // import * as API from '../../api/apis';
 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 import RightSide from '@/components/RightSide';
 import BrandLogo from '@/components/BrandLogo';

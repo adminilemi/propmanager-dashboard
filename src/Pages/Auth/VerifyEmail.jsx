@@ -88,7 +88,7 @@ function VerifyEmail() {
         verifyCode.num3 &&
         verifyCode.num4
       ) {
-        const verificationCode = `${verifyCode.num1}${verifyCode.num2}${verifyCode.num3}${verifyCode.num4}`;
+        // const verificationCode = `${verifyCode.num1}${verifyCode.num2}${verifyCode.num3}${verifyCode.num4}`;
         setLoading(true);
 
         // API.verifyEmail({

@@ -1,29 +1,29 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Navbar.scss';
-import { MdOutlineEmail, MdOutlineNotificationsNone } from 'react-icons/md';
+import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { useGlobalHooks } from '../../Hooks/globalHooks';
 import { selectGlobal } from '../../Redux/Features/globalSlice';
 import Notifications from '../Notifications/Notifications';
 import UserPop from '../UserPop/UserPop';
 import UserLogo from '../UserPop/UserLogo';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {
   selectUserAvatar,
-  selectUserData,
+  // selectUserData,
   selectUserName,
 } from '../../Redux/Features/userAuthSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Modal from '../popUps/Modal';
-import { getNotifs, selectNotifs } from '../../Redux/Features/notifsSlice';
+// import { getNotifs, selectNotifs } from '../../Redux/Features/notifsSlice';
 
 function NavBar() {
   const toggle = useSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
-  const { authUser } = useSelector(selectUserData);
+  // const { authUser } = useSelector(selectUserData);
   const logoImage = useSelector(selectUserAvatar);
   const name = useSelector(selectUserName);
-  const notifs = useSelector(selectNotifs);
-  const dispatch = useDispatch();
+  // const notifs = useSelector(selectNotifs);
+  // const dispatch = useDispatch();
 
   return (
     <div className='navbar d-flex flex-column align-items-end'>

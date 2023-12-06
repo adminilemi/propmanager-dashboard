@@ -1,16 +1,16 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './Signin.scss';
-import { useSweetAlert } from '../../../Hooks/useSweetAlert';
+// import { useSweetAlert } from '../../../Hooks/useSweetAlert';
 import {
   BsFillEyeSlashFill,
   BsFillEyeFill,
-  BsArrowLeft,
-  BsGoogle,
+  // BsArrowLeft,
+  // BsGoogle,
 } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import RightSide from '../../../components/RightSide';
-import { useCookies } from '../../../Hooks/cookiesHook';
-import { useDispatch } from 'react-redux';
+// import { useCookies } from '../../../Hooks/cookiesHook';
+// import { useDispatch } from 'react-redux';
 import BrandLogo from '@/components/BrandLogo';
 import { Spinner } from 'react-bootstrap';
 // import {

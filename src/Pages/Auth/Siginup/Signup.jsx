@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './Signup.scss';
-import { useSweetAlert } from '../../../Hooks/useSweetAlert';
+// import { useSweetAlert } from '../../../Hooks/useSweetAlert';
 import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import RightSide from '../../../components/RightSide';
-import { useDispatch } from 'react-redux';
-import { useCookies } from '../../../Hooks/cookiesHook';
-import { userAuthData } from '../../../Redux/Features/userAuthSlice';
+// import { useDispatch } from 'react-redux';
+// import { useCookies } from '../../../Hooks/cookiesHook';
+// import { userAuthData } from '../../../Redux/Features/userAuthSlice';
 import { Spinner } from 'react-bootstrap';
 import BrandLogo from '@/components/BrandLogo';
 
@@ -22,7 +22,7 @@ function Signup() {
   const [passwordType, setPasswordType] = useState(false);
   const [loading, setLoading] = useState(false);
   // const [passwordStrength, setPasswordStrength] = useState(false);
-  const [errors, setErrors] = useState({ error: false, errMessage: '' });
+  const [errors] = useState({ error: false, errMessage: '' });
   const [userData, setUserData] = useState(initialState);
 
   // const navigate = useNavigate();
@@ -94,9 +94,9 @@ function Signup() {
   //   }
   // };
 
-  const handleCloseModal = () => {
-    setPasswordStrength(false); // Close the modal
-  };
+  // const handleCloseModal = () => {
+  //   setPasswordStrength(false); // Close the modal
+  // };
 
   // // Validate input
   // const validateInput = ({
@@ -155,10 +155,10 @@ function Signup() {
     // const validInput = validateInput(userData);
 
     // if the input isn't validated, return
-    if (!validInput) {
-      setLoading(false);
-      return;
-    }
+    // if (!validInput) {
+    //   setLoading(false);
+    //   return;
+    // }
   };
 
   return (
@@ -248,10 +248,10 @@ function Signup() {
                     placeholder='Enter password'
                     onChange={(e) => {
                       handleChange(e);
-                      checkPassword(e);
+                      // checkPassword(e);
                     }}
                     defaultValue={userData.password}
-                    onBlur={handleCloseModal}
+                    // onBlur={handleCloseModal}
                     className={` formInput ${
                       errors.errMessage === 'weakPassword' ||
                       errors.errMessage === 'empty'

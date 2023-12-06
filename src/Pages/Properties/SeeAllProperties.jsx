@@ -44,7 +44,7 @@ function SeeAllProperties() {
                 viewBox='0 0 24 24'
                 fill='none'
               >
-                <g opacity='0.5' clip-path='url(#clip0_283_14003)'>
+                <g opacity='0.5' clipPath='url(#clip0_283_14003)'>
                   <path
                     d='M10 5H6C5.44772 5 5 5.44772 5 6V10C5 10.5523 5.44772 11 6 11H10C10.5523 11 11 10.5523 11 10V6C11 5.44772 10.5523 5 10 5Z'
                     fill='#100A55'
@@ -77,41 +77,41 @@ function SeeAllProperties() {
                 viewBox='0 0 20 20'
                 fill='none'
               >
-                <g opacity='0.5' clip-path='url(#clip0_283_14026)'>
+                <g opacity='0.5' clipPath='url(#clip0_283_14026)'>
                   <path
                     d='M3.33301 5H9.16634'
                     stroke='#000929'
-                    stroke-width='1.5'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                   />
                   <path
                     d='M3.33301 10H9.16634'
                     stroke='#000929'
-                    stroke-width='1.5'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                   />
                   <path
                     d='M3.33301 15H10.833'
                     stroke='#000929'
-                    stroke-width='1.5'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                   />
                   <path
                     d='M12.5 7.5L15 5L17.5 7.5'
                     stroke='#000929'
-                    stroke-width='1.5'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                   />
                   <path
                     d='M15 5V15'
                     stroke='#000929'
-                    stroke-width='1.5'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                   />
                 </g>
                 <defs>
@@ -129,7 +129,7 @@ function SeeAllProperties() {
                 viewBox='0 0 24 24'
                 fill='none'
               >
-                <g clip-path='url(#clip0_283_14011)'>
+                <g clipPath='url(#clip0_283_14011)'>
                   <path
                     d='M18 6H6C4.89543 6 4 6.59695 4 7.33333V8.66667C4 9.40305 4.89543 10 6 10H18C19.1046 10 20 9.40305 20 8.66667V7.33333C20 6.59695 19.1046 6 18 6Z'
                     fill='#5F259F'
@@ -150,7 +150,7 @@ function SeeAllProperties() {
         </section>
         <article className='d-flex flex-wrap justify-content-between gap-3'>
           {filteredData.map((item) => (
-            <PropertyCard property={item} />
+            <PropertyCard key={item.id} property={item} />
           ))}
         </article>
       </section>

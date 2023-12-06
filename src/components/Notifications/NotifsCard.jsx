@@ -1,23 +1,23 @@
 import React from 'react';
 import { MdOutlineNotificationsNone } from 'react-icons/md';
-import { BsDownload } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
-import { useGlobalHooks } from '../../Hooks/globalHooks';
-import { useSelector } from 'react-redux';
-import { selectGlobal } from '../../Redux/Features/globalSlice';
+// import { BsDownload } from 'react-icons/bs';
+// import { Link } from 'react-router-dom';
+// import { useGlobalHooks } from '../../Hooks/globalHooks';
+// import { useSelector } from 'react-redux';
+// import { selectGlobal } from '../../Redux/Features/globalSlice';
 
 function NotifsCard({
-  id,
-  userName,
-  userId,
-  jobId,
-  message,
+  // id,
+  // userName,
+  // userId,
+  // jobId,
+  // message,
+  // shift,
+  // cvFile,
   time,
-  shift,
-  cvFile,
 }) {
-  const toggle = useSelector(selectGlobal);
-  const { handleShow } = useGlobalHooks();
+  // const toggle = useSelector(selectGlobal);
+  // const { handleShow } = useGlobalHooks();
 
   return (
     <div className=' d-flex flex-column justify-content-between'>

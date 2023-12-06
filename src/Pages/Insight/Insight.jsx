@@ -1,4 +1,3 @@
-import React from 'react';
 import './Insight.scss';
 import { Link } from 'react-router-dom';
 import { PiCaretRightBold } from 'react-icons/pi';

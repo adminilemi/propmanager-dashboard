@@ -1,6 +1,6 @@
 import DoughnutCharts from '@/components/DashboardComps/HomeComps/Charts/DoughnutCharts';
 import './Home.scss';
-import { BiSolidCheckbox } from 'react-icons/bi';
+// import { BiSolidCheckbox } from 'react-icons/bi';
 import { BsThreeDotsVertical, BsXLg } from 'react-icons/bs';
 import Due from '../../assets/due.png';
 import Active from '../../assets/active.png';

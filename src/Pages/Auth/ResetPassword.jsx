@@ -1,23 +1,23 @@
 import { useRef, useState } from 'react';
 import './Auths.scss';
-import { useSweetAlert } from '../../Hooks/useSweetAlert';
-import * as API from '../../api/apis';
-import { useNavigate } from 'react-router-dom';
+// import { useSweetAlert } from '../../Hooks/useSweetAlert';
+// import * as API from '../../api/apis';
+// import { useNavigate } from 'react-router-dom';
 import BrandLogo from '@/components/BrandLogo';
 import { Spinner } from 'react-bootstrap';
 import RightSide from '@/components/RightSide';
 
 function ResetPassword() {
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({ error: false, errMessage: '' });
+  const [errors] = useState({ error: false, errMessage: '' });
   const [updatePassword, setUpdatePassword] = useState({
     uniqueVerificationCode: '',
     newPassword: '',
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const inputRef = useRef(null);
-  const { Toast } = useSweetAlert();
+  // const { Toast } = useSweetAlert();
 
   // get the form input data
   const handleChange = (e) => {
