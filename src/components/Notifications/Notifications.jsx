@@ -6,7 +6,7 @@ import NotifsCard from './NotifsCard';
 import EmptyState from '../EmptyState/EmptyState';
 import { useSelector } from 'react-redux';
 import { selectNotifs } from '../../Redux/Features/notifsSlice';
-import { BsCheck2, BsCheck2All } from 'react-icons/bs';
+import { BsCheck2All } from 'react-icons/bs';
 // import { selectUserName } from '../../Redux/Features/userAuthSlice';
 
 function Notifications({ popUp, home }) {

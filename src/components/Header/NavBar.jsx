@@ -4,13 +4,13 @@ import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { useGlobalHooks } from '../../Hooks/globalHooks';
 import { selectGlobal } from '../../Redux/Features/globalSlice';
 import Notifications from '../Notifications/Notifications';
-import UserPop from '../UserPop/UserPop';
+// import UserPop from '../UserPop/UserPop';
 import UserLogo from '../UserPop/UserLogo';
 // import { Link } from 'react-router-dom';
 import {
   selectUserAvatar,
   // selectUserData,
-  selectUserName,
+  // selectUserName,
 } from '../../Redux/Features/userAuthSlice';
 import { useSelector } from 'react-redux';
 import Modal from '../popUps/Modal';
@@ -21,7 +21,7 @@ function NavBar() {
   const { handleShow } = useGlobalHooks();
   // const { authUser } = useSelector(selectUserData);
   const logoImage = useSelector(selectUserAvatar);
-  const name = useSelector(selectUserName);
+  // const name = useSelector(selectUserName);
   // const notifs = useSelector(selectNotifs);
   // const dispatch = useDispatch();
 

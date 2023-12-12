@@ -91,7 +91,7 @@ function Listings() {
           </section>
 
           {propertiesData.map((item) => (
-            <ListingDeetsCard propData={item} toggle={toggle} />
+            <ListingDeetsCard key={item.id} propData={item} toggle={toggle} />
           ))}
         </article>
       </section>
