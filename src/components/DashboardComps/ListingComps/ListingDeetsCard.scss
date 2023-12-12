@@ -27,20 +27,28 @@
       border-radius: 9px;
       padding: 0.5em 1em;
 
-      h5,
-      small {
-        color: var(--white);
+      .titleGroup {
+        border-bottom: solid 1px #e8e6f931;
       }
 
       h5 {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 700;
+        color: var(--white);
       }
 
       small {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         font-weight: 400;
+        color: var(--Grey6);
       }
+    }
+
+    .propOccupied {
+      background: #f7f7fd;
+      border: solid 2px var(--Line);
+      border-radius: 9px;
+      padding: 2em 1em;
     }
   }
 }

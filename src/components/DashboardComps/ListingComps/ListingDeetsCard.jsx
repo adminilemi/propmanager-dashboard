@@ -358,7 +358,7 @@ function ListingDeetsCard() {
           </article>
           <aside className='col-12 col-md-5 selectedProp'>
             <div className='tenantCard'>
-              <div className='border-bottom d-flex gap-3'>
+              <div className='titleGroup d-flex gap-3 py-3'>
                 <figure className='messageAvatar'>
                   <img
                     src='https://cdn-icons-png.flaticon.com/512/3177/3177440.png'
@@ -370,16 +370,17 @@ function ListingDeetsCard() {
                   <small> Tenants</small>
                 </div>
               </div>
-              <div>
-                <div>
+
+              <div className='mt-3'>
+                <div className='d-flex justify-content-between align-items-center'>
                   <small> Move-in Date</small>
                   <h5>Dec 1, 2021</h5>
                 </div>
-                <div>
+                <div className='d-flex justify-content-between align-items-center my-3'>
                   <small> Contact</small>
                   <h5>(+1) 324-5329</h5>
                 </div>
-                <div>
+                <div className='d-flex justify-content-between align-items-center'>
                   <small> Price Per Month</small>
                   <h5>(+1) 324-5329</h5>
                 </div>
@@ -395,10 +396,14 @@ function ListingDeetsCard() {
               </div>
             </div>
 
-            <div>
-              <p>Property occupied this month:</p>
-              <h3>83%</h3> <small>60 tenants</small>
-              <PiCaretRightBold />
+            <div className='propOccupied my-3'>
+              <p className='mb-3'>Property occupied this month:</p>
+              <div className='d-flex align-items-end justify-content-between'>
+                <div className='d-flex align-items-end gap-2'>
+                  <h3>83%</h3> <small className='viewMore'>60 tenants</small>
+                </div>
+                <PiCaretRightBold />
+              </div>
             </div>
           </aside>
         </section>
