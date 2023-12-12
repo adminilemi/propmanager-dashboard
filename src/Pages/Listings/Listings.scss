@@ -1,3 +1,37 @@
 .listings {
   margin: 0 auto;
+  .count {
+    background: var(--mainColor);
+    color: var(--white);
+    border-radius: 3px;
+    padding: 0.5em;
+    font-size: 0.8rem;
+  }
+  .listCard {
+    li {
+      padding: 0.7em 1.1em;
+      border-top: solid 1px var(--Line);
+
+      &:last-child {
+        border-bottom: solid 1px var(--Line);
+      }
+
+      figure {
+        img {
+          border-radius: 9px;
+        }
+      }
+
+      .listTitle {
+        h4 {
+          font-size: 1rem;
+        }
+      }
+      small,
+      p {
+        font-size: 0.8rem;
+        color: var(--Grey6);
+      }
+    }
+  }
 }

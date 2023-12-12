@@ -22,7 +22,7 @@
   --Grey5: #e5e7ef;
   --Grey6: #7e8494;
   --Grey7: #f7f7fd;
-  --Line: #e5e7ef;
+  --Line: #e0def7;
   --rated: #ffb154;
   --positive: #27ae60;
   --negative: #f06565;
@@ -81,7 +81,7 @@ body::-webkit-scrollbar {
 }
 
 .line {
-  border: solid 2px var(--Grey4);
+  border: solid 2px var(--Line) !important;
 }
 
 .card {
@@ -335,7 +335,7 @@ button:disabled {
   padding: 0.75rem 3.375rem 0.75rem 3.1875rem;
   border-radius: 0.5rem;
   padding-left: 3rem !important;
-  border: 1px solid #e5e7ef;
+  border: 2px solid var(--Line);
 }
 
 .searchIcon {
@@ -515,6 +515,8 @@ input {
 
 .side {
   border-right: solid 1px var(--Grey5);
+  min-height: 100vh;
+  background: var(--white);
 }
 
 .border-bottom,
@@ -544,7 +546,7 @@ input {
   padding: 0.75em 1em;
   align-items: center;
   border-radius: 1rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--positive);
   background: color-mix(in sRGB, transparent 90%, var(--positive) 10%);
 }
@@ -557,16 +559,16 @@ input {
 .view {
   align-items: center;
   font-size: 0.7rem;
-  color: var(--pryColor);
-  font-weight: 400;
+  color: var(--mainColor);
+  font-weight: 700;
   border-radius: 1rem;
   padding: 0.75rem 1rem;
-  background: color-mix(in sRGB, transparent 90%, var(--pryColor) 10%);
+  background: color-mix(in sRGB, transparent 90%, var(--mainColor) 10%);
 }
 
 .view small {
   font-size: 0.7rem;
-  color: var(--pryColor);
+  color: var(--mainColor);
 }
 
 .del {

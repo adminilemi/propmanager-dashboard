@@ -1,0 +1,46 @@
+.ListingDeetsCard {
+  .showProp {
+    font-size: 0.7rem;
+  }
+
+  ul {
+    border: solid 2px var(--Line);
+    border-radius: 10px;
+    li {
+      h5 {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--Grey6);
+        margin-bottom: 0.7em;
+      }
+
+      h6 {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .selectedProp {
+    .tenantCard {
+      background: var(--mainDark);
+      border-radius: 9px;
+      padding: 0.5em 1em;
+
+      h5,
+      small {
+        color: var(--white);
+      }
+
+      h5 {
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      small {
+        font-size: 0.7rem;
+        font-weight: 400;
+      }
+    }
+  }
+}

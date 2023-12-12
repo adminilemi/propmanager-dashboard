@@ -81,7 +81,11 @@ function Insight() {
               </div>
               <div className='col-3 d-flex flex-column'>
                 <div>
-                  <input type='date' name='date' className='form-control' />
+                  <input
+                    type='date'
+                    name='date'
+                    className='form-control line'
+                  />
                 </div>
               </div>
             </div>

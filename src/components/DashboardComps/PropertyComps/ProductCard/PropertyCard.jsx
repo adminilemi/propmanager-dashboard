@@ -31,10 +31,12 @@ function PropertyCard({
           <div>
             <button
               className={
-                status === 'Active'
+                status === 'Active' || status === 'Occupied'
                   ? 'verify'
                   : status === 'Maintenance'
                   ? 'del'
+                  : status === 'Vacant'
+                  ? 'view'
                   : 'archive'
               }
             >

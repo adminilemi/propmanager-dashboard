@@ -326,35 +326,6 @@ function Home() {
     },
   };
 
-  // const doughnutLabel = {
-  //   id: 'doughnutLabel',
-  //   afterDatasetsDraw(chart) {
-  //     const { ctx } = chart;
-  //     let centerX = chart.getDatasetMeta(0).data[0].x;
-  //     let initialCenterY = chart.getDatasetMeta(0).data[0].y;
-
-  //     // The labels
-  //     ctx.save();
-  //     ctx.font = 'bold 12px sans-serif';
-  //     ctx.fillStyle = 'black';
-  //     ctx.textAlign = 'center';
-  //     ctx.textBaseline = 'middle';
-
-  //     // Labels
-  //     const labels = ['Employee', 'Subscription', 'Chart'];
-  //     const totalHeight = labels.length * 15;
-
-  //     labels.forEach((label, index) => {
-  //       // centerY += 12;
-  //       const centerY = initialCenterY - totalHeight / 2 + index * 15;
-  //       ctx.fillText(label, centerX, centerY);
-
-  //       // Adjust the value (vertical spacing) as needed
-  //     });
-
-  //     ctx.restore();
-  //   },
-  // };
   return (
     <main className='Overviews d-flex flex-column  '>
       <section className=''>
@@ -374,7 +345,7 @@ function Home() {
                   <small>
                     {subTitle}
 
-                    <Link className='view'> View more → </Link>
+                    <Link className='viewMore'> View more → </Link>
                   </small>
                 </div>
               </div>
