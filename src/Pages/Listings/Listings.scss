@@ -1,3 +1,57 @@
 .listings {
   margin: 0 auto;
+  background: var(--white);
+
+  .count {
+    background: var(--mainColor);
+    color: var(--white);
+    border-radius: 3px;
+    padding: 0.5em;
+    font-size: 0.8rem;
+  }
+
+  .listSide {
+    border-right: solid 1.5px var(--Line);
+  }
+
+  .listCard {
+    .cardActive {
+      background: #f0effb;
+    }
+
+    li {
+      padding: 0.7em 1.1em;
+      border-top: solid 1px var(--Line);
+      cursor: pointer;
+
+      &:last-child {
+        border-bottom: solid 1px var(--Line);
+      }
+
+      figure {
+        img {
+          border-radius: 9px;
+        }
+      }
+
+      .listTitle {
+        h4 {
+          font-size: 1rem;
+        }
+      }
+
+      small,
+      p {
+        font-size: 0.8rem;
+        color: var(--Grey6);
+      }
+    }
+  }
+
+  .addBanner {
+    background: var(--Grey3);
+    text-align: center;
+    padding: 6em 0;
+    margin-bottom: 1em;
+  }
 }

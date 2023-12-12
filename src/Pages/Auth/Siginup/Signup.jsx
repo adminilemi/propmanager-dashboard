@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import './Signup.scss';
 // import { useSweetAlert } from '../../../Hooks/useSweetAlert';
 import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RightSide from '../../../components/RightSide';
 // import { useDispatch } from 'react-redux';
 // import { useCookies } from '../../../Hooks/cookiesHook';
@@ -25,7 +25,7 @@ function Signup() {
   const [errors] = useState({ error: false, errMessage: '' });
   const [userData, setUserData] = useState(initialState);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // const { setCookies } = useCookies();
 
@@ -159,6 +159,8 @@ function Signup() {
     //   setLoading(false);
     //   return;
     // }
+
+    navigate('/verifyemail');
   };
 
   return (

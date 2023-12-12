@@ -6,6 +6,7 @@ import './Auths.scss';
 import BrandLogo from '@/components/BrandLogo';
 import { Spinner } from 'react-bootstrap';
 import RightSide from '@/components/RightSide';
+import { useNavigate } from 'react-router-dom';
 
 function ResetPassword() {
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ function ResetPassword() {
     newPassword: '',
   });
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const inputRef = useRef(null);
   // const { Toast } = useSweetAlert();
 
@@ -27,6 +28,7 @@ function ResetPassword() {
   const changePassword = async (e) => {
     e.preventDefault();
     setLoading(true);
+    navigate('/signin');
   };
 
   return (

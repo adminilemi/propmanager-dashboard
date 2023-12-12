@@ -7,12 +7,13 @@ import './Auths.scss';
 import { Spinner } from 'react-bootstrap';
 import RightSide from '@/components/RightSide';
 import BrandLogo from '@/components/BrandLogo';
+import { useNavigate } from 'react-router-dom';
 
 function ResetPasswordRequest() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({ error: false, errMessage: '' });
   const [resetEmail, setResetEmail] = useState({ email: '' });
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const inputRef = useRef(null);
   // const { Toast } = useSweetAlert();
 
@@ -23,13 +24,15 @@ function ResetPasswordRequest() {
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
 
     if (resetEmail.email === '') {
       setErrors({ error: true, errMessage: 'empty' });
       setLoading(false);
       return;
     }
+
+    navigate('/resetpassword');
 
     // API.requestPasswordChange(resetEmail.email)
     //   .then((res) => {
