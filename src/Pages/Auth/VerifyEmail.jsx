@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Auths.scss';
 // import * as API from '../../api/apis';
-import { useSelector } from 'react-redux';
-import { selectUserData } from '../../Redux/Features/userAuthSlice';
+// import { useSelector } from 'react-redux';
+// import { selectUserData } from '../../Redux/Features/userAuthSlice';
 import { useNavigate } from 'react-router-dom';
-import { useSweetAlert } from '../../Hooks/useSweetAlert';
-import { useGlobalHooks } from '../../Hooks/globalHooks';
-import { Spinner } from 'react-bootstrap';
+// import { useSweetAlert } from '../../Hooks/useSweetAlert';
+// import { useGlobalHooks } from '../../Hooks/globalHooks';
+// import { Spinner } from 'react-bootstrap';
 import RightSide from '@/components/RightSide';
 import BrandLogo from '@/components/BrandLogo';
 
@@ -18,13 +18,13 @@ const numInput = [
 ];
 
 function VerifyEmail() {
-  const { loading, setLoading, errors, setErrors } = useGlobalHooks();
+  // const { loading, setLoading, errors,  } = useGlobalHooks();
 
-  const { showAlert } = useSweetAlert();
+  // const { showAlert } = useSweetAlert();
 
   const navigate = useNavigate();
 
-  const { authUser } = useSelector(selectUserData);
+  // const { authUser } = useSelector(selectUserData);
 
   const [verifyCode, setVerifyCode] = useState({
     num1: '',
@@ -70,66 +70,70 @@ function VerifyEmail() {
     //   });
   };
 
-  const clearInput = () => {
-    setVerifyCode('');
+  // const clearInput = () => {
+  //   setVerifyCode('');
+  // };
+
+  // useEffect(() => {
+  //   if (loading) {
+  //     setErrors({ error: false, errMessage: '' });
+  //     // when the code failed, it keep retrying, so this was a temp fix
+  //     clearInput();
+  //   }
+
+  //   const handleVerifyEmail = () => {
+  //     if (
+  //       verifyCode.num1 &&
+  //       verifyCode.num2 &&
+  //       verifyCode.num3 &&
+  //       verifyCode.num4
+  //     ) {
+  //       // const verificationCode = `${verifyCode.num1}${verifyCode.num2}${verifyCode.num3}${verifyCode.num4}`;
+  //       // setLoading(true);
+
+  //       // API.verifyEmail({
+  //       //   userId: authUser.userId,
+  //       //   uniqueVerificationCode: verificationCode,
+  //       // })
+  //       //   .then((res) => {
+  //       //     const successMessage = {
+  //       //       success: true,
+  //       //       message: res.data.message,
+  //       //     };
+
+  //       //     showAlert(successMessage.message);
+
+  //       //     setLoading(false);
+  //       //     return navigate('/onboarding');
+  //       //   })
+  //       //   .catch((err) => {
+  //       //     const erroMessage = {
+  //       //       success: false,
+  //       //       message:
+  //       //         err && err.response
+  //       //           ? err.response.data.message
+  //       //           : 'We encounter an error',
+  //       //     };
+  //       //     setErrors({ error: true, errMessage: erroMessage.message });
+  //       //     setLoading(false);
+  //       //   });
+  //     }
+  //   };
+
+  //   handleVerifyEmail();
+  // }, [
+  //   verifyCode,
+  //   showAlert,
+  //   authUser.userId,
+  //   navigate,
+  //   setLoading,
+  //   setErrors,
+  //   loading,
+  // ]);
+
+  const handleVerifyEmail = () => {
+    navigate('/signin');
   };
-
-  useEffect(() => {
-    if (loading) {
-      setErrors({ error: false, errMessage: '' });
-      // when the code failed, it keep retrying, so this was a temp fix
-      clearInput();
-    }
-
-    const handleVerifyEmail = () => {
-      if (
-        verifyCode.num1 &&
-        verifyCode.num2 &&
-        verifyCode.num3 &&
-        verifyCode.num4
-      ) {
-        // const verificationCode = `${verifyCode.num1}${verifyCode.num2}${verifyCode.num3}${verifyCode.num4}`;
-        setLoading(true);
-
-        // API.verifyEmail({
-        //   userId: authUser.userId,
-        //   uniqueVerificationCode: verificationCode,
-        // })
-        //   .then((res) => {
-        //     const successMessage = {
-        //       success: true,
-        //       message: res.data.message,
-        //     };
-
-        //     showAlert(successMessage.message);
-
-        //     setLoading(false);
-        //     return navigate('/onboarding');
-        //   })
-        //   .catch((err) => {
-        //     const erroMessage = {
-        //       success: false,
-        //       message:
-        //         err && err.response
-        //           ? err.response.data.message
-        //           : 'We encounter an error',
-        //     };
-        //     setErrors({ error: true, errMessage: erroMessage.message });
-        //     setLoading(false);
-        //   });
-      }
-    };
-
-    handleVerifyEmail();
-  }, [
-    verifyCode,
-    showAlert,
-    authUser.userId,
-    navigate,
-    setLoading,
-    setErrors,
-    loading,
-  ]);
 
   // console.log(errors);
 
@@ -170,30 +174,31 @@ function VerifyEmail() {
                 </div>
               ))}
             </div>
-            {errors.error && (
+            {/* {errors.error && (
               <span className='error_message mt-3'> {errors.errMessage} </span>
-            )}
+            )} */}
 
             <div className=' col-12 text-center'>
-              <button className='main-btn col-12 mt-3'>
-                {loading ? <Spinner /> : 'Validate'}
+              <button
+                className='main-btn col-12 mt-3'
+                onClick={handleVerifyEmail}
+              >
+                Validate
               </button>
-              {errors.errMessage === 'empty' ? (
+              {/* {errors.errMessage === 'empty' ? (
                 <span className='error_message'>
                   {' '}
                   All field must be filled{' '}
                 </span>
               ) : (
                 <span className='error_message'> {errors.errMessage} </span>
-              )}
+              )} */}
             </div>
           </form>
 
-          {loading && <Spinner />}
-
           <div className='mt-3'>
             <small onClick={handleReSendOTP}>
-              Didn’t get code? <strong>Resend</strong>
+              Didn&apos;t get code? <strong>Resend</strong>
             </small>
           </div>
         </aside>

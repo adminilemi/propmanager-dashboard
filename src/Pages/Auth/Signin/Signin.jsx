@@ -12,7 +12,7 @@ import RightSide from '../../../components/RightSide';
 // import { useCookies } from '../../../Hooks/cookiesHook';
 // import { useDispatch } from 'react-redux';
 import BrandLogo from '@/components/BrandLogo';
-import { Spinner } from 'react-bootstrap';
+// import { Spinner } from 'react-bootstrap';
 // import {
 //   getUserAvatar,
 //   userAuthData,
@@ -20,8 +20,8 @@ import { Spinner } from 'react-bootstrap';
 
 function Signin() {
   const [passwordType, setPasswordType] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({ error: false, errMessage: '' });
+  // const [loading, setLoading] = useState(false);
+  // const [errors, setErrors] = useState({ error: false, errMessage: '' });
   const [userData, setUserData] = useState({ email: '', password: '' });
 
   const inputRef = useRef(null);
@@ -40,27 +40,27 @@ function Signin() {
   };
 
   // Validate input
-  const validateInput = ({ email, password }) => {
-    if (email === '' || password === '') {
-      setErrors({ error: true, errMessage: 'empty' });
-      return false;
-    }
+  // const validateInput = ({ email, password }) => {
+  //   if (email === '' || password === '') {
+  //     setErrors({ error: true, errMessage: 'empty' });
+  //     return false;
+  //   }
 
-    setErrors({ error: false });
+  //   setErrors({ error: false });
 
-    return true;
-  };
+  //   return true;
+  // };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    const validInput = validateInput(userData);
+    // setLoading(true);
+    // const validInput = validateInput(userData);
 
-    // if the input isn't validated, return
-    if (!validInput) {
-      setLoading(false);
-      return;
-    }
+    // // if the input isn't validated, return
+    // if (!validInput) {
+    //   setLoading(false);
+    //   return;
+    // }
 
     navigate('/');
   };
@@ -95,22 +95,17 @@ function Signin() {
                   placeholder='example@gmail.com'
                   defaultValue={userData.email}
                   onChange={handleChange}
-                  className={` formInput ${
-                    errors.errMessage === 'email' ||
-                    errors.errMessage === 'empty'
-                      ? 'errors'
-                      : ''
-                  } form-control `}
+                  className={` formInput  form-control `}
                 />
               </div>
-              {errors.errMessage === 'email' ? (
+              {/* {errors.errMessage === 'email' ? (
                 <span className='error_message'>
                   {' '}
                   Please enter a valid email e.g example@mail.com{' '}
                 </span>
               ) : (
                 ''
-              )}
+              )} */}
             </section>
             <section className='col-12 mb-3'>
               <div className=''>
@@ -129,9 +124,7 @@ function Signin() {
                     placeholder='enter your password'
                     defaultValue={userData.password}
                     onChange={handleChange}
-                    className={` formInput ${
-                      errors.errMessage === 'empty' ? 'errors' : ''
-                    }  form-control `}
+                    className={` formInput  form-control `}
                     required
                   />{' '}
                   <div
@@ -153,16 +146,16 @@ function Signin() {
 
             <div className=' col-12 text-center'>
               <button className='main-btn col-12 mt-1' onClick={handleSignIn}>
-                {loading ? <Spinner /> : 'Log In'}
+                Log In
               </button>
-              {errors.errMessage === 'empty' ? (
+              {/* {errors.errMessage === 'empty' ? (
                 <span className='error_message'>
                   {' '}
                   All field must be filled{' '}
                 </span>
               ) : (
                 <span className='error_message'> {errors.errMessage} </span>
-              )}
+              )} */}
             </div>
             <div className=' col-12 text-center mt-3'>
               <button
@@ -199,7 +192,7 @@ function Signin() {
               </button>
             </div>
             <p className='mt-3 text-center'>
-              Don’t have an account?
+              Don&apos;t have an account?
               <Link className='Login' to='/signup'>
                 <strong> Sign up for free </strong>
               </Link>
