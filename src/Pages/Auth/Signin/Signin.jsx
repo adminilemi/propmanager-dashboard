@@ -7,7 +7,7 @@ import {
   // BsArrowLeft,
   // BsGoogle,
 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RightSide from '../../../components/RightSide';
 // import { useCookies } from '../../../Hooks/cookiesHook';
 // import { useDispatch } from 'react-redux';
@@ -25,7 +25,7 @@ function Signin() {
   const [userData, setUserData] = useState({ email: '', password: '' });
 
   const inputRef = useRef(null);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const { setCookies } = useCookies();
   // const dispatch = useDispatch();
   // const { showAlert } = useSweetAlert();
@@ -61,6 +61,8 @@ function Signin() {
       setLoading(false);
       return;
     }
+
+    navigate('/');
   };
 
   return (

@@ -6,6 +6,7 @@ import NotifsCard from './NotifsCard';
 import EmptyState from '../EmptyState/EmptyState';
 import { useSelector } from 'react-redux';
 import { selectNotifs } from '../../Redux/Features/notifsSlice';
+import { BsCheck2, BsCheck2All } from 'react-icons/bs';
 // import { selectUserName } from '../../Redux/Features/userAuthSlice';
 
 function Notifications({ popUp, home }) {
@@ -18,7 +19,14 @@ function Notifications({ popUp, home }) {
 
   return (
     <main className='col-12 Notifs'>
-      <h3> Notifications</h3>
+      <hgroup className='d-flex justify-content-between'>
+        <h3> Notifications {notifs.length} </h3>
+        <h3 className='viewMore d-flex gap-2'>
+          {' '}
+          <BsCheck2All />
+          <span>Mark as read</span>
+        </h3>
+      </hgroup>
       {popUp && <hr />}
 
       {notifs?.length === 0 && (
@@ -58,6 +66,8 @@ function Notifications({ popUp, home }) {
             ),
           )}
       </ul>
+
+      <p className='viewMore col-11 mx-auto py-3'>View all notification</p>
     </main>
   );
 }

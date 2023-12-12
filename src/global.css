@@ -573,7 +573,7 @@ input {
 
 .del {
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   padding: 0.5rem 1rem;
   color: var(--negative);
   font-weight: 700;
@@ -588,7 +588,7 @@ input {
 
 .cancelled {
   color: #841f17;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 700;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
@@ -598,7 +598,7 @@ input {
 .completed {
   background: color-mix(in sRGB, transparent 90%, var(--positive) 10%);
   color: var(--positive);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 700;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
@@ -607,7 +607,7 @@ input {
 .archive {
   background: color-mix(in sRGB, transparent 90%, var(--rated) 10%);
   color: var(--rated);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 700;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
@@ -666,5 +666,7 @@ input {
 }
 
 /* === Pagination styles end ==== */
-
+.progress-bar {
+  background-color: var(--mainColor);
+}
 /* ==== Dashboard Inner taabs header End==== */

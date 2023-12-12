@@ -50,7 +50,7 @@ function NavBar() {
           <Notifications popUp />
         </Modal>
       )}
-      {toggle['user'] && (
+      {/* {toggle['user'] && (
         <Modal id='user' className='userPopUp m-3'>
           <UserPop
             coyLogo={logoImage}
@@ -58,7 +58,7 @@ function NavBar() {
             close={() => handleShow('user')}
           />
         </Modal>
-      )}
+      )} */}
     </div>
   );
 }

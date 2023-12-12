@@ -3,7 +3,7 @@
     font-size: 0.7rem;
   }
 
-  ul {
+  .propBanner {
     border: solid 2px var(--Line);
     border-radius: 10px;
     li {
@@ -22,33 +22,49 @@
   }
 
   .selectedProp {
-    .tenantCard {
-      background: var(--mainDark);
-      border-radius: 9px;
-      padding: 0.5em 1em;
-
-      .titleGroup {
-        border-bottom: solid 1px #e8e6f931;
+    article {
+      h4 {
+        margin: 1em auto;
       }
 
-      h5 {
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: var(--white);
+      h6 {
+        color: var(--mainDark);
       }
 
-      small {
-        font-size: 0.8rem;
-        font-weight: 400;
+      p {
         color: var(--Grey6);
       }
     }
 
-    .propOccupied {
-      background: #f7f7fd;
-      border: solid 2px var(--Line);
-      border-radius: 9px;
-      padding: 2em 1em;
+    aside {
+      .tenantCard {
+        background: var(--mainDark);
+        border-radius: 9px;
+        padding: 0.5em 1em;
+
+        .titleGroup {
+          border-bottom: solid 1px #e8e6f931;
+        }
+
+        h5 {
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: var(--white);
+        }
+
+        small {
+          font-size: 0.8rem;
+          font-weight: 400;
+          color: var(--Grey6);
+        }
+      }
+
+      .propOccupied {
+        background: #f7f7fd;
+        border: solid 2px var(--Line);
+        border-radius: 9px;
+        padding: 2em 1em;
+      }
     }
   }
 }

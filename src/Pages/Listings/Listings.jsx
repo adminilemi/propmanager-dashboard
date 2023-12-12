@@ -15,13 +15,12 @@ function Listings() {
 
   return (
     <main className='listings d-flex flex-column '>
-      <hgroup className='ms-4'>
-        <h1 className='my-3'> Listings</h1>
-      </hgroup>
-
       <section className='d-flex flex-column flex-md-row justify-content-between'>
-        <article className='col-12 col-md-4'>
-          <hgroup className='ms-4 d-flex justify-content-between'>
+        <article className='col-12 col-md-4 listSide'>
+          <hgroup className='col-11  mx-auto'>
+            <h1 className='my-3'> Listings</h1>
+          </hgroup>
+          <hgroup className='col-11  mx-auto d-flex justify-content-between'>
             <h1 className='my-3'>
               {' '}
               Properties{' '}
@@ -39,18 +38,16 @@ function Listings() {
 
           <ul className='listCard'>
             {propertiesData.map(
-              ({
-                id,
-                title,
-                price,
-                imageUrl,
-                location,
-                status,
-                bed,
-                bathroom,
-                sqrmeter,
-              }) => (
-                <li key={id} className='d-flex justify-content-between'>
+              ({ id, title, imageUrl, location, status, sqrmeter }) => (
+                <li
+                  key={id}
+                  className={
+                    toggle[id]
+                      ? 'cardActive d-flex justify-content-between'
+                      : 'd-flex justify-content-between'
+                  }
+                  onClick={() => toggleAccordion(id)}
+                >
                   <figure className='col-3'>
                     <img src={imageUrl} alt='' />
                   </figure>
@@ -89,7 +86,13 @@ function Listings() {
         </article>
 
         <article className='col-12 col-md-8'>
-          <ListingDeetsCard />
+          <section className='addBanner'>
+            <h2> Add Banner </h2>
+          </section>
+
+          {propertiesData.map((item) => (
+            <ListingDeetsCard propData={item} toggle={toggle} />
+          ))}
         </article>
       </section>
     </main>
