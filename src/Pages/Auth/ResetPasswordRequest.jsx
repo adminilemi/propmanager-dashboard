@@ -1,21 +1,20 @@
 import { useRef, useState } from 'react';
 import './Auths.scss';
-// import { useSweetAlert } from '../../Hooks/useSweetAlert';
-// import * as API from '../../api/apis';
+import { useSweetAlert } from '@/Hooks/useSweetAlert';
+import * as API from '@/api/apis';
 
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 import RightSide from '@/components/RightSide';
 import BrandLogo from '@/components/BrandLogo';
-import { useNavigate } from 'react-router-dom';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
 
 function ResetPasswordRequest() {
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({ error: false, errMessage: '' });
+  const { errors, setErrors, loading, setLoading } = useGlobalHooks();
   const [resetEmail, setResetEmail] = useState({ email: '' });
   const navigate = useNavigate();
   const inputRef = useRef(null);
-  // const { Toast } = useSweetAlert();
+  const { showAlert } = useSweetAlert();
 
   // get the form input data
   const handleChange = (e) => {
@@ -24,43 +23,32 @@ function ResetPasswordRequest() {
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
 
-    if (resetEmail.email === '') {
-      setErrors({ error: true, errMessage: 'empty' });
-      setLoading(false);
-      return;
-    }
+    API.requestPasswordChange(resetEmail.email)
+      .then((res) => {
+        const successMessage = {
+          success: true,
+          message: res.data.message,
+        };
+        showAlert(successMessage.message);
+        setLoading(false);
+        navigate('/resetpassword');
+      })
+      .catch((err) => {
+        setLoading(false);
 
-    navigate('/resetpassword');
+        const erroMessage = {
+          success: false,
+          message:
+            err && err.response
+              ? err.response.data.message
+              : 'We encounter an error',
+        };
 
-    // API.requestPasswordChange(resetEmail.email)
-    //   .then((res) => {
-    //     const successMessage = {
-    //       success: true,
-    //       message: res.data.message,
-    //     };
-    //     Toast.fire({
-    //       icon: 'success',
-    //       title: `${successMessage.message} 👊🏿👏🏿`,
-    //     });
-    //     setLoading(false);
-    //     navigate('/resetpassword');
-    //   })
-    //   .catch((err) => {
-    //     setLoading(false);
-
-    //     const erroMessage = {
-    //       success: false,
-    //       message:
-    //         err && err.response
-    //           ? err.response.data.message
-    //           : 'We encounter an error',
-    //     };
-
-    //     console.log(erroMessage);
-    //     setErrors({ error: true, errMessage: erroMessage.message });
-    //   });
+        console.log(erroMessage);
+        setErrors({ error: true, errMessage: erroMessage.message });
+      });
   };
 
   return (
@@ -72,7 +60,10 @@ function ResetPasswordRequest() {
           </div>
         </header>
         <aside className='col-9 mx-auto'>
-          <form className={` form d-flex flex-column  `}>
+          <form
+            className={` form d-flex flex-column`}
+            onSubmit={handleResetPassword}
+          >
             <h2>Reset Password</h2>
             <p> Please enter your email to reset your password</p>
             <section className='mb-3 mt-4'>
@@ -92,15 +83,13 @@ function ResetPasswordRequest() {
                   className={` formInput ${
                     errors.errMessage === 'empty' ? 'errors' : ''
                   } form-control `}
+                  required
                 />
               </div>
             </section>
 
             <div className=' col-12 text-center'>
-              <button
-                className='main-btn col-12 mt-3'
-                onClick={handleResetPassword}
-              >
+              <button className='main-btn col-12 mt-3'>
                 {loading ? <Spinner /> : 'Reset'}
               </button>
               {errors.errMessage === 'empty' ? (

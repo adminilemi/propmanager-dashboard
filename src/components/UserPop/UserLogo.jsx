@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGlobalHooks } from '../../Hooks/globalHooks';
 import { FaChevronDown } from 'react-icons/fa';
+import './UserPop.scss';
 
 function UserLogo() {
   const { handleShow } = useGlobalHooks();

@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Auths.scss';
-// import * as API from '../../api/apis';
-// import { useSelector } from 'react-redux';
-// import { selectUserData } from '../../Redux/Features/userAuthSlice';
+import * as API from '@/api/apis';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../Redux/Features/userAuthSlice';
 import { useNavigate } from 'react-router-dom';
-// import { useSweetAlert } from '../../Hooks/useSweetAlert';
-// import { useGlobalHooks } from '../../Hooks/globalHooks';
-// import { Spinner } from 'react-bootstrap';
+import { useSweetAlert } from '../../Hooks/useSweetAlert';
+import { useGlobalHooks } from '../../Hooks/globalHooks';
 import RightSide from '@/components/RightSide';
 import BrandLogo from '@/components/BrandLogo';
+import { Spinner } from 'react-bootstrap';
 
 const numInput = [
   { id: 1, name: 'num1' },
@@ -18,13 +18,12 @@ const numInput = [
 ];
 
 function VerifyEmail() {
-  // const { loading, setLoading, errors,  } = useGlobalHooks();
-
-  // const { showAlert } = useSweetAlert();
-
+  const { loading, setLoading, errors, setErrors } = useGlobalHooks();
+  const [sendingCode, setSendingCode] = useState(false);
+  const { showAlert } = useSweetAlert();
   const navigate = useNavigate();
 
-  // const { authUser } = useSelector(selectUserData);
+  const { authUser } = useSelector(selectUserData);
 
   const [verifyCode, setVerifyCode] = useState({
     num1: '',
@@ -50,86 +49,90 @@ function VerifyEmail() {
   };
 
   const handleReSendOTP = () => {
-    // API.reSendOTPCode(authUser.userId)
-    //   .then((res) => {
-    //     const successMessage = {
-    //       success: true,
-    //       message: res.data.data.message,
-    //     };
-    //     console.log(successMessage);
-    //   })
-    //   .catch((err) => {
-    //     const erroMessage = {
-    //       success: false,
-    //       message:
-    //         err && err.response
-    //           ? err.response.data.message
-    //           : 'We encounter an error',
-    //     };
-    //     setErrors({ error: true, errMessage: erroMessage.message });
-    //   });
+    setSendingCode(true);
+    API.reSendOTPCode(authUser.userId)
+      .then((res) => {
+        const successMessage = {
+          success: true,
+          message: res.data.message,
+        };
+        showAlert(successMessage.message);
+        setSendingCode(false);
+      })
+      .catch((err) => {
+        const erroMessage = {
+          success: false,
+          message:
+            err && err.response
+              ? err.response.data.message
+              : 'We encounter an error',
+        };
+        setSendingCode(false);
+        setErrors({ error: true, errMessage: erroMessage.message });
+      });
   };
 
-  // const clearInput = () => {
-  //   setVerifyCode('');
-  // };
+  const clearInput = () => {
+    setVerifyCode('');
+  };
 
-  // useEffect(() => {
-  //   if (loading) {
-  //     setErrors({ error: false, errMessage: '' });
-  //     // when the code failed, it keep retrying, so this was a temp fix
-  //     clearInput();
-  //   }
+  useEffect(() => {
+    if (loading) {
+      setErrors({ error: false, errMessage: '' });
+      // when the code failed, it keep retrying, so this was a temp fix
+      clearInput();
+    }
 
-  //   const handleVerifyEmail = () => {
-  //     if (
-  //       verifyCode.num1 &&
-  //       verifyCode.num2 &&
-  //       verifyCode.num3 &&
-  //       verifyCode.num4
-  //     ) {
-  //       // const verificationCode = `${verifyCode.num1}${verifyCode.num2}${verifyCode.num3}${verifyCode.num4}`;
-  //       // setLoading(true);
+    const handleVerifyEmail = () => {
+      if (
+        verifyCode.num1 &&
+        verifyCode.num2 &&
+        verifyCode.num3 &&
+        verifyCode.num4
+      ) {
+        const verificationCode = `${verifyCode.num1}${verifyCode.num2}${verifyCode.num3}${verifyCode.num4}`;
+        setLoading(true);
 
-  //       // API.verifyEmail({
-  //       //   userId: authUser.userId,
-  //       //   uniqueVerificationCode: verificationCode,
-  //       // })
-  //       //   .then((res) => {
-  //       //     const successMessage = {
-  //       //       success: true,
-  //       //       message: res.data.message,
-  //       //     };
+        API.verifyEmail({
+          userId: authUser.userId,
+          uniqueVerificationCode: verificationCode,
+        })
+          .then((res) => {
+            const successMessage = {
+              success: true,
+              message: res.data.message,
+            };
 
-  //       //     showAlert(successMessage.message);
+            showAlert(successMessage.message);
 
-  //       //     setLoading(false);
-  //       //     return navigate('/onboarding');
-  //       //   })
-  //       //   .catch((err) => {
-  //       //     const erroMessage = {
-  //       //       success: false,
-  //       //       message:
-  //       //         err && err.response
-  //       //           ? err.response.data.message
-  //       //           : 'We encounter an error',
-  //       //     };
-  //       //     setErrors({ error: true, errMessage: erroMessage.message });
-  //       //     setLoading(false);
-  //       //   });
-  //     }
-  //   };
+            setLoading(false);
+            return navigate('/signin');
+          })
+          .catch((err) => {
+            console.log(err);
+            const erroMessage = {
+              success: false,
+              message:
+                err && err.response
+                  ? err.response.data.message
+                  : 'We encounter an error',
+            };
+            setErrors({ error: true, errMessage: erroMessage.message });
+            setLoading(false);
+          });
+      }
+    };
 
-  //   handleVerifyEmail();
-  // }, [
-  //   verifyCode,
-  //   showAlert,
-  //   authUser.userId,
-  //   navigate,
-  //   setLoading,
-  //   setErrors,
-  //   loading,
-  // ]);
+    handleVerifyEmail();
+  }, [
+    verifyCode,
+    showAlert,
+    authUser.userId,
+    navigate,
+    setLoading,
+    setErrors,
+    loading,
+  ]);
 
   const handleVerifyEmail = () => {
     navigate('/signin');
@@ -150,11 +153,11 @@ function VerifyEmail() {
         <aside className='col-10 col-md-6 mx-auto mt-5'>
           <form
             className={` form d-flex flex-column justify-content-center text-start `}
+            onSubmit={handleVerifyEmail}
           >
             <h2>Verify your email</h2>
             <p className='mt-2'>
-              Enter the verification code sent to your registered phone number
-              0803XXXXX85
+              Enter the verification code sent to {authUser.userEmail}{' '}
             </p>
             <div
               className={` inputContainer d-flex flex-row mx-auto col-12 gap-2 mt-3 `}
@@ -170,29 +173,23 @@ function VerifyEmail() {
                     maxLength='1'
                     defaultValue={verifyCode[name]}
                     className='text-center form-control py-4'
+                    required
                   />
                 </div>
               ))}
             </div>
-            {/* {errors.error && (
-              <span className='error_message mt-3'> {errors.errMessage} </span>
-            )} */}
 
             <div className=' col-12 text-center'>
-              <button
-                className='main-btn col-12 mt-3'
-                onClick={handleVerifyEmail}
-              >
-                Validate
+              <button className='main-btn col-12 mt-3' type='submit'>
+                {loading ? 'Validating...' : 'Validate'}
               </button>
-              {/* {errors.errMessage === 'empty' ? (
-                <span className='error_message'>
+
+              {errors.error && (
+                <span className='error_message mt-3'>
                   {' '}
-                  All field must be filled{' '}
+                  {errors.errMessage}{' '}
                 </span>
-              ) : (
-                <span className='error_message'> {errors.errMessage} </span>
-              )} */}
+              )}
             </div>
           </form>
 
@@ -201,6 +198,8 @@ function VerifyEmail() {
               Didn&apos;t get code? <strong>Resend</strong>
             </small>
           </div>
+
+          {sendingCode && <Spinner />}
         </aside>
       </section>
       <RightSide title='Fast and Reliable jobs to get you hired immediately' />

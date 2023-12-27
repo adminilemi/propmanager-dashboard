@@ -3,15 +3,15 @@ import React from 'react';
 import './Sidebar.scss';
 import { SidebarData } from './SidebarData';
 import { NavLink } from 'react-router-dom';
-// import { selectGlobal } from '../../Redux/Features/globalSlice';
-// import { useSelector } from 'react-redux';
-// import { useGlobalHooks } from '../../Hooks/globalHooks';
+import { useSelector } from 'react-redux';
 import BrandLogo from '../BrandLogo';
-// import Logout from '../../Pages/Logout/Logout';
+import Logout from '@/Pages/Logout/Logout';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
+import { selectGlobal } from '@/Redux/Features/globalSlice';
 
 function Sidebar() {
-  // const { handleShow } = useGlobalHooks();
-  // const toggle = useSelector(selectGlobal);
+  const { handleShow } = useGlobalHooks();
+  const toggle = useSelector(selectGlobal);
 
   const Employer = SidebarData.Employer;
   const Account = SidebarData.Account;
@@ -57,11 +57,11 @@ function Sidebar() {
             </NavLink>
           ))}
         </ul>
-        {/* <li
+        <li
           className='sidebarNotActive tabTitle'
           onClick={() => handleShow('logout')}
         >
-          <hgroup className='d-flex flex-row align-items-center col-6 mx-auto tabTitle'>
+          <hgroup className='d-flex flex-row align-items-center ps-2 tabTitle'>
             <h4 className='me-2'>
               {' '}
               <svg
@@ -101,12 +101,12 @@ function Sidebar() {
             </h4>
             <h4> Logout </h4>
           </hgroup>
-        </li> */}
+        </li>
       </article>
-      {/*
+
       {toggle['logout'] && (
         <Logout id='logout' close={() => handleShow('logout')} />
-      )} */}
+      )}
     </main>
   );
 }

@@ -1,16 +1,15 @@
 import { useRef, useState } from 'react';
 import './Auths.scss';
-// import { useSweetAlert } from '../../Hooks/useSweetAlert';
-// import * as API from '../../api/apis';
-// import { useNavigate } from 'react-router-dom';
+import { useSweetAlert } from '@/Hooks/useSweetAlert';
+import * as API from '@/api/apis';
 import BrandLogo from '@/components/BrandLogo';
 import { Spinner } from 'react-bootstrap';
 import RightSide from '@/components/RightSide';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
 
 function ResetPassword() {
-  const [loading, setLoading] = useState(false);
-  const [errors] = useState({ error: false, errMessage: '' });
+  const { errors, setErrors, loading, setLoading } = useGlobalHooks();
   const [updatePassword, setUpdatePassword] = useState({
     uniqueVerificationCode: '',
     newPassword: '',
@@ -18,7 +17,7 @@ function ResetPassword() {
 
   const navigate = useNavigate();
   const inputRef = useRef(null);
-  // const { Toast } = useSweetAlert();
+  const { showAlert } = useSweetAlert();
 
   // get the form input data
   const handleChange = (e) => {
@@ -28,7 +27,32 @@ function ResetPassword() {
   const changePassword = async (e) => {
     e.preventDefault();
     setLoading(true);
-    navigate('/signin');
+
+    API.passwordChange(updatePassword)
+      .then((res) => {
+        const successMessage = {
+          success: true,
+          message: res.data.message,
+        };
+
+        showAlert(successMessage.message);
+
+        setLoading(false);
+        navigate('/signin');
+      })
+      .catch((err) => {
+        setLoading(false);
+        const erroMessage = {
+          success: false,
+          message:
+            err && err.response
+              ? err.response.data.message
+              : 'We encounter an error',
+        };
+
+        console.log(erroMessage);
+        setErrors({ error: true, errMessage: erroMessage.message });
+      });
   };
 
   return (

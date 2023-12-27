@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import './Signin.scss';
-// import { useSweetAlert } from '../../../Hooks/useSweetAlert';
+import { useSweetAlert } from '../../../Hooks/useSweetAlert';
 import {
   BsFillEyeSlashFill,
   BsFillEyeFill,
@@ -8,27 +8,27 @@ import {
   // BsGoogle,
 } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
-import RightSide from '../../../components/RightSide';
-// import { useCookies } from '../../../Hooks/cookiesHook';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import BrandLogo from '@/components/BrandLogo';
-// import { Spinner } from 'react-bootstrap';
-// import {
-//   getUserAvatar,
-//   userAuthData,
-// } from '../../../Redux/Features/userAuthSlice';
+import { Spinner } from 'react-bootstrap';
+import * as API from '@/api/apis';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
+import { useCookies } from '@/Hooks/cookiesHook';
+import RightSide from '@/components/RightSide';
+import { userAuthData } from '@/Redux/Features/userAuthSlice';
+import { useAuthHook } from '@/Hooks/authHook';
 
 function Signin() {
   const [passwordType, setPasswordType] = useState(false);
-  // const [loading, setLoading] = useState(false);
-  // const [errors, setErrors] = useState({ error: false, errMessage: '' });
+  const { loading, setLoading, errors, setErrors } = useGlobalHooks();
   const [userData, setUserData] = useState({ email: '', password: '' });
 
   const inputRef = useRef(null);
   const navigate = useNavigate();
-  // const { setCookies } = useCookies();
-  // const dispatch = useDispatch();
-  // const { showAlert } = useSweetAlert();
+  const { setCookies } = useCookies();
+  const dispatch = useDispatch();
+  const { showAlert } = useSweetAlert();
+  const { setSession } = useAuthHook();
 
   const showPassword = (id) => {
     setPasswordType((prev) => ({ ...passwordType, [id]: !prev[id] }));
@@ -39,30 +39,43 @@ function Signin() {
     setUserData({ ...userData, [e.target.id]: e.target.value });
   };
 
-  // Validate input
-  // const validateInput = ({ email, password }) => {
-  //   if (email === '' || password === '') {
-  //     setErrors({ error: true, errMessage: 'empty' });
-  //     return false;
-  //   }
-
-  //   setErrors({ error: false });
-
-  //   return true;
-  // };
-
   const handleSignIn = async (e) => {
     e.preventDefault();
-    // setLoading(true);
-    // const validInput = validateInput(userData);
+    setLoading(true);
 
-    // // if the input isn't validated, return
-    // if (!validInput) {
-    //   setLoading(false);
-    //   return;
-    // }
+    API.SignIn(userData)
+      .then((res) => {
+        const successMessage = {
+          success: true,
+          message: res.data.message,
+        };
 
-    navigate('/');
+        const userToken = res.data.data.token;
+        const userId = res.data.data.user._id;
+        const userEmail = res.data.data.user.email;
+
+        showAlert(successMessage.message);
+
+        setCookies('ilemiUserToken', userToken);
+
+        dispatch(userAuthData({ userId, userEmail }));
+
+        setLoading(false);
+        setSession();
+        navigate('/');
+      })
+      .catch((err) => {
+        setLoading(false);
+        const erroMessage = {
+          success: false,
+          message:
+            err && err.response
+              ? err.response.data.message
+              : 'We encounter an error',
+        };
+
+        setErrors({ error: true, errMessage: erroMessage.message });
+      });
   };
 
   return (
@@ -80,6 +93,7 @@ function Signin() {
           <p>Welcome back! Please enter your details.</p>
           <form
             className={` form d-flex flex-column justify-content-between mt-5`}
+            onSubmit={handleSignIn}
           >
             <section className='mb-3'>
               <label htmlFor='email' className='labelTitle'>
@@ -96,16 +110,9 @@ function Signin() {
                   defaultValue={userData.email}
                   onChange={handleChange}
                   className={` formInput  form-control `}
+                  required
                 />
               </div>
-              {/* {errors.errMessage === 'email' ? (
-                <span className='error_message'>
-                  {' '}
-                  Please enter a valid email e.g example@mail.com{' '}
-                </span>
-              ) : (
-                ''
-              )} */}
             </section>
             <section className='col-12 mb-3'>
               <div className=''>
@@ -145,23 +152,14 @@ function Signin() {
             </section>
 
             <div className=' col-12 text-center'>
-              <button className='main-btn col-12 mt-1' onClick={handleSignIn}>
-                Log In
+              <button className='main-btn col-12 mt-1' type='submit'>
+                {loading ? <Spinner /> : 'Log In'}
               </button>
-              {/* {errors.errMessage === 'empty' ? (
-                <span className='error_message'>
-                  {' '}
-                  All field must be filled{' '}
-                </span>
-              ) : (
-                <span className='error_message'> {errors.errMessage} </span>
-              )} */}
+
+              <span className='error_message'> {errors.errMessage} </span>
             </div>
             <div className=' col-12 text-center mt-3'>
-              <button
-                className='outline-btn col-12 mt-1'
-                onClick={handleSignIn}
-              >
+              <button className='outline-btn col-12 mt-1'>
                 <span>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'

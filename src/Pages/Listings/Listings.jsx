@@ -4,6 +4,7 @@ import { BsFilter } from 'react-icons/bs';
 import Search from '@/components/Search';
 import ListingDeetsCard from '@/components/DashboardComps/ListingComps/ListingDeetsCard';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Listings() {
   const [toggle, setToggle] = useState({ [1]: true });
@@ -17,9 +18,15 @@ function Listings() {
     <main className='listings d-flex flex-column '>
       <section className='d-flex flex-column flex-md-row justify-content-between'>
         <article className='col-12 col-md-4 listSide'>
-          <hgroup className='col-11  mx-auto'>
+          <div className='col-11  mx-auto d-flex justify-content-between align-items-center'>
             <h1 className='my-3'> Listings</h1>
-          </hgroup>
+            <div>
+              <Link to='/addproperty' className='main-btn'>
+                {' '}
+                + Add Property
+              </Link>
+            </div>
+          </div>
           <hgroup className='col-11  mx-auto d-flex justify-content-between'>
             <h1 className='my-3'>
               {' '}

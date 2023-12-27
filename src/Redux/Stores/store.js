@@ -16,7 +16,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import globalSlice from '../Features/globalSlice';
-import onboardingSlice from '../Features/onboardingSlice';
+import createProperty from '../Features/createPropertySlice';
 import userAuthSlice from '../Features/userAuthSlice';
 import userDatasSlice from '../Features/userDatasSlice';
 import jobSlice from '../Features/jobsSlice';
@@ -26,7 +26,7 @@ const allReducers = combineReducers({
   notifsSlice,
   globalSlice,
   jobSlice,
-  onboardingSlice,
+  createProperty,
   userAuthSlice,
   userDatasSlice,
   [apiSLice.reducerPath]: apiSLice.reducer,
@@ -52,7 +52,7 @@ export const makeStore = () => {
     // We need to persist on client side
 
     const persistConfig = {
-      key: 'EmdoEmployee',
+      key: 'IlemiAgent',
       storage,
     };
 

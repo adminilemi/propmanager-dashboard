@@ -1,17 +1,21 @@
 import { useRef, useState } from 'react';
 import './Signup.scss';
-// import { useSweetAlert } from '../../../Hooks/useSweetAlert';
+import { useSweetAlert } from '../../../Hooks/useSweetAlert';
 import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
 import RightSide from '../../../components/RightSide';
-// import { useDispatch } from 'react-redux';
-// import { useCookies } from '../../../Hooks/cookiesHook';
-// import { userAuthData } from '../../../Redux/Features/userAuthSlice';
+import { useDispatch } from 'react-redux';
+import { useCookies } from '../../../Hooks/cookiesHook';
+import { userAuthData } from '../../../Redux/Features/userAuthSlice';
 import { Spinner } from 'react-bootstrap';
 import BrandLogo from '@/components/BrandLogo';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
+import { useAuthHook } from '@/Hooks/authHook';
+import * as API from '@/api/apis';
 
 const initialState = {
-  companyName: '',
+  firstName: '',
+  lastName: '',
   email: '',
   password: '',
   confirmPass: '',
@@ -20,18 +24,17 @@ const initialState = {
 
 function Signup() {
   const [passwordType, setPasswordType] = useState(false);
-  const [loading, setLoading] = useState(false);
-  // const [passwordStrength, setPasswordStrength] = useState(false);
-  const [errors] = useState({ error: false, errMessage: '' });
   const [userData, setUserData] = useState(initialState);
+  const { loading, setLoading, errors, setErrors } = useGlobalHooks();
+  const { setSession } = useAuthHook();
 
   const navigate = useNavigate();
 
-  // const { setCookies } = useCookies();
+  const { setCookies } = useCookies();
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const inputRef = useRef(null);
-  // const { Toast } = useSweetAlert();
+  const { showAlert } = useSweetAlert();
 
   const showPassword = (id) => {
     setPasswordType((prev) => ({ ...passwordType, [id]: !prev[id] }));
@@ -46,121 +49,108 @@ function Signup() {
     }
   };
 
-  // // Verify email
-  // const verifyEmail = (email) => {
-  //   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  // Check if password has Uppercaseletter
+  const strongPassword = (str) => {
+    // eslint-disable-next-line no-useless-escape
+    const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    const hasNum = '0123456789';
 
-  //   return emailRegex.test(email);
-  // };
+    let messages = [];
 
-  // // Check if password has Uppercaseletter
-  // const strongPassword = (str) => {
-  //   // eslint-disable-next-line no-useless-escape
-  //   const specialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-  //   const hasNum = '0123456789';
+    // Loop through the str to check if there's atleast 1 Upper case letter
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === str[i].toUpperCase()) {
+        messages.push('hasUpperLetter');
+      }
+      // Check if password has special character with this regex specialChar
+      if (str[i].match(specialChar)) {
+        messages.push('hasSpecialChar');
+      }
 
-  //   let messages = [];
+      // Check if password has number
+      if (hasNum.includes(str[i])) {
+        messages.push('hasNum');
+      }
+    }
 
-  //   // Loop through the str to check if there's atleast 1 Upper case letter
-  //   for (let i = 0; i < str.length; i++) {
-  //     if (str[i] === str[i].toUpperCase()) {
-  //       messages.push('hasUpperLetter');
-  //     }
-  //     // Check if password has special character with this regex specialChar
-  //     if (str[i].match(specialChar)) {
-  //       messages.push('hasSpecialChar');
-  //     }
-
-  //     // Check if password has number
-  //     if (hasNum.includes(str[i])) {
-  //       messages.push('hasNum');
-  //     }
-  //   }
-
-  //   setErrors({ errMessage: messages.join('') });
-  //   return messages;
-  // };
-
-  // // Run check on password strength has user is typing out password
-  // const checkPassword = (e) => {
-  //   const password = e.target.value;
-  //   if (password !== '') {
-  //     strongPassword(password);
-  //     setPasswordStrength(true);
-  //   }
-
-  //   if (password === ' ') {
-  //     setPasswordStrength(false);
-  //   }
-  // };
-
-  // const handleCloseModal = () => {
-  //   setPasswordStrength(false); // Close the modal
-  // };
+    setErrors({ errMessage: messages.join('') });
+    return messages;
+  };
 
   // // Validate input
-  // const validateInput = ({
-  //   companyName,
-  //   email,
-  //   password,
-  //   confirmPass,
-  //   checked,
-  // }) => {
-  //   if (
-  //     companyName === '' ||
-  //     email === '' ||
-  //     password === '' ||
-  //     confirmPass === ''
-  //   ) {
-  //     setErrors({ error: true, errMessage: 'empty' });
-  //     return false;
-  //   }
-  //   if (password) {
-  //     const weakPassword = strongPassword(password);
-  //     if (
-  //       !weakPassword.includes('hasNum') &&
-  //       !weakPassword.includes('hasSpecialChar') &&
-  //       !weakPassword.includes('hasUpperLetter')
-  //     ) {
-  //       setErrors({ error: true, errMessage: 'weakPassword' });
-  //       return false;
-  //     }
-  //   }
-  //   if (!checked) {
-  //     setErrors({ error: true, errMessage: 'T&S' });
-  //     return false;
-  //   }
-  //   if (confirmPass !== password) {
-  //     setErrors({ error: true, errMessage: 'confirmpass' });
-  //     return false;
-  //   }
+  const validateInput = ({ password, confirmPass }) => {
+    if (password === '' || confirmPass === '') {
+      setErrors({ error: true, errMessage: 'empty' });
+      return false;
+    }
 
-  //   if (email) {
-  //     const isValidEmail = verifyEmail(email);
-  //     isValidEmail
-  //       ? setErrors({ error: false, errMessage: '' })
-  //       : setErrors({ error: true, errMessage: 'email' });
+    if (
+      password &&
+      strongPassword(password).includes('hasNum') &&
+      strongPassword(password).includes('hasSpecialChar') &&
+      strongPassword(password).includes('hasUpperLetter')
+    ) {
+      setErrors({ error: false, errMessage: '' });
+      // Additional logic if needed for a strong password
+    } else {
+      setErrors({ error: true, errMessage: 'weakPassword' });
+      return false;
+    }
 
-  //     return isValidEmail || false;
-  //   }
+    if (confirmPass !== password) {
+      setErrors({ error: true, errMessage: 'confirmpass' });
+      return false;
+    }
 
-  //   setErrors({ error: false });
+    setErrors({ error: false });
 
-  //   return true;
-  // };
+    return true;
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // const validInput = validateInput(userData);
+    const validInput = validateInput(userData);
 
     // if the input isn't validated, return
-    // if (!validInput) {
-    //   setLoading(false);
-    //   return;
-    // }
+    if (!validInput) {
+      setLoading(false);
+      return;
+    }
 
-    navigate('/verifyemail');
+    API.SignUp(userData)
+      .then((res) => {
+        const successMessage = {
+          success: true,
+          message: res.data.message,
+        };
+
+        const userToken = res.data.data.token;
+        const userId = res.data.data.user._id;
+        const userEmail = res.data.data.user.email;
+
+        showAlert(successMessage.message);
+
+        setCookies('ilemiUserToken', userToken);
+
+        dispatch(userAuthData({ userId, userEmail }));
+
+        setLoading(false);
+        setSession();
+        navigate('/verifyemail');
+      })
+      .catch((err) => {
+        setLoading(false);
+        const erroMessage = {
+          success: false,
+          message:
+            err && err.response
+              ? err.response.data.message
+              : 'We encounter an error',
+        };
+
+        setErrors({ error: true, errMessage: erroMessage.message });
+      });
   };
 
   return (
@@ -179,21 +169,46 @@ function Signup() {
 
           <form
             className={` form d-flex flex-column justify-content-between mt-3`}
+            onSubmit={handleSignUp}
           >
             <section className='mb-3'>
-              <label htmlFor='Compnay Name' className='labelTitle'>
+              <label htmlFor='First Name' className='labelTitle'>
                 {' '}
-                Name
+                First Name
               </label>
               <div>
                 <input
                   ref={inputRef}
                   type='text'
-                  id='companyName'
-                  name='Company Name'
+                  id='firstName'
+                  name='firstName'
                   onChange={handleChange}
-                  defaultValue={userData.companyName}
-                  placeholder=' Enter company name'
+                  defaultValue={userData.firstName}
+                  placeholder=' Enter first name'
+                  minLength='3'
+                  required
+                  className={` formInput ${
+                    errors.errMessage === 'empty' ? 'errors' : ''
+                  } form-control `}
+                />
+              </div>
+            </section>
+
+            <section className='mb-3'>
+              <label htmlFor='Last Name' className='labelTitle'>
+                {' '}
+                Last Name
+              </label>
+              <div>
+                <input
+                  ref={inputRef}
+                  type='text'
+                  id='lastName'
+                  name='lastName'
+                  onChange={handleChange}
+                  defaultValue={userData.lastName}
+                  placeholder=' Enter last name'
+                  minLength='3'
                   required
                   className={` formInput ${
                     errors.errMessage === 'empty' ? 'errors' : ''
@@ -216,6 +231,7 @@ function Signup() {
                   placeholder='Enter your email'
                   onChange={handleChange}
                   defaultValue={userData.email}
+                  required
                   className={` formInput ${
                     errors.errMessage === 'email' ||
                     errors.errMessage === 'empty'
@@ -233,6 +249,7 @@ function Signup() {
                 ''
               )}
             </section>
+
             <section className='col-12 mb-3'>
               <div className='password'>
                 <label htmlFor='password' className='labelTitle'>
@@ -248,12 +265,8 @@ function Signup() {
                     type={!passwordType['password'] ? 'password' : 'text'}
                     name='password'
                     placeholder='Enter password'
-                    onChange={(e) => {
-                      handleChange(e);
-                      // checkPassword(e);
-                    }}
+                    onChange={(e) => handleChange(e)}
                     defaultValue={userData.password}
-                    // onBlur={handleCloseModal}
                     className={` formInput ${
                       errors.errMessage === 'weakPassword' ||
                       errors.errMessage === 'empty'
@@ -273,9 +286,9 @@ function Signup() {
                     )}
                   </div>
                 </div>
-                <small className='charLong'>
+                {/* <small className='charLong'>
                   Must be at least 8 characters.
-                </small>
+                </small> */}
 
                 {errors.errMessage === 'weakPassword' && (
                   <span className='error_message'>
@@ -286,7 +299,7 @@ function Signup() {
                 )}
               </div>
 
-              {/* <div className='mt-3'>
+              <div className='mt-3'>
                 <label htmlFor='confirmPass' className='labelTitle'>
                   Re-enter Password
                 </label>
@@ -327,7 +340,7 @@ function Signup() {
                 ) : (
                   ''
                 )}
-              </div> */}
+              </div>
               <div className='mt-2 d-flex flex-column justify-content-center'>
                 <div>
                   <input
@@ -336,6 +349,7 @@ function Signup() {
                     name='checked'
                     onChange={handleChange}
                     checked={userData.checked}
+                    required
                   />
                   <small className='ms-2'>I am a property manager</small>
                   {/* <small className='ms-2'>
@@ -353,7 +367,7 @@ function Signup() {
             </section>
 
             <div className=' col-12 text-center'>
-              <button className='main-btn col-12 mt-2' onClick={handleSignUp}>
+              <button className='main-btn col-12 mt-2' type='submit'>
                 {loading ? <Spinner /> : 'Sign Up'}
               </button>
               {errors.errMessage === 'empty' ? (
@@ -362,9 +376,7 @@ function Signup() {
                   All field must be filled{' '}
                 </span>
               ) : (
-                !errors.errMessage.includes('hasUpperLetterhasUpper') && (
-                  <span className='error_message'> {errors.errMessage} </span>
-                )
+                <span className='error_message'> {errors.errMessage} </span>
               )}
             </div>
             <div className=' col-12 text-center mt-3'>
