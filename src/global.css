@@ -86,6 +86,7 @@ body::-webkit-scrollbar {
 
 .card {
   border: solid 2px var(--mainLight) !important;
+  background-color: transparent;
 }
 
 ul,
@@ -628,6 +629,69 @@ input {
   color: #841f17;
 }
 
+/* === Input wrapper start === */
+
+.inputWrapper {
+  width: 100%;
+
+  margin-bottom: 1em;
+
+  label {
+    margin-bottom: 0.7em;
+    font-size: 14px;
+    color: var(--Grey1);
+  }
+
+  textarea,
+  select,
+  input {
+    padding: 1em;
+  }
+
+  small {
+    font-size: 0.8rem;
+    color: var(--Grey2);
+    font-weight: 500;
+  }
+
+  .selected {
+    border-radius: 36px;
+    background: var(--Grey5);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--Grey2);
+    margin-top: 0.5em;
+    cursor: pointer;
+  }
+
+  .upload {
+    padding: 1.5em;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px dashed var(--grey-grey-4, #bdc0ce);
+  }
+
+  .uploadInp {
+    display: none;
+  }
+
+  .uploadType {
+    font-size: 0.6rem;
+    color: var(--Grey2);
+    font-weight: 500;
+  }
+  em {
+    color: var(--negative);
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .inputWrapper {
+    width: 48%;
+  }
+}
+/* === Input wrapper end === */
+
 /* === Pagination styles start ==== */
 .paginContainer {
   display: flex;
@@ -669,4 +733,15 @@ input {
 .progress-bar {
   background-color: var(--mainColor);
 }
+
+/* ==== Stepper forms start ==== */
+.stepLabels .stepFormInActive h4 {
+  color: var(--Grey3);
+}
+
+.stepLabels .stepFormActive h4 {
+  color: var(--mainColor);
+}
+
+/* ==== Stepper forms end ==== */
 /* ==== Dashboard Inner taabs header End==== */

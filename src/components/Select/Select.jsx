@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { HiMiniChevronDown } from 'react-icons/hi2';
 import './Select.scss';
 
@@ -18,6 +18,24 @@ function Select({
     setIsOpen(!isOpen);
   };
 
+  const popupRef = useRef();
+
+  useEffect(() => {
+    const handleDocumentClick = (e) => {
+      if (!popupRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add the event listener when the component mounts
+    document.addEventListener('click', handleDocumentClick);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
+
   const handleOptionClick = (option) => {
     setSelectedOption((prev) => ({ ...prev, [id]: option }));
 
@@ -26,7 +44,7 @@ function Select({
   };
 
   return (
-    <div id={id} className='custom-select'>
+    <div id={id} className='custom-select' ref={popupRef}>
       <div
         className={error ? 'errors select-header' : 'select-header'}
         onClick={toggleDropdown}

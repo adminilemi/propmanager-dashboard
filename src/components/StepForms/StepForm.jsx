@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import StepFormLabel from './StepFormLabel';
-import CompanyAddress from './CompanyAddress/CompanyAddress';
-import JobDetails from './JobDetails/JobDetails';
-import CompanyRep from './CompanyRep/CompanyRep';
+
+import {
+  TbSquareRoundedNumber1Filled,
+  TbSquareRoundedNumber2Filled,
+  TbSquareRoundedNumber3Filled,
+} from 'react-icons/tb';
+import PropertyAddress from './PropertyAddress/PropertyAddress';
+import ListingInfo from './ListingInfo/ListingInfo';
+import PropertyImages from './PropertyImages/PropertyImages';
 
 function StepForm() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const StepLabels = [
-    'Company Address',
-    'Job Details',
-    'Company Representative',
+    { title: 'Property Address', icon: <TbSquareRoundedNumber1Filled /> },
+    { title: 'Listing Information', icon: <TbSquareRoundedNumber2Filled /> },
+    { title: 'Property Images', icon: <TbSquareRoundedNumber3Filled /> },
   ];
 
   const handleNext = () => {
@@ -20,18 +26,20 @@ function StepForm() {
     setCurrentStep((prev) => prev - 1);
   };
   return (
-    <div className='d-flex flex-column flex-md-row justify-content-between mt-5'>
-      <div className='col-12 col-md-2 mb-5 mb-md-0'>
-        <StepFormLabel stepLabels={StepLabels} currentStep={currentStep} />
-      </div>
-      <section className='col-12 col-md-9'>
-        {currentStep === 0 && <CompanyAddress onNext={handleNext} />}
+    <section className='d-flex flex-column  justify-content-between mt-5'>
+      <article className='col-12 mb-5 border-bottom'>
+        <div className='col-12 col-md-9 mx-auto'>
+          <StepFormLabel stepLabels={StepLabels} currentStep={currentStep} />
+        </div>
+      </article>
+      <article className='col-12 card py-4 px-3'>
+        {currentStep === 0 && <PropertyAddress onNext={handleNext} />}
         {currentStep === 1 && (
-          <JobDetails onPrevious={handlePrevious} onNext={handleNext} />
+          <ListingInfo onPrevious={handlePrevious} onNext={handleNext} />
         )}
-        {currentStep === 2 && <CompanyRep onPrevious={handlePrevious} />}
-      </section>
-    </div>
+        {currentStep === 2 && <PropertyImages onPrevious={handlePrevious} />}
+      </article>
+    </section>
   );
 }
 

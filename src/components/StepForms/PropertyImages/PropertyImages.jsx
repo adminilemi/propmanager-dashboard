@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import './CompanyRep.scss';
+import './PropertyImages.scss';
 import { useSelector } from 'react-redux';
 import { selectUserData } from '../../../Redux/Features/userAuthSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSweetAlert } from '../../../Hooks/useSweetAlert';
-// import { useUpdateUserMutation } from '../../../api/apiSlice';
-import { SelectProperty } from '@/Redux/Features/createPropertySlice';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
+import { selectProperty } from '@/Redux/Features/createPropertySlice';
 
-function CompanyRep({ onPrevious }) {
+const PropertyImages = ({ onPrevious }) => {
   const Inputs = [
     {
       id: 'firstName',
@@ -38,19 +38,11 @@ function CompanyRep({ onPrevious }) {
       placeholder: 'Enter personal email',
     },
   ];
-  const { address, jobDetails, jobPosts } = useSelector(SelectProperty);
+  const t = useSelector(selectProperty);
   const { authUser } = useSelector(selectUserData);
-
+  const { loading, setLoading } = useGlobalHooks();
   const { showAlert } = useSweetAlert();
   const navigate = useNavigate();
-  const {
-    companyDescription,
-    industry,
-    logoImage,
-    numberOfEmployees,
-    typeOfEmployer,
-    websites,
-  } = jobDetails;
 
   const employerid = authUser.userId;
 
@@ -60,14 +52,6 @@ function CompanyRep({ onPrevious }) {
     lastName: '',
     role: '',
     personalEmail: '',
-    address,
-    companyDescription,
-    industry,
-    logoImage,
-    numberOfEmployees,
-    typeOfEmployer,
-    websites,
-    jobPosts,
   });
 
   const handleChange = (e) => {
@@ -81,13 +65,13 @@ function CompanyRep({ onPrevious }) {
 
   const handleDataSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // const result = await update({ ...onboardingData, id: employerid });
-      showAlert(result.data.message);
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   // const result = await update({ ...onboardingData, id: employerid });
+    //   showAlert(result.data.message);
+    //   navigate('/');
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (
@@ -120,18 +104,18 @@ function CompanyRep({ onPrevious }) {
           Back{' '}
         </button>
         <button type='submit' className='main-btn'>
-          {isLoading ? <Spinner /> : 'Submit'}
+          {loading ? <Spinner /> : 'Submit'}
         </button>
       </div>
 
-      {isError && (
+      {/* {isError && (
         <p className='error_message'>
           {' '}
           Oppos we encounter an error, please try again{' '}
         </p>
-      )}
+      )} */}
     </form>
   );
-}
+};
 
-export default CompanyRep;
+export default PropertyImages;
