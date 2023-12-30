@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import * as API from '../api/apis';
+// import * as API from '../api/apis';
 import { useDispatch } from 'react-redux';
 import { toggleShow } from '../Redux/Features/globalSlice';
+import axios from 'axios';
 
 export const useGlobalHooks = () => {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({ error: false, errMessage: '' });
+  const presetKey = 'ilemi-upload';
+  const cloudName = 'dtkjpvhxd';
 
   const openModal = (id) => {
     setOpen((prev) => ({
@@ -179,15 +182,19 @@ export const useGlobalHooks = () => {
     if (file) {
       // apend the uploaded file
       const formData = new FormData();
-      formData.append('files[]', file);
+      formData.append('file', file);
+      formData.append('upload_preset', presetKey);
 
-      // eslint-disable-next-line no-useless-catch
       try {
         // Add it to the endpoint body
-        const resp = await API.uploadFiles(formData);
+        const resp = await axios.post(
+          `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
+          formData,
+          //   { withCredentials: false },
+        );
 
         // return the response and used as wished
-        return resp;
+        return resp.data;
       } catch (error) {
         throw error;
       }

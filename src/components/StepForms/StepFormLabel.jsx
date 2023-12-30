@@ -3,7 +3,7 @@ import { FaAngleRight, FaCheckCircle } from 'react-icons/fa';
 
 function StepFormLabel({ stepLabels, currentStep }) {
   return (
-    <ul className='stepLabels d-flex flex-row justify-content-between col-12'>
+    <ul className='stepLabels d-flex flex-wrap justify-content-between col-12'>
       {stepLabels.map((label, index) => (
         <li
           key={index}

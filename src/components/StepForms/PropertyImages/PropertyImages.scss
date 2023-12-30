@@ -1,0 +1,35 @@
+.productUpload {
+  .sectHeader {
+    h5 {
+      font-size: 0.9rem;
+    }
+
+    .Icons {
+      cursor: pointer;
+    }
+  }
+
+  figure {
+    width: 100%;
+    height: 300px;
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .imageContainer {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    .imageContainer {
+      width: 47%;
+    }
+  }
+
+  //   @media screen and (min-width: 900px) {
+  //     .imageContainer {
+  //       width: 45%;
+  //     }
+  //   }
+}

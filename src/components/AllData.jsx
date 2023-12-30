@@ -646,7 +646,7 @@ export const propertyType = [
     ),
   },
   {
-    id: 3,
+    id: 7,
     title: 'Other',
     icon: (
       <svg
@@ -689,62 +689,35 @@ export const propertyType = [
   },
 ];
 
-export const numOfEmployee = [
+export const amenitiesList = [
   {
-    id: 1,
-    title: 'Select',
+    title: 'A/C',
   },
   {
-    id: 2,
-    title: '1-10',
+    title: 'Deck',
   },
   {
-    id: 3,
-    title: '11-49',
+    title: 'Pet Friendly',
   },
   {
-    id: 4,
-    title: '50-249',
+    title: 'Free Parking Spots',
   },
   {
-    id: 5,
-    title: '>250',
-  },
-];
-export const industry = [
-  {
-    id: 1,
-    title: 'Select',
+    title: 'Pool',
   },
   {
-    id: 2,
-    title: 'Medical',
+    title: 'Yard',
   },
   {
-    id: 3,
-    title: 'Artisans',
+    title: 'Free Wi-Fi',
   },
   {
-    id: 4,
-    title: 'Software',
-  },
-];
-
-export const jobPost = [
-  {
-    id: 1,
-    title: 'Nurse',
+    title: 'Gym',
   },
   {
-    id: 2,
-    title: 'Carer',
+    title: 'Hardwood Floor',
   },
   {
-    id: 3,
-    title: 'Midwife',
-  },
-  {
-    id: 4,
-    title: 'Pharmacist',
+    title: 'Jacuzzi',
   },
 ];

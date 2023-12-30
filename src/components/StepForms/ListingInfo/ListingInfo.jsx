@@ -2,27 +2,39 @@ import React, { useState } from 'react';
 import './ListingInfo.scss';
 import Select from '../../Select/Select';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectProperty } from '@/Redux/Features/createPropertySlice';
+import {
+  addAmenities,
+  addListingInfo,
+  selectProperty,
+} from '@/Redux/Features/createPropertySlice';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
-import { propertyType } from '@/components/AllData';
+import { amenitiesList, propertyType } from '@/components/AllData';
 import { MdInfo } from 'react-icons/md';
 
 const ListingInfo = ({ onNext, onPrevious }) => {
-  const stepper = useSelector(selectProperty);
+  const { Amenities, listingInfo } = useSelector(selectProperty);
   const [isValid, setIsValid] = useState({});
-  // const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectValues, setSelectValues] = useState({
-    Property_type: '',
-    companyDescription: '',
-    BedRooms: '',
-    Baths: '',
-    websites: '',
-    SquareFoot: '',
+
+  const [selectValues, setSelectValues] = useState(
+    listingInfo || {
+      Property_type: '',
+      Description: '',
+      BedRooms: '',
+      Baths: '',
+      MonthlyRent: '',
+      SecurityDeposit: '',
+      DateAvalaibality: '',
+      LeaseDuration: '',
+      SquareFoot: '',
+    },
+  );
+
+  const [amenities, setAmenities] = useState(Amenities || []);
+  const [customOptions, setCustomOptions] = useState({
+    Property_type: listingInfo.Property_type || null,
   });
 
-  const [customOptions, setCustomOptions] = useState({ Property_type: null });
-
-  const { loading, setLoading, errors, setErrors } = useGlobalHooks();
+  // const { loading, setLoading, errors, setErrors } = useGlobalHooks();
 
   const dispatch = useDispatch();
 
@@ -34,29 +46,33 @@ const ListingInfo = ({ onNext, onPrevious }) => {
     }));
   };
 
+  const updateAmenities = (idx, val) => {
+    // Check to see if the item selected is already in the state array
+    const isItemInState = amenities.some((item) => item.title === val.title);
+
+    if (isItemInState) {
+      // IF item available, remove it
+      setAmenities((prev) => prev.filter((item) => item.title !== val.title));
+    } else {
+      // Add it to the state rray
+
+      setAmenities((prevState) => [
+        ...prevState,
+        {
+          title: val.title,
+        },
+      ]);
+    }
+  };
+
+  // console.log(amenities);
+  console.log(customOptions);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = {};
 
-    // Check for validation errors for each Select component
-    // if (customOptions.Property_type === null) {
-    //   validationErrors['Property_type'] = true;
-    // }
-    // setIsValid(validationErrors);
-
-    // if (selectValues.websites === '') {
-    //   setErrors({ error: true, errMessage: 'web' });
-    //   return false;
-    // }
-
-    // if (selectValues.logoImage === '') {
-    //   setError({ error: true, errMessage: 'logo' });
-    //   return false;
-    // }
-
-    // setErrors({ error: false });
-
-    // dispatch(getUserAvatar(selectValues.logoImage));
+    dispatch(addAmenities(amenities));
+    dispatch(addListingInfo(selectValues));
 
     onNext();
   };
@@ -65,9 +81,9 @@ const ListingInfo = ({ onNext, onPrevious }) => {
     <form className='mb-5 listingInfo' onSubmit={handleSubmit}>
       <section className='d-flex flex-column justify-content-between '>
         <article className='col-12 '>
-          <label htmlFor='typeOfEmployer' className='labelTitle'>
+          <label htmlFor='Property_type' className='labelTitle'>
             {' '}
-            Type of Employer <em>*</em>{' '}
+            Property Type <em>*</em>{' '}
           </label>
 
           <Select
@@ -99,8 +115,11 @@ const ListingInfo = ({ onNext, onPrevious }) => {
                 How many Bed
               </option>
 
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                <option value={item}> {item} </option>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, idx) => (
+                <option value={item} key={idx}>
+                  {' '}
+                  {item}{' '}
+                </option>
               ))}
             </select>
           </div>
@@ -115,21 +134,24 @@ const ListingInfo = ({ onNext, onPrevious }) => {
               name='Baths'
               className='form-select'
               defaultValue={selectValues.websites}
-              onChange={(e) => handleOnSelectChange('websites', e.target.value)}
+              onChange={(e) => handleOnSelectChange('Baths', e.target.value)}
               required
             >
               <option value='' disabled>
                 {' '}
                 How many baths
               </option>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                <option value={item}> {item} </option>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, idx) => (
+                <option value={item} key={idx}>
+                  {' '}
+                  {item}{' '}
+                </option>
               ))}
             </select>
           </div>
 
           <div className=' inputWrapper'>
-            <label htmlFor='noOfEmployees' className='labelTitle'>
+            <label htmlFor='SquareFoot' className='labelTitle'>
               {' '}
               Square Feet <em>*</em>
             </label>
@@ -150,55 +172,82 @@ const ListingInfo = ({ onNext, onPrevious }) => {
 
         <article className='d-flex flex-column flex-md-row gap-2 justify-content-between'>
           <div className='inputWrapper'>
-            <label htmlFor='hourlPay' className='labelTitle'>
+            <label htmlFor='MonthlyRent' className='labelTitle'>
               Monthly Rent <em>*</em>
             </label>
-            <div className='rentPay   d-flex flex-row align-items-center gap-2 bor'>
+            <div className='rentPay d-flex flex-row align-items-center gap-2 bor'>
               <h4 className='pe-3'> ₦ </h4>
               <input
-                name='hourlyPay'
+                id='MonthlyRent'
+                name='MonthlyRent'
                 type='number'
                 className=''
-                placeholder='rent'
-                // defaultValue={createJob.hourlyPay}
-                // onChange={handleChange}
+                defaultValue={selectValues.MonthlyRent}
+                onChange={(e) =>
+                  handleOnSelectChange('MonthlyRent', e.target.value)
+                }
                 required
               />
             </div>
           </div>
           <div className='inputWrapper'>
-            <label htmlFor='hourlPay' className='labelTitle'>
+            <label htmlFor='SecurityDeposit' className='labelTitle'>
               Security Deposit <MdInfo color='var(--mainColor)' />
             </label>
-            <div className='rentPay   d-flex flex-row align-items-center gap-2 bor'>
-              <h4 className=' pe-3'> ₦ </h4>
+            <div className='rentPay d-flex flex-row align-items-center gap-2 bor'>
+              <h4 className='pe-3'> ₦ </h4>
               <input
-                name='hourlyPay'
+                id='SecurityDeposit'
+                name='SecurityDeposit'
                 type='number'
                 className=''
-                placeholder='rent'
-                // defaultValue={createJob.hourlyPay}
-                // onChange={handleChange}
+                defaultValue={selectValues.SecurityDeposit}
+                onChange={(e) =>
+                  handleOnSelectChange('SecurityDeposit', e.target.value)
+                }
                 required
               />
             </div>
           </div>
         </article>
 
-        <article className='col-12 d-flex flex-column'>
-          <label htmlFor='companyDescription' className='labelTitle'>
+        <article className='col-12 d-flex flex-column my-4'>
+          <label htmlFor='Amenities' className='labelTitle mb-2'>
             {' '}
-            Company Description
+            Select Amenitites
+          </label>
+          <div className='Amenities d-flex flex-wrap gap-2 '>
+            {amenitiesList.map((item, idx) => (
+              <small
+                onClick={() => updateAmenities(idx, item)}
+                className={
+                  amenities.some((s) => s.title === item.title)
+                    ? 'selected'
+                    : 'notSelected'
+                }
+                key={idx}
+              >
+                {' '}
+                {item.title}{' '}
+              </small>
+            ))}
+          </div>
+        </article>
+
+        <article className='col-12 d-flex flex-column'>
+          <label htmlFor='Description' className='labelTitle'>
+            {' '}
+            Description
           </label>
 
           <textarea
-            id='companyDescription'
-            name='companyDescription'
-            placeholder='Enter company desciption'
+            id='Description'
+            name='Description'
+            placeholder='Enter  desciption'
             className='form-control'
-            defaultValue={selectValues.companyDescription}
+            defaultValue={selectValues.Description}
             onChange={(e) =>
-              handleOnSelectChange('companyDescription', e.target.value)
+              handleOnSelectChange('Description', e.target.value)
             }
             rows='3'
             required
@@ -207,40 +256,47 @@ const ListingInfo = ({ onNext, onPrevious }) => {
 
         <article className='col-12 d-flex flex-column flex-md-row gap-1 justify-content-between mt-3'>
           <div className='inputWrapper '>
-            <label htmlFor='BedRooms' className='labelTitle'>
+            <label htmlFor='DateAvalaibality' className='labelTitle'>
               {' '}
               Date Available <em>*</em>
             </label>
             <input
-              id='BedRooms'
-              name='BedRooms'
+              id='DateAvalaibality'
+              name='DateAvalaibality'
               type='date'
               className={'form-control'}
-              defaultValue={selectValues.BedRooms}
-              onChange={(e) => handleOnSelectChange('BedRooms', e.target.value)}
+              defaultValue={selectValues.DateAvalaibality}
+              onChange={(e) =>
+                handleOnSelectChange('DateAvalaibality', e.target.value)
+              }
               required
             />
           </div>
 
           <div className=' inputWrapper'>
-            <label htmlFor='Baths' className='labelTitle'>
+            <label htmlFor='LeaseDuration' className='labelTitle'>
               {' '}
               Lease Duration
             </label>
             <select
-              id='Baths'
-              name='Baths'
+              id='LeaseDuration'
+              name='LeaseDuration'
               className='form-select'
-              defaultValue={selectValues.websites}
-              onChange={(e) => handleOnSelectChange('websites', e.target.value)}
+              defaultValue={selectValues.LeaseDuration}
+              onChange={(e) =>
+                handleOnSelectChange('LeaseDuration', e.target.value)
+              }
               required
             >
               <option value='' disabled>
                 {' '}
                 Select Duration
               </option>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                <option value={item}> {item} </option>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, idx) => (
+                <option value={item} key={idx}>
+                  {' '}
+                  {item}{' '}
+                </option>
               ))}
             </select>
           </div>

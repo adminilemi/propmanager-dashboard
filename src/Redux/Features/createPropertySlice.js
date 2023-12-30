@@ -3,6 +3,7 @@ const initialState = {
   address: null,
   listingInfo: null,
   ExteriorImages: [],
+  Amenities: [],
   InteriorImages: [],
   Videos: [],
 };
@@ -21,15 +22,19 @@ export const createPropertySlice = createSlice({
     },
 
     addExteriorImages: (state, action) => {
-      state.ExteriorImages.push(action.payload);
+      state.ExteriorImages = action.payload;
     },
 
     addInteriorImages: (state, action) => {
-      state.InteriorImages.push(action.payload);
+      state.InteriorImages = action.payload;
     },
 
     addVideos: (state, action) => {
-      state.Videos.push(action.payload);
+      state.Videos = action.payload;
+    },
+
+    addAmenities: (state, action) => {
+      state.Amenities = action.payload;
     },
   },
 });
@@ -40,6 +45,7 @@ export const {
   addInteriorImages,
   addListingInfo,
   addVideos,
+  addAmenities,
 } = createPropertySlice.actions;
 
 export const selectProperty = (state) => state.createPropertySlice;

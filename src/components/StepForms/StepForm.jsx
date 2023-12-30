@@ -9,14 +9,16 @@ import {
 import PropertyAddress from './PropertyAddress/PropertyAddress';
 import ListingInfo from './ListingInfo/ListingInfo';
 import PropertyImages from './PropertyImages/PropertyImages';
+import PropertyVideos from './PropertyVideos/PropertyVideos';
 
 function StepForm() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
 
   const StepLabels = [
     { title: 'Property Address', icon: <TbSquareRoundedNumber1Filled /> },
     { title: 'Listing Information', icon: <TbSquareRoundedNumber2Filled /> },
     { title: 'Property Images', icon: <TbSquareRoundedNumber3Filled /> },
+    { title: 'Property Videos', icon: <TbSquareRoundedNumber3Filled /> },
   ];
 
   const handleNext = () => {
@@ -37,7 +39,10 @@ function StepForm() {
         {currentStep === 1 && (
           <ListingInfo onPrevious={handlePrevious} onNext={handleNext} />
         )}
-        {currentStep === 2 && <PropertyImages onPrevious={handlePrevious} />}
+        {currentStep === 2 && (
+          <PropertyImages onPrevious={handlePrevious} onNext={handleNext} />
+        )}
+        {currentStep === 3 && <PropertyVideos onPrevious={handlePrevious} />}
       </article>
     </section>
   );
