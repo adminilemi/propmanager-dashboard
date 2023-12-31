@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomUploadToCloudinary from './customUploadToCloudinary';
+import CustomUploadToCloudinary from './CustomUploadToCloudinary';
 
 const ImageContainer = ({ images, cat, id, loading, uploadFiles, title }) => {
   const placeholderImageUrl =
