@@ -12,7 +12,7 @@ import PropertyImages from './PropertyImages/PropertyImages';
 import PropertyVideos from './PropertyVideos/PropertyVideos';
 
 function StepForm() {
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(0);
 
   const StepLabels = [
     { title: 'Property Address', icon: <TbSquareRoundedNumber1Filled /> },
