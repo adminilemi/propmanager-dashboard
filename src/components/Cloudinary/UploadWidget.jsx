@@ -24,6 +24,8 @@ const UploadWidget = ({ setImageData }) => {
     // theme: "purple", //change to a purple theme
   });
 
+  console.log(publicId);
+
   return (
     <section>
       <CloudinaryUploadWidget

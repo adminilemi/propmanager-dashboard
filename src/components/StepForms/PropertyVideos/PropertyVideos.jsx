@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import ImageContainer from '@/components/Cloudinary/ImageContainer';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 const PropertyVideos = ({ onPrevious }) => {
   const { loading, setLoading, errors, setErrors, uploadFilesToServer } =
     useGlobalHooks();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [imageData, setImageData] = useState({
     Exterior: [],
@@ -62,7 +62,7 @@ const PropertyVideos = ({ onPrevious }) => {
 
     setErrors({ error: false, errMessage: '' });
 
-    onNext();
+    // onNext();
   };
 
   return (
@@ -100,6 +100,8 @@ const PropertyVideos = ({ onPrevious }) => {
           {/* {loading['submitIt'] ? <Spinner /> : 'Submit'} */}
         </button>
       </div>
+
+      {errors.error && <p>{errors.errMessage}</p>}
     </main>
   );
 };

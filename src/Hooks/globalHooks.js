@@ -185,6 +185,7 @@ export const useGlobalHooks = () => {
       formData.append('file', file);
       formData.append('upload_preset', presetKey);
 
+      // eslint-disable-next-line no-useless-catch
       try {
         // Add it to the endpoint body
         const resp = await axios.post(

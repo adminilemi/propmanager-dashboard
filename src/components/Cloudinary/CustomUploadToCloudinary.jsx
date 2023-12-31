@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Spinner } from 'react-bootstrap';
 
 const CustomUploadToCloudinary = ({ uploadChange, loading, id }) => {

@@ -7,13 +7,13 @@ import {
   addListingInfo,
   selectProperty,
 } from '@/Redux/Features/createPropertySlice';
-import { useGlobalHooks } from '@/Hooks/globalHooks';
+// import { useGlobalHooks } from '@/Hooks/globalHooks';
 import { amenitiesList, propertyType } from '@/components/AllData';
 import { MdInfo } from 'react-icons/md';
 
 const ListingInfo = ({ onNext, onPrevious }) => {
   const { Amenities, listingInfo } = useSelector(selectProperty);
-  const [isValid, setIsValid] = useState({});
+  // const [isValid, setIsValid] = useState({});
 
   const [selectValues, setSelectValues] = useState(
     listingInfo || {
@@ -92,7 +92,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
             selectedOption={customOptions.Property_type}
             setSelectedOption={setCustomOptions}
             onSelectChange={handleOnSelectChange}
-            error={isValid['Property_type']}
+            // error={isValid['Property_type']}
           />
         </article>
 
