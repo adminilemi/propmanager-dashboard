@@ -15,7 +15,7 @@ import * as API from '@/api/apis';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import { useCookies } from '@/Hooks/cookiesHook';
 import RightSide from '@/components/RightSide';
-import { userAuthData } from '@/Redux/Features/userAuthSlice';
+import { getUserAvatar, userAuthData } from '@/Redux/Features/userAuthSlice';
 import { useAuthHook } from '@/Hooks/authHook';
 
 function Signin() {
@@ -53,12 +53,15 @@ function Signin() {
         const userToken = res.data.data.token;
         const userId = res.data.data.user._id;
         const userEmail = res.data.data.user.email;
+        const userName = res.data.data.user.CompanyName;
+        const profileImage = res.data.data.user.profilePic;
 
         showAlert(successMessage.message);
 
         setCookies('ilemiUserToken', userToken);
 
-        dispatch(userAuthData({ userId, userEmail }));
+        dispatch(getUserAvatar(profileImage));
+        dispatch(userAuthData({ userId, userEmail, userName }));
 
         setLoading(false);
         setSession();

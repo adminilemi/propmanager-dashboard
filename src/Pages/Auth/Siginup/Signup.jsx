@@ -1,17 +1,17 @@
 import { useRef, useState } from 'react';
 import './Signup.scss';
-import { useSweetAlert } from '../../../Hooks/useSweetAlert';
 import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
-import RightSide from '../../../components/RightSide';
 import { useDispatch } from 'react-redux';
-import { useCookies } from '../../../Hooks/cookiesHook';
-import { userAuthData } from '../../../Redux/Features/userAuthSlice';
 import { Spinner } from 'react-bootstrap';
 import BrandLogo from '@/components/BrandLogo';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import { useAuthHook } from '@/Hooks/authHook';
 import * as API from '@/api/apis';
+import { useCookies } from '@/Hooks/cookiesHook';
+import { useSweetAlert } from '@/Hooks/useSweetAlert';
+import { getUserAvatar, userAuthData } from '@/Redux/Features/userAuthSlice';
+import RightSide from '@/components/RightSide';
 
 const initialState = {
   firstName: '',
@@ -128,12 +128,15 @@ function Signup() {
         const userToken = res.data.data.token;
         const userId = res.data.data.user._id;
         const userEmail = res.data.data.user.email;
+        const userName = res.data.data.user.CompanyName;
+        const profileImage = res.data.data.user.profilePic;
 
         showAlert(successMessage.message);
 
         setCookies('ilemiUserToken', userToken);
 
-        dispatch(userAuthData({ userId, userEmail }));
+        dispatch(getUserAvatar(profileImage));
+        dispatch(userAuthData({ userId, userEmail, userName }));
 
         setLoading(false);
         setSession();

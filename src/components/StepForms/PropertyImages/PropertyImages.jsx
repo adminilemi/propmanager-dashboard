@@ -20,12 +20,52 @@ const PropertyImages = ({ onPrevious, onNext }) => {
   const dispatch = useDispatch();
 
   const [imageData, setImageData] = useState({
-    Exterior: ExteriorImages || [],
-    Interior: InteriorImages || [],
-  });
+    Exterior: (ExteriorImages.length > 0 && ExteriorImages) || [
+      {
+        name: 'front1',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'front2',
 
-  // console.log(ExteriorImages);
-  // console.log(InteriorImages);
+        title: '',
+        url: '',
+      },
+    ],
+    Interior: (InteriorImages.length > 0 && InteriorImages) || [
+      {
+        name: 'inner1',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner2',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner3',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner4',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner5',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner6',
+        title: '',
+        url: '',
+      },
+    ],
+  });
 
   const uploadFiles = async (e, id, cat) => {
     setLoading({ [id]: true });
@@ -33,18 +73,23 @@ const PropertyImages = ({ onPrevious, onNext }) => {
     const file = e.target.files[0];
     try {
       const result = await uploadFilesToServer(file);
-      console.log(result);
 
-      setImageData((prev) => ({
-        ...prev,
-        [cat]: [
-          ...prev[cat],
-          {
-            title: result.original_filename,
-            url: result.secure_url,
-          },
-        ],
-      }));
+      setImageData((prev) => {
+        const updatedCategory = prev[cat].map((item) =>
+          item.name === id
+            ? {
+                name: id,
+                title: result.original_filename,
+                url: result.secure_url,
+              }
+            : item,
+        );
+
+        if (updatedCategory.some((item) => item.name === id)) {
+          // If the object with the given id exists, update the state
+          return { ...prev, [cat]: updatedCategory };
+        }
+      });
 
       setLoading({ [id]: false });
     } catch (error) {
@@ -52,8 +97,6 @@ const PropertyImages = ({ onPrevious, onNext }) => {
       setLoading({ [id]: false });
     }
   };
-
-  console.log(imageData);
 
   const handleDataSubmit = async (e) => {
     e.preventDefault();
@@ -81,7 +124,23 @@ const PropertyImages = ({ onPrevious, onNext }) => {
     onNext();
   };
 
-  console.log(errors);
+  const handleRmoveImage = (id, cat) => {
+    if (id) {
+      setImageData((prev) => {
+        const toUpdate = prev[cat].map((item) =>
+          item.name === id
+            ? {
+                name: id,
+                title: '',
+                url: '',
+              }
+            : item,
+        );
+
+        return { ...prev, [cat]: toUpdate };
+      });
+    }
+  };
 
   return (
     <main className='productUpload col-12'>
@@ -100,24 +159,17 @@ const PropertyImages = ({ onPrevious, onNext }) => {
 
         {!toggle['togg'] && (
           <section className='d-flex flex-column flex-md-row justify-content-between col-12'>
-            <ImageContainer
-              images={
-                imageData.Exterior.length > 0 ? imageData.Exterior[0].url : ''
-              }
-              cat='Exterior'
-              id='front1'
-              loading={loading}
-              uploadFiles={uploadFiles}
-            />
-            <ImageContainer
-              images={
-                imageData.Exterior.length > 1 ? imageData.Exterior[1].url : ''
-              }
-              cat='Exterior'
-              id='front2'
-              loading={loading}
-              uploadFiles={uploadFiles}
-            />
+            {imageData.Exterior.map(({ name, url }) => (
+              <ImageContainer
+                key={name}
+                images={url}
+                cat='Exterior'
+                id={name}
+                loading={loading}
+                uploadFiles={uploadFiles}
+                removeImage={handleRmoveImage}
+              />
+            ))}
           </section>
         )}
       </section>
@@ -137,66 +189,17 @@ const PropertyImages = ({ onPrevious, onNext }) => {
 
         {!toggle['Interior'] && (
           <section className='d-flex flex-wrap gap-2 justify-content-between col-12'>
-            <ImageContainer
-              images={
-                imageData.Interior.length > 0 ? imageData.Interior[0].url : ''
-              }
-              cat='Interior'
-              id='LivingRoom'
-              loading={loading}
-              uploadFiles={uploadFiles}
-              title='Living room *'
-            />
-            <ImageContainer
-              images={
-                imageData.Interior.length > 1 ? imageData.Interior[1].url : ''
-              }
-              cat='Interior'
-              id='Bedroom1'
-              loading={loading}
-              uploadFiles={uploadFiles}
-              title='Bed room *'
-            />
-            <ImageContainer
-              images={
-                imageData.Interior.length > 2 ? imageData.Interior[2].url : ''
-              }
-              cat='Interior'
-              id='Bedroom2'
-              loading={loading}
-              uploadFiles={uploadFiles}
-              title='Bed room 2 *'
-            />
-            <ImageContainer
-              images={
-                imageData.Interior.length > 3 ? imageData.Interior[3].url : ''
-              }
-              cat='Interior'
-              id='Bedroom3'
-              loading={loading}
-              uploadFiles={uploadFiles}
-              title='Bed room 3 *'
-            />
-            <ImageContainer
-              images={
-                imageData.Interior.length > 4 ? imageData.Interior[4].url : ''
-              }
-              cat='Interior'
-              id='Kitchen'
-              loading={loading}
-              uploadFiles={uploadFiles}
-              title='Kitchen *'
-            />
-            <ImageContainer
-              images={
-                imageData.Interior.length > 5 ? imageData.Interior[5].url : ''
-              }
-              cat='Interior'
-              id='Bathroom'
-              loading={loading}
-              uploadFiles={uploadFiles}
-              title='Bathroom *'
-            />
+            {imageData.Interior.map(({ name, url }) => (
+              <ImageContainer
+                key={name}
+                images={url}
+                cat='Interior'
+                id={name}
+                loading={loading}
+                uploadFiles={uploadFiles}
+                removeImage={handleRmoveImage}
+              />
+            ))}
           </section>
         )}
       </section>

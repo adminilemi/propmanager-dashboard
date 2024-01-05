@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
-import { setSearchQuery } from '../Redux/Features/jobsSlice';
+import { setSearchQuery } from '@/Redux/Features/globalSlice';
 
 function Search({ placeholder }) {
   const dispatch = useDispatch();

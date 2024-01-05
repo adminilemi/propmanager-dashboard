@@ -1,0 +1,70 @@
+.listingInfo {
+  .uploadedImage {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    .deleteIcon {
+      position: absolute;
+      right: 0;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      place-content: center;
+      background-color: var(--pryColor);
+      color: var(--white);
+      padding: 0.5em;
+      cursor: pointer;
+    }
+  }
+
+  em {
+    color: red;
+  }
+
+  .form-control {
+    border: solid 1px var(--Line) !important;
+  }
+
+  .rentPay {
+    border: solid 1px var(--Line);
+    border-radius: 10px;
+    padding: 0 1em;
+
+    h4 {
+      color: var(--Grey6);
+    }
+
+    input {
+      border: none;
+      border-left: solid 1px var(--Line);
+      padding: 0.77em 0;
+    }
+  }
+
+  .Amenities {
+    border: solid 1.5px var(--Line);
+    border-radius: 8px;
+    padding: 1em;
+    .notSelected {
+      border: solid 1.5px var(--Line);
+      border-radius: 8px;
+      padding: 0.4em 0.7em;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--Grey6);
+      cursor: pointer;
+    }
+
+    .selected {
+      background: #e8e6f9;
+      border: solid 1.5px var(--mainColor);
+      border-radius: 8px;
+      padding: 0.4em 0.7em;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--mainColor);
+      cursor: pointer;
+    }
+  }
+}

@@ -21,8 +21,10 @@ import userAuthSlice from '../Features/userAuthSlice';
 import userDatasSlice from '../Features/userDatasSlice';
 import jobSlice from '../Features/jobsSlice';
 import notifsSlice from '../Features/notifsSlice';
+import onboardingSlice from '../Features/onboardingSlice';
 
 const allReducers = combineReducers({
+  onboardingSlice,
   notifsSlice,
   globalSlice,
   jobSlice,

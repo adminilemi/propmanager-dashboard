@@ -285,6 +285,13 @@ export const nigeriaStates = [
 export const Inputs = (val) => {
   return [
     {
+      id: 'Property_Name',
+      type: 'text',
+      label: 'Property Name',
+      value: val.Property_Name,
+      placeholder: 'Enter property name or estate name',
+    },
+    {
       id: 'StreetAddress',
       type: 'text',
       label: 'Street Address',
@@ -319,6 +326,53 @@ export const Inputs = (val) => {
       type: 'number',
       value: val.Zipcode,
       placeholder: 'Enter Zipcode',
+    },
+  ];
+};
+
+export const OnboardingInputs = (val) => {
+  return [
+    {
+      id: 'CompanyName',
+      type: 'text',
+      label: 'Business Name',
+      value: val.CompanyName,
+      placeholder: 'Enter business name ',
+    },
+    {
+      id: 'phoneNumber',
+      type: 'number',
+      label: 'Phone number',
+      value: val.phoneNumber,
+      placeholder: 'Enter phone number',
+    },
+    {
+      id: 'WhatsappNumber',
+      type: 'number',
+      label: 'Whatsapp number',
+      value: val.WhatsappNumber,
+      placeholder: 'Enter whatsapp number',
+    },
+    {
+      id: 'HouseAddress',
+      label: 'House / Office Address',
+      type: 'text',
+      value: val.HouseAddress,
+      placeholder: 'Enter business address',
+    },
+    {
+      id: 'State',
+      label: 'State',
+      value: val.State,
+      placeholder: 'Enter state',
+      options: nigeriaStates,
+    },
+    {
+      id: 'City',
+      type: 'text',
+      label: 'City',
+      value: val.City,
+      placeholder: 'Enter city',
     },
   ];
 };

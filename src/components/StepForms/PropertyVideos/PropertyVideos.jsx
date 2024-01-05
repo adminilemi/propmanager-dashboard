@@ -1,36 +1,52 @@
-import React, { useState } from 'react';
-import ImageContainer from '@/components/Cloudinary/ImageContainer';
+import React, { useEffect, useState } from 'react';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
-// import { useDispatch } from 'react-redux';
+import VideoContainer from '@/components/Cloudinary/VideoContainer';
+import { useSelector } from 'react-redux';
+import {
+  addVideos,
+  resetState,
+  selectProperty,
+} from '@/Redux/Features/createPropertySlice';
+import { useCreatePropertyMutation } from '@/api/apiSlice';
+import { selectUserData } from '@/Redux/Features/userAuthSlice';
+import { useDispatch } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
+import { useSweetAlert } from '@/Hooks/useSweetAlert';
+import { useNavigate } from 'react-router-dom';
 
 const PropertyVideos = ({ onPrevious }) => {
-  const { loading, setLoading, errors, setErrors, uploadFilesToServer } =
-    useGlobalHooks();
+  const { showAlert } = useSweetAlert();
+  const {
+    address,
+    listingInfo,
+    ExteriorImages,
+    Amenities,
+    InteriorImages,
+    Videos,
+  } = useSelector(selectProperty);
+  const { authUser } = useSelector(selectUserData);
+  const { loading, setLoading, uploadFilesToServer } = useGlobalHooks();
+  const [createProp, { isLoading }] = useCreatePropertyMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const dispatch = useDispatch();
-
-  const [imageData, setImageData] = useState({
-    Exterior: [],
-    Interior: [],
+  const [videoData, setVideoData] = useState({
+    title: Videos[0]?.title || '',
+    url: Videos[0]?.url || '',
   });
 
-  const uploadFiles = async (e, id, cat) => {
+  const uploadFiles = async (e, id) => {
     setLoading({ [id]: true });
 
     const file = e.target.files[0];
     try {
       const result = await uploadFilesToServer(file);
-      console.log(result);
 
-      setImageData((prev) => ({
+      setVideoData((prev) => ({
         ...prev,
-        [cat]: [
-          ...prev[cat],
-          {
-            title: result.original_filename,
-            url: result.secure_url,
-          },
-        ],
+
+        title: result.original_filename,
+        url: result.secure_url,
       }));
 
       setLoading({ [id]: false });
@@ -40,29 +56,35 @@ const PropertyVideos = ({ onPrevious }) => {
     }
   };
 
-  // console.log(imageData);
+  useEffect(() => {
+    videoData.url !== '' && dispatch(addVideos([videoData]));
+  }, [videoData.url]);
+
+  const propData = {
+    AgentId: authUser.userId,
+    ...address,
+    ...listingInfo,
+    ExteriorImages,
+    Amenities,
+    InteriorImages,
+    Videos: [videoData],
+  };
 
   const handleDataSubmit = async (e) => {
     e.preventDefault();
 
-    if (imageData.Exterior.length < 2) {
-      setErrors({
-        error: true,
-        errMessage: 'Please upload all Exterior images',
-      });
-      return;
-    }
-    if (imageData.Interior.length < 6) {
-      setErrors({
-        error: true,
-        errMessage: 'Please upload all Interior images',
-      });
-      return;
-    }
+    try {
+      const rsp = await createProp(propData);
+      if (rsp.data) {
+        showAlert('Property created successfully');
 
-    setErrors({ error: false, errMessage: '' });
+        dispatch(resetState());
 
-    // onNext();
+        navigate('/listings');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -74,12 +96,10 @@ const PropertyVideos = ({ onPrevious }) => {
         </div>
 
         <section className='d-flex flex-column flex-md-row justify-content-between col-12'>
-          <ImageContainer
-            images={
-              imageData.Exterior.length > 0 ? imageData.Exterior[0].url : ''
-            }
-            cat='Exterior'
-            id='front1'
+          <VideoContainer
+            videoLink={videoData.url}
+            cat='Video'
+            id='productVideo'
             loading={loading}
             uploadFiles={uploadFiles}
           />
@@ -91,17 +111,16 @@ const PropertyVideos = ({ onPrevious }) => {
           Back{' '}
         </button>
         <button
-          id='submitIt'
+          id='submitData'
           type='button'
           onClick={handleDataSubmit}
           className='main-btn'
         >
-          Submit
-          {/* {loading['submitIt'] ? <Spinner /> : 'Submit'} */}
+          {isLoading ? <Spinner /> : 'Submit'}
         </button>
       </div>
 
-      {errors.error && <p>{errors.errMessage}</p>}
+      {/* {errors.error && <p>{errors.errMessage}</p>} */}
     </main>
   );
 };

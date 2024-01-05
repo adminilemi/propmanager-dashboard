@@ -106,7 +106,7 @@ function VerifyEmail() {
             showAlert(successMessage.message);
 
             setLoading(false);
-            return navigate('/signin');
+            return navigate('/onboarding');
           })
           .catch((err) => {
             console.log(err);

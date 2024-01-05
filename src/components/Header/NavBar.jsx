@@ -7,24 +7,26 @@ import Notifications from '../Notifications/Notifications';
 // import UserPop from '../UserPop/UserPop';
 import UserLogo from '../UserPop/UserLogo';
 // import { Link } from 'react-router-dom';
-import {
-  selectUserAvatar,
-  // selectUserData,
-  // selectUserName,
-} from '../../Redux/Features/userAuthSlice';
+
 import { useSelector } from 'react-redux';
 import Modal from '../popUps/Modal';
+import {
+  selectUserAvatar,
+  selectUserData,
+  selectUserName,
+} from '@/Redux/Features/userAuthSlice';
 // import { getNotifs, selectNotifs } from '../../Redux/Features/notifsSlice';
 
 function NavBar() {
   const toggle = useSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
-  // const { authUser } = useSelector(selectUserData);
+  const { authUser } = useSelector(selectUserData);
+  const userName = useSelector(selectUserName);
   const logoImage = useSelector(selectUserAvatar);
   // const name = useSelector(selectUserName);
   // const notifs = useSelector(selectNotifs);
   // const dispatch = useDispatch();
-
+  console.log(userName);
   return (
     <div className='navbar d-flex flex-column align-items-end'>
       <header className=' col-12 d-flex flex-row heading justify-content-end'>
@@ -41,7 +43,11 @@ function NavBar() {
             </span>
           </button>
 
-          <UserLogo coyLogo={logoImage} chev />
+          <UserLogo
+            coyLogo={logoImage}
+            userName={authUser.userName || userName}
+            chev
+          />
         </div>
       </header>
 

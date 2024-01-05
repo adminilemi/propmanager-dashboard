@@ -7,18 +7,14 @@ import { PiCaretRightBold } from 'react-icons/pi';
 
 function ListingDeetsCard({
   toggle,
+  id,
   propData: {
-    id,
-    title,
-    location,
-    bed,
-    sqrmeter,
-    properties,
-    yearBuilt,
-    tenants,
-    request,
-    description,
-    equipments,
+    Property_Name,
+    BedRooms,
+    StreetAddress,
+    SquareFoot,
+    Description,
+    Amenities,
   },
 }) {
   return (
@@ -28,8 +24,8 @@ function ListingDeetsCard({
           <section>
             <div className='d-flex justify-content-between'>
               <div className='col-8'>
-                <h3>{title}</h3>
-                <p>{location}</p>
+                <h3>{Property_Name}</h3>
+                <p>{StreetAddress}</p>
               </div>
               <div className='col-3 d-flex flex-column'>
                 <div className='card d-flex flex-row py-1 px-2 gap-1 showProp align-items-center'>
@@ -66,7 +62,7 @@ function ListingDeetsCard({
                         </clipPath>
                       </defs>
                     </svg>
-                    <span>{properties}</span>
+                    <span>4</span>
                   </h6>
                 </div>
               </li>
@@ -105,7 +101,7 @@ function ListingDeetsCard({
                         />
                       </g>
                     </svg>
-                    <span>{bed}</span>
+                    <span>{BedRooms}</span>
                   </h6>
                 </div>
               </li>
@@ -149,7 +145,7 @@ function ListingDeetsCard({
                         </clipPath>
                       </defs>
                     </svg>
-                    <span>{sqrmeter}</span>
+                    <span>{SquareFoot}</span>
                   </h6>
                 </div>
               </li>
@@ -237,7 +233,7 @@ function ListingDeetsCard({
                         strokeLinejoin='round'
                       />
                     </svg>
-                    <span>{yearBuilt}</span>
+                    <span>2019</span>
                   </h6>
                 </div>
               </li>
@@ -295,7 +291,7 @@ function ListingDeetsCard({
                         strokeLinejoin='round'
                       />
                     </svg>
-                    <span>{tenants}</span>
+                    <span>4</span>
                   </h6>
                 </div>
               </li>
@@ -341,7 +337,7 @@ function ListingDeetsCard({
                         />
                       </g>
                     </svg>
-                    <span>{request}</span>
+                    <span>5</span>
                   </h6>
                 </div>
               </li>
@@ -360,15 +356,15 @@ function ListingDeetsCard({
                 </div>
                 <div className='my-3'>
                   <h4>Description</h4>
-                  <p>{description}</p>
+                  <p>{Description}</p>
                 </div>
 
                 <div>
                   <h4>Equipments</h4>
                   <ul className='d-flex flex-wrap gap-1'>
-                    {equipments.map((item, idx) => (
+                    {Amenities.map((item, idx) => (
                       <small key={idx} className='view'>
-                        {item}{' '}
+                        {item.title}{' '}
                       </small>
                     ))}
                   </ul>

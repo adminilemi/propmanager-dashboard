@@ -3,7 +3,7 @@ import { useGlobalHooks } from '../../Hooks/globalHooks';
 import { FaChevronDown } from 'react-icons/fa';
 import './UserPop.scss';
 
-function UserLogo() {
+function UserLogo({ coyLogo, userName }) {
   const { handleShow } = useGlobalHooks();
 
   return (
@@ -12,7 +12,7 @@ function UserLogo() {
       id='user'
       className='d-flex gap-3 align-items-center userLogo'
     >
-      {/* <figure className='userInitials d-flex justify-content-center align-items-center me-2'>
+      <figure className='userInitials d-flex justify-content-center align-items-center me-2'>
         {coyLogo ? (
           <img src={coyLogo} alt='' />
         ) : (
@@ -21,12 +21,9 @@ function UserLogo() {
             alt=''
           />
         )}
-      </figure> */}
+      </figure>
 
-      <div className='userInitials'>
-        <h4> FR</h4>
-      </div>
-      <h4> FRANCES </h4>
+      <h4> {userName} </h4>
 
       <FaChevronDown className='Icons' />
     </div>

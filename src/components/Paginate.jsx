@@ -1,6 +1,6 @@
+import { selectSearch } from '@/Redux/Features/globalSlice';
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { selectSearch } from '../Redux/Features/jobsSlice';
 import { useSelector } from 'react-redux';
 
 function Paginate({

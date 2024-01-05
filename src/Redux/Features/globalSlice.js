@@ -4,6 +4,7 @@ export const globalSlice = createSlice({
   name: 'global',
   initialState: {
     count: 0,
+    searchQuery: '',
   },
 
   reducers: {
@@ -19,10 +20,15 @@ export const globalSlice = createSlice({
     increment: (state, action) => {
       state.count = action.payload;
     },
+
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    },
   },
 });
 
-export const { toggleShow, increment } = globalSlice.actions;
+export const { toggleShow, increment, setSearchQuery } = globalSlice.actions;
 
 export const selectGlobal = (state) => state.globalSlice;
+export const selectSearch = (state) => state.globalSlice.searchQuery;
 export default globalSlice.reducer;

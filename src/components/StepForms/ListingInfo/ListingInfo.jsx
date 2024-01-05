@@ -7,17 +7,16 @@ import {
   addListingInfo,
   selectProperty,
 } from '@/Redux/Features/createPropertySlice';
-// import { useGlobalHooks } from '@/Hooks/globalHooks';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
 import { amenitiesList, propertyType } from '@/components/AllData';
 import { MdInfo } from 'react-icons/md';
 
 const ListingInfo = ({ onNext, onPrevious }) => {
   const { Amenities, listingInfo } = useSelector(selectProperty);
-  // const [isValid, setIsValid] = useState({});
 
   const [selectValues, setSelectValues] = useState(
     listingInfo || {
-      Property_type: '',
+      PropertyType: '',
       Description: '',
       BedRooms: '',
       Baths: '',
@@ -31,10 +30,10 @@ const ListingInfo = ({ onNext, onPrevious }) => {
 
   const [amenities, setAmenities] = useState(Amenities || []);
   const [customOptions, setCustomOptions] = useState({
-    Property_type: listingInfo.Property_type || null,
+    PropertyType: listingInfo?.PropertyType || null,
   });
 
-  // const { loading, setLoading, errors, setErrors } = useGlobalHooks();
+  const { errors, setErrors } = useGlobalHooks();
 
   const dispatch = useDispatch();
 
@@ -66,10 +65,20 @@ const ListingInfo = ({ onNext, onPrevious }) => {
   };
 
   // console.log(amenities);
-  console.log(customOptions);
+  // console.log(customOptions);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (selectValues.Property_type === '') {
+      setErrors({
+        error: true,
+        errMessage: 'Please Select Property type',
+      });
+      return;
+    }
+
+    setErrors({ error: false, errMessage: '' });
 
     dispatch(addAmenities(amenities));
     dispatch(addListingInfo(selectValues));
@@ -81,18 +90,18 @@ const ListingInfo = ({ onNext, onPrevious }) => {
     <form className='mb-5 listingInfo' onSubmit={handleSubmit}>
       <section className='d-flex flex-column justify-content-between '>
         <article className='col-12 '>
-          <label htmlFor='Property_type' className='labelTitle'>
+          <label htmlFor='PropertyType' className='labelTitle'>
             {' '}
             Property Type <em>*</em>{' '}
           </label>
 
           <Select
-            id='Property_type'
+            id='PropertyType'
             options={propertyType}
-            selectedOption={customOptions.Property_type}
+            selectedOption={customOptions.PropertyType}
             setSelectedOption={setCustomOptions}
             onSelectChange={handleOnSelectChange}
-            // error={isValid['Property_type']}
+            error={errors.error}
           />
         </article>
 
@@ -133,7 +142,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
               id='Baths'
               name='Baths'
               className='form-select'
-              defaultValue={selectValues.websites}
+              defaultValue={selectValues.Baths}
               onChange={(e) => handleOnSelectChange('Baths', e.target.value)}
               required
             >
@@ -181,7 +190,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
                 id='MonthlyRent'
                 name='MonthlyRent'
                 type='number'
-                className=''
+                className='col-10'
                 defaultValue={selectValues.MonthlyRent}
                 onChange={(e) =>
                   handleOnSelectChange('MonthlyRent', e.target.value)
@@ -200,7 +209,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
                 id='SecurityDeposit'
                 name='SecurityDeposit'
                 type='number'
-                className=''
+                className='col-10'
                 defaultValue={selectValues.SecurityDeposit}
                 onChange={(e) =>
                   handleOnSelectChange('SecurityDeposit', e.target.value)
@@ -310,6 +319,10 @@ const ListingInfo = ({ onNext, onPrevious }) => {
           {' '}
           Next{' '}
         </button>
+      </div>
+
+      <div className='d-flex justify-content-center'>
+        {errors.error && <p className='error_message'>{errors.errMessage}</p>}
       </div>
     </form>
   );

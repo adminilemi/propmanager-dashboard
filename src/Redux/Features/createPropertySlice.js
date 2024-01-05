@@ -36,6 +36,11 @@ export const createPropertySlice = createSlice({
     addAmenities: (state, action) => {
       state.Amenities = action.payload;
     },
+
+    resetState: () => {
+      // Reset the state to the initial state
+      return initialState;
+    },
   },
 });
 
@@ -46,6 +51,7 @@ export const {
   addListingInfo,
   addVideos,
   addAmenities,
+  resetState,
 } = createPropertySlice.actions;
 
 export const selectProperty = (state) => state.createPropertySlice;
