@@ -26,7 +26,7 @@ function NavBar() {
   // const name = useSelector(selectUserName);
   // const notifs = useSelector(selectNotifs);
   // const dispatch = useDispatch();
-  console.log(userName);
+
   return (
     <div className='navbar d-flex flex-column align-items-end'>
       <header className=' col-12 d-flex flex-row heading justify-content-end'>

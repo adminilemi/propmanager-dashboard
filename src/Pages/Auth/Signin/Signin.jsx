@@ -17,6 +17,7 @@ import { useCookies } from '@/Hooks/cookiesHook';
 import RightSide from '@/components/RightSide';
 import { getUserAvatar, userAuthData } from '@/Redux/Features/userAuthSlice';
 import { useAuthHook } from '@/Hooks/authHook';
+import { getCurrentUser } from '@/Redux/Features/userDatasSlice';
 
 function Signin() {
   const [passwordType, setPasswordType] = useState(false);
@@ -62,6 +63,7 @@ function Signin() {
 
         dispatch(getUserAvatar(profileImage));
         dispatch(userAuthData({ userId, userEmail, userName }));
+        dispatch(getCurrentUser(res.data.data.user));
 
         setLoading(false);
         setSession();

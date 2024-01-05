@@ -61,6 +61,14 @@ export const apiSLice = createApi({
       //   the param here is the id, hence the reason for id: arg
       providesTags: [{ type: 'allProperty', id: 'LIST' }],
     }),
+
+    changePassword: builder.mutation({
+      query: (formData) => ({
+        url: `/Agent/change-password`,
+        method: 'POST',
+        body: formData,
+      }),
+    }),
   }),
 });
 
@@ -69,4 +77,5 @@ export const {
   useCreatePropertyMutation,
   useGetAllPropertiesQuery,
   useUpdateAgentMutation,
+  useChangePasswordMutation,
 } = apiSLice;

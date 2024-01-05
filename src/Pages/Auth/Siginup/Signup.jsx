@@ -12,6 +12,7 @@ import { useCookies } from '@/Hooks/cookiesHook';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { getUserAvatar, userAuthData } from '@/Redux/Features/userAuthSlice';
 import RightSide from '@/components/RightSide';
+import { getCurrentUser } from '@/Redux/Features/userDatasSlice';
 
 const initialState = {
   firstName: '',
@@ -137,6 +138,7 @@ function Signup() {
 
         dispatch(getUserAvatar(profileImage));
         dispatch(userAuthData({ userId, userEmail, userName }));
+        dispatch(getCurrentUser(res.data.data.user));
 
         setLoading(false);
         setSession();

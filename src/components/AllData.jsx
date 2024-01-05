@@ -1,4 +1,7 @@
 import proImage from '@/assets/propertyImage.png';
+import Profile from './DashboardComps/SettingsComps/Profile/Profile';
+import MyAccount from './DashboardComps/SettingsComps/MyAccount/MyAccount';
+import MyNotifications from './DashboardComps/SettingsComps/MyNotifications/MyNotifications';
 
 export const propertiesData = [
   {
@@ -775,3 +778,27 @@ export const amenitiesList = [
     title: 'Jacuzzi',
   },
 ];
+
+export const TabsData = {
+  TabTitle: [
+    {
+      id: 'tab1',
+      title: 'Profile',
+    },
+
+    {
+      id: 'tab2',
+      title: 'My Account',
+    },
+    {
+      id: 'tab3',
+      title: 'Notifications',
+    },
+  ],
+
+  TabContents: [
+    { id: 'tab1', comp: <Profile /> },
+    { id: 'tab2', comp: <MyAccount /> },
+    { id: 'tab3', comp: <MyNotifications /> },
+  ],
+};
