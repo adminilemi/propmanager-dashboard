@@ -45,7 +45,7 @@ function NavBar() {
 
           <UserLogo
             coyLogo={logoImage}
-            userName={authUser.userName || userName}
+            userName={userName || authUser.userName}
             chev
           />
         </div>

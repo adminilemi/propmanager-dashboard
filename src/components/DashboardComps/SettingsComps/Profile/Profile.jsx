@@ -63,7 +63,7 @@ const Profile = () => {
         agentId: authUser.userId,
         ...userData,
       });
-      console.log(result);
+
       if (result.data) {
         showAlert(result.data.message);
         dispatch(getUserAvatar(result.data.data.profilePic));
