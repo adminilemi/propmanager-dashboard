@@ -397,18 +397,18 @@ hr {
   margin: 0;
 }
 
-input[type='radio'] {
+/* input[type='radio'] {
   width: 1.5em;
   height: 1.5em;
   border: solid 1px var(--Grey2);
-}
+} */
 
-input:checked[type='radio'] {
+/* input:checked[type='radio'] {
   width: 1.5em;
   height: 1.5em;
   border: solid 1px var(--Grey2);
   background-color: var(--pryColor);
-}
+} */
 
 .popUpMenu {
   border-radius: 5px;

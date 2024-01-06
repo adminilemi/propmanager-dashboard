@@ -76,7 +76,6 @@ const Profile = () => {
     }
   };
 
-  console.log(userData);
   return (
     <main className=' card profile '>
       <section className=''>
@@ -194,9 +193,18 @@ const Profile = () => {
 
       <div className='d-flex justify-content-end my-3 col-11 mx-auto'>
         {isEdit ? (
-          <button className='main-btn' type='button' onClick={handleSubmit}>
-            {isLoading ? <Spinner /> : 'Save Changes'}
-          </button>
+          <div className='d-flex gap-2'>
+            <button
+              className='outline-btn'
+              type='button'
+              onClick={() => setIsEdit(!isEdit)}
+            >
+              Cancel
+            </button>
+            <button className='main-btn' type='button' onClick={handleSubmit}>
+              {isLoading ? <Spinner /> : 'Save Changes'}
+            </button>
+          </div>
         ) : (
           <button
             className='outline-btn'
