@@ -462,6 +462,10 @@ input {
   font-size: 0.5rem;
 }
 
+.Icons {
+  cursor: pointer;
+}
+
 .userInitials,
 .messageAvatar,
 .userInitials_nav {

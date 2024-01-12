@@ -802,3 +802,493 @@ export const TabsData = {
     { id: 'tab3', comp: <MyNotifications /> },
   ],
 };
+
+export const pricingPlan = {
+  Monthly: [
+    {
+      id: 'MonthlyBasic',
+      title: 'Basic',
+      desc: 'Our basic package covers:',
+      price: 0,
+
+      benefits: [
+        {
+          id: 1,
+          li: '1 Listing',
+        },
+        {
+          id: 2,
+          li: '1 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '0 Video Upload',
+        },
+      ],
+    },
+    {
+      id: 'MonthlySilver',
+      title: 'Silver',
+      desc: 'Our silver package covers:',
+      price: 2500,
+      planNumber: 1,
+
+      benefits: [
+        {
+          id: 1,
+          li: '15 Listing',
+        },
+        {
+          id: 2,
+          li: '4 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '1 Video Upload',
+        },
+      ],
+    },
+    {
+      id: 'MonthlyGold',
+      title: 'Gold',
+      desc: 'Our gold package covers:',
+      price: 3500,
+      planNumber: 2,
+
+      benefits: [
+        {
+          id: 1,
+          li: '25 Listing',
+        },
+        {
+          id: 2,
+          li: '8 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '1 Video Upload',
+        },
+      ],
+    },
+    {
+      id: 'MonthlyPlatinum',
+      title: 'Platinum',
+      desc: 'Our platinum package covers:',
+      price: 5000,
+      planNumber: 3,
+
+      benefits: [
+        {
+          id: 1,
+          li: 'Unlimited',
+        },
+        {
+          id: 2,
+          li: '15 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '2 Video Upload',
+        },
+      ],
+    },
+  ],
+
+  Yearly: [
+    {
+      id: 'YearlyBasic',
+      title: 'Basic',
+      desc: 'Our basic package covers:',
+      price: 0,
+
+      benefits: [
+        {
+          id: 1,
+          li: '1 Listing',
+        },
+        {
+          id: 2,
+          li: '1 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '0 Video Upload',
+        },
+      ],
+    },
+    {
+      id: 'YearlySilver',
+      title: 'Silver',
+      desc: 'Our silver package covers:',
+      price: 2500,
+      planNumber: 4,
+
+      benefits: [
+        {
+          id: 1,
+          li: '15 Listing',
+        },
+        {
+          id: 2,
+          li: '4 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '1 Video Upload',
+        },
+      ],
+    },
+    {
+      id: 'YearlyGold',
+      title: 'Gold',
+      desc: 'Our gold package covers:',
+      price: 3500,
+      planNumber: 5,
+
+      benefits: [
+        {
+          id: 1,
+          li: '25 Listing',
+        },
+        {
+          id: 2,
+          li: '8 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '1 Video Upload',
+        },
+      ],
+    },
+    {
+      id: 'YearlyPlatinum',
+      title: 'Platinum',
+      desc: 'Our platinum package covers:',
+      price: 5000,
+      planNumber: 6,
+      benefits: [
+        {
+          id: 1,
+          li: 'Unlimited',
+        },
+        {
+          id: 2,
+          li: '15 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '2 Video Upload',
+        },
+      ],
+    },
+  ],
+};
+
+// ==== Chart Datas Start ====
+
+export const monthlyChartData = (data) => {
+  return {
+    labels: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
+
+    datasets: [
+      // registered
+      {
+        minBarLength: 0,
+        data: [
+          data?.Jan.Vacant,
+          data?.Feb.Vacant,
+          data?.Mar.Vacant,
+          data?.Apr.Vacant,
+          data?.May.Vacant,
+          data?.Jun.Vacant,
+          data?.Jul.Vacant,
+          data?.Aug.Vacant,
+          data?.Sep.Vacant,
+          data?.Oct.Vacant,
+          data?.Nov.Vacant,
+          data?.Dec.Vacant,
+        ],
+
+        backgroundColor: ' #5F259F',
+      },
+      // Verified
+      {
+        // categoryPercentage: 1,
+        minBarLength: 0,
+        data: [
+          data?.Jan.Occupied,
+          data?.Feb.Occupied,
+          data?.Mar.Occupied,
+          data?.Apr.Occupied,
+          data?.May.Occupied,
+          data?.Jun.Occupied,
+          data?.Jul.Occupied,
+          data?.Aug.Occupied,
+          data?.Sep.Occupied,
+          data?.Oct.Occupied,
+          data?.Nov.Occupied,
+          data?.Dec.Occupied,
+        ],
+
+        backgroundColor: '#e0def7',
+      },
+    ],
+  };
+};
+
+export const weeklyChartData = (data) => {
+  return {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+
+    datasets: [
+      // registered
+      {
+        minBarLength: 0,
+        data: [
+          data?.Jan.Vacant,
+          data?.Feb.Vacant,
+          data?.Mar.Vacant,
+          data?.Apr.Vacant,
+          data?.May.Vacant,
+        ],
+
+        backgroundColor: ' #5F259F',
+      },
+      // Verified
+      {
+        // categoryPercentage: 1,
+        minBarLength: 0,
+        data: [
+          data?.Jan.Occupied,
+          data?.Feb.Occupied,
+          data?.Mar.Occupied,
+          data?.Apr.Occupied,
+          data?.May.Occupied,
+        ],
+
+        backgroundColor: '#e0def7',
+      },
+    ],
+  };
+};
+
+export const doughtData = (data) => {
+  return [
+    {
+      id: 2,
+      title: 'Properties',
+      subTitle: 'Total Listed Properties',
+
+      doughChartData: {
+        labels: '',
+        datasets: [
+          {
+            data: [data?.data?.totalProperties, 0],
+            borderRadius: 8,
+            backgroundColor: ['#5F259F', '#E8E6F9'],
+            cutout: '80%',
+          },
+        ],
+      },
+
+      doughnutLabel: {
+        id: 'doughnutLabel',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          let centerX = chart.getDatasetMeta(0).data[0].x;
+          let initialCenterY = chart.getDatasetMeta(0).data[0].y;
+
+          // The labels
+
+          // The labels
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          // Labels
+          const labels = [
+            {
+              text: data?.data?.totalProperties,
+              font: 'bold 36px sans-serif',
+              color: '#000',
+            },
+            {
+              text: 'Properties',
+              font: 'italic 10px sans-serif',
+              color: '#565c69',
+            },
+          ];
+          const totalHeight = labels.length * 15;
+
+          labels.forEach((label, index) => {
+            ctx.font = label.font;
+            ctx.fillStyle = label.color;
+            const centerY = initialCenterY - totalHeight / 2 + index * (15 + 7);
+            ctx.fillText(label.text, centerX, centerY);
+          });
+
+          ctx.restore();
+        },
+      },
+    },
+    {
+      id: 3,
+      title: 'Vacant',
+      subTitle: 'Total vacant property',
+
+      doughChartData: {
+        labels: '',
+        datasets: [
+          {
+            data: [data?.data?.vacantProperties, 0],
+            borderRadius: 8,
+            backgroundColor: ['#5F259F', '#E8E6F9'],
+            cutout: '80%',
+          },
+        ],
+      },
+
+      doughnutLabel: {
+        id: 'doughnutLabel',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          let centerX = chart.getDatasetMeta(0).data[0].x;
+          let initialCenterY = chart.getDatasetMeta(0).data[0].y;
+
+          // The labels
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          // Labels
+          const labels = [
+            {
+              text: data?.data?.vacantProperties,
+              font: 'bold 36px sans-serif',
+              color: '#000',
+            },
+            {
+              text: 'Vacant',
+              font: 'italic 10px sans-serif',
+              color: '#565c69',
+            },
+          ];
+          const totalHeight = labels.length * 15;
+
+          labels.forEach((label, index) => {
+            ctx.font = label.font;
+            ctx.fillStyle = label.color;
+            const centerY = initialCenterY - totalHeight / 2 + index * (15 + 7);
+            ctx.fillText(label.text, centerX, centerY);
+          });
+
+          ctx.restore();
+        },
+      },
+    },
+    {
+      id: 4,
+      title: 'Occupied Properties',
+      subTitle: 'Total sold properties',
+
+      doughChartData: {
+        labels: '',
+        datasets: [
+          {
+            data: [
+              data?.data?.occupiedProperties === 0
+                ? 0.2
+                : data?.data?.occupiedProperties,
+              0,
+            ],
+            borderRadius: 8,
+            backgroundColor: ['#5F259F', '#E8E6F9'],
+            cutout: '80%',
+          },
+        ],
+      },
+
+      doughnutLabel: {
+        id: 'doughnutLabel',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          let centerX = chart.getDatasetMeta(0).data[0].x;
+          let initialCenterY = chart.getDatasetMeta(0).data[0].y;
+
+          // The labels
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          // Labels
+          const labels = [
+            {
+              text: data?.data?.occupiedProperties,
+              font: 'bold 36px sans-serif',
+              color: '#000',
+            },
+            {
+              text: 'Unlisted',
+              font: 'italic 10px sans-serif',
+              color: '#565c69',
+            },
+          ];
+          const totalHeight = labels.length * 15;
+
+          labels.forEach((label, index) => {
+            ctx.font = label.font;
+            ctx.fillStyle = label.color;
+            const centerY = initialCenterY - totalHeight / 2 + index * (15 + 7);
+            ctx.fillText(label.text, centerX, centerY);
+          });
+
+          ctx.restore();
+        },
+      },
+    },
+  ];
+};
+
+export const doughOp = {
+  elements: {
+    arc: {
+      skipNull: true, // Display segments with a value of 0
+    },
+  },
+};
+
+export const chartOptions = {
+  plugins: {
+    legend: {
+      display: false, // Hide the legend
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      beginAtZero: true,
+    },
+    y: {
+      display: false,
+      gridLines: {
+        display: false,
+      },
+    },
+  },
+};
+// ==== Chart Datas End ====

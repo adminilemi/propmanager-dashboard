@@ -21,16 +21,16 @@ const customBaseQuery = fetchBaseQuery({
 export const apiSLice = createApi({
   baseQuery: customBaseQuery,
 
-  tagTypes: ['allProperty', 'jobs', 'candidates', 'Teams'],
+  tagTypes: ['allProperty', 'jobs', 'sub', 'candidates', 'Teams'],
 
   // All endpoints
   endpoints: (builder) => ({
     // get user data
-    getEmployer: builder.query({
-      query: (id) => `/employer/${id}`,
+    getAgent: builder.query({
+      query: (agentId) => `/Agent/get-agent-by-id/${agentId}`,
 
       //   the param here is the id, hence the reason for id: arg
-      providesTags: [{ type: 'allProperty', id: 'LIST' }],
+      providesTags: [{ type: 'sub', id: 'LIST' }],
     }),
 
     // Update user data in server
@@ -69,13 +69,50 @@ export const apiSLice = createApi({
         body: formData,
       }),
     }),
+
+    // Subscriptions
+    createSubscriptions: builder.mutation({
+      query: (formData) => ({
+        url: `/payments/make-payment`,
+        method: 'POST',
+        body: formData,
+      }),
+      invalidatesTags: [{ type: 'sub', id: 'LIST' }],
+    }),
+
+    checkSubValidity: builder.query({
+      query: (id) => `/payments/${id}`,
+
+      //   the param here is the id, hence the reason for id: arg
+      providesTags: [{ type: 'sub', id: 'LIST' }],
+    }),
+
+    // Charts
+    getAgentStats: builder.query({
+      query: (id) => `/property/statistics/${id}`,
+
+      providesTags: [{ type: 'allProperty', id: 'LIST' }],
+    }),
+
+    getAgentMonthlyStats: builder.query({
+      query: (id) => `/property/count-by-month/${id} `,
+    }),
+
+    getAgentWeeklyStats: builder.query({
+      query: (id) => `/property/count-by-last-week/${id} `,
+    }),
   }),
 });
 
 export const {
-  useGetEmployerQuery,
+  useGetAgentQuery,
+  useGetAgentWeeklyStatsQuery,
+  useGetAgentMonthlyStatsQuery,
+  useGetAgentStatsQuery,
   useCreatePropertyMutation,
   useGetAllPropertiesQuery,
   useUpdateAgentMutation,
   useChangePasswordMutation,
+  useCreateSubscriptionsMutation,
+  useCheckSubValidityQuery,
 } = apiSLice;

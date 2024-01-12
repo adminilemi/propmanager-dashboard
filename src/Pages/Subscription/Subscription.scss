@@ -1,3 +1,163 @@
 .subscription {
   margin: 0 auto;
+  .plan {
+    margin-bottom: 4em;
+    h2 {
+      color: var(--black);
+      padding-top: 2.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  .month {
+    font-size: 0.6rem;
+    color: var(--Grey6);
+  }
+
+  .subSumTitle {
+    border-radius: 8px;
+    border: 1px solid #e0def7;
+    background: #f7f7fd;
+    color: var(--Grey6);
+    font-size: 1rem;
+  }
+
+  .planSummary {
+    height: 90vh;
+    overflow-y: scroll;
+  }
+
+  .popUp_container {
+    .wrapper {
+      width: 90%;
+      height: auto;
+    }
+  }
+
+  .container-plans {
+    .tab {
+      padding: 0 2rem 1em 2rem;
+      color: var(--Grey6);
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .active-tabs {
+      border-bottom: 2px var(--mainColor) solid;
+      color: var(--mainColor);
+    }
+
+    .content-tabs {
+      border-radius: 10px;
+      background: rgba(191, 189, 247, 0.24);
+      padding: 3.06rem 2em;
+
+      aside {
+        width: 100%;
+
+        background: var(--white);
+        .planCard {
+          background: var(--white);
+          padding: 0.7em 1em;
+
+          .planCardHeader {
+            h3 {
+              color: var(--mainDark);
+              font-size: 1.3rem;
+              font-weight: 700;
+            }
+          }
+
+          .planCardBody {
+            width: 80%;
+            margin: 1em auto;
+
+            p {
+              font-size: 0.8rem;
+              font-weight: 300;
+              color: var(--Grey6);
+            }
+
+            h3 {
+              font-size: 2rem;
+              font-weight: 700;
+            }
+
+            ul {
+              li {
+                span {
+                  font-size: 0.9rem;
+                  font-weight: 700;
+                }
+              }
+            }
+          }
+        }
+
+        .subBtn {
+          background: #e9d6fc;
+          button {
+            color: var(--mainDark);
+            font-weight: 700;
+            width: 100%;
+          }
+        }
+
+        .isSubGoldBtn {
+          background: var(--mainColor);
+          button {
+            color: var(--white);
+            font-weight: 700;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .cancelSub {
+    font-size: 0.7rem;
+    text-align: center;
+    background: red;
+    color: #fff;
+  }
+
+  .currentPlan {
+    padding: 1em 1.5em;
+
+    h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 0.7rem;
+      font-weight: 400;
+    }
+
+    h3 {
+      color: #27ae60;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .popUp_container {
+      .wrapper {
+        width: 60%;
+        height: auto;
+      }
+    }
+    .container-plans {
+      .content-tabs {
+        aside {
+          width: 24%;
+        }
+      }
+    }
+  }
 }
