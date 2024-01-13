@@ -8,8 +8,8 @@ function Settings() {
   const [activeTab, setActiveTab] = useState('tab1');
 
   return (
-    <main className=' settings d-flex flex-row justify-content-between'>
-      <article className='d-flex flex-column col-2'>
+    <main className=' settings d-flex flex-column flex-lg-row justify-content-between'>
+      <article className='d-flex flex-column col-12 col-lg-2 my-5 my-lg-0'>
         {TabsData.TabTitle.map((tab) => (
           <section key={tab.id} className='tabTitle '>
             <TabTitle
@@ -22,7 +22,7 @@ function Settings() {
         ))}
       </article>
 
-      <article className='tabContents col-9'>
+      <article className='tabContents  col-12 col-lg-9'>
         {TabsData.TabContents.map(({ id, comp }) => (
           <TabContents key={id} id={id} activeTab={activeTab} comps={comp} />
         ))}

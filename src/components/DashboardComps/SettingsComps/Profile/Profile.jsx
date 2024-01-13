@@ -85,7 +85,7 @@ const Profile = () => {
 
         <section className='mt-5 col-11 mx-auto'>
           <h5>Avatar</h5>
-          <div className='mt-3 d-flex align-items-center gap-3  '>
+          <div className='mt-3 d-flex flex-column flex-md-row align-items-center gap-3  '>
             <figure className='userInitials_nav d-flex justify-content-center align-items-center '>
               {userData.profilePic ? (
                 <img src={userData.profilePic} alt='' />
@@ -97,7 +97,7 @@ const Profile = () => {
               )}
             </figure>
 
-            <div className='d-flex gap-3'>
+            <div className='d-flex flex-column flex-md-row gap-3'>
               <div>
                 {!isEdit ? (
                   <button className='main-btn' type='button' disabled>
