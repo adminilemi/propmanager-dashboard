@@ -16,11 +16,11 @@ import { selectUserData } from './Redux/Features/userAuthSlice';
 function App() {
   const dispatch = useDispatch();
   const { authUser } = useSelector(selectUserData);
-  const { data: agentData, isLoading: loading } = useGetAgentQuery(
-    authUser.userId,
-  );
+  const { data: agentData } = useGetAgentQuery(authUser.userId, {
+    refetchOnMountOrArgChange: true,
+  });
   const { data, isLoading, isError } = useCheckSubValidityQuery(
-    !loading && agentData?.data?.CurrentSubscriptionid,
+    agentData?.data?.CurrentSubscriptionid,
     { refetchOnMountOrArgChange: true },
   );
 
@@ -37,7 +37,7 @@ function App() {
       dispatch(validateSubscription(true));
       dispatch(getSubPlanData(!isLoading && data));
     }
-  }, [isError, data]);
+  }, [isError, isLoading, data]);
 
   return (
     <main className='App'>

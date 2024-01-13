@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './PropertyImages.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
@@ -8,69 +8,64 @@ import {
   selectProperty,
 } from '@/Redux/Features/createPropertySlice';
 import ImageContainer from '@/components/Cloudinary/ImageContainer';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { selectGlobal } from '@/Redux/Features/globalSlice';
-import { selectSubPlan } from '@/Redux/Features/userDatasSlice';
-import { free, gold, platinum, silver } from '@/components/AllData';
-import { Link } from 'react-router-dom';
 
 const PropertyImages = ({ onPrevious, onNext }) => {
-  const { InteriorImages } = useSelector(selectProperty);
-  const { errors, setErrors, uploadFilesToServer } = useGlobalHooks();
+  const { ExteriorImages, InteriorImages } = useSelector(selectProperty);
+  const { errors, setErrors, uploadFilesToServer, handleShow } =
+    useGlobalHooks();
   const [loading, setLoading] = useState(false);
   const toggle = useSelector(selectGlobal);
-  const planData = useSelector(selectSubPlan);
   const dispatch = useDispatch();
 
-  let fromReduxStor = InteriorImages.length > 0 && InteriorImages;
+  const [imageData, setImageData] = useState({
+    Exterior: (ExteriorImages.length > 0 && ExteriorImages) || [
+      {
+        name: 'front1',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'front2',
 
-  const [imageData, setImageData] = useState({ Interior: [] });
-  const [uploadMessage, setUploadMessage] = useState({ title: '' });
-
-  useEffect(() => {
-    if (planData.planName === 'BASIC') {
-      setImageData({ Interior: fromReduxStor || free });
-      setUploadMessage({
-        title: (
-          <small className='messageUpload'>
-            You can only upload 1 image for this package,{' '}
-            <Link to='/subscription' className='upgrade'>
-              Upgrade Now
-            </Link>{' '}
-            to upload more.{' '}
-          </small>
-        ),
-      });
-    } else if (planData.planName === 'SILVER') {
-      setImageData({ Interior: fromReduxStor || silver });
-      setUploadMessage({
-        title: (
-          <small className='messageUpload'>
-            You can only upload 4 images for this package,{' '}
-            <Link to='/subscription' className='upgrade'>
-              Upgrade Now
-            </Link>{' '}
-            to upload more.{' '}
-          </small>
-        ),
-      });
-    } else if (planData.planName === 'GOLD') {
-      setImageData({ Interior: fromReduxStor || gold });
-      setUploadMessage({
-        title: (
-          <small className='messageUpload'>
-            You can only upload 8 images for this package,{' '}
-            <Link to='/subscription' className='upgrade'>
-              Upgrade Now
-            </Link>{' '}
-            to upload more{' '}
-          </small>
-        ),
-      });
-    } else if (planData.planName === 'PLATINUM') {
-      setImageData({ Interior: fromReduxStor || platinum });
-      setUploadMessage({ title: '' });
-    }
-  }, [planData]);
+        title: '',
+        url: '',
+      },
+    ],
+    Interior: (InteriorImages.length > 0 && InteriorImages) || [
+      {
+        name: 'inner1',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner2',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner3',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner4',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner5',
+        title: '',
+        url: '',
+      },
+      {
+        name: 'inner6',
+        title: '',
+        url: '',
+      },
+    ],
+  });
 
   const uploadFiles = async (e, id, cat) => {
     setLoading({ [id]: true });
@@ -106,22 +101,19 @@ const PropertyImages = ({ onPrevious, onNext }) => {
   const handleDataSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      planData.planName === 'BASIC' ||
-      planData.planName === 'SILVER' ||
-      planData.planName === 'GOLD' ||
-      planData.planName === 'PLATINUM'
-    ) {
-      for (let i = 0; i < imageData.Interior.length; i++) {
-        if (imageData.Interior[i].url === '') {
-          console.log(imageData.Interior[i].url);
-          setErrors({
-            error: true,
-            errMessage: 'Please upload all Images',
-          });
-          return;
-        }
-      }
+    if (imageData.Exterior.length < 2) {
+      setErrors({
+        error: true,
+        errMessage: 'Please upload all Exterior images',
+      });
+      return;
+    }
+    if (imageData.Interior.length < 6) {
+      setErrors({
+        error: true,
+        errMessage: 'Please upload all Interior images',
+      });
+      return;
     }
 
     setErrors({ error: false, errMessage: '' });
@@ -152,12 +144,47 @@ const PropertyImages = ({ onPrevious, onNext }) => {
 
   return (
     <main className='productUpload col-12'>
+      {/* Exterior */}
+      <section className='d-flex flex-column col-12'>
+        <div className='sectHeader d-flex justify-content-between border-bottom pb-2 mb-3'>
+          <h5>Exterior (Front of the property)</h5>
+          <h5 id='togg' onClick={() => handleShow('togg')}>
+            {!toggle['togg'] ? (
+              <FaChevronUp className='Icons' />
+            ) : (
+              <FaChevronDown className='Icons' />
+            )}
+          </h5>
+        </div>
+
+        {!toggle['togg'] && (
+          <section className='d-flex flex-column flex-md-row justify-content-between col-12'>
+            {imageData.Exterior.map(({ name, url }) => (
+              <ImageContainer
+                key={name}
+                images={url}
+                cat='Exterior'
+                id={name}
+                loading={loading}
+                uploadFiles={uploadFiles}
+                removeImage={handleRmoveImage}
+              />
+            ))}
+          </section>
+        )}
+      </section>
+
       {/* Interior */}
       <section className='d-flex flex-column col-12 mt-5'>
         <div className='sectHeader d-flex justify-content-between border-bottom pb-2 mb-3'>
-          <h4>Upload Images</h4>
-
-          {uploadMessage.title !== '' && <div>{uploadMessage.title}</div>}
+          <h5>Interior Images</h5>
+          <h5 id='Interior' onClick={() => handleShow('Interior')}>
+            {!toggle['Interior'] ? (
+              <FaChevronUp className='Icons' />
+            ) : (
+              <FaChevronDown className='Icons' />
+            )}
+          </h5>
         </div>
 
         {!toggle['Interior'] && (

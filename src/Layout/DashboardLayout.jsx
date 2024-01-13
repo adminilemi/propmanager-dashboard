@@ -12,11 +12,11 @@ const DashboardLayout = ({ children }) => {
   }
 
   return (
-    <main className='d-flex flex-column flex-md-row justify-content-between'>
-      <aside style={{ background: '#fff' }} className='col-12 col-md-2 side'>
+    <main className='d-flex '>
+      <aside className='leftSide'>
         <Sidebar />
       </aside>
-      <article className='col-12 col-md-10'>
+      <article className='rightSide'>
         <NavBar />
 
         {children}

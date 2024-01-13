@@ -4,9 +4,7 @@ import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { useGlobalHooks } from '../../Hooks/globalHooks';
 import { selectGlobal } from '../../Redux/Features/globalSlice';
 import Notifications from '../Notifications/Notifications';
-// import UserPop from '../UserPop/UserPop';
 import UserLogo from '../UserPop/UserLogo';
-// import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import Modal from '../popUps/Modal';
@@ -15,6 +13,7 @@ import {
   selectUserData,
   selectUserName,
 } from '@/Redux/Features/userAuthSlice';
+import UserPop from '../UserPop/UserPop';
 // import { getNotifs, selectNotifs } from '../../Redux/Features/notifsSlice';
 
 function NavBar() {
@@ -56,15 +55,15 @@ function NavBar() {
           <Notifications popUp />
         </Modal>
       )}
-      {/* {toggle['user'] && (
+      {toggle['user'] && (
         <Modal id='user' className='userPopUp m-3'>
           <UserPop
             coyLogo={logoImage}
-            companyName={name}
+            companyName={userName || authUser.userName}
             close={() => handleShow('user')}
           />
         </Modal>
-      )} */}
+      )}
     </div>
   );
 }

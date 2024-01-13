@@ -202,8 +202,17 @@ export const useGlobalHooks = () => {
     }
   };
 
+  const formatNumInThousands = (val) => {
+    if (typeof val !== 'number' || isNaN(val)) {
+      return 'Invalid Number';
+    }
+
+    return val >= 1000 ? val.toLocaleString() : val;
+  };
+
   return {
     handleShow,
+    formatNumInThousands,
     show,
     setShow,
     btnTaps,

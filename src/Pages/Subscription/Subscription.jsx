@@ -18,7 +18,7 @@ const Subscription = () => {
   const { authUser } = useSelector(selectUserData);
   const checkActivePlan = useSelector(selectSubPlan);
   const checkPlanValidity = useSelector(selectSubValidity);
-  const { handleShow } = useGlobalHooks();
+  const { handleShow, formatNumInThousands } = useGlobalHooks();
   const [plans, setPlans] = useState('Monthly');
 
   const [planData, setPlanData] = useState({
@@ -103,7 +103,7 @@ const Subscription = () => {
                               <h3>Free</h3>
                             ) : (
                               <h3>
-                                ₦{price}
+                                ₦{formatNumInThousands(price)}
                                 <span className='month'>\month</span>
                               </h3>
                             )}
@@ -213,8 +213,8 @@ const Subscription = () => {
                               <h3>Free</h3>
                             ) : (
                               <h3>
-                                ₦{price}
-                                <span className='month'>\month</span>
+                                ₦{formatNumInThousands(price)}
+                                {/* <span className='month'>\month</span> */}
                               </h3>
                             )}
                           </div>

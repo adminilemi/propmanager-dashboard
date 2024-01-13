@@ -3,7 +3,7 @@ import { useGlobalHooks } from '../../Hooks/globalHooks';
 import { FaChevronDown } from 'react-icons/fa';
 import './UserPop.scss';
 
-function UserLogo({ coyLogo, userName }) {
+function UserLogo({ coyLogo, userName, chev }) {
   const { handleShow } = useGlobalHooks();
 
   return (
@@ -25,7 +25,7 @@ function UserLogo({ coyLogo, userName }) {
 
       <h4> {userName} </h4>
 
-      <FaChevronDown className='Icons' />
+      {chev && <FaChevronDown className='Icons' />}
     </div>
   );
 }

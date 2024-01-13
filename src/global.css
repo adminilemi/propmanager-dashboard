@@ -89,6 +89,17 @@ body::-webkit-scrollbar {
   background-color: transparent;
 }
 
+.leftSide {
+  border-right: solid 1px var(--Grey5);
+  min-height: 100vh;
+  background: var(--white);
+  width: auto;
+}
+
+.rightSide {
+  width: 100%;
+}
+
 ul,
 li {
   list-style: none;
@@ -188,10 +199,10 @@ h4 {
 .sidebarActive {
   background: #f0effb;
   color: var(--mainColor);
-  padding: 0.6em 0;
+  padding: 0.6em 1em;
   border-right: solid 4px var(--pryColor);
   border-radius: 10px;
-  width: 90%;
+  /* width: 90%; */
   margin: 0 auto;
 }
 .sidebarActive h4 {
@@ -207,8 +218,8 @@ h4 {
 
 .sidebarNotActive {
   color: var(--Grey6);
-  padding: 1em 0;
-  width: 90%;
+  padding: 0.6em 1em;
+  /* width: 90%; */
   margin: 0 auto;
 }
 
@@ -526,12 +537,6 @@ input {
   height: 100vh;
 }
 
-.side {
-  border-right: solid 1px var(--Grey5);
-  min-height: 100vh;
-  background: var(--white);
-}
-
 .border-bottom,
 .border-top {
   border-color: var(--Grey5) !important;
@@ -757,6 +762,16 @@ input {
   color: var(--mainColor);
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.messageUpload {
+  font-size: 0.7rem;
+  color: var(--Grey6);
+}
+
+.upgrade {
+  font-weight: 700;
+  color: var(--mainColor);
 }
 
 /* ==== Stepper forms end ==== */

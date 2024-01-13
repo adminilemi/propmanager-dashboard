@@ -920,7 +920,7 @@ export const pricingPlan = {
       id: 'YearlySilver',
       title: 'Silver',
       desc: 'Our silver package covers:',
-      price: 2500,
+      price: 25500,
       planNumber: 4,
 
       benefits: [
@@ -942,7 +942,7 @@ export const pricingPlan = {
       id: 'YearlyGold',
       title: 'Gold',
       desc: 'Our gold package covers:',
-      price: 3500,
+      price: 37000,
       planNumber: 5,
 
       benefits: [
@@ -964,7 +964,7 @@ export const pricingPlan = {
       id: 'YearlyPlatinum',
       title: 'Platinum',
       desc: 'Our platinum package covers:',
-      price: 5000,
+      price: 55000,
       planNumber: 6,
       benefits: [
         {
@@ -1292,3 +1292,155 @@ export const chartOptions = {
   },
 };
 // ==== Chart Datas End ====
+
+export const free = [
+  {
+    name: 'upload1',
+    title: '',
+    url: '',
+  },
+];
+
+export const silver = [
+  {
+    name: 'upload1',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload2',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload3',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload4',
+    title: '',
+    url: '',
+  },
+];
+
+export const gold = [
+  {
+    name: 'upload1',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload2',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload3',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload4',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload5',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload6',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload7',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload8',
+    title: '',
+    url: '',
+  },
+];
+
+export const platinum = [
+  {
+    name: 'upload1',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload2',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload3',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload4',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload5',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload6',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload7',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload8',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload9',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload10',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload11',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload12',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload13',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload14',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload15',
+    title: '',
+    url: '',
+  },
+];

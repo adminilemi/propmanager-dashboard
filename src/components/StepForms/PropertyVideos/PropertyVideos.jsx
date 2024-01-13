@@ -12,7 +12,7 @@ import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import { useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PropertyVideos = ({ onPrevious }) => {
   const { showAlert } = useSweetAlert();
@@ -25,8 +25,10 @@ const PropertyVideos = ({ onPrevious }) => {
     Videos,
   } = useSelector(selectProperty);
   const { authUser } = useSelector(selectUserData);
-  const { loading, setLoading, uploadFilesToServer } = useGlobalHooks();
+  const { errors, setErrors, loading, setLoading, uploadFilesToServer } =
+    useGlobalHooks();
   const [createProp, { isLoading }] = useCreatePropertyMutation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -75,12 +77,16 @@ const PropertyVideos = ({ onPrevious }) => {
 
     try {
       const rsp = await createProp(propData);
+      console.log(rsp);
       if (rsp.data) {
         showAlert('Property created successfully');
-
         dispatch(resetState());
-
         navigate('/listings');
+      } else if (rsp.error) {
+        setErrors({
+          error: true,
+          errMessage: rsp.error.data.message,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -120,7 +126,17 @@ const PropertyVideos = ({ onPrevious }) => {
         </button>
       </div>
 
-      {/* {errors.error && <p>{errors.errMessage}</p>} */}
+      {errors.error && (
+        <div className='bg-danger col-8 mx-auto rounded p-2 listLimit'>
+          <h4 className='error_message text-light text-center'>
+            {errors.errMessage}{' '}
+            <Link to='/subscription' className='bg-warning rounded p-2 upgrade'>
+              Upgrade Now
+            </Link>{' '}
+            to be able to list more
+          </h4>
+        </div>
+      )}
     </main>
   );
 };

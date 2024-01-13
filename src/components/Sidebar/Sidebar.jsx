@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Sidebar.scss';
 import { SidebarData } from './SidebarData';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import BrandLogo from '../BrandLogo';
-import Logout from '@/Pages/Logout/Logout';
-import { useGlobalHooks } from '@/Hooks/globalHooks';
-import { selectGlobal } from '@/Redux/Features/globalSlice';
+import { GoSidebarCollapse, GoSidebarExpand } from 'react-icons/go';
 
 function Sidebar() {
-  const { handleShow } = useGlobalHooks();
-  const toggle = useSelector(selectGlobal);
+  const [toggleSideBar, setToggleSideBar] = useState(false);
 
   const Employer = SidebarData.Employer;
   const Account = SidebarData.Account;
+
   return (
     <main className=' sidebarContainer'>
       <article className={`sidebar `}>
-        <div className='col-4 ps-2 mb-5 mt-3 '>
-          <BrandLogo />
+        <div className='col-4 ps-2 mb-5 mt-3 d-flex gap-3 align-items-end'>
+          <BrandLogo sidebar />{' '}
+          <div
+            onClick={() => setToggleSideBar(!toggleSideBar)}
+            className='pe-1'
+          >
+            {toggleSideBar ? (
+              <GoSidebarExpand size={30} />
+            ) : (
+              <GoSidebarCollapse size={30} />
+            )}
+          </div>
         </div>
         <ul className='mt-5 mt-lg-0  d-flex flex-column justify-content-between'>
           {Employer.map((tab) => (
@@ -30,12 +37,10 @@ function Sidebar() {
                 isActive ? 'sidebarActive' : 'sidebarNotActive'
               }
             >
-              <li>
-                <hgroup className='d-flex flex-row align-items-center ps-2 tabTitle'>
-                  <h4 className='me-2'>{tab.icon} </h4>
-                  <h4>{tab.title}</h4>
-                </hgroup>
-              </li>
+              <hgroup className='d-flex gap-1 align-items-center tabTitle'>
+                <h4 className=''>{tab.icon} </h4>
+                {toggleSideBar && <h4>{tab.title}</h4>}
+              </hgroup>
             </NavLink>
           ))}
         </ul>
@@ -49,15 +54,15 @@ function Sidebar() {
               }
             >
               <li>
-                <hgroup className='d-flex flex-row align-items-center ps-2 tabTitle'>
-                  <h4 className='me-2'>{tab.icon} </h4>
-                  <h4>{tab.title}</h4>
+                <hgroup className='d-flex gap-1 align-items-center tabTitle'>
+                  <h4 className=''>{tab.icon} </h4>
+                  {toggleSideBar && <h4>{tab.title}</h4>}
                 </hgroup>
               </li>
             </NavLink>
           ))}
         </ul>
-        <li
+        {/* <li
           className='sidebarNotActive tabTitle'
           onClick={() => handleShow('logout')}
         >
@@ -101,12 +106,12 @@ function Sidebar() {
             </h4>
             <h4> Logout </h4>
           </hgroup>
-        </li>
+        </li> */}
       </article>
 
-      {toggle['logout'] && (
+      {/* {toggle['logout'] && (
         <Logout id='logout' close={() => handleShow('logout')} />
-      )}
+      )} */}
     </main>
   );
 }

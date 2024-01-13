@@ -33,7 +33,6 @@ function Listings() {
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <main className='listings d-flex flex-column '>
       {filteredData.length === 0 && searchTerms === '' ? (
@@ -91,6 +90,7 @@ function Listings() {
                   (
                     {
                       ExteriorImages,
+                      InteriorImages,
                       StreetAddress,
                       status,
                       SquareFoot,
@@ -108,7 +108,10 @@ function Listings() {
                       onClick={() => toggleAccordion(idx)}
                     >
                       <figure className='col-3'>
-                        <img src={ExteriorImages[0]?.url} alt='' />
+                        <img
+                          src={ExteriorImages[0]?.url || InteriorImages[0]?.url}
+                          alt=''
+                        />
                       </figure>
                       <div className='col-8 d-flex justify-content-between'>
                         <div className='listTitle d-flex flex-column justify-content-between py-2'>
