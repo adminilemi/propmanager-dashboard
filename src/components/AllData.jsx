@@ -309,17 +309,17 @@ export const Inputs = (val) => {
       placeholder: 'Enter Unit Number',
     },
     {
-      id: 'state',
-      label: 'state',
-      value: val.state,
+      id: 'State',
+      label: 'State',
+      value: val.State,
       placeholder: 'Enter state',
       options: nigeriaStates,
     },
     {
-      id: 'city',
+      id: 'City',
       type: 'text',
       label: 'City',
-      value: val.city,
+      value: val.City,
       placeholder: 'Enter city',
     },
 

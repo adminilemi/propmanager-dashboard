@@ -10,8 +10,8 @@ const initialState = {
   Property_Name: '',
   StreetAddress: '',
   UnitNumber: '',
-  state: '',
-  city: '',
+  State: '',
+  City: '',
   Zipcode: '',
 };
 
