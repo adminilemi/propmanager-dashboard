@@ -56,7 +56,7 @@ function NavBar() {
         </Modal>
       )}
       {toggle['user'] && (
-        <Modal id='user' className='userPopUp m-3'>
+        <Modal id='user' className='userPopUp col-12 col-md-6 m-3'>
           <UserPop
             coyLogo={logoImage}
             companyName={userName || authUser.userName}

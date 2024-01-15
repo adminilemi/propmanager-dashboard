@@ -301,12 +301,14 @@ const ListingInfo = ({ onNext, onPrevious }) => {
                 {' '}
                 Select Duration
               </option>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, idx) => (
-                <option value={item} key={idx}>
-                  {' '}
-                  {item}{' '}
-                </option>
-              ))}
+              {['6 Months', '12 Months', '2 Years', '3 Years'].map(
+                (item, idx) => (
+                  <option value={item} key={idx}>
+                    {' '}
+                    {item}{' '}
+                  </option>
+                ),
+              )}
             </select>
           </div>
         </article>

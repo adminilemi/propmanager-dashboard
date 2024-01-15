@@ -10,6 +10,7 @@ function ListingDeetsCard({
   id,
   propData: {
     Property_Name,
+    PropertyType,
     BedRooms,
     StreetAddress,
     SquareFoot,
@@ -37,7 +38,7 @@ function ListingDeetsCard({
 
             <ul className='propBanner mt-4 py-2 px-3 d-flex flex-wrap gap-2 justify-content-between'>
               <li>
-                <h5> Properties</h5>
+                <h5> Property Type</h5>
                 <div>
                   <h6 className='d-flex gap-2'>
                     <svg
@@ -62,7 +63,7 @@ function ListingDeetsCard({
                         </clipPath>
                       </defs>
                     </svg>
-                    <span>4</span>
+                    <span>{PropertyType} </span>
                   </h6>
                 </div>
               </li>

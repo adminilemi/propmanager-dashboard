@@ -31,7 +31,7 @@ function UserPop({ coyLogo, companyName }) {
   return (
     <main className='col-12 UserPop'>
       <header className='d-flex flex-row justify-content-between align-items-center'>
-        <div className='col-6 d-flex flex-row align-items-center justify-content-between'>
+        <div className='col-12 col-md-6 d-flex flex-row align-items-center justify-content-between'>
           <div className='col-5'>
             <UserLogo coyLogo={coyLogo} />
           </div>
@@ -51,10 +51,7 @@ function UserPop({ coyLogo, companyName }) {
           </li>
         ))} */}
 
-        <li
-          className='sidebarNotActive tabTitle'
-          onClick={() => handleShow('logout')}
-        >
+        <li className=' py-3 tabTitle' onClick={() => handleShow('logout')}>
           <hgroup className='d-flex flex-row align-items-center ps-2 tabTitle'>
             <h4 className='me-2'>
               {' '}

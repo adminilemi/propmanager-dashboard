@@ -1,4 +1,3 @@
-import { propertiesData } from '@/components/AllData';
 import './Listings.scss';
 import { BsFilter } from 'react-icons/bs';
 import Search from '@/components/Search';
@@ -33,6 +32,7 @@ function Listings() {
   if (isLoading) {
     return <Spinner />;
   }
+
   return (
     <main className='listings d-flex flex-column '>
       {filteredData.length === 0 && searchTerms === '' ? (
@@ -67,8 +67,7 @@ function Listings() {
             <hgroup className='col-11  mx-auto d-flex justify-content-between'>
               <h1 className='my-3'>
                 {' '}
-                Properties{' '}
-                <span className='count'> {propertiesData.length} </span>
+                Properties <span className='count'> {data.length} </span>
               </h1>
               <h1 className='my-3'>
                 {' '}
