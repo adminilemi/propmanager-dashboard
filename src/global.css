@@ -67,14 +67,6 @@ body {
   align-items: center;
 }
 
-body::-webkit-scrollbar {
-  width: 0.1em;
-  height: 0.1em;
-}
-
-/* body::-webkit-scrollbar-track {
-  background: transparent;
-} */
 
 .App {
   width: 100%;
