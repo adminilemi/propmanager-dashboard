@@ -39,7 +39,7 @@ function PropertyAddress({ onNext }) {
       <div className='d-flex flex-column col-12 mb-5'>
         <section className='d-flex flex-wrap justify-content-between '>
           {Inputs(propData).map(
-            ({ id, label, type, placeholder, value, options }) =>
+            ({ id, label, type, placeholder, value, options, required }) =>
               options ? (
                 <div key={id} className=' inputWrapper d-flex flex-column'>
                   <label>
@@ -67,7 +67,7 @@ function PropertyAddress({ onNext }) {
                 <div key={id} className=' inputWrapper d-flex flex-column'>
                   <label>
                     {' '}
-                    {label} <em>*</em>{' '}
+                    {label} {required && <em>*</em>}
                   </label>
 
                   <input
@@ -78,7 +78,7 @@ function PropertyAddress({ onNext }) {
                     className='form-control'
                     defaultValue={value}
                     onChange={handleChange}
-                    required
+                    required={required}
                   />
                 </div>
               ),

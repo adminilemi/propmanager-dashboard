@@ -134,8 +134,39 @@ function VerifyEmail() {
     loading,
   ]);
 
-  const handleVerifyEmail = () => {
-    navigate('/signin');
+  const handleVerifyEmail = (e) => {
+    e.preventDefault();
+
+    const verificationCode = `${verifyCode.num1}${verifyCode.num2}${verifyCode.num3}${verifyCode.num4}`;
+    setLoading(true);
+
+    API.verifyEmail({
+      userId: authUser.userId,
+      uniqueVerificationCode: verificationCode,
+    })
+      .then((res) => {
+        const successMessage = {
+          success: true,
+          message: res.data.message,
+        };
+
+        showAlert(successMessage.message);
+
+        setLoading(false);
+        return navigate('/onboarding');
+      })
+      .catch((err) => {
+        console.log(err);
+        const erroMessage = {
+          success: false,
+          message:
+            err && err.response
+              ? err.response.data.message
+              : 'We encounter an error',
+        };
+        setErrors({ error: true, errMessage: erroMessage.message });
+        setLoading(false);
+      });
   };
 
   // console.log(errors);

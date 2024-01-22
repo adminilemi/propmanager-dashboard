@@ -293,6 +293,7 @@ export const Inputs = (val) => {
       label: 'Property Name',
       value: val.Property_Name,
       placeholder: 'Enter property name or estate name',
+      required: true,
     },
     {
       id: 'StreetAddress',
@@ -300,6 +301,7 @@ export const Inputs = (val) => {
       label: 'Street Address',
       value: val.StreetAddress,
       placeholder: 'Enter Street Address',
+      required: true,
     },
     {
       id: 'UnitNumber',
@@ -307,6 +309,7 @@ export const Inputs = (val) => {
       label: 'Unit Number',
       value: val.UnitNumber,
       placeholder: 'Enter Unit Number',
+      required: true,
     },
     {
       id: 'State',
@@ -314,6 +317,7 @@ export const Inputs = (val) => {
       value: val.State,
       placeholder: 'Enter state',
       options: nigeriaStates,
+      required: true,
     },
     {
       id: 'City',
@@ -321,6 +325,7 @@ export const Inputs = (val) => {
       label: 'City',
       value: val.City,
       placeholder: 'Enter city',
+      required: true,
     },
 
     {
@@ -329,6 +334,7 @@ export const Inputs = (val) => {
       type: 'number',
       value: val.Zipcode,
       placeholder: 'Enter Zipcode',
+      required: false,
     },
   ];
 };
@@ -1001,7 +1007,9 @@ export const doughtData = (data) => {
           // Labels
           const labels = [
             {
-              text: data?.data?.totalProperties,
+              text: data?.data?.totalProperties
+                ? data?.data?.totalProperties
+                : 0,
               font: 'bold 36px sans-serif',
               color: '#000',
             },
@@ -1056,7 +1064,9 @@ export const doughtData = (data) => {
           // Labels
           const labels = [
             {
-              text: data?.data?.vacantProperties,
+              text: data?.data?.vacantProperties
+                ? data?.data?.vacantProperties
+                : 0,
               font: 'bold 36px sans-serif',
               color: '#000',
             },
@@ -1116,7 +1126,9 @@ export const doughtData = (data) => {
           // Labels
           const labels = [
             {
-              text: data?.data?.occupiedProperties,
+              text: data?.data?.occupiedProperties
+                ? data?.data?.occupiedProperties
+                : 0,
               font: 'bold 36px sans-serif',
               color: '#000',
             },
