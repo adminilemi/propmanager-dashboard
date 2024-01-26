@@ -106,8 +106,7 @@ function Home() {
   if (loading || isLoading) {
     return <Spinner />;
   }
-  console.log('Errror:', isError);
-  console.log(isLoading);
+
   return (
     <main className='Overviews d-flex flex-column  '>
       <section className=''>

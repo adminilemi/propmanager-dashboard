@@ -27,8 +27,6 @@ function Listings() {
     setToggle((prev) => ({ [id]: !prev[id] }));
   };
 
-  console.log(data);
-
   useEffect(() => {
     handleSearch(data, searchTerms, setFilteredData, 'Property_Name');
   }, [searchTerms, data]);
