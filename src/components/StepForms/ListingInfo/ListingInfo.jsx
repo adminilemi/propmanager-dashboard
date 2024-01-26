@@ -8,7 +8,11 @@ import {
   selectProperty,
 } from '@/Redux/Features/createPropertySlice';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
-import { amenitiesList, propertyType } from '@/components/AllData';
+import {
+  amenitiesList,
+  propertyCategories,
+  propertyType,
+} from '@/components/AllData';
 import { MdInfo } from 'react-icons/md';
 
 const ListingInfo = ({ onNext, onPrevious }) => {
@@ -16,6 +20,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
 
   const [selectValues, setSelectValues] = useState(
     listingInfo || {
+      Property_Category: '',
       PropertyType: '',
       Description: '',
       BedRooms: '',
@@ -31,6 +36,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
   const [amenities, setAmenities] = useState(Amenities || []);
   const [customOptions, setCustomOptions] = useState({
     PropertyType: listingInfo?.PropertyType || null,
+    Property_Category: listingInfo?.Property_Category || null,
   });
 
   const { errors, setErrors } = useGlobalHooks();
@@ -70,10 +76,19 @@ const ListingInfo = ({ onNext, onPrevious }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (selectValues.Property_type === '') {
+    if (selectValues.PropertyType === '') {
       setErrors({
         error: true,
         errMessage: 'Please Select Property type',
+      });
+      return;
+    }
+
+    if (selectValues.Property_Category === '') {
+      setErrors({
+        error: true,
+        errMessage:
+          'Please Select Property categories; e.g Rent, Sell, Buy etc',
       });
       return;
     }
@@ -89,20 +104,37 @@ const ListingInfo = ({ onNext, onPrevious }) => {
   return (
     <form className='mb-5 listingInfo' onSubmit={handleSubmit}>
       <section className='d-flex flex-column justify-content-between '>
-        <article className='col-12 '>
-          <label htmlFor='PropertyType' className='labelTitle'>
-            {' '}
-            Property Type <em>*</em>{' '}
-          </label>
+        <article className='col-12 d-flex flex-column flex-md-row gap-2 '>
+          <div className='inputWrapper'>
+            <label htmlFor='PropertyType' className='labelTitle'>
+              {' '}
+              Property Category <em>*</em>{' '}
+            </label>
 
-          <Select
-            id='PropertyType'
-            options={propertyType}
-            selectedOption={customOptions.PropertyType}
-            setSelectedOption={setCustomOptions}
-            onSelectChange={handleOnSelectChange}
-            error={errors.error}
-          />
+            <Select
+              id='Property_Category'
+              options={propertyCategories}
+              selectedOption={customOptions.Property_Category}
+              setSelectedOption={setCustomOptions}
+              onSelectChange={handleOnSelectChange}
+              error={errors}
+            />
+          </div>
+          <div className='inputWrapper'>
+            <label htmlFor='PropertyType' className='labelTitle'>
+              {' '}
+              Property Type <em>*</em>{' '}
+            </label>
+
+            <Select
+              id='PropertyType'
+              options={propertyType}
+              selectedOption={customOptions.PropertyType}
+              setSelectedOption={setCustomOptions}
+              onSelectChange={handleOnSelectChange}
+              errors={errors}
+            />
+          </div>
         </article>
 
         <article className='col-12 d-flex flex-column flex-md-row gap-1 justify-content-between mt-3'>
@@ -182,7 +214,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
         <article className='d-flex flex-column flex-md-row gap-2 justify-content-between'>
           <div className='inputWrapper'>
             <label htmlFor='MonthlyRent' className='labelTitle'>
-              Monthly Rent <em>*</em>
+              Yearly Rent <em>*</em>
             </label>
             <div className='rentPay d-flex flex-row align-items-center gap-2 bor'>
               <h4 className='pe-3'> ₦ </h4>

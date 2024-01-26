@@ -16,6 +16,7 @@ import { useUpdateAgentMutation } from '@/api/apiSlice';
 import { Spinner } from 'react-bootstrap';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { useNavigate } from 'react-router-dom';
+import { getCurrentUser } from '@/Redux/Features/userDatasSlice';
 
 const initialState = {
   NINNumber: '',
@@ -86,12 +87,14 @@ const AgentNIN = ({ onPrevious }) => {
 
     try {
       const result = await updateAgentData(userData);
+      console.log(result);
 
       if (result.data) {
         showAlert(result.data.message);
 
         dispatch(getUserAvatar(result.data.data.profilePic));
         dispatch(getAgentCoyName(result.data.data.CompanyName));
+        dispatch(getCurrentUser(result?.data?.data));
         dispatch(resetOnboardingState());
         navigate('/');
       }

@@ -135,7 +135,7 @@ const Profile = () => {
             </label>
             <input
               id='CompanyName'
-              defaultValue={user.CompanyName}
+              defaultValue={userData.CompanyName}
               type='text'
               className='form-control'
               onChange={handlChange}
@@ -150,7 +150,7 @@ const Profile = () => {
               </label>
               <input
                 id='firstName'
-                defaultValue={user.firstName}
+                defaultValue={userData.firstName}
                 type='text'
                 className='form-control'
                 onChange={handlChange}
@@ -164,7 +164,7 @@ const Profile = () => {
               </label>
               <input
                 id='lastName'
-                defaultValue={user.lastName}
+                defaultValue={userData.lastName}
                 type='text'
                 className='form-control'
                 onChange={handlChange}
@@ -179,7 +179,7 @@ const Profile = () => {
             </label>
             <input
               id='phoneNumber'
-              defaultValue={user.phoneNumber}
+              defaultValue={userData.phoneNumber}
               type='text'
               className='form-control'
               onChange={handlChange}

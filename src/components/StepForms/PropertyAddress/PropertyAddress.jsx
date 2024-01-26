@@ -12,7 +12,7 @@ const initialState = {
   UnitNumber: '',
   State: '',
   City: '',
-  Zipcode: '',
+  YearBuilt: '',
 };
 
 function PropertyAddress({ onNext }) {

@@ -290,10 +290,10 @@ export const Inputs = (val) => {
     {
       id: 'Property_Name',
       type: 'text',
-      label: 'Property Name',
+      label: 'Property Type',
       value: val.Property_Name,
       placeholder: 'Enter property name or estate name',
-      required: true,
+      required: false,
     },
     {
       id: 'StreetAddress',
@@ -329,11 +329,11 @@ export const Inputs = (val) => {
     },
 
     {
-      id: 'Zipcode',
-      label: 'Zipcode',
+      id: 'YearBuilt',
+      label: 'Year Built',
       type: 'number',
-      value: val.Zipcode,
-      placeholder: 'Enter Zipcode',
+      value: val.YearBuilt,
+      placeholder: 'Enter Year Built',
       required: false,
     },
   ];
@@ -386,14 +386,29 @@ export const OnboardingInputs = (val) => {
   ];
 };
 
-export const propertyType = [
-  // {
-  //   id: 1,
-  //   title: 'Select type',
-  // },
+export const propertyCategories = [
   {
     id: 2,
     title: 'Rent',
+  },
+  {
+    id: 3,
+    title: 'Sell',
+  },
+  {
+    id: 4,
+    title: 'Buy',
+  },
+  {
+    id: 5,
+    title: 'Shortlets',
+  },
+];
+
+export const propertyType = [
+  {
+    id: 2,
+    title: 'Bungalow',
     icon: (
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -438,7 +453,7 @@ export const propertyType = [
   },
   {
     id: 3,
-    title: 'Sell',
+    title: 'Duplex',
     icon: (
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -508,7 +523,7 @@ export const propertyType = [
   },
   {
     id: 4,
-    title: 'Buy',
+    title: 'Serviced Apartment',
     icon: (
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -570,7 +585,7 @@ export const propertyType = [
   },
   {
     id: 5,
-    title: 'Shortlets',
+    title: '1 Storey',
     icon: (
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -629,6 +644,18 @@ export const propertyType = [
         />
       </svg>
     ),
+  },
+  {
+    id: 6,
+    title: '2 Storey',
+  },
+  {
+    id: 7,
+    title: '3 Storey',
+  },
+  {
+    id: 8,
+    title: '5 Storey',
   },
 ];
 

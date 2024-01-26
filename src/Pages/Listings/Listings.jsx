@@ -10,8 +10,10 @@ import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import { useSelector } from 'react-redux';
 import EmptyState from '@/components/EmptyState/EmptyState';
 import noShift from '@/assets/noSift.png';
+import gif from '@/assets/ilemiAdBanner.gif';
 import { selectSearch } from '@/Redux/Features/globalSlice';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
+import AddGifBanner from '@/components/AddGifBanner';
 
 function Listings() {
   const { authUser } = useSelector(selectUserData);
@@ -24,6 +26,8 @@ function Listings() {
   const toggleAccordion = (id) => {
     setToggle((prev) => ({ [id]: !prev[id] }));
   };
+
+  console.log(data);
 
   useEffect(() => {
     handleSearch(data, searchTerms, setFilteredData, 'Property_Name');
@@ -148,8 +152,8 @@ function Listings() {
           </article>
 
           <article className='col-12 col-lg-8'>
-            <section className='addBanner'>
-              <h2> Add Banner </h2>
+            <section className=''>
+              <AddGifBanner images={gif} />
             </section>
 
             {filteredData.map((item, idx) => (

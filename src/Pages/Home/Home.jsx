@@ -6,10 +6,12 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 // import Active from '../../assets/active.png';
 import { Link } from 'react-router-dom';
 import BarCharts from '@/components/DashboardComps/HomeComps/Charts/BarCharts';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import {
+  useCheckSubValidityQuery,
   useGetAgentMonthlyStatsQuery,
+  useGetAgentQuery,
   useGetAgentStatsQuery,
   // useGetAgentWeeklyStatsQuery,
 } from '@/api/apiSlice';
@@ -20,6 +22,9 @@ import {
   monthlyChartData,
 } from '@/components/AllData';
 import { FaCircle } from 'react-icons/fa';
+import { Spinner } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { getSubPlanData } from '@/Redux/Features/userDatasSlice';
 
 function Home() {
   // const rents = [
@@ -30,8 +35,24 @@ function Home() {
   // ];
 
   const { authUser } = useSelector(selectUserData);
+  const dispatch = useDispatch();
 
-  const { data } = useGetAgentStatsQuery(authUser.userId);
+  // This will run everytime to check change in subscriptions
+  const {
+    data: agentData,
+    isLoading: loading,
+    refetch,
+    isError,
+  } = useGetAgentQuery(authUser.userId);
+
+  // This will update the subscription package incase a user resubscribed
+
+  const { data: updateSub } = useCheckSubValidityQuery(
+    agentData?.data?.CurrentSubscriptionid,
+    { refetchOnMountOrArgChange: true },
+  );
+
+  const { data, isLoading } = useGetAgentStatsQuery(authUser.userId);
   const { data: monthlyData } = useGetAgentMonthlyStatsQuery(authUser.userId);
   // const { data: weeklyData } = useGetAgentWeeklyStatsQuery(authUser.userId);
 
@@ -74,6 +95,19 @@ function Home() {
   //   },
   // ];
 
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
+  useEffect(() => {
+    dispatch(getSubPlanData(updateSub));
+  }, [loading, data]);
+
+  if (loading || isLoading) {
+    return <Spinner />;
+  }
+  console.log('Errror:', isError);
+  console.log(isLoading);
   return (
     <main className='Overviews d-flex flex-column  '>
       <section className=''>

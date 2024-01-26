@@ -77,7 +77,7 @@ const PropertyVideos = ({ onPrevious }) => {
 
     try {
       const rsp = await createProp(propData);
-      console.log(rsp);
+
       if (rsp.data) {
         showAlert('Property created successfully');
         dispatch(resetState());

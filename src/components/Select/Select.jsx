@@ -8,7 +8,7 @@ function Select({
   id,
   selectedOption,
   setSelectedOption,
-  error,
+  errors,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,7 +46,12 @@ function Select({
   return (
     <div id={id} className='custom-select' ref={popupRef}>
       <div
-        className={error ? 'errors select-header' : 'select-header'}
+        className={
+          (errors?.error && errors?.errMessage.includes('categories')) ||
+          (errors?.error && errors?.errMessage.includes('type'))
+            ? 'errors select-header'
+            : 'select-header'
+        }
         onClick={toggleDropdown}
       >
         {selectedOption ? selectedOption : 'Select'}

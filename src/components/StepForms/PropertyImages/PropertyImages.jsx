@@ -26,21 +26,9 @@ const PropertyImages = ({ onPrevious, onNext }) => {
   const [imageData, setImageData] = useState({ Interior: [] });
   const [uploadMessage, setUploadMessage] = useState({ title: '' });
 
+  console.log(planData);
   useEffect(() => {
-    if (planData.planName === 'BASIC') {
-      setImageData({ Interior: fromReduxStor || free });
-      setUploadMessage({
-        title: (
-          <small className='messageUpload'>
-            You can only upload 1 image for this package,{' '}
-            <Link to='/subscription' className='upgrade'>
-              Upgrade Now
-            </Link>{' '}
-            to upload more.{' '}
-          </small>
-        ),
-      });
-    } else if (planData.planName === 'SILVER') {
+    if (planData.planName === 'SILVER') {
       setImageData({ Interior: fromReduxStor || silver });
       setUploadMessage({
         title: (
@@ -69,6 +57,19 @@ const PropertyImages = ({ onPrevious, onNext }) => {
     } else if (planData.planName === 'PLATINUM') {
       setImageData({ Interior: fromReduxStor || platinum });
       setUploadMessage({ title: '' });
+    } else {
+      setImageData({ Interior: fromReduxStor || free });
+      setUploadMessage({
+        title: (
+          <small className='messageUpload'>
+            You can only upload 1 image for this package,{' '}
+            <Link to='/subscription' className='upgrade'>
+              Upgrade Now
+            </Link>{' '}
+            to upload more.{' '}
+          </small>
+        ),
+      });
     }
   }, [planData]);
 
