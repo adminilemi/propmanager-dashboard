@@ -43,6 +43,8 @@ const ListingInfo = ({ onNext, onPrevious }) => {
 
   const dispatch = useDispatch();
 
+  const today = new Date().toISOString().split('T')[0];
+
   // For Select comp
   const handleOnSelectChange = (id, val) => {
     setSelectValues((prevState) => ({
@@ -194,7 +196,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
           <div className=' inputWrapper'>
             <label htmlFor='SquareFoot' className='labelTitle'>
               {' '}
-              Square Feet <em>*</em>
+              Square Feet
             </label>
             <input
               id='SquareFoot'
@@ -206,7 +208,6 @@ const ListingInfo = ({ onNext, onPrevious }) => {
               onChange={(e) =>
                 handleOnSelectChange('SquareFoot', e.target.value)
               }
-              required
             />
           </div>
         </article>
@@ -310,6 +311,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
               onChange={(e) =>
                 handleOnSelectChange('DateAvalaibality', e.target.value)
               }
+              min={today}
               required
             />
           </div>

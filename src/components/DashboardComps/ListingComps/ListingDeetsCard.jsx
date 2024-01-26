@@ -189,7 +189,7 @@ function ListingDeetsCard({
                         </clipPath>
                       </defs>
                     </svg>
-                    <span>{SquareFoot}</span>
+                    <span>{SquareFoot ? SquareFoot : 'Nill'}</span>
                   </h6>
                 </div>
               </li>
@@ -277,7 +277,7 @@ function ListingDeetsCard({
                         strokeLinejoin='round'
                       />
                     </svg>
-                    <span>{YearBuilt}</span>
+                    <span>{YearBuilt ? YearBuilt : 'Nill'}</span>
                   </h6>
                 </div>
               </li>

@@ -8,6 +8,8 @@ const VideoContainer = ({
   loading,
   uploadFiles,
   title,
+
+  removeImage,
 }) => {
   const placeholderImageUrl =
     'https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg';
@@ -38,7 +40,9 @@ const VideoContainer = ({
           />
         </div>
         <div className='col-12 col-lg-5'>
-          <button className='outline-btn col-12'>Remove</button>
+          <button onClick={removeImage} className='outline-btn col-12'>
+            Remove
+          </button>
         </div>
       </div>
     </article>

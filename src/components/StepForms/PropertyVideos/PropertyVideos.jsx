@@ -93,6 +93,10 @@ const PropertyVideos = ({ onPrevious }) => {
     }
   };
 
+  const handleRmoveImage = () => {
+    setVideoData((prev) => ({ ...prev, url: '' }));
+  };
+
   return (
     <main>
       {/* Exterior */}
@@ -108,6 +112,7 @@ const PropertyVideos = ({ onPrevious }) => {
             id='productVideo'
             loading={loading}
             uploadFiles={uploadFiles}
+            removeImage={handleRmoveImage}
           />
         </section>
       </section>

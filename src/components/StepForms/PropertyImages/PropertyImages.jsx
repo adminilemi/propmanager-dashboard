@@ -26,7 +26,6 @@ const PropertyImages = ({ onPrevious, onNext }) => {
   const [imageData, setImageData] = useState({ Interior: [] });
   const [uploadMessage, setUploadMessage] = useState({ title: '' });
 
-  console.log(planData);
   useEffect(() => {
     if (planData.planName === 'SILVER') {
       setImageData({ Interior: fromReduxStor || silver });
