@@ -42,7 +42,7 @@ function Home() {
     data: agentData,
     isLoading: loading,
     refetch,
-    isError,
+    // isError,
   } = useGetAgentQuery(authUser.userId);
 
   // This will update the subscription package incase a user resubscribed
