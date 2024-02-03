@@ -1,6 +1,6 @@
 import React from 'react';
 import './ListingDeetsCard.scss';
-import { BsCalendarDate } from 'react-icons/bs';
+// import { BsCalendarDate } from 'react-icons/bs';
 // import { ProgressBar } from 'react-bootstrap';
 // import { MdOutlineEmail } from 'react-icons/md';
 // import { PiCaretRightBold } from 'react-icons/pi';
@@ -32,10 +32,10 @@ function ListingDeetsCard({
                 <p>{StreetAddress}</p>
               </div>
               <div className='col-3 d-flex flex-column'>
-                <div className='card d-flex flex-row py-1 px-2 gap-1 showProp align-items-center'>
+                {/* <div className='card d-flex flex-row py-1 px-2 gap-1 showProp align-items-center'>
                   <BsCalendarDate color='var(--Grey6)' />
                   <span className=''> Show Property Calendar</span>
-                </div>
+                </div> */}
               </div>
             </div>
 

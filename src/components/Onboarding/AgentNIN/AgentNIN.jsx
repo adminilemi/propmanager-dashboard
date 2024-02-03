@@ -20,6 +20,7 @@ import { getCurrentUser } from '@/Redux/Features/userDatasSlice';
 
 const initialState = {
   NINNumber: '',
+  FSOReferral: '',
   NINback: {
     name: '',
     url: '',
@@ -145,6 +146,22 @@ const AgentNIN = ({ onPrevious }) => {
               defaultValue={propData.NINNumber}
               onChange={handleChange}
               required
+            />
+          </div>
+
+          <div className='inputWrapper'>
+            <label htmlFor='NINNumber' className='labelTitle'>
+              Referral code (Optional)
+            </label>
+
+            <input
+              id='FSOReferral'
+              name='FSOReferral'
+              type='text'
+              className='form-control col-10'
+              placeholder='Enter Referral code'
+              defaultValue={propData.FSOReferral}
+              onChange={handleChange}
             />
           </div>
         </article>

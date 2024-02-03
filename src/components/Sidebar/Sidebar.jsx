@@ -7,7 +7,7 @@ import BrandLogo from '../BrandLogo';
 import { GoSidebarCollapse, GoSidebarExpand } from 'react-icons/go';
 
 function Sidebar() {
-  const [toggleSideBar, setToggleSideBar] = useState(false);
+  const [toggleSideBar, setToggleSideBar] = useState(true);
 
   const Employer = SidebarData.Employer;
   const Account = SidebarData.Account;
@@ -34,7 +34,11 @@ function Sidebar() {
               key={tab.id}
               to={tab.url}
               className={({ isActive }) =>
-                isActive ? 'sidebarActive' : 'sidebarNotActive'
+                isActive
+                  ? 'sidebarActive'
+                  : !toggleSideBar
+                  ? 'mx-auto sidebarNotActive'
+                  : 'sidebarNotActive'
               }
             >
               <hgroup className='d-flex gap-1 align-items-center tabTitle'>
@@ -50,7 +54,11 @@ function Sidebar() {
               key={tab.id}
               to={tab.url}
               className={({ isActive }) =>
-                isActive ? 'sidebarActive' : 'sidebarNotActive'
+                isActive
+                  ? 'sidebarActive'
+                  : !toggleSideBar
+                  ? 'mx-auto sidebarNotActive'
+                  : 'sidebarNotActive'
               }
             >
               <li>

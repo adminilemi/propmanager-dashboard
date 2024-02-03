@@ -67,7 +67,6 @@ body {
   align-items: center;
 }
 
-
 .App {
   width: 100%;
 }
@@ -212,7 +211,7 @@ h4 {
   color: var(--Grey6);
   padding: 0.6em 1em;
   /* width: 90%; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .sidebarNotActive h4 {

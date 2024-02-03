@@ -215,7 +215,10 @@ const ListingInfo = ({ onNext, onPrevious }) => {
         <article className='d-flex flex-column flex-md-row gap-2 justify-content-between'>
           <div className='inputWrapper'>
             <label htmlFor='MonthlyRent' className='labelTitle'>
-              Yearly Rent <em>*</em>
+              {selectValues?.Property_Category === 'Shortlets'
+                ? 'Daily Rent'
+                : 'Yearly Rent'}{' '}
+              <em>*</em>
             </label>
             <div className='rentPay d-flex flex-row align-items-center gap-2 bor'>
               <h4 className='pe-3'> ₦ </h4>
