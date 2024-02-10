@@ -21,7 +21,7 @@ function RightSide() {
 
         <div>
           <p>
-            You agree to Ile-Mi&apos;s{' '}
+            You agree to Property4u&apos;s{' '}
             <span className='viewMore'>Terms of Use & Privacy Policy.</span> You
             don&apos;t need to consent as a condition of renting any property,
             or buying any other goods or services. Message/data rates may apply.

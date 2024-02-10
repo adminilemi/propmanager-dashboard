@@ -26,7 +26,7 @@ const MyNotifications = () => {
         <div className='mt-3 d-flex justify-content-between'>
           <div>
             <h6 className='mb-2'>General</h6>
-            <p>Get notifications from ile-mi to stay up-to-date.</p>
+            <p>Get notifications from Property4u to stay up-to-date.</p>
           </div>
           <div className=' d-flex justify-content-between align-items-center  form-check form-switch'>
             <input
