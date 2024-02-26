@@ -109,6 +109,7 @@ function Home() {
 
   return (
     <main className='Overviews d-flex flex-column  '>
+      {/* <HomeSkeleton /> */}
       <section className=''>
         <h1 className='mb-5'> Dashboard</h1>
         {/* <article className='d-flex flex-wrap justify-content-between mb-4'>

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 
 const customBaseQuery = fetchBaseQuery({
-  baseUrl: 'https://ile-mi-app.onrender.com/',
+  baseUrl: 'https://property-4u-befe5e00eae1.herokuapp.com/',
 
   prepareHeaders: (headers) => {
     // Get your token from wherever you have it stored

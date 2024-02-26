@@ -10,7 +10,7 @@ import {
 import ImageContainer from '@/components/Cloudinary/ImageContainer';
 import { selectGlobal } from '@/Redux/Features/globalSlice';
 import { selectSubPlan } from '@/Redux/Features/userDatasSlice';
-import { free, gold, platinum, silver } from '@/components/AllData';
+import { diamond, free, gold, platinum, silver } from '@/components/AllData';
 import { Link } from 'react-router-dom';
 
 const PropertyImages = ({ onPrevious, onNext }) => {
@@ -55,13 +55,26 @@ const PropertyImages = ({ onPrevious, onNext }) => {
       });
     } else if (planData.planName === 'PLATINUM') {
       setImageData({ Interior: fromReduxStor || platinum });
+      setUploadMessage({
+        title: (
+          <small className='messageUpload'>
+            You can only upload 12 images for this package,{' '}
+            <Link to='/subscription' className='upgrade'>
+              Upgrade Now
+            </Link>{' '}
+            to upload more.{' '}
+          </small>
+        ),
+      });
+    } else if (planData.planName === 'DIAMOND') {
+      setImageData({ Interior: fromReduxStor || diamond });
       setUploadMessage({ title: '' });
     } else {
       setImageData({ Interior: fromReduxStor || free });
       setUploadMessage({
         title: (
           <small className='messageUpload'>
-            You can only upload 1 image for this package,{' '}
+            You can only upload 5 images for this package,{' '}
             <Link to='/subscription' className='upgrade'>
               Upgrade Now
             </Link>{' '}

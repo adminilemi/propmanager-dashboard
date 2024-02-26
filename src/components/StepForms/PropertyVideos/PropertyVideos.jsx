@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { Link, useNavigate } from 'react-router-dom';
+import { selectSubPlan } from '@/Redux/Features/userDatasSlice';
 
 const PropertyVideos = ({ onPrevious }) => {
   const { showAlert } = useSweetAlert();
@@ -28,6 +29,7 @@ const PropertyVideos = ({ onPrevious }) => {
   const { errors, setErrors, loading, setLoading, uploadFilesToServer } =
     useGlobalHooks();
   const [createProp, { isLoading }] = useCreatePropertyMutation();
+  const checkActivePlan = useSelector(selectSubPlan);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -113,6 +115,7 @@ const PropertyVideos = ({ onPrevious }) => {
             loading={loading}
             uploadFiles={uploadFiles}
             removeImage={handleRmoveImage}
+            planName={checkActivePlan?.planName}
           />
         </section>
       </section>

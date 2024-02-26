@@ -194,7 +194,7 @@ h4 {
   border-right: solid 4px var(--pryColor);
   border-radius: 10px;
   /* width: 90%; */
-  margin: 0 auto;
+  margin: 0.5em auto;
 }
 .sidebarActive h4 {
   color: var(--mainColor);
@@ -207,11 +207,16 @@ h4 {
   fill: var(--mainColor);
 }
 
+svg[Attributes] {
+  width: 100%;
+  height: 100%;
+}
+
 .sidebarNotActive {
   color: var(--Grey6);
   padding: 0.6em 1em;
   /* width: 90%; */
-  /* margin: 0 auto; */
+  margin: 0.5em 0;
 }
 
 .sidebarNotActive h4 {

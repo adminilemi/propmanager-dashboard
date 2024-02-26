@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-const baseUrl = 'https://ile-mi-app.onrender.com/';
+const baseUrl = 'https://property-4u-befe5e00eae1.herokuapp.com/';
+// const baseUrl = 'https://ile-mi-app.onrender.com/';
 
 const baseAPI = axios.create({ baseURL: baseUrl });
 

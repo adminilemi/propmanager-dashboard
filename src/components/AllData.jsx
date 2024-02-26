@@ -539,16 +539,17 @@ export const pricingPlan = {
       id: 'MonthlyBasic',
       title: 'Basic',
       desc: 'Our basic package covers:',
-      price: 0,
+      price: 1000,
+      planNumber: 1,
 
       benefits: [
         {
           id: 1,
-          li: '1 Listing',
+          li: '2 Listing',
         },
         {
           id: 2,
-          li: '2 Property Picture Uploads',
+          li: '5 Property Picture Uploads',
         },
         {
           id: 3,
@@ -561,20 +562,20 @@ export const pricingPlan = {
       title: 'Silver',
       desc: 'Our silver package covers:',
       price: 2500,
-      planNumber: 1,
+      planNumber: 2,
 
       benefits: [
         {
           id: 1,
-          li: '15 Listing',
+          li: '10 Listing',
         },
         {
           id: 2,
-          li: '7 Property Picture Uploads',
+          li: '8 Property Picture Uploads',
         },
         {
           id: 3,
-          li: '1 Video Upload',
+          li: '0 Video Upload',
         },
       ],
     },
@@ -582,13 +583,13 @@ export const pricingPlan = {
       id: 'MonthlyGold',
       title: 'Gold',
       desc: 'Our gold package covers:',
-      price: 3500,
-      planNumber: 2,
+      price: 6000,
+      planNumber: 3,
 
       benefits: [
         {
           id: 1,
-          li: '25 Listing',
+          li: '15 Listing',
         },
         {
           id: 2,
@@ -604,8 +605,30 @@ export const pricingPlan = {
       id: 'MonthlyPlatinum',
       title: 'Platinum',
       desc: 'Our platinum package covers:',
-      price: 5000,
-      planNumber: 3,
+      price: 10000,
+      planNumber: 4,
+
+      benefits: [
+        {
+          id: 1,
+          li: '30',
+        },
+        {
+          id: 2,
+          li: '12 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '1 Video Upload',
+        },
+      ],
+    },
+    {
+      id: 'MonthlyDiamon',
+      title: 'Diamond',
+      desc: 'Our diamond package covers:',
+      price: 50000,
+      planNumber: 5,
 
       benefits: [
         {
@@ -629,16 +652,17 @@ export const pricingPlan = {
       id: 'YearlyBasic',
       title: 'Basic',
       desc: 'Our basic package covers:',
-      price: 0,
+      price: 12000,
+      planNumber: 6,
 
       benefits: [
         {
           id: 1,
-          li: '1 Listing',
+          li: '2 Listing',
         },
         {
           id: 2,
-          li: '2 Property Picture Uploads',
+          li: '5 Property Picture Uploads',
         },
         {
           id: 3,
@@ -650,21 +674,21 @@ export const pricingPlan = {
       id: 'YearlySilver',
       title: 'Silver',
       desc: 'Our silver package covers:',
-      price: 25500,
-      planNumber: 4,
+      price: 30000,
+      planNumber: 7,
 
       benefits: [
         {
           id: 1,
-          li: '15 Listing',
+          li: '10 Listing',
         },
         {
           id: 2,
-          li: '7 Property Picture Uploads',
+          li: '8 Property Picture Uploads',
         },
         {
           id: 3,
-          li: '1 Video Upload',
+          li: '0 Video Upload',
         },
       ],
     },
@@ -672,13 +696,13 @@ export const pricingPlan = {
       id: 'YearlyGold',
       title: 'Gold',
       desc: 'Our gold package covers:',
-      price: 37000,
-      planNumber: 5,
+      price: 60000,
+      planNumber: 8,
 
       benefits: [
         {
           id: 1,
-          li: '25 Listing',
+          li: '15 Listing',
         },
         {
           id: 2,
@@ -694,8 +718,30 @@ export const pricingPlan = {
       id: 'YearlyPlatinum',
       title: 'Platinum',
       desc: 'Our platinum package covers:',
-      price: 55000,
-      planNumber: 6,
+      price: 90000,
+      planNumber: 9,
+      benefits: [
+        {
+          id: 1,
+          li: '30 Listing',
+        },
+        {
+          id: 2,
+          li: '12 Property Picture Uploads',
+        },
+        {
+          id: 3,
+          li: '1 Video Upload',
+        },
+      ],
+    },
+    {
+      id: 'YearlyDiamond',
+      title: 'Diamond',
+      desc: 'Our diamond package covers:',
+      price: 600000,
+      planNumber: 10,
+
       benefits: [
         {
           id: 1,
@@ -1035,6 +1081,26 @@ export const free = [
     title: '',
     url: '',
   },
+  {
+    name: 'upload2',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload3',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload4',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload5',
+    title: '',
+    url: '',
+  },
 ];
 
 export const silver = [
@@ -1055,6 +1121,26 @@ export const silver = [
   },
   {
     name: 'upload4',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload5',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload6',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload7',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload8',
     title: '',
     url: '',
   },
@@ -1101,9 +1187,81 @@ export const gold = [
     title: '',
     url: '',
   },
+  {
+    name: 'upload9',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload10',
+    title: '',
+    url: '',
+  },
 ];
 
 export const platinum = [
+  {
+    name: 'upload1',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload2',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload3',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload4',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload5',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload6',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload7',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload8',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload9',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload10',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload11',
+    title: '',
+    url: '',
+  },
+  {
+    name: 'upload12',
+    title: '',
+    url: '',
+  },
+];
+export const diamond = [
   {
     name: 'upload1',
     title: '',

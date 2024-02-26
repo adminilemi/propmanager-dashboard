@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomUploadToCloudinary from './CustomUploadToCloudinary';
+import { Link } from 'react-router-dom';
 
 const VideoContainer = ({
   videoLink,
@@ -8,7 +9,7 @@ const VideoContainer = ({
   loading,
   uploadFiles,
   title,
-
+  planName,
   removeImage,
 }) => {
   const placeholderImageUrl =
@@ -31,20 +32,35 @@ const VideoContainer = ({
         <small className='text-center'>Upload Video (MP4)</small>
       </div>
 
-      <div className='d-flex flex-column flex-lg-row justify-content-center gap-3'>
-        <div className='col-12 col-lg-5'>
-          <CustomUploadToCloudinary
-            id={id}
-            loading={loading[id]}
-            uploadChange={(e) => uploadFiles(e, id, cat)}
-          />
+      {planName === 'BASIC' || planName === 'SILVER' ? (
+        <div className='text-center'>
+          {' '}
+          <p>
+            {' '}
+            Your plan doesn&apos;t include video{' '}
+            <Link to='/subscription' className='upgrade'>
+              {' '}
+              Upgrade
+            </Link>{' '}
+            to a bigger package to upload video{' '}
+          </p>{' '}
         </div>
-        <div className='col-12 col-lg-5'>
-          <button onClick={removeImage} className='outline-btn col-12'>
-            Remove
-          </button>
+      ) : (
+        <div className='d-flex flex-column flex-lg-row justify-content-center gap-3'>
+          <div className='col-12 col-lg-5'>
+            <CustomUploadToCloudinary
+              id={id}
+              loading={loading[id]}
+              uploadChange={(e) => uploadFiles(e, id, cat)}
+            />
+          </div>
+          <div className='col-12 col-lg-5'>
+            <button onClick={removeImage} className='outline-btn col-12'>
+              Remove
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </article>
   );
 };

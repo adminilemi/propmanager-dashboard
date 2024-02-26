@@ -14,12 +14,14 @@ import gif from '@/assets/ilemiAdBanner.gif';
 import { selectSearch } from '@/Redux/Features/globalSlice';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import AddGifBanner from '@/components/AddGifBanner';
+import { selectSubValidity } from '@/Redux/Features/userDatasSlice';
 
 function Listings() {
   const { authUser } = useSelector(selectUserData);
   const searchTerms = useSelector(selectSearch);
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState([]);
+  const checkPlanValidity = useSelector(selectSubValidity);
   const { data, isLoading } = useGetAllPropertiesQuery(authUser.userId);
   const [toggle, setToggle] = useState({ [0]: true });
 
@@ -37,7 +39,24 @@ function Listings() {
 
   return (
     <main className='listings d-flex flex-column '>
-      {filteredData.length === 0 && searchTerms === '' ? (
+      {!checkPlanValidity ? (
+        <section
+          style={{ height: '95vh' }}
+          className='emptyStateContainer col-11  m-auto d-flex flex-column align-items-center '
+        >
+          <EmptyState
+            icons={noShift}
+            title="You're not subscribed yet"
+            subTitle='Click the button to below to explore our plans and subsscribe.'
+          />
+          <div className='my-3'>
+            <Link to='/subscription' className='main-btn'>
+              {' '}
+              Subscribe
+            </Link>
+          </div>
+        </section>
+      ) : filteredData.length === 0 && searchTerms === '' ? (
         <section
           style={{ height: '95vh' }}
           className='emptyStateContainer col-11  m-auto d-flex flex-column align-items-center '
