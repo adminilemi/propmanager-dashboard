@@ -39,7 +39,7 @@ function Listings() {
   const handleCopyAgentLink = async () => {
     try {
       await navigator.clipboard.writeText(
-        `property4u.ng/agents/${authUser.userId}`,
+        `https://property4u.ng/agents/${authUser.userId}`,
       );
       console.log('Link copied to clipboard successfully!');
       showAlert('Link copied to clipboard successfully!');
