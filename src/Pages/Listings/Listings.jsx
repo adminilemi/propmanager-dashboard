@@ -10,16 +10,19 @@ import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import { useSelector } from 'react-redux';
 import EmptyState from '@/components/EmptyState/EmptyState';
 import noShift from '@/assets/noSift.png';
-import gif from '@/assets/ilemiAdBanner.gif';
+import gif from '@/assets/newBanner.gif';
 import { selectSearch } from '@/Redux/Features/globalSlice';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import AddGifBanner from '@/components/AddGifBanner';
 import { selectSubValidity } from '@/Redux/Features/userDatasSlice';
+import { useSweetAlert } from '@/Hooks/useSweetAlert';
+import { FaCopy } from 'react-icons/fa';
 
 function Listings() {
   const { authUser } = useSelector(selectUserData);
   const searchTerms = useSelector(selectSearch);
   const { handleSearch } = useGlobalHooks();
+  const { showAlert } = useSweetAlert();
   const [filteredData, setFilteredData] = useState([]);
   const checkPlanValidity = useSelector(selectSubValidity);
   const { data, isLoading } = useGetAllPropertiesQuery(authUser.userId);
@@ -32,6 +35,18 @@ function Listings() {
   useEffect(() => {
     handleSearch(data, searchTerms, setFilteredData, 'Property_Name');
   }, [searchTerms, data]);
+
+  const handleCopyAgentLink = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `property4u.ng/agents/${authUser.userId}`,
+      );
+      console.log('Link copied to clipboard successfully!');
+      showAlert('Link copied to clipboard successfully!');
+    } catch (error) {
+      console.error('Failed to copy link to clipboard:', error);
+    }
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -76,14 +91,20 @@ function Listings() {
       ) : (
         <section className='d-flex flex-column flex-lg-row justify-content-between'>
           <article className='col-12 col-lg-4 listSide'>
-            <div className='col-11 pb-5 mx-auto d-flex flex-column flex-lg-row justify-content-between align-items-center'>
-              <h1 className='my-3'> Listings</h1>
-              <div>
-                <Link to='/addproperty' className='main-btn'>
-                  {' '}
-                  + Add Property
-                </Link>
+            <div className='col-11 pb-5 d-flex flex-column mx-auto '>
+              <div className='d-flex flex-column flex-lg-row justify-content-between align-items-center'>
+                <h1 className='my-3'> Listings</h1>
+                <div>
+                  <Link to='/addproperty' className='main-btn'>
+                    {' '}
+                    + Add Property
+                  </Link>
+                </div>
               </div>
+              <button onClick={handleCopyAgentLink} className='main-btn my-4'>
+                {' '}
+                <FaCopy /> Copy your unique link
+              </button>
             </div>
             <hgroup className='col-11  mx-auto d-flex justify-content-between'>
               <h1 className='my-3'>
