@@ -1,0 +1,35 @@
+.custom-select {
+  position: relative;
+
+  .select-header {
+    border: 1px solid #dee2e6;
+    padding: 1em;
+    border-radius: 0.375rem;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.16);
+    z-index: 1;
+    border-radius: 12px;
+  }
+
+  .option-label {
+    cursor: pointer;
+  }
+
+  .option-label:hover {
+    background-color: #f5f5f5;
+  }
+
+  input[type='checkbox'] {
+    margin-right: 8px;
+  }
+}

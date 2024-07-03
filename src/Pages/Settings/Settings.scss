@@ -1,0 +1,151 @@
+.settings {
+  margin: 1.5em auto;
+  width: 95%;
+  padding: 2em 3em 10em 3em;
+
+  h3 {
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+
+  h5 {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  small {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--Grey3);
+  }
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .inputWrapper {
+    width: 100%;
+
+    margin-bottom: 1em;
+
+    label {
+      margin-bottom: 0.7em;
+    }
+
+    textarea,
+    select,
+    input {
+      padding: 1em;
+      &::placeholder {
+        color: var(--Grey3);
+      }
+    }
+
+    // input[required] {
+    //   border: solid 1px var(--negative);
+    // }
+
+    small {
+      font-size: 0.8rem;
+      color: var(--Grey2);
+      font-weight: 500;
+    }
+
+    .selected {
+      border-radius: 36px;
+      background: var(--Grey5);
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--Grey2);
+      margin-top: 0.5em;
+      cursor: pointer;
+    }
+
+    .upload {
+      padding: 1.5em;
+      cursor: pointer;
+      border-radius: 4px;
+      border: 1px dashed var(--grey-grey-4, #bdc0ce);
+    }
+
+    .uploadInp {
+      display: none;
+    }
+
+    .uploadType {
+      font-size: 0.6rem;
+      color: var(--Grey2);
+      font-weight: 500;
+    }
+    em {
+      color: var(--negative);
+    }
+
+    @media screen and (min-width: 500px) {
+      width: 48%;
+    }
+  }
+
+  .saveChanges {
+    border-radius: 8px;
+    background: var(--Grey4);
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  .checkNotifs {
+    margin-left: 5em;
+    h6 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    small {
+      color: var(--black);
+    }
+  }
+
+  .security {
+    p {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .out {
+      .wrapper {
+        width: 40%;
+      }
+    }
+
+    .devices {
+      header {
+        padding: 1em 0;
+        background: var(--Grey5);
+        h4 {
+          font-size: 1rem;
+          font-weight: 500;
+        }
+      }
+      section {
+        border-bottom: solid 1px var(--Grey4);
+        &:last-child {
+          border-bottom: solid 0px var(--Grey4);
+        }
+
+        small {
+          font-size: 16px;
+          font-style: italic;
+          font-weight: 400;
+        }
+      }
+
+      .outline-dark {
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+    }
+  }
+}

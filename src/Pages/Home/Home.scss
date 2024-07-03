@@ -1,0 +1,149 @@
+.Overviews {
+  margin: 1.5em auto;
+  width: 95%;
+
+  // .main-btn {
+  //   font-size: 1rem !important;
+  // }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .listedProp,
+  .tenantRequest {
+    background: var(--white);
+  }
+
+  .chartSelect {
+    border-radius: 10px;
+    border: solid 1px var(--Line);
+  }
+
+  .tenantRequest {
+    padding: 0.7em 1em;
+
+    h5 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .reqList {
+      border-bottom: solid 1px #f0effb;
+
+      &:last-child {
+        border-bottom: solid 0px #f0effb;
+      }
+
+      h6 {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      p {
+        font-size: 0.7rem;
+        color: var(--Grey6);
+      }
+    }
+  }
+
+  .listedProp {
+    padding: 0.7em 1em;
+
+    .chartLabel {
+      span {
+        font-weight: 700;
+        font-size: 0.8rem;
+      }
+    }
+    .viewMore {
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .dropdown-toggle {
+      background: transparent !important;
+      border: solid 1.5px var(--mainLight);
+      color: var(--Grey6);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0.5em 0;
+    }
+
+    p {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--Grey6);
+
+      span {
+        background: color-mix(in sRGB, transparent 80%, var(--positive) 20%);
+        color: var(--positive);
+        padding: 0.6em 0.7em;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  .available {
+    width: 100%;
+    h4 {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    h5 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    p {
+      color: #394150;
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+
+    small {
+      color: #394150;
+      font-size: 0.6rem;
+      font-weight: 400;
+    }
+  }
+
+  a {
+    color: var(--mainColor);
+    font-weight: 500;
+  }
+
+  .doughMessage {
+    position: absolute;
+    top: 42%;
+    left: 0;
+    right: 0;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding: 1em;
+  }
+
+  .emptyStateContainer {
+    display: flex;
+    place-content: center;
+    border: solid 1px var(--Line);
+    border-radius: 8px;
+    padding: 5em 2em;
+  }
+
+  @media screen and (min-width: 900px) {
+    .available {
+      width: 32%;
+    }
+  }
+}

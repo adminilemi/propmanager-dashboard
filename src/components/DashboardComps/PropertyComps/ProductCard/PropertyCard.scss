@@ -1,0 +1,38 @@
+.productCard {
+  width: 100%;
+  border-radius: 10px;
+  background: var(--white);
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  small,
+  span,
+  p {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--Grey6);
+  }
+
+  figure {
+    overflow: hidden;
+    img {
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        transition: all 0.5s ease-in-out;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    width: 47%;
+  }
+
+  @media screen and (min-width: 1000px) {
+    width: 32%;
+  }
+}

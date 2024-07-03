@@ -1,0 +1,15 @@
+.myAccount {
+  background: var(--white) !important;
+  .changePass {
+    border-radius: 8px;
+    border: 1px solid #e0def7;
+    background: #f7f7fd;
+    cursor: pointer;
+  }
+
+  p {
+    font-size: 0.8rem !important;
+    color: var(--Grey6);
+    font-weight: 300 !important;
+  }
+}
