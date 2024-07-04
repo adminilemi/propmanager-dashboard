@@ -1,6 +1,25 @@
 .onboarding {
   header {
     background: var(--mainColor);
-    padding: 1em 3em;
+    // padding: 1em 3em;
+  }
+
+  .stepsNumber {
+    h5 {
+      font-weight: 900;
+    }
+  }
+  .aside {
+    width: 100%;
+    padding-bottom: 3em;
+  }
+  @media screen and (min-width: 800px) {
+    .aside {
+      width: 60%;
+    }
+    .right {
+      width: 40%;
+      min-height: 100%;
+    }
   }
 }

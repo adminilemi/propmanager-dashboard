@@ -1,5 +1,11 @@
 .email {
   min-height: 100vh;
+
+  background-color: var(--white);
+
+  header {
+    background: var(--mainColor);
+  }
   .aside {
     width: 100%;
 

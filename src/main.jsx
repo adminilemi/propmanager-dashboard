@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
+import 'animate.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './global.css';

@@ -9,6 +9,7 @@ const ProfileImage = ({
   uploadFiles,
   title,
   error,
+  placeholderImage,
 }) => {
   const placeholderImageUrl =
     'https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg';
@@ -23,7 +24,7 @@ const ProfileImage = ({
           {images !== '' ? (
             <img src={images} alt='' />
           ) : (
-            <img src={placeholderImageUrl} alt='' />
+            <img src={placeholderImage || placeholderImageUrl} alt='' />
           )}
         </figure>
         <small className='text-center'>Upload Image (PNG, JPG, AVIF)</small>
