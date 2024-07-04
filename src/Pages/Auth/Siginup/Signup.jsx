@@ -18,6 +18,7 @@ const initialState = {
   firstName: '',
   lastName: '',
   email: '',
+  phoneNumber: '',
   HouseAddress: '',
   password: '',
   confirmPass: '',
@@ -159,252 +160,290 @@ const Signup = () => {
   };
 
   return (
-    <div
+    <main
       className={` userSignup d-flex flex-column flex-md-row justify-content-between bg-white`}
     >
-      <section className='d-flex flex-column aside'>
-        <header className='border-bottom py-2 px-4 mb-3'>
-          <div className='col-2 '>
+      <section className='d-flex flex-column aside '>
+        <header className='border-bottom py-2 px-2 px-lg-5 mb-3 container'>
+          <div className='col-2 py-2 '>
             <BrandLogo />
           </div>
         </header>
-        <aside className='col-11 col-lg-7 mx-auto'>
-          <h2> Welcome back,</h2>
-          <p>Welcome back! Please enter your details.</p>
+        <aside className='container px-2 px-lg-5'>
+          <section className='col-11 col-lg-8 '>
+            <h2> Welcome back,</h2>
+            <p className='my-3'>
+              Thank you for choosing to join us. Please complete your
+              registration below to get started. We're excited to have you on
+              board!.
+            </p>
 
-          <form
-            className={` form d-flex flex-wrap justify-content-between mt-3`}
-            onSubmit={handleSignUp}
-          >
-            <section className='mb-3 inputWrapper'>
-              <label htmlFor='First Name' className='labelTitle'>
-                {' '}
-                First Name
-              </label>
-              <div>
-                <input
-                  ref={inputRef}
-                  type='text'
-                  id='firstName'
-                  name='firstName'
-                  onChange={handleChange}
-                  defaultValue={userData.firstName}
-                  placeholder=' Enter first name'
-                  minLength='3'
-                  required
-                  className={` formInput ${
-                    errors.errMessage === 'empty' ? 'errors' : ''
-                  } form-control `}
-                />
-              </div>
-            </section>
-
-            <section className='mb-3 inputWrapper'>
-              <label htmlFor='Last Name' className='labelTitle'>
-                {' '}
-                Last Name
-              </label>
-              <div>
-                <input
-                  ref={inputRef}
-                  type='text'
-                  id='lastName'
-                  name='lastName'
-                  onChange={handleChange}
-                  defaultValue={userData.lastName}
-                  placeholder=' Enter last name'
-                  minLength='3'
-                  required
-                  className={` formInput ${
-                    errors.errMessage === 'empty' ? 'errors' : ''
-                  } form-control `}
-                />
-              </div>
-            </section>
-
-            <section className='mb-3 w-100'>
-              <label htmlFor='email' className='labelTitle'>
-                {' '}
-                Email
-              </label>
-              <div>
-                <input
-                  ref={inputRef}
-                  type='email'
-                  id='email'
-                  name='email'
-                  placeholder='Enter your email'
-                  onChange={handleChange}
-                  defaultValue={userData.email}
-                  required
-                  className={` formInput ${
-                    errors.errMessage === 'email' ||
-                    errors.errMessage === 'empty'
-                      ? 'errors'
-                      : ''
-                  } form-control `}
-                />
-              </div>
-              {errors.errMessage === 'email' ? (
-                <span className='error_message'>
+            <form
+              className={` form d-flex flex-wrap justify-content-between mt-3`}
+              onSubmit={handleSignUp}
+            >
+              <section className='mb-3 inputWrapper'>
+                <label htmlFor='First Name' className='labelTitle'>
                   {' '}
-                  Please enter a valid email e.g example@mail.com{' '}
-                </span>
-              ) : (
-                ''
-              )}
-            </section>
-            <section className='mb-3 w-100'>
-              <label htmlFor='Address' className='labelTitle'>
-                {' '}
-                Address
-              </label>
-              <div>
-                <input
-                  ref={inputRef}
-                  type='text'
-                  id='HouseAddress'
-                  name='HouseAddress'
-                  placeholder='Enter your address'
-                  onChange={handleChange}
-                  defaultValue={userData.HouseAddress}
-                  required
-                  className={` formInput ${
-                    errors.errMessage === 'address' ||
-                    errors.errMessage === 'empty'
-                      ? 'errors'
-                      : ''
-                  } form-control `}
-                />
-              </div>
-              {errors.errMessage === 'address' ? (
-                <span className='error_message'>
-                  {' '}
-                  Please enter a valid email e.g example@mail.com{' '}
-                </span>
-              ) : (
-                ''
-              )}
-            </section>
-
-            <section className='col-12 mb-3'>
-              <div className='password'>
-                <label htmlFor='password' className='labelTitle'>
-                  {' '}
-                  Password{' '}
+                  First Name
                 </label>
-                <div
-                  className={` inputContainer d-flex flex-row align-items-center`}
-                >
+                <div>
                   <input
                     ref={inputRef}
-                    id='password'
-                    type={!passwordType['password'] ? 'password' : 'text'}
-                    name='password'
-                    placeholder='Enter password'
-                    onChange={(e) => handleChange(e)}
-                    defaultValue={userData.password}
-                    className={` formInput ${
-                      errors.errMessage === 'weakPassword' ||
-                      errors.errMessage === 'empty'
-                        ? 'errors'
-                        : ''
-                    }  form-control `}
-                    required
-                  />{' '}
-                  <div
-                    onClick={() => showPassword('password')}
-                    className='icon'
-                  >
-                    {!passwordType['password'] ? (
-                      <BsFillEyeSlashFill />
-                    ) : (
-                      <BsFillEyeFill />
-                    )}
-                  </div>
-                </div>
-                {/* <small className='charLong'>
-                  Must be at least 8 characters.
-                </small> */}
-
-                {errors.errMessage === 'weakPassword' && (
-                  <span className='error_message'>
-                    {' '}
-                    Your password is weak, please use combination of Upper
-                    letter number and special characters{' '}
-                  </span>
-                )}
-              </div>
-
-              <div className='mt-3'>
-                <label htmlFor='confirmPass' className='labelTitle'>
-                  Re-enter Password
-                </label>
-                <div
-                  className={`inputContainer d-flex flex-row align-items-center `}
-                >
-                  <input
-                    ref={inputRef}
-                    id='confirmPass'
-                    type={!passwordType['confirmPass'] ? 'password' : 'text'}
-                    name='password'
+                    type='text'
+                    id='firstName'
+                    name='firstName'
                     onChange={handleChange}
-                    defaultValue={userData.confirmPass}
-                    placeholder='Re-enter password'
-                    className={`formInput  ${
-                      errors.errMessage === 'confirmpass' ||
+                    defaultValue={userData.firstName}
+                    placeholder=' Enter first name'
+                    minLength='3'
+                    required
+                    className={` formInput ${
+                      errors.errMessage === 'empty' ? 'errors' : ''
+                    } form-control `}
+                  />
+                </div>
+              </section>
+
+              <section className='mb-3 inputWrapper'>
+                <label htmlFor='Last Name' className='labelTitle'>
+                  {' '}
+                  Last Name
+                </label>
+                <div>
+                  <input
+                    ref={inputRef}
+                    type='text'
+                    id='lastName'
+                    name='lastName'
+                    onChange={handleChange}
+                    defaultValue={userData.lastName}
+                    placeholder=' Enter last name'
+                    minLength='3'
+                    required
+                    className={` formInput ${
+                      errors.errMessage === 'empty' ? 'errors' : ''
+                    } form-control `}
+                  />
+                </div>
+              </section>
+
+              <section className='mb-3 w-100'>
+                <label htmlFor='email' className='labelTitle'>
+                  {' '}
+                  Email
+                </label>
+                <div>
+                  <input
+                    ref={inputRef}
+                    type='email'
+                    id='email'
+                    name='email'
+                    placeholder='Enter your email'
+                    onChange={handleChange}
+                    defaultValue={userData.email}
+                    required
+                    className={` formInput ${
+                      errors.errMessage === 'email' ||
                       errors.errMessage === 'empty'
                         ? 'errors'
                         : ''
                     } form-control `}
-                  />{' '}
-                  <div
-                    onClick={() => showPassword('confirmPass')}
-                    className='icon'
-                  >
-                    {!passwordType['confirmPass'] ? (
-                      <BsFillEyeSlashFill />
-                    ) : (
-                      <BsFillEyeFill />
-                    )}
-                  </div>
+                  />
                 </div>
-                {errors.errMessage === 'confirmpass' ? (
+                {errors.errMessage === 'email' ? (
                   <span className='error_message'>
                     {' '}
-                    Your password do not match
+                    Please enter a valid email e.g example@mail.com{' '}
                   </span>
                 ) : (
                   ''
                 )}
-              </div>
-            </section>
-
-            <div className=' col-12 text-center'>
-              <button className='main-btn col-12 mt-2' type='submit'>
-                {loading ? <Spinner /> : 'Sign Up'}
-              </button>
-              {errors.errMessage === 'empty' ? (
-                <span className='error_message'>
+              </section>
+              <section className='mb-3 w-100'>
+                <label htmlFor='Phone Number' className='labelTitle'>
                   {' '}
-                  All field must be filled{' '}
-                </span>
-              ) : (
-                <span className='error_message'> {errors.errMessage} </span>
-              )}
-            </div>
+                  Phone Number
+                </label>
+                <div>
+                  <input
+                    ref={inputRef}
+                    type='tel'
+                    id='phoneNumber'
+                    name='phoneNumber'
+                    placeholder='Enter your phone number'
+                    onChange={handleChange}
+                    defaultValue={userData.phoneNumber}
+                    required
+                    className={` formInput ${
+                      errors.errMessage === 'phoneNumber' ||
+                      errors.errMessage === 'empty'
+                        ? 'errors'
+                        : ''
+                    } form-control `}
+                  />
+                </div>
+                {errors.errMessage === 'phoneNumber' ? (
+                  <span className='error_message'>
+                    {' '}
+                    Please enter a valid phone number{' '}
+                  </span>
+                ) : (
+                  ''
+                )}
+              </section>
+              <section className='mb-3 w-100'>
+                <label htmlFor='Address' className='labelTitle'>
+                  {' '}
+                  Address
+                </label>
+                <div>
+                  <input
+                    ref={inputRef}
+                    type='text'
+                    id='HouseAddress'
+                    name='HouseAddress'
+                    placeholder='Enter your address'
+                    onChange={handleChange}
+                    defaultValue={userData.HouseAddress}
+                    required
+                    className={` formInput ${
+                      errors.errMessage === 'address' ||
+                      errors.errMessage === 'empty'
+                        ? 'errors'
+                        : ''
+                    } form-control `}
+                  />
+                </div>
+                {errors.errMessage === 'address' ? (
+                  <span className='error_message'>
+                    {' '}
+                    Please enter a valid email e.g example@mail.com{' '}
+                  </span>
+                ) : (
+                  ''
+                )}
+              </section>
 
-            <p className='mt-2 '>
-              Already have an account?
-              <Link className='Login' to='/signin'>
-                <strong> Login </strong>
-              </Link>
-            </p>
-          </form>
+              <section className='col-12 mb-3'>
+                <div className='password'>
+                  <label htmlFor='password' className='labelTitle'>
+                    {' '}
+                    Password{' '}
+                  </label>
+                  <div
+                    className={` inputContainer d-flex flex-row align-items-center`}
+                  >
+                    <input
+                      ref={inputRef}
+                      id='password'
+                      type={!passwordType['password'] ? 'password' : 'text'}
+                      name='password'
+                      placeholder='Enter password'
+                      onChange={(e) => handleChange(e)}
+                      defaultValue={userData.password}
+                      className={` formInput ${
+                        errors.errMessage === 'weakPassword' ||
+                        errors.errMessage === 'empty'
+                          ? 'errors'
+                          : ''
+                      }  form-control `}
+                      required
+                    />{' '}
+                    <div
+                      onClick={() => showPassword('password')}
+                      className='icon'
+                    >
+                      {!passwordType['password'] ? (
+                        <BsFillEyeSlashFill />
+                      ) : (
+                        <BsFillEyeFill />
+                      )}
+                    </div>
+                  </div>
+                  {/* <small className='charLong'>
+                  Must be at least 8 characters.
+                </small> */}
+
+                  {errors.errMessage === 'weakPassword' && (
+                    <span className='error_message'>
+                      {' '}
+                      Your password is weak, please use combination of Upper
+                      letter number and special characters{' '}
+                    </span>
+                  )}
+                </div>
+
+                <div className='mt-3'>
+                  <label htmlFor='confirmPass' className='labelTitle'>
+                    Re-enter Password
+                  </label>
+                  <div
+                    className={`inputContainer d-flex flex-row align-items-center `}
+                  >
+                    <input
+                      ref={inputRef}
+                      id='confirmPass'
+                      type={!passwordType['confirmPass'] ? 'password' : 'text'}
+                      name='password'
+                      onChange={handleChange}
+                      defaultValue={userData.confirmPass}
+                      placeholder='Re-enter password'
+                      className={`formInput  ${
+                        errors.errMessage === 'confirmpass' ||
+                        errors.errMessage === 'empty'
+                          ? 'errors'
+                          : ''
+                      } form-control `}
+                    />{' '}
+                    <div
+                      onClick={() => showPassword('confirmPass')}
+                      className='icon'
+                    >
+                      {!passwordType['confirmPass'] ? (
+                        <BsFillEyeSlashFill />
+                      ) : (
+                        <BsFillEyeFill />
+                      )}
+                    </div>
+                  </div>
+                  {errors.errMessage === 'confirmpass' ? (
+                    <span className='error_message'>
+                      {' '}
+                      Your password do not match
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                </div>
+              </section>
+
+              <div className=' col-12 text-center'>
+                <button className='main-btn col-12 mt-2' type='submit'>
+                  {loading ? <Spinner /> : 'Sign Up'}
+                </button>
+                {errors.errMessage === 'empty' ? (
+                  <span className='error_message'>
+                    {' '}
+                    All field must be filled{' '}
+                  </span>
+                ) : (
+                  <span className='error_message'> {errors.errMessage} </span>
+                )}
+              </div>
+
+              <p className='mt-2 '>
+                Already have an account?
+                <Link className='Login' to='/signin'>
+                  <strong> Login </strong>
+                </Link>
+              </p>
+            </form>
+          </section>
         </aside>
       </section>
       <RightSide title='Get the right people to get your job done right' />
-    </div>
+    </main>
   );
 };
 

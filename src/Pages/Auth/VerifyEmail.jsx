@@ -17,7 +17,7 @@ const numInput = [
   { id: 4, name: 'num4' },
 ];
 
-function VerifyEmail() {
+const VerifyEmail = () => {
   const { loading, setLoading, errors, setErrors } = useGlobalHooks();
   const [sendingCode, setSendingCode] = useState(false);
   const { showAlert } = useSweetAlert();
@@ -75,6 +75,18 @@ function VerifyEmail() {
   const clearInput = () => {
     setVerifyCode('');
   };
+
+  // When delete is pressed it should delete backward and jump focus to current input
+  const handleKeyPress = (e, index) => {
+    // Detect if backspace or delete key is clicked, if yes and the current input value is empty, jump backward to next one if available
+    if (e.key === 'Backspace' && !e.currentTarget?.value && index > 0) {
+      inputRefs.current[index - 1].current?.focus();
+    }
+  };
+
+  useEffect(() => {
+    inputRefs.current[0].current?.focus();
+  }, []);
 
   useEffect(() => {
     if (loading) {
@@ -175,67 +187,73 @@ function VerifyEmail() {
     <div
       className={` email d-flex flex-column flex-md-row justify-content-between`}
     >
-      <section className='d-flex flex-column aside py-3'>
-        <header className='border-bottom py-3 px-4 mb-3'>
-          <div className='col-2 '>
+      <section className='d-flex flex-column aside'>
+        <header className='border-bottom py-2 px-2 px-lg-5 mb-3 container'>
+          <div className='col-2 py-2 '>
             <BrandLogo />
           </div>
         </header>
-        <aside className='col-10 col-md-6 mx-auto mt-5'>
-          <form
-            className={` form d-flex flex-column justify-content-center text-start `}
-            onSubmit={handleVerifyEmail}
-          >
-            <h2>Verify your email</h2>
-            <p className='mt-2'>
-              Enter the verification code sent to {authUser.userEmail}{' '}
-            </p>
-            <div
-              className={` inputContainer d-flex flex-row mx-auto col-12 gap-2 mt-3 `}
+        <aside className='container px-2 px-lg-5'>
+          <section className='col-11 col-lg-8 '>
+            <form
+              className={` form d-flex flex-column justify-content-center text-start col-12 col-md-2`}
+              onSubmit={handleVerifyEmail}
             >
-              {numInput.map(({ id, name }, idx) => (
-                <div className='numInp ' key={id}>
-                  <input
-                    ref={inputRefs.current[idx]}
-                    id={id}
-                    type='text'
-                    name={name}
-                    onChange={(e) => handleChange(e, idx)}
-                    maxLength='1'
-                    defaultValue={verifyCode[name]}
-                    className='text-center form-control py-4'
-                    required
-                  />
-                </div>
-              ))}
-            </div>
+              <h2>Verify your email</h2>
+              <p className='mt-2'>
+                Enter the verification code sent to {authUser.userEmail}{' '}
+              </p>
+              <div
+                className={` inputContainer d-flex flex-row mx-auto col-12 gap-2 mt-3 `}
+              >
+                {numInput.map(({ id, name }, idx) => (
+                  <div className='numInp ' key={id}>
+                    <input
+                      ref={inputRefs.current[idx]}
+                      id={id}
+                      type='text'
+                      name={name}
+                      onChange={(e) => handleChange(e, idx)}
+                      onKeyDown={(e) => handleKeyPress(e, idx)}
+                      maxLength={1}
+                      defaultValue={verifyCode[name]}
+                      className={`${
+                        errors.error &&
+                        'errors animate__animated  animate__shakeY'
+                      }  text-center form-control py-4`}
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
 
-            <div className=' col-12 text-center'>
-              <button className='main-btn col-12 mt-3' type='submit'>
-                {loading ? 'Validating...' : 'Validate'}
-              </button>
+              <div className=' col-12 text-center'>
+                <button className='main-btn col-12 mt-3' type='submit'>
+                  {loading ? 'Validating...' : 'Validate'}
+                </button>
 
-              {errors.error && (
-                <span className='error_message mt-3'>
-                  {' '}
-                  {errors.errMessage}{' '}
-                </span>
-              )}
-            </div>
-          </form>
+                {errors.error && (
+                  <span className='error_message mt-3'>
+                    {' '}
+                    {errors.errMessage}{' '}
+                  </span>
+                )}
+              </div>
+            </form>
 
-          <div className='mt-3'>
-            <small onClick={handleReSendOTP}>
-              Didn&apos;t get code? <strong>Resend</strong>
-            </small>
-          </div>
+            <button className='mt-3'>
+              <small onClick={handleReSendOTP}>
+                Didn&apos;t get code? <strong>Resend</strong>
+              </small>
+            </button>
 
-          {sendingCode && <Spinner />}
+            {sendingCode && <Spinner />}
+          </section>
         </aside>
       </section>
       <RightSide title='Fast and Reliable jobs to get you hired immediately' />
     </div>
   );
-}
+};
 
 export default VerifyEmail;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../assets/ilemi-logo.svg';
+import Logo from '../assets/property4u-logo-white.png';
 import { Link } from 'react-router-dom';
 import IlemiIcon from './SGVs/IlemiIcon';
 

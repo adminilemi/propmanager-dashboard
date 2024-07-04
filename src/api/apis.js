@@ -8,6 +8,10 @@ export const SignIn = async (formData) => {
   return await baseAPI.post('/auth/Agentlogin', formData);
 };
 
+export const verifyNIN = async (formData) => {
+  return await baseAPI.post(`/Agent/verifyAgent/Nin-Verification`, formData);
+};
+
 export const verifyEmail = async (formData) => {
   return await baseAPI.post(
     `/Agent/agentification/verify-signup-or-login-code`,
