@@ -23,6 +23,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCurrentUser, selectUser } from '@/Redux/Features/userDatasSlice';
 import ninf from '@/assets/ninf.png';
 import ninb from '@/assets/ninb.png';
+import ErrorMessage from '@/components/ErrorMessage';
 
 const initialState = {
   NINNumber: '',
@@ -95,15 +96,15 @@ const AgentNIN = ({ onPrevious }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (propData.NINfront.url === '') {
-    //   setErrors({ error: true, errMessage: 'Upload NIN front image' });
-    //   return;
-    // }
+    if (propData.NINfront.url === '') {
+      setErrors({ error: true, errMessage: 'Upload NIN front image' });
+      return;
+    }
 
-    // if (propData.NINback.url === '') {
-    //   setErrors({ error: true, errMessage: 'Upload NIN back image' });
-    //   return;
-    // }
+    if (propData.NINback.url === '') {
+      setErrors({ error: true, errMessage: 'Upload NIN back image' });
+      return;
+    }
 
     setErrors({ error: false, errMessage: '' });
 
@@ -119,6 +120,14 @@ const AgentNIN = ({ onPrevious }) => {
     try {
       const rsp = await verifyNIN(verifyNINData);
       console.log(rsp);
+
+      if (rsp?.error) {
+        setErrors({
+          error: true,
+          errMessage: 'Your NIN is incorrect, please enter a vliad NIN',
+        });
+      }
+
       if (rsp?.data?.data?.summary?.nin_check?.status === 'EXACT_MATCH') {
         // showAlert(rsp?.data?.message);
         try {
@@ -223,12 +232,34 @@ const AgentNIN = ({ onPrevious }) => {
                 type='tel'
                 inputMode='numeric'
                 pattern='[0-9]{1,11}'
-                className='form-control col-10'
+                className={
+                  errors?.error &&
+                  errors?.errMessage.includes('Your NIN is incorrect')
+                    ? 'errors form-control col-10'
+                    : 'form-control col-10'
+                }
                 placeholder='Enter nin number'
                 defaultValue={propData.NINNumber}
                 onChange={handleChange}
                 maxLength='11'
                 required
+              />
+            </div>
+          </article>
+          <article className='d-flex flex-column flex-md-row gap-2 justify-content-between mt-5'>
+            <div className='col-12'>
+              <label htmlFor='FSOReferral' className='labelTitle'>
+                Referral code (Optional)
+              </label>
+
+              <input
+                id='FSOReferral'
+                name='FSOReferral'
+                type='text'
+                className='form-control col-10'
+                placeholder='Enter nin number'
+                defaultValue={propData.FSOReferral}
+                onChange={handleChange}
               />
             </div>
           </article>
@@ -243,7 +274,7 @@ const AgentNIN = ({ onPrevious }) => {
         </div>
 
         <div className='d-flex justify-content-center'>
-          {errors.error && <p className='error_message'>{errors.errMessage}</p>}
+          {errors.error && <ErrorMessage message={errors.errMessage} />}
         </div>
       </form>{' '}
     </section>

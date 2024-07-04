@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import FormLabel from './FormLabel';
+// import FormLabel from './FormLabel';
 import AgentInfo from './AgentInfo/AgentInfo';
 import AgentNIN from './AgentNIN/AgentNIN';
 
 function OnboardingForm() {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
 
-  const StepLabels = [{ title: 'Step 1' }, { title: 'Step 2' }];
+  // const StepLabels = [{ title: 'Step 1' }, { title: 'Step 2' }];
 
   const handleNext = () => {
     setCurrentStep((prev) => prev + 1);

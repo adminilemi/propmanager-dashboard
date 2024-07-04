@@ -174,8 +174,8 @@ const Signup = () => {
             <h2> Welcome back,</h2>
             <p className='my-3'>
               Thank you for choosing to join us. Please complete your
-              registration below to get started. We're excited to have you on
-              board!.
+              registration below to get started. We&apos;re excited to have you
+              on board!.
             </p>
 
             <form
