@@ -43,6 +43,14 @@ export const apiSLice = createApi({
       }),
     }),
 
+    verifyUserNIN: builder.mutation({
+      query: (formData) => ({
+        url: `/Agent/verifyAgent/Nin-Verification`,
+        method: 'POST',
+        body: formData,
+      }),
+    }),
+
     // Create property
     createProperty: builder.mutation({
       query: (formData) => ({
@@ -105,6 +113,7 @@ export const apiSLice = createApi({
 });
 
 export const {
+  useVerifyUserNINMutation,
   useGetAgentQuery,
   useGetAgentWeeklyStatsQuery,
   useGetAgentMonthlyStatsQuery,

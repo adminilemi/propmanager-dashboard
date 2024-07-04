@@ -463,6 +463,8 @@ textarea,
 select,
 input {
   padding: 0.77em 1em !important;
+  background: #f7f7fd !important;
+  border-color: #e0def7 !important;
 }
 
 .chevIcons {

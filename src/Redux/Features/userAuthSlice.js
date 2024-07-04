@@ -9,6 +9,7 @@ const initialState = {
   avatar: null,
   coyName: null,
   isLoggedIn: false,
+  isOnboarded: false,
 };
 
 export const userAuthSlice = createSlice({
@@ -25,6 +26,10 @@ export const userAuthSlice = createSlice({
       state.avatar = action.payload;
     },
 
+    updateIsOnboarded: (state, action) => {
+      state.isOnboarded = action.payload;
+    },
+
     getAgentCoyName: (state, action) => {
       state.coyName = action.payload;
     },
@@ -37,11 +42,17 @@ export const userAuthSlice = createSlice({
   },
 });
 
-export const { userAuthData, userLogOut, getUserAvatar, getAgentCoyName } =
-  userAuthSlice.actions;
+export const {
+  userAuthData,
+  userLogOut,
+  getUserAvatar,
+  getAgentCoyName,
+  updateIsOnboarded,
+} = userAuthSlice.actions;
 
 export const selectUserData = (state) => state.userAuthSlice;
 export const selectUserName = (state) => state.userAuthSlice.coyName;
 export const selectUserAvatar = (state) => state.userAuthSlice.avatar;
+export const selectIsOnboarded = (state) => state.userAuthSlice.isOnboarded;
 
 export default userAuthSlice.reducer;

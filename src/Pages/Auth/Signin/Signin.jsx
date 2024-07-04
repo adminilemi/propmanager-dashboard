@@ -15,11 +15,15 @@ import * as API from '@/api/apis';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import { useCookies } from '@/Hooks/cookiesHook';
 import RightSide from '@/components/RightSide';
-import { getUserAvatar, userAuthData } from '@/Redux/Features/userAuthSlice';
+import {
+  updateIsOnboarded,
+  getUserAvatar,
+  userAuthData,
+} from '@/Redux/Features/userAuthSlice';
 import { useAuthHook } from '@/Hooks/authHook';
 import { getCurrentUser } from '@/Redux/Features/userDatasSlice';
 
-function Signin() {
+const Signin = () => {
   const [passwordType, setPasswordType] = useState(false);
   const { loading, setLoading, errors, setErrors } = useGlobalHooks();
   const [userData, setUserData] = useState({ email: '', password: '' });
@@ -56,18 +60,25 @@ function Signin() {
         const userEmail = res.data.data.user.email;
         const userName = res.data.data.user.CompanyName;
         const profileImage = res.data.data.user.profilePic;
+        const isOnboarded = res.data.data.user.onBoarded;
 
         showAlert(successMessage.message);
 
         setCookies('ilemiUserToken', userToken);
 
         dispatch(getUserAvatar(profileImage));
+        dispatch(updateIsOnboarded(isOnboarded));
         dispatch(userAuthData({ userId, userEmail, userName }));
         dispatch(getCurrentUser(res.data.data.user));
 
         setLoading(false);
         setSession();
-        navigate('/');
+
+        if (!isOnboarded) {
+          navigate('/onboarding');
+        } else {
+          navigate('/');
+        }
       })
       .catch((err) => {
         setLoading(false);
@@ -206,6 +217,6 @@ function Signin() {
       <RightSide />
     </div>
   );
-}
+};
 
 export default Signin;

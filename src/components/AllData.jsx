@@ -2,6 +2,7 @@ import proImage from '@/assets/propertyImage.png';
 import Profile from './DashboardComps/SettingsComps/Profile/Profile';
 import MyAccount from './DashboardComps/SettingsComps/MyAccount/MyAccount';
 import MyNotifications from './DashboardComps/SettingsComps/MyNotifications/MyNotifications';
+import allState from './nigeria-state-and-lgas.json';
 
 export const propertiesData = [
   {
@@ -339,7 +340,7 @@ export const Inputs = (val) => {
   ];
 };
 
-export const OnboardingInputs = (val) => {
+export const OnboardingInputs = (val, getLga) => {
   return [
     {
       id: 'CompanyName',
@@ -349,39 +350,41 @@ export const OnboardingInputs = (val) => {
       placeholder: 'Enter business name ',
     },
     {
-      id: 'phoneNumber',
-      type: 'number',
-      label: 'Phone number',
-      value: val.phoneNumber,
-      placeholder: 'Enter phone number',
+      id: 'Typeoforganisation',
+      type: 'text',
+      label: 'Type of Organization',
+      value: val.Typeoforganisation,
+      placeholder: 'Enter Type of Organization',
     },
     {
       id: 'WhatsappNumber',
-      type: 'number',
+      type: 'tel',
       label: 'Whatsapp number',
       value: val.WhatsappNumber,
       placeholder: 'Enter whatsapp number',
     },
     {
-      id: 'HouseAddress',
-      label: 'House / Office Address',
+      id: 'OfficeAddress',
+      label: 'Office Address',
       type: 'text',
-      value: val.HouseAddress,
+      value: val.OfficeAddress,
       placeholder: 'Enter business address',
     },
     {
       id: 'State',
       label: 'State',
       value: val.State,
-      placeholder: 'Enter state',
-      options: nigeriaStates,
+      placeholder: 'Select state',
+      options: allState,
+      keyValue: 'state',
     },
     {
-      id: 'City',
+      id: 'LGA',
       type: 'text',
-      label: 'City',
-      value: val.City,
-      placeholder: 'Enter city',
+      label: 'LGA',
+      value: val.LGA,
+      placeholder: 'Select LGA',
+      options: getLga,
     },
   ];
 };
