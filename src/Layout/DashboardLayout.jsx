@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }) => {
   const { isLoggedIn } = useSelector(selectUserData);
   const isOnboarded = useSelector(selectIsOnboarded);
 
-  if (!isOnboarded) {
+  if (isLoggedIn && !isOnboarded) {
     return <Navigate to='/onboarding' replace />;
   }
   if (!isLoggedIn) {
