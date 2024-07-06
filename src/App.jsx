@@ -10,10 +10,9 @@ import {
   getSubPlanData,
   validateSubscription,
 } from './Redux/Features/userDatasSlice';
-// import { Spinner } from 'react-bootstrap';
 import { selectUserData } from './Redux/Features/userAuthSlice';
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   const { authUser } = useSelector(selectUserData);
   const { data: agentData } = useGetAgentQuery(authUser.userId, {
@@ -63,6 +62,6 @@ function App() {
       </Router>
     </main>
   );
-}
+};
 
 export default App;

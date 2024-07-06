@@ -18,10 +18,10 @@ function Notifications({ popUp, home }) {
   const renderNotifs = home ? notifs?.slice(0, 3) : notifs;
 
   return (
-    <main className='col-12 Notifs'>
-      <hgroup className='d-flex justify-content-between'>
+    <main className='w-full Notifs'>
+      <hgroup className='flex justify-between'>
         <h3> Notifications {notifs.length} </h3>
-        <h3 className='viewMore d-flex gap-2'>
+        <h3 className='viewMore flex gap-2'>
           {' '}
           <BsCheck2All />
           <span>Mark as read</span>
@@ -33,8 +33,8 @@ function Notifications({ popUp, home }) {
         <section
           className={
             popUp
-              ? 'py-5 emptyStateContainer d-flex justify-content-center'
-              : 'emptyStateContainer d-flex justify-content-center '
+              ? 'py-5 emptyStateContainer flex justify-center'
+              : 'emptyStateContainer flex justify-center '
           }
         >
           <EmptyState
@@ -67,7 +67,7 @@ function Notifications({ popUp, home }) {
           )}
       </ul>
 
-      <p className='viewMore col-11 mx-auto py-3'>View all notification</p>
+      <p className='viewMore w-11/12 mx-auto py-3'>View all notification</p>
     </main>
   );
 }

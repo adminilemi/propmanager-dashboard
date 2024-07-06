@@ -11,7 +11,7 @@ const StarRatings = ({ maxRatings, rating, setRating }) => {
   };
 
   return (
-    <div className='d-flex gap-2 justify-content-center'>
+    <div className='flex gap-2 justify-center'>
       {[...Array(maxRatings)].map((_, index) => (
         <BsStarFill
           key={index}

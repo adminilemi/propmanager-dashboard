@@ -33,7 +33,7 @@ function Paginate({
   }, [searchQuery, data, itemOffset, itemsPerPage, setCurrentPage]);
 
   return (
-    <section className='mt-3 d-flex justify-content-center col-12'>
+    <section className='mt-3 flex justify-center w-full'>
       {!isLoading && data && (
         <ReactPaginate
           breakLabel='...'

@@ -28,13 +28,13 @@ function StepForm() {
     setCurrentStep((prev) => prev - 1);
   };
   return (
-    <section className='d-flex flex-column  justify-content-between mt-5'>
-      <article className='col-12 mb-5 border-bottom'>
-        <div className='col-12 col-md-9 mx-auto'>
+    <section className='flex flex-col  justify-between mt-5'>
+      <article className='w-full mb-5 border-bottom'>
+        <div className='w-full md:w-9/12 mx-auto'>
           <StepFormLabel stepLabels={StepLabels} currentStep={currentStep} />
         </div>
       </article>
-      <article className='col-12 card py-4 px-3'>
+      <article className='container card py-4 px-3'>
         {currentStep === 0 && <PropertyAddress onNext={handleNext} />}
         {currentStep === 1 && (
           <ListingInfo onPrevious={handlePrevious} onNext={handleNext} />

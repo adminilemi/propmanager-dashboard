@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import './Signup.scss';
 import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 import BrandLogo from '@/components/BrandLogo';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import { useAuthHook } from '@/Hooks/authHook';
@@ -22,6 +22,7 @@ const initialState = {
   HouseAddress: '',
   password: '',
   confirmPass: '',
+  FSOReferral: '',
 };
 
 const Signup = () => {
@@ -29,6 +30,8 @@ const Signup = () => {
   const [userData, setUserData] = useState(initialState);
   const { loading, setLoading, errors, setErrors } = useGlobalHooks();
   const { setSession } = useAuthHook();
+
+  const [queryParameters] = useSearchParams();
 
   const navigate = useNavigate();
 
@@ -120,7 +123,14 @@ const Signup = () => {
       return;
     }
 
-    API.SignUp(userData)
+    const referralCode = queryParameters.get('query') || '';
+
+    const serverData = {
+      ...userData,
+      FSOReferral: referralCode,
+    };
+
+    API.SignUp(serverData)
       .then((res) => {
         const successMessage = {
           success: true,
@@ -161,16 +171,16 @@ const Signup = () => {
 
   return (
     <main
-      className={` userSignup d-flex flex-column flex-md-row justify-content-between bg-white`}
+      className={` userSignup flex flex-col md:flex-row justify-between bg-white`}
     >
-      <section className='d-flex flex-column aside '>
-        <header className='border-bottom py-2 px-2 px-lg-5 mb-3 container'>
-          <div className='col-2 py-2 '>
-            <BrandLogo />
+      <section className='flex flex-col aside pb-5'>
+        <header className='border-bottom py-2 mb-3 '>
+          <div className='container'>
+            <BrandLogo className='w-[10%]' />
           </div>
         </header>
-        <aside className='container px-2 px-lg-5'>
-          <section className='col-11 col-lg-8 '>
+        <aside className='container '>
+          <section className='w-full lg:w-10/12 mx-auto'>
             <h2> Welcome back,</h2>
             <p className='my-3'>
               Thank you for choosing to join us. Please complete your
@@ -179,7 +189,7 @@ const Signup = () => {
             </p>
 
             <form
-              className={` form d-flex flex-wrap justify-content-between mt-3`}
+              className={` form flex flex-wrap justify-between mt-3`}
               onSubmit={handleSignUp}
             >
               <section className='mb-3 inputWrapper'>
@@ -228,7 +238,7 @@ const Signup = () => {
                 </div>
               </section>
 
-              <section className='mb-3 w-100'>
+              <section className='mb-3 w-full'>
                 <label htmlFor='email' className='labelTitle'>
                   {' '}
                   Email
@@ -260,7 +270,7 @@ const Signup = () => {
                   ''
                 )}
               </section>
-              <section className='mb-3 w-100'>
+              <section className='mb-3 w-full'>
                 <label htmlFor='Phone Number' className='labelTitle'>
                   {' '}
                   Phone Number
@@ -292,7 +302,7 @@ const Signup = () => {
                   ''
                 )}
               </section>
-              <section className='mb-3 w-100'>
+              <section className='mb-3 w-full'>
                 <label htmlFor='Address' className='labelTitle'>
                   {' '}
                   Address
@@ -325,15 +335,13 @@ const Signup = () => {
                 )}
               </section>
 
-              <section className='col-12 mb-3'>
-                <div className='password'>
+              <section className='w-full mb-3 flex flex-wrap justify-between gap-y-3'>
+                <div className='password inputWrapper'>
                   <label htmlFor='password' className='labelTitle'>
                     {' '}
                     Password{' '}
                   </label>
-                  <div
-                    className={` inputContainer d-flex flex-row align-items-center`}
-                  >
+                  <div className={` inputContainer flex flex-row items-center`}>
                     <input
                       ref={inputRef}
                       id='password'
@@ -374,13 +382,11 @@ const Signup = () => {
                   )}
                 </div>
 
-                <div className='mt-3'>
+                <div className=' inputWrapper'>
                   <label htmlFor='confirmPass' className='labelTitle'>
                     Re-enter Password
                   </label>
-                  <div
-                    className={`inputContainer d-flex flex-row align-items-center `}
-                  >
+                  <div className={`inputContainer flex flex-row items-center `}>
                     <input
                       ref={inputRef}
                       id='confirmPass'
@@ -418,8 +424,8 @@ const Signup = () => {
                 </div>
               </section>
 
-              <div className=' col-12 text-center'>
-                <button className='main-btn col-12 mt-2' type='submit'>
+              <div className=' w-full text-center'>
+                <button className='main-btn w-full mt-2' type='submit'>
                   {loading ? <Spinner /> : 'Sign Up'}
                 </button>
                 {errors.errMessage === 'empty' ? (

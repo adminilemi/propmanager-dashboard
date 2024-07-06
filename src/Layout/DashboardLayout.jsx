@@ -19,7 +19,7 @@ const DashboardLayout = ({ children }) => {
   }
 
   return (
-    <main className='d-flex '>
+    <main className='flex '>
       <aside className='leftSide'>
         <Sidebar />
       </aside>

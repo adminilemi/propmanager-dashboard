@@ -15,11 +15,11 @@ function PropertyCard({
   },
 }) {
   return (
-    <main key={id} className='productCard d-flex flex-column'>
+    <main key={id} className='productCard flex flex-col'>
       <figure>
         <img src={imageUrl} alt='Ilemi product image' />
       </figure>
-      <section className='d-flex justify-content-between py-3 px-4'>
+      <section className='flex justify-between py-3 px-4'>
         <div className='flex-fill'>
           <h3 className='viewMore'>
             ₦{price} <span>/month</span>{' '}
@@ -27,7 +27,7 @@ function PropertyCard({
           <h3 className='my-2'>{title} </h3>
           <p>{location} </p>
         </div>
-        <div className='d-flex gap-1 '>
+        <div className='flex gap-1 '>
           <div>
             <button
               className={
@@ -47,7 +47,7 @@ function PropertyCard({
           <BsThreeDotsVertical />
         </div>
       </section>
-      <section className='border-top px-3 py-3 d-flex gap-2'>
+      <section className='border-top px-3 py-3 flex gap-2'>
         <small>
           {' '}
           <span>

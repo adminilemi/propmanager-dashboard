@@ -3,7 +3,7 @@ import { FaAngleRight, FaCheckCircle } from 'react-icons/fa';
 
 function StepFormLabel({ stepLabels, currentStep }) {
   return (
-    <ul className='stepLabels d-flex flex-wrap justify-content-between col-12'>
+    <ul className='stepLabels flex flex-wrap justify-between w-full'>
       {stepLabels.map((label, index) => (
         <li
           key={index}
@@ -11,7 +11,7 @@ function StepFormLabel({ stepLabels, currentStep }) {
             index === currentStep ? 'stepFormActive' : 'stepFormInActive'
           }`}
         >
-          <h4 className='d-flex gap-1 align-items-center'>
+          <h4 className='flex gap-1 items-center'>
             {index < currentStep ? (
               <FaCheckCircle className='checked-icon' />
             ) : (

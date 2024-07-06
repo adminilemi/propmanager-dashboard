@@ -4,7 +4,6 @@ import Search from '@/components/Search';
 import ListingDeetsCard from '@/components/DashboardComps/ListingComps/ListingDeetsCard';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Spinner } from 'react-bootstrap';
 import { useGetAllPropertiesQuery } from '@/api/apiSlice';
 import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import { useSelector } from 'react-redux';
@@ -17,6 +16,7 @@ import AddGifBanner from '@/components/AddGifBanner';
 import { selectSubValidity } from '@/Redux/Features/userDatasSlice';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { FaCopy } from 'react-icons/fa';
+import Spinner from '@/spinner/Spinner';
 
 function Listings() {
   const { authUser } = useSelector(selectUserData);
@@ -53,12 +53,9 @@ function Listings() {
   }
 
   return (
-    <main className='listings d-flex flex-column '>
+    <main className='listings flex flex-col py-8'>
       {!checkPlanValidity ? (
-        <section
-          style={{ height: '95vh' }}
-          className='emptyStateContainer col-11  m-auto d-flex flex-column align-items-center '
-        >
+        <section className='emptyStateContainer w-11/12 h-[85vh] m-auto flex flex-col items-center '>
           <EmptyState
             icons={noShift}
             title="You're not subscribed yet"
@@ -72,10 +69,7 @@ function Listings() {
           </div>
         </section>
       ) : filteredData.length === 0 && searchTerms === '' ? (
-        <section
-          style={{ height: '95vh' }}
-          className='emptyStateContainer col-11  m-auto d-flex flex-column align-items-center '
-        >
+        <section className='emptyStateContainer w-11/12 h-[85vh] m-auto flex flex-col items-center '>
           <EmptyState
             icons={noShift}
             title='No New Property yet'
@@ -89,10 +83,10 @@ function Listings() {
           </div>
         </section>
       ) : (
-        <section className='d-flex flex-column flex-lg-row justify-content-between'>
-          <article className='col-12 col-lg-4 listSide'>
-            <div className='col-11 pb-5 d-flex flex-column mx-auto '>
-              <div className='d-flex flex-column flex-lg-row justify-content-between align-items-center'>
+        <section className='flex flex-col lg:flex-row justify-between'>
+          <article className='w-full lg:w-4/12 listSide'>
+            <div className='w-11/12 pb-5 flex flex-col mx-auto '>
+              <div className='flex flex-col lg:flex-row justify-between items-center'>
                 <h1 className='my-3'> Listings</h1>
                 <div>
                   <Link to='/addproperty' className='main-btn'>
@@ -101,12 +95,15 @@ function Listings() {
                   </Link>
                 </div>
               </div>
-              <button onClick={handleCopyAgentLink} className='main-btn my-4'>
+              <button
+                onClick={handleCopyAgentLink}
+                className='main-btn my-4 flex items-center gap-3'
+              >
                 {' '}
                 <FaCopy /> Copy your unique link
               </button>
             </div>
-            <hgroup className='col-11  mx-auto d-flex justify-content-between'>
+            <hgroup className='w-11/12  mx-auto flex justify-between'>
               <h1 className='my-3'>
                 {' '}
                 Properties <span className='count'> {data.length} </span>
@@ -117,7 +114,7 @@ function Listings() {
               </h1>
             </hgroup>
 
-            <div className='col-11  my-3 mx-auto'>
+            <div className='w-11/12  my-3 mx-auto'>
               <Search placeholder='Search...' />
             </div>
 
@@ -143,25 +140,25 @@ function Listings() {
                       key={idx}
                       className={
                         toggle[idx]
-                          ? 'cardActive d-flex justify-content-between'
-                          : 'd-flex justify-content-between'
+                          ? 'cardActive flex justify-between'
+                          : 'flex justify-between'
                       }
                       onClick={() => toggleAccordion(idx)}
                     >
-                      <figure className='col-3'>
+                      <figure className='w-3/12'>
                         <img
                           src={ExteriorImages[0]?.url || InteriorImages[0]?.url}
                           alt=''
                         />
                       </figure>
-                      <div className='col-8 d-flex justify-content-between'>
-                        <div className='listTitle d-flex flex-column justify-content-between py-2'>
+                      <div className='w-8/12 flex justify-between'>
+                        <div className='listTitle flex flex-col justify-between py-2'>
                           <h4>{Property_Name} </h4>
                           <p>{StreetAddress.substring(0, 18)}... </p>
                         </div>
 
                         <div>
-                          <div className='d-flex gap-1 '>
+                          <div className='flex gap-1 '>
                             <div>
                               <button
                                 className={
@@ -189,7 +186,7 @@ function Listings() {
             )}
           </article>
 
-          <article className='col-12 col-lg-8'>
+          <article className='w-full lg:8'>
             <section className=''>
               <AddGifBanner images={gif} />
             </section>

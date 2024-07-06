@@ -15,7 +15,7 @@ function Sidebar() {
   return (
     <main className=' sidebarContainer'>
       <article className={`sidebar `}>
-        <div className='col-4 ps-2 mb-5 mt-3 d-flex gap-3 align-items-end'>
+        <div className='w-4/12 ps-2 mb-5 mt-3 flex gap-3 align-items-end'>
           <BrandLogo sidebar />{' '}
           <div
             onClick={() => setToggleSideBar(!toggleSideBar)}
@@ -28,7 +28,7 @@ function Sidebar() {
             )}
           </div>
         </div>
-        <ul className='mt-5 mt-lg-0  d-flex flex-column justify-content-between'>
+        <ul className='mt-5 mt-lg-0  flex flex-col justify-between'>
           {Employer.map((tab) => (
             <NavLink
               key={tab.id}
@@ -41,14 +41,14 @@ function Sidebar() {
                   : 'sidebarNotActive'
               }
             >
-              <hgroup className='d-flex gap-1 align-items-center tabTitle'>
+              <hgroup className='flex gap-1 items-center tabTitle'>
                 <h4 className=''>{tab.icon} </h4>
                 {toggleSideBar && <h4>{tab.title}</h4>}
               </hgroup>
             </NavLink>
           ))}
         </ul>
-        <ul className='mt-5  d-flex flex-column justify-content-between'>
+        <ul className='mt-5  flex flex-col justify-between'>
           {Account.map((tab) => (
             <NavLink
               key={tab.id}
@@ -62,7 +62,7 @@ function Sidebar() {
               }
             >
               <li>
-                <hgroup className='d-flex gap-1 align-items-center tabTitle'>
+                <hgroup className='flex gap-1 items-center tabTitle'>
                   <h4 className=''>{tab.icon} </h4>
                   {toggleSideBar && <h4>{tab.title}</h4>}
                 </hgroup>
@@ -74,7 +74,7 @@ function Sidebar() {
           className='sidebarNotActive tabTitle'
           onClick={() => handleShow('logout')}
         >
-          <hgroup className='d-flex flex-row align-items-center ps-2 tabTitle'>
+          <hgroup className='flex flex-row items-center ps-2 tabTitle'>
             <h4 className='me-2'>
               {' '}
               <svg

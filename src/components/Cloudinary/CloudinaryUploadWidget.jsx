@@ -55,7 +55,7 @@ const CloudinaryUploadWidget = ({ uwConfig, setPublicId, setImageData }) => {
     <CloudinaryScriptContext.Provider value={{ loaded }}>
       <button
         id='upload_widget'
-        className='main-btn col-12'
+        className='main-btn w-full'
         onClick={initializeCloudinaryWidget}
       >
         Upload

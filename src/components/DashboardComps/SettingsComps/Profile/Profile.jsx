@@ -11,7 +11,7 @@ import {
   selectUserData,
 } from '@/Redux/Features/userAuthSlice';
 import { useUpdateAgentMutation } from '@/api/apiSlice';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 
 const Profile = () => {
   const { user } = useSelector(selectUser);
@@ -83,10 +83,10 @@ const Profile = () => {
           <h3>Personal Info</h3>
         </hgroup>
 
-        <section className='mt-5 col-11 mx-auto'>
+        <section className='mt-5 w-11/12 mx-auto'>
           <h5>Avatar</h5>
-          <div className='mt-3 d-flex flex-column flex-md-row align-items-center gap-3  '>
-            <figure className='userInitials_nav d-flex justify-content-center align-items-center '>
+          <div className='mt-3 flex flex-col md:flex-row items-center gap-3  '>
+            <figure className='userInitials_nav flex justify-center items-center '>
               {userData.profilePic ? (
                 <img src={userData.profilePic} alt='' />
               ) : (
@@ -97,7 +97,7 @@ const Profile = () => {
               )}
             </figure>
 
-            <div className='d-flex flex-column flex-md-row gap-3'>
+            <div className='flex flex-col md:flex-row gap-3'>
               <div>
                 {!isEdit ? (
                   <button className='main-btn' type='button' disabled>
@@ -127,7 +127,7 @@ const Profile = () => {
           </div>
         </section>
         <hr />
-        <section className=' my-5 col-11 mx-auto'>
+        <section className=' my-5 w-11/12 mx-auto'>
           <div className='mt-3'>
             <label htmlFor='Company Name' className='labelTitle'>
               {' '}
@@ -142,7 +142,7 @@ const Profile = () => {
               disabled={!isEdit}
             />
           </div>
-          <div className='d-flex flex-wrap gap-3'>
+          <div className='flex flex-wrap gap-3'>
             <div className='mt-3 flex-fill'>
               <label htmlFor='First Name' className='labelTitle'>
                 {' '}
@@ -191,9 +191,9 @@ const Profile = () => {
         <hr />
       </section>
 
-      <div className='d-flex justify-content-end my-3 col-11 mx-auto'>
+      <div className='flex justify-end my-3 w-11/12 mx-auto'>
         {isEdit ? (
-          <div className='d-flex gap-2'>
+          <div className='flex gap-2'>
             <button
               className='outline-btn'
               type='button'

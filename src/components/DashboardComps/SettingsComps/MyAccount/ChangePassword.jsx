@@ -4,7 +4,7 @@ import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import { useChangePasswordMutation } from '@/api/apiSlice';
 import PopUp from '@/components/popUps/PopUp';
 import React, { useState } from 'react';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 import { BsX } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 
@@ -44,18 +44,15 @@ function ChangePassword({ id, close }) {
 
   return (
     <PopUp id={id}>
-      <hgroup className='d-flex flex-row justify-content-between align-items-center col-11 mx-auto'>
+      <hgroup className='flex flex-row justify-between items-center w-11/12 mx-auto'>
         <h4>Change Password</h4>
-        <h4
-          onClick={close}
-          className=' X d-flex align-items-center justify-content-center'
-        >
+        <h4 onClick={close} className=' X flex items-center justify-center'>
           <BsX />
         </h4>
       </hgroup>
       <hr />
-      <section className='col-11 mx-auto mb-3 d-flex flex-column align-items-end mt-3'>
-        <div className=' col-12'>
+      <section className='w-11/12 mx-auto mb-3 flex flex-col align-items-end mt-3'>
+        <div className=' w-full'>
           <label htmlFor='Old Password'>Old Password</label>
           <input
             id='OldPassword'
@@ -67,7 +64,7 @@ function ChangePassword({ id, close }) {
             onChange={handleChange}
           />
         </div>
-        <div className=' col-12 mb-3 mt-3'>
+        <div className=' w-full mb-3 mt-3'>
           <label htmlFor='New Password'>New Password</label>
           <input
             id='newPassword'
@@ -79,7 +76,7 @@ function ChangePassword({ id, close }) {
             onChange={handleChange}
           />
         </div>
-        <div className=' col-12 '>
+        <div className=' w-full '>
           <label htmlFor='Confirm New Password '>Confirm New Password</label>
           <input
             id='confirmPassword'
@@ -89,7 +86,7 @@ function ChangePassword({ id, close }) {
             placeholder='Re-enter New Password'
           />
         </div>
-        <div className='d-flex flex-row justify-content-between mt-5 gap-3'>
+        <div className='flex flex-row justify-between mt-5 gap-3'>
           <button type='submit' className='outline-btn' onClick={close}>
             Cancel
           </button>
@@ -102,7 +99,7 @@ function ChangePassword({ id, close }) {
           </button>
         </div>
       </section>
-      <div className='d-flex justify-content-center col-12'>
+      <div className='flex justify-center w-full'>
         {errors.error && (
           <h2 className='error_message py-3'>{errors.errMessage} </h2>
         )}

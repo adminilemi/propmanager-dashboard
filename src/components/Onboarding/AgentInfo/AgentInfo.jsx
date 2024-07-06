@@ -74,13 +74,13 @@ const AgentInfo = ({ onNext }) => {
 
   return (
     <section>
-      <div className='d-flex justify-content-end stepsNumber'>
+      <div className='flex justify-end stepsNumber'>
         <h5>Step 3/4</h5>
       </div>
 
-      <form onSubmit={handleSubmit} className='d-flex flex-column'>
-        <div className='d-flex flex-column col-12 mb-5'>
-          <div className='col-12 col-md-5 mb-5'>
+      <form onSubmit={handleSubmit} className='flex flex-col'>
+        <div className='flex flex-col w-full mb-5'>
+          <div className='w-full md:5 mb-5'>
             <label> Upload Profile Image</label>
             <ProfileImage
               loading={loading}
@@ -90,11 +90,11 @@ const AgentInfo = ({ onNext }) => {
               uploadFiles={uploadFiles}
             />
           </div>
-          <section className='d-flex flex-wrap justify-content-between '>
+          <section className='flex flex-wrap justify-between '>
             {OnboardingInputs(propData, getLga).map(
               ({ id, label, type, placeholder, value, options, keyValue }) =>
                 options ? (
-                  <div key={id} className=' inputWrapper d-flex flex-column'>
+                  <div key={id} className=' inputWrapper flex flex-col'>
                     <label>
                       {' '}
                       {label} <em>*</em>{' '}
@@ -120,7 +120,7 @@ const AgentInfo = ({ onNext }) => {
                     </select>
                   </div>
                 ) : (
-                  <div key={id} className=' inputWrapper d-flex flex-column'>
+                  <div key={id} className=' inputWrapper flex flex-col'>
                     <label>
                       {' '}
                       {label} <em>*</em>{' '}
@@ -142,12 +142,12 @@ const AgentInfo = ({ onNext }) => {
           </section>
         </div>
 
-        <div className='col-12 text-center'>
+        <div className='w-full text-center'>
           {errors.error && (
             <p className='error_message'> {errors.errMessage} </p>
           )}
         </div>
-        <div className='col-12 text-end mt-5'>
+        <div className='w-full text-end mt-5'>
           <button className='main-btn' type='submit'>
             Next
           </button>

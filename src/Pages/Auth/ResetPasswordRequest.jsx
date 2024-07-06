@@ -4,7 +4,7 @@ import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import * as API from '@/api/apis';
 
 import { useNavigate } from 'react-router-dom';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 import RightSide from '@/components/RightSide';
 import BrandLogo from '@/components/BrandLogo';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
@@ -52,16 +52,17 @@ function ResetPasswordRequest() {
   };
 
   return (
-    <div className={` reset d-flex flex-column flex-md-row `}>
-      <section className='d-flex flex-column aside py-3'>
-        <header className='border-bottom py-3 px-4 mb-3'>
-          <div className='col-2 '>
-            <BrandLogo />
+    <div className={` reset flex flex-col md:flex-row `}>
+      <section className='flex flex-col aside py-3'>
+        <header className='border-bottom py-2 mb-3 '>
+          <div className='container'>
+            <BrandLogo className='w-[10%]' />
           </div>
         </header>
-        <aside className='col-9 mx-auto'>
+
+        <aside className='w-9/12 mx-auto'>
           <form
-            className={` form d-flex flex-column`}
+            className={` form flex flex-col`}
             onSubmit={handleResetPassword}
           >
             <h2>Reset Password</h2>
@@ -88,8 +89,8 @@ function ResetPasswordRequest() {
               </div>
             </section>
 
-            <div className=' col-12 text-center'>
-              <button className='main-btn col-12 mt-3'>
+            <div className=' w-full text-center'>
+              <button className='main-btn w-full mt-3'>
                 {loading ? <Spinner /> : 'Reset'}
               </button>
               {errors.errMessage === 'empty' ? (

@@ -27,9 +27,9 @@ function NavBar() {
   // const dispatch = useDispatch();
 
   return (
-    <div className='navbar d-flex flex-column align-items-end'>
-      <header className=' col-12 d-flex flex-row heading justify-content-end'>
-        <div className='d-flex  heading gap-3 '>
+    <div className='navbar flex flex-col align-items-end'>
+      <header className=' w-full flex flex-row heading justify-end'>
+        <div className='flex  heading gap-3 '>
           <button
             type='button'
             onClick={() => handleShow('notif')}
@@ -56,7 +56,7 @@ function NavBar() {
         </Modal>
       )}
       {toggle['user'] && (
-        <Modal id='user' className='userPopUp col-12 col-md-6 m-3'>
+        <Modal id='user' className='userPopUp w-full md:6 m-3'>
           <UserPop
             coyLogo={logoImage}
             companyName={userName || authUser.userName}

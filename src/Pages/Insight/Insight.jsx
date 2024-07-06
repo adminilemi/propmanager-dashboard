@@ -60,13 +60,13 @@ function Insight() {
   };
 
   return (
-    <main className='insight d-flex flex-column '>
+    <main className='insight flex flex-col '>
       <section className=''>
         <h1 className='mb-5'> Rental Portfolio</h1>
-        <article className='d-flex flex-column flex-lg-row justify-content-between mb-4 gap-3'>
-          <section className='col-12 flex-fill rentalOverview card d-flex flex-column justify-content-between'>
-            <div className='d-flex justify-content-between'>
-              <div className='col-8'>
+        <article className='flex flex-col lg:flex-row justify-between mb-4 gap-3'>
+          <section className='w-full flex-fill rentalOverview card flex flex-col justify-between'>
+            <div className='flex justify-between'>
+              <div className='w-8/12'>
                 <h3>Rental Overview</h3>
                 <p>
                   Show overview from Nov 2021 - Dec 2021.{' '}
@@ -79,7 +79,7 @@ function Insight() {
                   </span>{' '} */}
                 </p>
               </div>
-              <div className='col-3 d-flex flex-column'>
+              <div className='w-3/12 flex flex-col'>
                 <div>
                   <input
                     type='date'
@@ -90,14 +90,14 @@ function Insight() {
               </div>
             </div>
 
-            <article className='d-flex flex-column flex-lg-row justify-content-between mt-4'>
-              <div className='col-12 col-lg-4 listingUnit card '>
-                <figure className='col-3'>
+            <article className='flex flex-col lg:flex-row justify-between mt-4'>
+              <div className='w-full lg:w-4/12 listingUnit card '>
+                <figure className='w-3/12'>
                   <img src={home} alt='' />
                 </figure>
 
                 <p className='my-3'> Listing Units</p>
-                <div className='d-flex gap-2 border-bottom pb-3'>
+                <div className='flex gap-2 border-bottom pb-3'>
                   <h4> 78</h4>
                   <span className='greenBg'> +2.8%</span>{' '}
                 </div>
@@ -108,16 +108,16 @@ function Insight() {
                   15 Available
                 </p>
               </div>
-              <div className='col-12 col-lg-7 rentsData card mt-4 mt-lg-0'>
+              <div className='w-full lg:7 rentsData card mt-4 mt-lg-0'>
                 <h5> Rents</h5>
 
-                <div className='d-flex justify-content-between'>
+                <div className='flex justify-between'>
                   <div>
                     <h4>4</h4>
                     <p> Due this month</p>
                   </div>
                   <div>
-                    <div className='d-flex gap-1'>
+                    <div className='flex gap-1'>
                       <h4>16</h4>
                       <span className='purpleBg'>70.96%</span>
                     </div>
@@ -127,7 +127,7 @@ function Insight() {
                 </div>
 
                 <hr className='my-3' />
-                <div className='d-flex justify-content-between'>
+                <div className='flex justify-between'>
                   <div>
                     <h4 style={{ color: '#F06565' }}>15</h4>
                     <p> Units Left</p>
@@ -141,10 +141,10 @@ function Insight() {
               </div>
             </article>
           </section>
-          <section className='col-12 col-lg-5 card propertiesOverview'>
-            <div className='d-flex justify-content-between'>
-              <div className='d-flex gap-2 col-6'>
-                <figure className='col-3'>
+          <section className='w-full lg:5 card propertiesOverview'>
+            <div className='flex justify-between'>
+              <div className='flex gap-2 w-6/12'>
+                <figure className='w-3/12'>
                   <img src={properties} alt='' />
                 </figure>
 
@@ -154,7 +154,7 @@ function Insight() {
                 </div>
               </div>
 
-              <div className='d-flex flex-column justify-content-between align-items-end col-6'>
+              <div className='flex flex-col justify-between align-items-end w-6/12'>
                 <BsThreeDotsVertical />
                 <span>
                   {' '}
@@ -167,7 +167,7 @@ function Insight() {
               </div>
             </div>
 
-            <ul className='propList d-flex flex-wrap gap-1 mt-3'>
+            <ul className='propList flex flex-wrap gap-1 mt-3'>
               {[
                 { id: 1, title: '22', sub: 'Vacant' },
                 { id: 2, title: '39', sub: 'Occupied' },
@@ -187,14 +187,14 @@ function Insight() {
               <ProgressBar now={68} className='my-3' />
               <ProgressBar now={32} className='listed' />
 
-              <div className='d-flex gap-5 mt-3'>
-                <div className='d-flex gap-2 align-items-center'>
+              <div className='flex gap-5 mt-3'>
+                <div className='flex gap-2 items-center'>
                   <h6>
                     <RiCheckboxBlankFill color='#5F259F' /> 68%{' '}
                   </h6>{' '}
                   <span> Occupied</span>
                 </div>
-                <div className='d-flex gap-2 align-items-center'>
+                <div className='flex gap-2 items-center'>
                   <h6>
                     {' '}
                     <RiCheckboxBlankFill color='#100a55' />
@@ -207,10 +207,10 @@ function Insight() {
           </section>
         </article>
 
-        <article className='mt-5 col-12 lineChartWrapper card'>
+        <article className='mt-5 w-full lineChartWrapper card'>
           <section>
             <p>Property Listed</p>
-            <div className='d-flex gap-2 align-items-center my-3'>
+            <div className='flex gap-2 items-center my-3'>
               <h4>78</h4>
               <div>
                 <span className='greenBg'>+10.6%</span>

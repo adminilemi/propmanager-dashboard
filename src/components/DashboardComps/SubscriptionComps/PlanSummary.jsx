@@ -3,7 +3,7 @@ import { useCreateSubscriptionsMutation } from '@/api/apiSlice';
 import { pricingPlan } from '@/components/AllData';
 import PopUp from '@/components/popUps/PopUp';
 import React, { useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 import { BsXLg } from 'react-icons/bs';
 import { FaCircle } from 'react-icons/fa';
 
@@ -40,7 +40,7 @@ function PlanSummary({ planData, id, close }) {
   return (
     <PopUp id={id}>
       <main className='planSummary '>
-        <section className='col-11 mx-auto py-3 d-flex justify-content-between'>
+        <section className='w-11/12 mx-auto py-3 flex justify-between'>
           <h4>Upgrade Plan</h4>{' '}
           <h4 onClick={close} className='Icons'>
             {' '}
@@ -49,18 +49,18 @@ function PlanSummary({ planData, id, close }) {
         </section>
         <hr />
 
-        <section className='col-11 mx-auto'>
+        <section className='w-11/12 mx-auto'>
           <article className='planCardBody mb-3'>
             <div className='my-3'>
               <h5>Plan</h5>
-              <h3 className='subSumTitle my-3 p-3 d-flex justify-content-between'>
+              <h3 className='subSumTitle my-3 p-3 flex justify-between'>
                 {subSummary.title} ₦{subSummary.price} per month
                 <span>x {total.isYear ? 'Twelve' : 'One'}</span>
               </h3>
             </div>
             {subSummary?.benefits?.map(({ id, li }) => (
               <ul className='' key={id}>
-                <li className='d-flex gap-2 py-2'>
+                <li className='flex gap-2 py-2'>
                   <div>
                     <FaCircle color='#CBD5E0' size={10} />
                   </div>
@@ -70,7 +70,7 @@ function PlanSummary({ planData, id, close }) {
             ))}
           </article>
           <hr />
-          <article className='d-flex gap-2 mt-2 align-items-center'>
+          <article className='flex gap-2 mt-2 items-center'>
             <h4>Total</h4>
             <h3 className='subSumTitle my-3 p-3'>
               ₦{total.isYear ? total.price : subSummary?.price}
@@ -78,15 +78,15 @@ function PlanSummary({ planData, id, close }) {
           </article>
         </section>
 
-        <section className='col-11 mx-auto d-flex flex-column my-4'>
+        <section className='w-11/12 mx-auto flex flex-col my-4'>
           <button
-            className='main-btn col-12 text-center my-3'
+            className='main-btn w-full text-center my-3'
             type='button'
             onClick={handleSuubscribe}
           >
             {isLoading ? <Spinner /> : 'Make Payment'}
           </button>
-          <button className='outline-btn col-12' onClick={close} type='button'>
+          <button className='outline-btn w-full' onClick={close} type='button'>
             {' '}
             Cancel
           </button>

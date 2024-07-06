@@ -3,11 +3,11 @@ import Logo from '../assets/property4u-logo-white.png';
 import { Link } from 'react-router-dom';
 import IlemiIcon from './SGVs/IlemiIcon';
 
-function BrandLogo({ sidebar }) {
+function BrandLogo({ sidebar, className }) {
   return (
-    <Link to='/' className='d-flex'>
+    <Link to='/' className={`${className} flex`}>
       {sidebar ? (
-        <div className='col-12'>
+        <div className='w-full'>
           <IlemiIcon />
         </div>
       ) : (

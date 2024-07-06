@@ -15,8 +15,8 @@ function OnboardingForm() {
     setCurrentStep((prev) => prev - 1);
   };
   return (
-    <section className='d-flex flex-column  justify-content-between mt-5'>
-      {/* <article className='d-flex justify-content-end container'>
+    <section className='flex flex-col  justify-between mt-5'>
+      {/* <article className='flex justify-end container'>
         <div className=''>
           <FormLabel stepLabels={StepLabels} currentStep={currentStep} />
         </div>
