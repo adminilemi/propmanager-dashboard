@@ -4,12 +4,10 @@ import { PiCaretRightBold } from 'react-icons/pi';
 import home from '../../assets/home.png';
 import properties from '../../assets/properties.png';
 import { RiCheckboxBlankFill } from 'react-icons/ri';
-
 import { BsHouseFill, BsThreeDotsVertical } from 'react-icons/bs';
-import { ProgressBar } from 'react-bootstrap';
 import LineChart from '@/components/DashboardComps/HomeComps/Charts/LineChart';
 
-function Insight() {
+const Insight = () => {
   const chartData = {
     labels: [
       'Jan',
@@ -184,8 +182,8 @@ function Insight() {
             <div className='propProgress mt-2'>
               <h3>Property listed </h3>
 
-              <ProgressBar now={68} className='my-3' />
-              <ProgressBar now={32} className='listed' />
+              {/* <ProgressBar now={68} className='my-3' />
+              <ProgressBar now={32} className='listed' /> */}
 
               <div className='flex gap-5 mt-3'>
                 <div className='flex gap-2 items-center'>
@@ -225,6 +223,6 @@ function Insight() {
       </section>
     </main>
   );
-}
+};
 
 export default Insight;
