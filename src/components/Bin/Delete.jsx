@@ -5,10 +5,10 @@ function Delete({ id, title, subTitle, close, action, actionTitle }) {
   return (
     <PopUp id={id}>
       <div className='container-deactivate py-5'>
-        <div className='d-flex flex-column mx-auto col-10'>
+        <div className='flex flex-col mx-auto w-10/12'>
           <h3>{title}</h3>
           <p>{subTitle}</p>
-          <div className='mt-5 d-flex flex-row gap-3 col-6'>
+          <div className='mt-5 flex flex-row gap-3 w-6/12'>
             <button onClick={close} className='outline-dark'>
               Cancel
             </button>

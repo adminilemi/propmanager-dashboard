@@ -164,17 +164,17 @@ const PropertyImages = ({ onPrevious, onNext }) => {
   };
 
   return (
-    <main className='productUpload col-12'>
+    <main className='productUpload w-full'>
       {/* Interior */}
-      <section className='d-flex flex-column col-12 mt-5'>
-        <div className='sectHeader d-flex justify-content-between border-bottom pb-2 mb-3'>
+      <section className='flex flex-col w-full mt-5'>
+        <div className='sectHeader flex justify-between border-bottom pb-2 mb-3'>
           <h4>Upload Images</h4>
 
           {uploadMessage.title !== '' && <div>{uploadMessage.title}</div>}
         </div>
 
         {!toggle['Interior'] && (
-          <section className='d-flex flex-wrap gap-2 justify-content-between col-12'>
+          <section className='flex flex-wrap gap-2 justify-between w-full'>
             {imageData.Interior.map(({ name, url }) => (
               <ImageContainer
                 key={name}
@@ -190,7 +190,7 @@ const PropertyImages = ({ onPrevious, onNext }) => {
         )}
       </section>
 
-      <div className='d-flex flex-row justify-content-between mt-5'>
+      <div className='flex flex-row justify-between mt-5'>
         <button onClick={onPrevious} type='button' className='outline-btn'>
           {' '}
           Back{' '}
@@ -205,7 +205,7 @@ const PropertyImages = ({ onPrevious, onNext }) => {
           {/* {loading['submitIt'] ? <Spinner /> : 'Submit'} */}
         </button>
       </div>
-      <div className='d-flex justify-content-center'>
+      <div className='flex justify-center'>
         {errors.error && <p className='error_message'>{errors.errMessage}</p>}
       </div>
     </main>

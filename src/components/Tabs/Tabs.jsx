@@ -11,10 +11,10 @@
 //   return (
 //     <main className={styles.tabsContainer}>
 //       <section
-//         className={`${styles.tabTitleContainer} d-flex flex-row justify-content-between `}
+//         className={`${styles.tabTitleContainer} flex flex-row justify-between `}
 //       >
 //         {TabsData[0].TabTitle.map((tab) => (
-//           <section key={tab.id} className={`${styles.tabTitle} col-6`}>
+//           <section key={tab.id} className={`${styles.tabTitle} w-6/12`}>
 //             <TabTitle
 //               title={tab.title}
 //               styles={styles}
@@ -25,7 +25,7 @@
 //           </section>
 //         ))}
 //       </section>
-//       <section className={`${styles.tabContents} d-flex flex-column`}>
+//       <section className={`${styles.tabContents} flex flex-col`}>
 //         {TabsData[0].TabContents.map((tab) => (
 //           <section key={tab.id} className={`${styles.tabContents} `}>
 //             <TabContents

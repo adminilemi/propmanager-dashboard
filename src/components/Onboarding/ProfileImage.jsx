@@ -30,8 +30,8 @@ const ProfileImage = ({
         <small className='text-center'>Upload Image (PNG, JPG, AVIF)</small>
       </div>
 
-      <div className='d-flex flex-column flex-lg-row justify-content-center gap-3'>
-        <div className='col-12 '>
+      <div className='flex flex-col lg:flex-row justify-center gap-3'>
+        <div className='w-full '>
           <CustomUploadToCloudinary
             id={id}
             loading={loading[id]}

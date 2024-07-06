@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 
 const CustomUploadToCloudinary = ({ uploadChange, loading, id }) => {
   const fileInputRef = useRef(null);
@@ -9,7 +9,7 @@ const CustomUploadToCloudinary = ({ uploadChange, loading, id }) => {
       <label
         htmlFor={id}
         style={{ cursor: 'pointer' }}
-        className='main-btn col-12 text-center'
+        className='main-btn w-full text-center'
       >
         {loading ? <Spinner /> : 'Upload'}
       </label>

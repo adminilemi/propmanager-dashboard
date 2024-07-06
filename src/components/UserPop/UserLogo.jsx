@@ -10,9 +10,9 @@ function UserLogo({ coyLogo, userName, chev }) {
     <div
       onClick={() => handleShow('user')}
       id='user'
-      className='d-flex gap-3 align-items-center userLogo'
+      className='flex gap-3 items-center userLogo'
     >
-      <figure className='userInitials d-flex justify-content-center align-items-center me-2'>
+      <figure className='userInitials flex justify-center items-center me-2'>
         {coyLogo ? (
           <img src={coyLogo} alt='' />
         ) : (

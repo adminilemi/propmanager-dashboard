@@ -24,26 +24,26 @@ function ListingDeetsCard({
   return (
     <>
       {toggle[id] && (
-        <main key={id} className='ListingDeetsCard col-11 mx-auto py-5'>
+        <main key={id} className='ListingDeetsCard w-11/12 mx-auto py-5'>
           <section>
-            <div className='d-flex justify-content-between'>
-              <div className='col-8'>
+            <div className='flex justify-between'>
+              <div className='w-8/12'>
                 <h3>{Property_Name}</h3>
                 <p>{StreetAddress}</p>
               </div>
-              <div className='col-3 d-flex flex-column'>
-                {/* <div className='card d-flex flex-row py-1 px-2 gap-1 showProp align-items-center'>
+              <div className='w-3/12 flex flex-col'>
+                {/* <div className='card flex flex-row py-1 px-2 gap-1 showProp items-center'>
                   <BsCalendarDate color='var(--Grey6)' />
                   <span className=''> Show Property Calendar</span>
                 </div> */}
               </div>
             </div>
 
-            <ul className='propBanner mt-4 py-2 px-3 d-flex flex-wrap gap-2 justify-content-between'>
+            <ul className='propBanner mt-4 py-2 px-3 flex flex-wrap gap-2 justify-between'>
               <li>
                 <h5> Property Type</h5>
                 <div>
-                  <h6 className='d-flex gap-2'>
+                  <h6 className='flex gap-2'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -73,7 +73,7 @@ function ListingDeetsCard({
               <li>
                 <h5> Rooms</h5>
                 <div>
-                  <h6 className='d-flex gap-2'>
+                  <h6 className='flex gap-2'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -112,7 +112,7 @@ function ListingDeetsCard({
               <li>
                 <h5> BathRooms</h5>
                 <div>
-                  <h6 className='d-flex gap-2'>
+                  <h6 className='flex gap-2'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -152,7 +152,7 @@ function ListingDeetsCard({
               <li>
                 <h5> Square Feet </h5>
                 <div>
-                  <h6 className='d-flex gap-2'>
+                  <h6 className='flex gap-2'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -196,7 +196,7 @@ function ListingDeetsCard({
               <li>
                 <h5> Year Built</h5>
                 <div>
-                  <h6 className='d-flex gap-2'>
+                  <h6 className='flex gap-2'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='20'
@@ -284,7 +284,7 @@ function ListingDeetsCard({
               <li>
                 <h5> Property Cat.</h5>
                 <div>
-                  <h6 className='d-flex gap-2'>
+                  <h6 className='flex gap-2'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -314,7 +314,7 @@ function ListingDeetsCard({
               <li>
                 <h5> Request</h5>
                 <div>
-                  <h6 className='d-flex gap-2'>
+                  <h6 className='flex gap-2'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -359,13 +359,13 @@ function ListingDeetsCard({
               </li>
             </ul>
 
-            <section className='selectedProp d-flex flex-column flex-md-row justify-content-between mt-5'>
-              <article className='col-12 col-md-6'>
+            <section className='selectedProp flex flex-col md:flex-row justify-between mt-5'>
+              <article className='w-full md:6'>
                 {/* <div>
                   <h4>Available rooms</h4>
                   <p>Total rooms available</p>
                   <ProgressBar now={68} className='my-2' />
-                  <div className='d-flex justify-content-between'>
+                  <div className='flex justify-between'>
                     <h6>2 rooms available of 4 rooms</h6>
                     <h6>50%</h6>
                   </div>
@@ -377,7 +377,7 @@ function ListingDeetsCard({
 
                 <div>
                   <h4>Equipments</h4>
-                  <ul className='d-flex flex-wrap gap-1'>
+                  <ul className='flex flex-wrap gap-1'>
                     {Amenities.map((item, idx) => (
                       <small key={idx} className='view'>
                         {item.title}{' '}
@@ -386,9 +386,9 @@ function ListingDeetsCard({
                   </ul>
                 </div>
               </article>
-              {/* <aside className='col-12 col-md-5  d-flex flex-column justify-content-between'>
+              {/* <aside className='w-full md:5  flex flex-col justify-between'>
                 <div className='tenantCard'>
-                  <div className='titleGroup d-flex gap-3 py-3'>
+                  <div className='titleGroup flex gap-3 py-3'>
                     <figure className='messageAvatar'>
                       <img
                         src='https://cdn-icons-png.flaticon.com/512/3177/3177440.png'
@@ -402,21 +402,21 @@ function ListingDeetsCard({
                   </div>
 
                   <div className='mt-3'>
-                    <div className='d-flex justify-content-between align-items-center'>
+                    <div className='flex justify-between items-center'>
                       <small> Move-in Date</small>
                       <h5>Dec 1, 2021</h5>
                     </div>
-                    <div className='d-flex justify-content-between align-items-center my-3'>
+                    <div className='flex justify-between items-center my-3'>
                       <small> Contact</small>
                       <h5>(+1) 324-5329</h5>
                     </div>
-                    <div className='d-flex justify-content-between align-items-center'>
+                    <div className='flex justify-between items-center'>
                       <small> Price Per Month</small>
                       <h5>(+1) 324-5329</h5>
                     </div>
-                    <div className='my-3 col-12'>
+                    <div className='my-3 w-full'>
                       <button
-                        className='main-btn col-12 d-flex align-items-center justify-content-center gap-2'
+                        className='main-btn w-full flex items-center justify-center gap-2'
                         type='button'
                       >
                         <MdOutlineEmail />
@@ -428,8 +428,8 @@ function ListingDeetsCard({
 
                 <div className='propOccupied my-3'>
                   <p className='mb-3'>Property occupied this month:</p>
-                  <div className='d-flex align-items-end justify-content-between'>
-                    <div className='d-flex align-items-end gap-2'>
+                  <div className='flex align-items-end justify-between'>
+                    <div className='flex align-items-end gap-2'>
                       <h3>83%</h3>{' '}
                       <small className='viewMore'>60 tenants</small>
                     </div>

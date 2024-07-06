@@ -53,12 +53,12 @@ function CustomSelect({ options, selectedOptions, setSelectedOptions, error }) {
   };
 
   return (
-    <div className='custom-select d-flex flex-column col-12' ref={popupRef}>
+    <div className='custom-select flex flex-col w-full' ref={popupRef}>
       <div
         className={
           error.errMessage === 'job'
-            ? 'errors select-header col-12'
-            : 'select-header col-12'
+            ? 'errors select-header w-full'
+            : 'select-header w-full'
         }
         onClick={toggleDropdown}
       >
@@ -77,7 +77,7 @@ function CustomSelect({ options, selectedOptions, setSelectedOptions, error }) {
             return (
               <label
                 key={option.id}
-                className='option-label d-flex flex-row justify-content-between'
+                className='option-label flex flex-row justify-between'
               >
                 {option.title}
                 <input

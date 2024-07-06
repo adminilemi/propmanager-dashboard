@@ -143,10 +143,10 @@ const PropertyImages = ({ onPrevious, onNext }) => {
   };
 
   return (
-    <main className='productUpload col-12'>
+    <main className='productUpload w-full'>
       {/* Exterior */}
-      <section className='d-flex flex-column col-12'>
-        <div className='sectHeader d-flex justify-content-between border-bottom pb-2 mb-3'>
+      <section className='flex flex-col w-full'>
+        <div className='sectHeader flex justify-between border-bottom pb-2 mb-3'>
           <h5>Exterior (Front of the property)</h5>
           <h5 id='togg' onClick={() => handleShow('togg')}>
             {!toggle['togg'] ? (
@@ -158,7 +158,7 @@ const PropertyImages = ({ onPrevious, onNext }) => {
         </div>
 
         {!toggle['togg'] && (
-          <section className='d-flex flex-column flex-md-row justify-content-between col-12'>
+          <section className='flex flex-col md:flex-row justify-between w-full'>
             {imageData.Exterior.map(({ name, url }) => (
               <ImageContainer
                 key={name}
@@ -175,8 +175,8 @@ const PropertyImages = ({ onPrevious, onNext }) => {
       </section>
 
       {/* Interior */}
-      <section className='d-flex flex-column col-12 mt-5'>
-        <div className='sectHeader d-flex justify-content-between border-bottom pb-2 mb-3'>
+      <section className='flex flex-col w-full mt-5'>
+        <div className='sectHeader flex justify-between border-bottom pb-2 mb-3'>
           <h5>Interior Images</h5>
           <h5 id='Interior' onClick={() => handleShow('Interior')}>
             {!toggle['Interior'] ? (
@@ -188,7 +188,7 @@ const PropertyImages = ({ onPrevious, onNext }) => {
         </div>
 
         {!toggle['Interior'] && (
-          <section className='d-flex flex-wrap gap-2 justify-content-between col-12'>
+          <section className='flex flex-wrap gap-2 justify-between w-full'>
             {imageData.Interior.map(({ name, url }) => (
               <ImageContainer
                 key={name}
@@ -204,7 +204,7 @@ const PropertyImages = ({ onPrevious, onNext }) => {
         )}
       </section>
 
-      <div className='d-flex flex-row justify-content-between mt-5'>
+      <div className='flex flex-row justify-between mt-5'>
         <button onClick={onPrevious} type='button' className='outline-btn'>
           {' '}
           Back{' '}
@@ -219,7 +219,7 @@ const PropertyImages = ({ onPrevious, onNext }) => {
           {/* {loading['submitIt'] ? <Spinner /> : 'Submit'} */}
         </button>
       </div>
-      <div className='d-flex justify-content-center'>
+      <div className='flex justify-center'>
         {errors.error && <p className='error_message'>{errors.errMessage}</p>}
       </div>
     </main>

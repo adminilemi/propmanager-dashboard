@@ -21,7 +21,7 @@ CharJs.register(
 
 function LineChart({ data, options }) {
   return (
-    <main className='col-12 mt-5 charts'>
+    <main className='w-full mt-5 charts'>
       <Line data={data} options={options} />
     </main>
   );

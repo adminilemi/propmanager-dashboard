@@ -27,17 +27,17 @@ const ImageContainer = ({
         <small className='text-center'>Upload Image (PNG, JPG, AVIF)</small>
       </div>
 
-      <div className='d-flex flex-column flex-lg-row justify-content-center gap-3'>
-        <div className='col-12 col-lg-5'>
+      <div className='flex flex-col lg:flex-row justify-center gap-3'>
+        <div className='w-full lg:5'>
           <CustomUploadToCloudinary
             id={id}
             loading={loading[id]}
             uploadChange={(e) => uploadFiles(e, id, cat)}
           />
         </div>
-        <div className='col-12 col-lg-5'>
+        <div className='w-full lg:5'>
           <button
-            className='outline-btn col-12'
+            className='outline-btn w-full'
             onClick={() => removeImage(id, cat)}
           >
             Remove

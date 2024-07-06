@@ -3,7 +3,7 @@ import './Auths.scss';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import * as API from '@/api/apis';
 import BrandLogo from '@/components/BrandLogo';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 import RightSide from '@/components/RightSide';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
@@ -57,30 +57,29 @@ function ResetPassword() {
 
   return (
     <div
-      className={` changePassword d-flex flex-column flex-md-row justify-content-between`}
+      className={` changePassword flex flex-col md:flex-row justify-between`}
     >
-      <section className='d-flex flex-column aside py-3'>
-        <header className='border-bottom py-3 px-4 mb-3'>
-          <div className='col-2 '>
-            <BrandLogo />
+      <section className='flex flex-col aside py-3'>
+        <header className='border-bottom py-2 mb-3 '>
+          <div className='container'>
+            <BrandLogo className='w-[10%]' />
           </div>
         </header>
-        <aside className='col-7 mx-auto'>
+
+        <aside className='w-7/12 mx-auto'>
           <h2>Reset Password</h2>
           <p> Enter your new password to continue</p>
 
           <form
             onSubmit={changePassword}
-            className='form d-flex flex-column justify-content-between mt-5'
+            className='form flex flex-col justify-between mt-5'
           >
             <section className='mb-3'>
               <label htmlFor='password' className='labelTitle'>
                 {' '}
                 Enter Verification Code *{' '}
               </label>
-              <div
-                className={` inputContainer d-flex flex-row align-items-center`}
-              >
+              <div className={` inputContainer flex flex-row items-center`}>
                 <input
                   ref={inputRef}
                   id='uniqueVerificationCode'
@@ -96,15 +95,13 @@ function ResetPassword() {
                 />{' '}
               </div>
             </section>
-            <section className='col-12 mb-3'>
+            <section className='w-full mb-3'>
               <div className=''>
                 <label htmlFor='password' className='labelTitle'>
                   {' '}
                   New Password*{' '}
                 </label>
-                <div
-                  className={` inputContainer d-flex flex-row align-items-center`}
-                >
+                <div className={` inputContainer flex flex-row items-center`}>
                   <input
                     ref={inputRef}
                     id='newPassword'
@@ -121,15 +118,13 @@ function ResetPassword() {
                 </div>
               </div>
             </section>
-            <section className='col-12 mb-3'>
+            <section className='w-full mb-3'>
               <div className=''>
                 <label htmlFor='password' className='labelTitle'>
                   {' '}
                   Confirm New Password*
                 </label>
-                <div
-                  className={` inputContainer d-flex flex-row align-items-center`}
-                >
+                <div className={` inputContainer flex flex-row items-center`}>
                   <input
                     ref={inputRef}
                     id='confirm Password'
@@ -146,8 +141,8 @@ function ResetPassword() {
               </div>
             </section>
 
-            <div className=' col-12 text-center'>
-              <button className='main-btn col-12 mt-3' type='submit'>
+            <div className=' w-full text-center'>
+              <button className='main-btn w-full mt-3' type='submit'>
                 {loading ? <Spinner /> : 'Reset'}
               </button>
               {errors.errMessage === 'empty' ? (

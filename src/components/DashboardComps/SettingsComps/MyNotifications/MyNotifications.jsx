@@ -22,13 +22,13 @@ const MyNotifications = () => {
         <h3>Notifications</h3>
       </hgroup>
 
-      <section className=' my-3 col-11 mx-auto'>
-        <div className='mt-3 d-flex justify-content-between'>
+      <section className=' my-3 w-11/12 mx-auto'>
+        <div className='mt-3 flex justify-between'>
           <div>
             <h6 className='mb-2'>General</h6>
             <p>Get notifications from Property4u to stay up-to-date.</p>
           </div>
-          <div className=' d-flex justify-content-between align-items-center  form-check form-switch'>
+          <div className=' flex justify-between items-center  form-check form-switch'>
             <input
               name='newsLetter'
               id='newsLetter'
@@ -44,10 +44,10 @@ const MyNotifications = () => {
       </section>
 
       <hr />
-      <section className=' my-3 col-11 mx-auto'>
+      <section className=' my-3 w-11/12 mx-auto'>
         <div className='mt-3 '>
           <h6>Rent Reminder</h6>
-          <div className='d-flex gap-2 align-items-center mt-2'>
+          <div className='flex gap-2 items-center mt-2'>
             <input
               name='newsLetter'
               id='newsLetter'
@@ -61,10 +61,10 @@ const MyNotifications = () => {
       </section>
       <hr />
 
-      <section className=' my-3 col-11 mx-auto'>
+      <section className=' my-3 w-11/12 mx-auto'>
         <div className='mt-3 '>
           <h6>Payments</h6>
-          <div className='d-flex gap-2 align-items-center mt-2'>
+          <div className='flex gap-2 items-center mt-2'>
             <input
               name='newsLetter'
               id='newsLetter'
@@ -74,7 +74,7 @@ const MyNotifications = () => {
             />
             <p>When listing unit is below 15</p>
           </div>
-          <div className='d-flex gap-2 align-items-center mt-2'>
+          <div className='flex gap-2 items-center mt-2'>
             <input
               name='newsLetter'
               id='newsLetter'
@@ -88,11 +88,11 @@ const MyNotifications = () => {
         </div>
       </section>
       <hr />
-      <section className=' my-3 col-11 mx-auto'>
+      <section className=' my-3 w-11/12 mx-auto'>
         <div className='mt-3 '>
           <h6>Email Newsletter</h6>
-          <div className='d-flex gap-3'>
-            <div className='d-flex gap-2 align-items-center mt-2'>
+          <div className='flex gap-3'>
+            <div className='flex gap-2 items-center mt-2'>
               <input
                 name='newsLetter'
                 id='newsLetter'
@@ -102,7 +102,7 @@ const MyNotifications = () => {
               />
               <p>On</p>
             </div>
-            <div className='d-flex gap-2 align-items-center mt-2'>
+            <div className='flex gap-2 items-center mt-2'>
               <input
                 name='newsLetter'
                 id='newsLetter'
@@ -118,9 +118,9 @@ const MyNotifications = () => {
       </section>
       <hr />
 
-      <section className='d-flex justify-content-end my-3 col-11 mx-auto'>
+      <section className='flex justify-end my-3 w-11/12 mx-auto'>
         {isEdit ? (
-          <div className='d-flex gap-2'>
+          <div className='flex gap-2'>
             <button
               className='outline-btn'
               type='button'

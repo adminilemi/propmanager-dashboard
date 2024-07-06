@@ -17,7 +17,7 @@ import {
   useUpdateAgentMutation,
   useVerifyUserNINMutation,
 } from '@/api/apiSlice';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser, selectUser } from '@/Redux/Features/userDatasSlice';
@@ -155,13 +155,13 @@ const AgentNIN = ({ onPrevious }) => {
 
   return (
     <section className='bg-white'>
-      <div className='d-flex justify-content-end stepsNumber mb-3'>
+      <div className='flex justify-end stepsNumber mb-3'>
         <h5>Step 4/4</h5>
       </div>
       <form className='mb-5 listingInfo' onSubmit={handleSubmit}>
-        <section className='d-flex flex-column justify-content-between '>
-          <section className='d-flex flex-column flex-lg-row col-12 mb-5 justify-content-between'>
-            <article className='col-12 col-lg-5 mb-5'>
+        <section className='flex flex-col justify-between '>
+          <section className='flex flex-col lg:flex-row w-full mb-5 justify-between'>
+            <article className='w-full lg:5 mb-5'>
               <p className='viewMore'> NIN Document Verification (Front)</p>
 
               <ProfileImage
@@ -173,7 +173,7 @@ const AgentNIN = ({ onPrevious }) => {
                 placeholderImage={ninf}
               />
             </article>
-            <article className='col-12 col-lg-5 mb-5'>
+            <article className='w-full lg:5 mb-5'>
               <p className='viewMore'> NIN Document Verification (Back)</p>
 
               <ProfileImage
@@ -186,7 +186,7 @@ const AgentNIN = ({ onPrevious }) => {
               />
             </article>
           </section>
-          <article className='d-flex flex-column flex-md-row gap-2 justify-content-between'>
+          <article className='flex flex-col md:flex-row gap-2 justify-between'>
             <div className='inputWrapper'>
               <label htmlFor='NINNumber' className='labelTitle'>
                 First name on your nin <em>*</em>
@@ -196,7 +196,7 @@ const AgentNIN = ({ onPrevious }) => {
                 id='firstname'
                 name='firstname'
                 type='text'
-                className='form-control col-10'
+                className='form-control w-10/12'
                 placeholder='Enter nin number'
                 defaultValue={ninData.firstname}
                 onChange={handleChange}
@@ -212,7 +212,7 @@ const AgentNIN = ({ onPrevious }) => {
                 id='lastname'
                 name='lastname'
                 type='text'
-                className='form-control col-10'
+                className='form-control w-10/12'
                 placeholder='Enter nin number'
                 defaultValue={ninData.lastname}
                 onChange={handleChange}
@@ -220,8 +220,8 @@ const AgentNIN = ({ onPrevious }) => {
               />
             </div>
           </article>
-          <article className='d-flex flex-column flex-md-row gap-2 justify-content-between'>
-            <div className='col-12'>
+          <article className='flex flex-col md:flex-row gap-2 justify-between'>
+            <div className='w-full'>
               <label htmlFor='NINNumber' className='labelTitle'>
                 NIN Number <em>*</em>
               </label>
@@ -235,8 +235,8 @@ const AgentNIN = ({ onPrevious }) => {
                 className={
                   errors?.error &&
                   errors?.errMessage.includes('Your NIN is incorrect')
-                    ? 'errors form-control col-10'
-                    : 'form-control col-10'
+                    ? 'errors form-control w-10/12'
+                    : 'form-control w-10/12'
                 }
                 placeholder='Enter nin number'
                 defaultValue={propData.NINNumber}
@@ -246,8 +246,8 @@ const AgentNIN = ({ onPrevious }) => {
               />
             </div>
           </article>
-          <article className='d-flex flex-column flex-md-row gap-2 justify-content-between mt-5'>
-            <div className='col-12'>
+          <article className='flex flex-col md:flex-row gap-2 justify-between mt-5'>
+            <div className='w-full'>
               <label htmlFor='FSOReferral' className='labelTitle'>
                 Referral code (Optional)
               </label>
@@ -256,7 +256,7 @@ const AgentNIN = ({ onPrevious }) => {
                 id='FSOReferral'
                 name='FSOReferral'
                 type='text'
-                className='form-control col-10'
+                className='form-control w-10/12'
                 placeholder='Enter nin number'
                 defaultValue={propData.FSOReferral}
                 onChange={handleChange}
@@ -264,7 +264,7 @@ const AgentNIN = ({ onPrevious }) => {
             </div>
           </article>
         </section>
-        <div className='d-flex flex-row justify-content-between mt-5'>
+        <div className='flex flex-row justify-between mt-5'>
           <button className='outline-btn ' type='button' onClick={onPrevious}>
             Back
           </button>
@@ -273,7 +273,7 @@ const AgentNIN = ({ onPrevious }) => {
           </button>
         </div>
 
-        <div className='d-flex justify-content-center'>
+        <div className='flex justify-center'>
           {errors.error && <ErrorMessage message={errors.errMessage} />}
         </div>
       </form>{' '}

@@ -18,7 +18,7 @@ function TabTitle({ id, title, activeTab, setActiveTab, icon }) {
             handleShow(id);
           }}
           id={id}
-          className='d-flex flex-row align-items-center '
+          className='flex flex-row items-center '
         >
           <h4 className='me-2 '>{icon}</h4>
           <h4>{title}</h4>

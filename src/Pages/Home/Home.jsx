@@ -22,9 +22,9 @@ import {
   monthlyChartData,
 } from '@/components/AllData';
 import { FaCircle } from 'react-icons/fa';
-import { Spinner } from 'react-bootstrap';
 import { useEffect } from 'react';
 import { getSubPlanData } from '@/Redux/Features/userDatasSlice';
+import HomeSkeleton from '@/components/DashboardComps/HomeComps/HomeSkeleton';
 
 function Home() {
   // const rents = [
@@ -104,24 +104,23 @@ function Home() {
   }, [loading, data]);
 
   if (loading || isLoading) {
-    return <Spinner />;
+    return <HomeSkeleton />;
   }
 
   return (
-    <main className='Overviews d-flex flex-column  '>
-      {/* <HomeSkeleton /> */}
+    <main className='Overviews flex flex-col  '>
       <section className=''>
         <h1 className='mb-5'> Dashboard</h1>
-        {/* <article className='d-flex flex-wrap justify-content-between mb-4'>
+        {/* <article className='flex flex-wrap justify-between mb-4'>
           {rents.map(({ id, title, subTitle, icon }) => (
             <section
               key={id}
-              className='d-flex flex-row card py-3 px-1 available justify-content-between'
+              className='flex flex-row card py-3 px-1 available justify-between'
             >
               <figure className='col-2'>
-                <img className='col-12 mx-auto' src={icon} alt='' />
+                <img className='w-full mx-auto' src={icon} alt='' />
               </figure>
-              <div className='d-flex flex-column justify-content-between col-8'>
+              <div className='flex flex-col justify-between w-8/12'>
                 <h5>{title}</h5>
                 <div>
                   <small>
@@ -138,14 +137,14 @@ function Home() {
           ))}
         </article> */}
 
-        <article className='d-flex flex-wrap justify-content-between'>
+        <article className='flex flex-wrap justify-between gap-y-6'>
           {doughtData(data).map(
             ({ id, title, subTitle, doughChartData, doughnutLabel }) => (
               <section
                 key={id}
-                className='d-flex flex-column  card py-5 px-4 available'
+                className='flex flex-col  card py-5 px-4 available'
               >
-                <div className='d-flex justify-content-between'>
+                <div className='flex justify-between'>
                   <div>
                     <h4>{title}</h4>
                     <p>{subTitle}</p>
@@ -162,9 +161,9 @@ function Home() {
             ),
           )}
         </article>
-        <article className='d-flex flex-column flex-md-row mt-5 justify-content-between'>
-          <section className='col-12 col-md-7 listedProp  card'>
-            <div className='d-flex justify-content-between'>
+        <article className='flex flex-col md:flex-row mt-5 justify-between gap-y-7'>
+          <section className='w-full md:w-7/12 listedProp  card'>
+            <div className='flex justify-between'>
               <div>
                 <p>Property Overview</p>
                 <h2> {data?.data?.totalProperties} Listed Properties</h2>
@@ -193,15 +192,15 @@ function Home() {
               // }
               options={chartOptions}
             />
-            <div className='col-12'>
-              <div className='d-flex justify-content-between align-items-center mt-3'>
-                <div className=' d-flex align-items-center gap-3 chartLabel'>
-                  <div className='d-flex align-items-center'>
+            <div className='w-full'>
+              <div className='flex justify-between items-center mt-3'>
+                <div className=' flex items-center gap-3 chartLabel'>
+                  <div className='flex items-center'>
                     {' '}
                     <FaCircle size={10} color='#5F259F' className='me-1' />
                     <span>Occupied</span>
                   </div>
-                  <div className='d-flex align-items-center'>
+                  <div className='flex items-center'>
                     {' '}
                     <FaCircle size={10} color='#E0DEF7' className='me-1' />
                     <span>Vacant </span>
@@ -212,22 +211,22 @@ function Home() {
               </div>
             </div>
           </section>
-          <aside className='col-12 col-md-4 tenantRequest card'>
-            <div className='d-flex justify-content-between'>
+          <aside className='w-full md:w-4/12 tenantRequest card'>
+            <div className='flex justify-between'>
               <h5>Tenant Request</h5>
               <Link> View all </Link>
             </div>
 
-            <div className='d-flex flex-column justify-content-center align-items-center mt-4'>
+            <div className='flex flex-col justify-center items-center mt-4'>
               {/* {tenantReq.map(({ id, title, subTitle, date, imageUrl }) => (
                 <div
                   key={id}
-                  className=' d-flex justify-content-between align-items-center py-3 reqList'
+                  className=' flex justify-between items-center py-3 reqList'
                 >
                   <figure className='col-2'>
                     <img src={imageUrl} alt='' />
                   </figure>
-                  <div className='col-7'>
+                  <div className='w-7/12'>
                     <h6> {title} </h6>
                     <p>
                       {' '}

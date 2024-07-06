@@ -35,13 +35,13 @@ function PropertyAddress({ onNext }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='d-flex flex-column'>
-      <div className='d-flex flex-column col-12 mb-5'>
-        <section className='d-flex flex-wrap justify-content-between '>
+    <form onSubmit={handleSubmit} className='flex flex-col'>
+      <div className='flex flex-col w-full mb-5'>
+        <section className='flex flex-wrap justify-between '>
           {Inputs(propData).map(
             ({ id, label, type, placeholder, value, options, required }) =>
               options ? (
-                <div key={id} className=' inputWrapper d-flex flex-column'>
+                <div key={id} className=' inputWrapper flex flex-col'>
                   <label>
                     {' '}
                     {label} <em>*</em>{' '}
@@ -64,7 +64,7 @@ function PropertyAddress({ onNext }) {
                   </select>
                 </div>
               ) : (
-                <div key={id} className=' inputWrapper d-flex flex-column'>
+                <div key={id} className=' inputWrapper flex flex-col'>
                   <label>
                     {' '}
                     {label} {required && <em>*</em>}
@@ -86,7 +86,7 @@ function PropertyAddress({ onNext }) {
         </section>
       </div>
 
-      <div className='col-12 text-end mt-5'>
+      <div className='w-full text-end mt-5'>
         <button className='main-btn' type='submit'>
           Next
         </button>

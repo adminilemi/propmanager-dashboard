@@ -10,7 +10,7 @@ import {
 import { useCreatePropertyMutation } from '@/api/apiSlice';
 import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import { useDispatch } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { Link, useNavigate } from 'react-router-dom';
 import { selectSubPlan } from '@/Redux/Features/userDatasSlice';
@@ -102,12 +102,12 @@ const PropertyVideos = ({ onPrevious }) => {
   return (
     <main>
       {/* Exterior */}
-      <section className='d-flex flex-column col-12'>
-        <div className='sectHeader d-flex justify-content-between border-bottom pb-2 mb-3'>
+      <section className='flex flex-col w-full'>
+        <div className='sectHeader flex justify-between border-bottom pb-2 mb-3'>
           <h5>Video (Optional)</h5>
         </div>
 
-        <section className='d-flex flex-column flex-md-row justify-content-between col-12'>
+        <section className='flex flex-col md:flex-row justify-between w-full'>
           <VideoContainer
             videoLink={videoData.url}
             cat='Video'
@@ -119,7 +119,7 @@ const PropertyVideos = ({ onPrevious }) => {
           />
         </section>
       </section>
-      <div className='d-flex flex-row justify-content-between mt-5'>
+      <div className='flex flex-row justify-between mt-5'>
         <button onClick={onPrevious} type='button' className='outline-btn'>
           {' '}
           Back{' '}
@@ -135,7 +135,7 @@ const PropertyVideos = ({ onPrevious }) => {
       </div>
 
       {errors.error && (
-        <div className='bg-danger col-8 mx-auto rounded p-2 listLimit'>
+        <div className='bg-danger w-8/12 mx-auto rounded p-2 listLimit'>
           <h4 className='error_message text-light text-center'>
             {errors.errMessage}{' '}
             <Link to='/subscription' className='bg-warning rounded p-2 upgrade'>

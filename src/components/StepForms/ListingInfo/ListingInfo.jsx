@@ -105,8 +105,8 @@ const ListingInfo = ({ onNext, onPrevious }) => {
 
   return (
     <form className='mb-5 listingInfo' onSubmit={handleSubmit}>
-      <section className='d-flex flex-column justify-content-between '>
-        <article className='col-12 d-flex flex-column flex-md-row gap-2 '>
+      <section className='flex flex-col justify-between '>
+        <article className='w-full flex flex-col md:flex-row gap-2 '>
           <div className='inputWrapper'>
             <label htmlFor='PropertyType' className='labelTitle'>
               {' '}
@@ -139,7 +139,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
           </div>
         </article>
 
-        <article className='col-12 d-flex flex-column flex-md-row gap-1 justify-content-between mt-3'>
+        <article className='w-full flex flex-col md:flex-row gap-1 justify-between mt-3'>
           <div className='inputWrapper '>
             <label htmlFor='BedRooms' className='labelTitle'>
               {' '}
@@ -212,7 +212,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
           </div>
         </article>
 
-        <article className='d-flex flex-column flex-md-row gap-2 justify-content-between'>
+        <article className='flex flex-col md:flex-row gap-2 justify-between'>
           <div className='inputWrapper'>
             <label htmlFor='MonthlyRent' className='labelTitle'>
               {selectValues?.Property_Category === 'Shortlets'
@@ -220,13 +220,13 @@ const ListingInfo = ({ onNext, onPrevious }) => {
                 : 'Yearly Rent'}{' '}
               <em>*</em>
             </label>
-            <div className='rentPay d-flex flex-row align-items-center gap-2 bor'>
+            <div className='rentPay flex flex-row items-center gap-2 bor'>
               <h4 className='pe-3'> ₦ </h4>
               <input
                 id='MonthlyRent'
                 name='MonthlyRent'
                 type='number'
-                className='col-10'
+                className='w-10/12'
                 defaultValue={selectValues.MonthlyRent}
                 onChange={(e) =>
                   handleOnSelectChange('MonthlyRent', e.target.value)
@@ -239,13 +239,13 @@ const ListingInfo = ({ onNext, onPrevious }) => {
             <label htmlFor='SecurityDeposit' className='labelTitle'>
               Security Deposit <MdInfo color='var(--mainColor)' />
             </label>
-            <div className='rentPay d-flex flex-row align-items-center gap-2 bor'>
+            <div className='rentPay flex flex-row items-center gap-2 bor'>
               <h4 className='pe-3'> ₦ </h4>
               <input
                 id='SecurityDeposit'
                 name='SecurityDeposit'
                 type='number'
-                className='col-10'
+                className='w-10/12'
                 defaultValue={selectValues.SecurityDeposit}
                 onChange={(e) =>
                   handleOnSelectChange('SecurityDeposit', e.target.value)
@@ -256,12 +256,12 @@ const ListingInfo = ({ onNext, onPrevious }) => {
           </div>
         </article>
 
-        <article className='col-12 d-flex flex-column my-4'>
+        <article className='w-full flex flex-col my-4'>
           <label htmlFor='Amenities' className='labelTitle mb-2'>
             {' '}
             Select Amenitites
           </label>
-          <div className='Amenities d-flex flex-wrap gap-2 '>
+          <div className='Amenities flex flex-wrap gap-2 '>
             {amenitiesList.map((item, idx) => (
               <small
                 onClick={() => updateAmenities(idx, item)}
@@ -279,7 +279,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
           </div>
         </article>
 
-        <article className='col-12 d-flex flex-column'>
+        <article className='w-full flex flex-col'>
           <label htmlFor='Description' className='labelTitle'>
             {' '}
             Description
@@ -299,7 +299,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
           ></textarea>
         </article>
 
-        <article className='col-12 d-flex flex-column flex-md-row gap-1 justify-content-between mt-3'>
+        <article className='w-full flex flex-col md:flex-row gap-1 justify-between mt-3'>
           <div className='inputWrapper '>
             <label htmlFor='DateAvalaibality' className='labelTitle'>
               {' '}
@@ -350,7 +350,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
           </div>
         </article>
       </section>
-      <div className='d-flex flex-row justify-content-between mt-5'>
+      <div className='flex flex-row justify-between mt-5'>
         <button onClick={onPrevious} className='outline-btn' type='button'>
           Back{' '}
         </button>
@@ -360,7 +360,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
         </button>
       </div>
 
-      <div className='d-flex justify-content-center'>
+      <div className='flex justify-center'>
         {errors.error && <p className='error_message'>{errors.errMessage}</p>}
       </div>
     </form>

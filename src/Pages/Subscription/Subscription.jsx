@@ -65,7 +65,7 @@ const Subscription = () => {
         </header>
         <section className='container container-plans'>
           <div>
-            <article className='d-flex justify-content-center gap-5'>
+            <article className='flex justify-center gap-5'>
               <div
                 className={plans === 'Monthly' ? 'tab active-tabs' : 'tab'}
                 onClick={() => handleTabs('Monthly')}
@@ -84,13 +84,10 @@ const Subscription = () => {
 
           <article className='content-tabs my-5'>
             {plans === 'Monthly' && (
-              <section id='Monthly' className=' d-flex flex-wrap gap-2'>
+              <section id='Monthly' className=' flex flex-wrap gap-2'>
                 {pricingPlan.Monthly.map(
                   ({ id, title, desc, benefits, price }) => (
-                    <aside
-                      className='d-flex flex-column justify-content-between'
-                      key={id}
-                    >
+                    <aside className='flex flex-col justify-between' key={id}>
                       <div className='planCard'>
                         <hgroup className='planCardHeader'>
                           <h3>{title}</h3>
@@ -110,7 +107,7 @@ const Subscription = () => {
                           </div>
                           {benefits.map(({ id, li }) => (
                             <ul className='' key={id}>
-                              <li className='d-flex gap-2 py-2'>
+                              <li className='flex gap-2 py-2'>
                                 <div>
                                   <FaCircle color='#CBD5E0' size={10} />
                                 </div>
@@ -133,7 +130,7 @@ const Subscription = () => {
                           ?.toLowerCase()
                           .includes(title.toLowerCase()) &&
                         checkActivePlan.HowManyDaysPlan <= 30 ? (
-                          <div className=' d-flex flex-column'>
+                          <div className=' flex flex-col'>
                             <button
                               id={id}
                               className=' my-3'
@@ -194,13 +191,10 @@ const Subscription = () => {
               </section>
             )}
             {plans === 'Yearly' && (
-              <section id='Monthly' className=' d-flex flex-wrap gap-2'>
+              <section id='Monthly' className=' flex flex-wrap gap-2'>
                 {pricingPlan.Yearly.map(
                   ({ id, title, desc, benefits, price }) => (
-                    <aside
-                      className='d-flex flex-column justify-content-between'
-                      key={id}
-                    >
+                    <aside className='flex flex-col justify-between' key={id}>
                       <div className='planCard'>
                         <hgroup className='planCardHeader'>
                           <h3>{title}</h3>
@@ -220,7 +214,7 @@ const Subscription = () => {
                           </div>
                           {benefits.map(({ id, li }) => (
                             <ul className='' key={id}>
-                              <li className='d-flex gap-2 py-2'>
+                              <li className='flex gap-2 py-2'>
                                 <div>
                                   <FaCircle color='#CBD5E0' size={10} />
                                 </div>
@@ -243,7 +237,7 @@ const Subscription = () => {
                           ?.toLowerCase()
                           .includes(title.toLowerCase()) &&
                         checkActivePlan.HowManyDaysPlan === 365 ? (
-                          <div className='d-flex flex-column'>
+                          <div className='flex flex-col'>
                             <button
                               id={id}
                               className=' my-3'

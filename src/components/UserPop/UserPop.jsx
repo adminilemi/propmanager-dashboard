@@ -29,13 +29,13 @@ function UserPop({ coyLogo, companyName }) {
   // ];
 
   return (
-    <main className='col-12 UserPop'>
-      <header className='d-flex flex-row justify-content-between align-items-center'>
-        <div className='col-12 col-md-6 d-flex flex-row align-items-center justify-content-between'>
-          <div className='col-5'>
+    <main className='w-full UserPop'>
+      <header className='flex flex-row justify-between items-center'>
+        <div className='w-full md:6 flex flex-row items-center justify-between'>
+          <div className='w-5/12'>
             <UserLogo coyLogo={coyLogo} />
           </div>
-          <h4 className='col-8'> {companyName} </h4>
+          <h4 className='w-8/12'> {companyName} </h4>
         </div>
         {/* <div>
           <button className={verified ? 'verified' : 'unverified'}>
@@ -52,7 +52,7 @@ function UserPop({ coyLogo, companyName }) {
         ))} */}
 
         <li className=' py-3 tabTitle' onClick={() => handleShow('logout')}>
-          <hgroup className='d-flex flex-row align-items-center ps-2 tabTitle'>
+          <hgroup className='flex flex-row items-center ps-2 tabTitle'>
             <h4 className='me-2'>
               {' '}
               <svg

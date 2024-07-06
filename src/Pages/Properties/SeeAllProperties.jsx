@@ -20,7 +20,7 @@ function SeeAllProperties() {
         </Link>
         <h1 className='my-3'> My Properties</h1>
 
-        <section className='filtering mb-5 d-flex justify-content-between rounded p-2'>
+        <section className='filtering mb-5 flex justify-between rounded p-2'>
           <div className=' border-right pe-4'>
             <select className=''>
               <option>Show All</option>
@@ -29,7 +29,7 @@ function SeeAllProperties() {
               <option>Show Maintenance</option>
             </select>
           </div>
-          <div className='d-flex gap-2 col-4'>
+          <div className='flex gap-2 w-4/12'>
             <select className='form-select flex-fill'>
               <option>By Date</option>
               <option>By Time</option>
@@ -148,7 +148,7 @@ function SeeAllProperties() {
             </div>
           </div>
         </section>
-        <article className='d-flex flex-wrap justify-content-between gap-3'>
+        <article className='flex flex-wrap justify-between gap-3'>
           {filteredData.map((item) => (
             <PropertyCard key={item.id} property={item} />
           ))}

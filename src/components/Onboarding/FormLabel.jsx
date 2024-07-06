@@ -2,7 +2,7 @@ import React from 'react';
 
 function FormLabel({ stepLabels, currentStep }) {
   return (
-    <ul className='stepLabels d-flex flex-column justify-content-between col-12'>
+    <ul className='stepLabels flex flex-col justify-between w-full'>
       {stepLabels.map((label, index) => (
         <li
           key={index}
@@ -10,7 +10,7 @@ function FormLabel({ stepLabels, currentStep }) {
             index === currentStep ? 'stepFormActive' : 'stepFormInActive'
           }`}
         >
-          <h4 className='d-flex gap-1 align-items-center'>{label.title} </h4>
+          <h4 className='flex gap-1 items-center'>{label.title} </h4>
         </li>
       ))}
     </ul>

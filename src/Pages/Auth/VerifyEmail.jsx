@@ -8,7 +8,7 @@ import { useSweetAlert } from '../../Hooks/useSweetAlert';
 import { useGlobalHooks } from '../../Hooks/globalHooks';
 import RightSide from '@/components/RightSide';
 import BrandLogo from '@/components/BrandLogo';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 
 const numInput = [
   { id: 1, name: 'num1' },
@@ -184,19 +184,17 @@ const VerifyEmail = () => {
   // console.log(errors);
 
   return (
-    <div
-      className={` email d-flex flex-column flex-md-row justify-content-between`}
-    >
-      <section className='d-flex flex-column aside'>
+    <div className={` email flex flex-col md:flex-row justify-between`}>
+      <section className='flex flex-col aside'>
         <header className='border-bottom py-2 px-2 px-lg-5 mb-3 container'>
           <div className='col-2 py-2 '>
             <BrandLogo />
           </div>
         </header>
         <aside className='container px-2 px-lg-5'>
-          <section className='col-11 col-lg-8 '>
+          <section className='w-11/12 lg:8 '>
             <form
-              className={` form d-flex flex-column justify-content-center text-start col-12 col-md-2`}
+              className={` form flex flex-col justify-center text-start w-full md:2`}
               onSubmit={handleVerifyEmail}
             >
               <h2>Verify your email</h2>
@@ -204,7 +202,7 @@ const VerifyEmail = () => {
                 Enter the verification code sent to {authUser.userEmail}{' '}
               </p>
               <div
-                className={` inputContainer d-flex flex-row mx-auto col-12 gap-2 mt-3 `}
+                className={` inputContainer flex flex-row mx-auto w-full gap-2 mt-3 `}
               >
                 {numInput.map(({ id, name }, idx) => (
                   <div className='numInp ' key={id}>
@@ -227,8 +225,8 @@ const VerifyEmail = () => {
                 ))}
               </div>
 
-              <div className=' col-12 text-center'>
-                <button className='main-btn col-12 mt-3' type='submit'>
+              <div className=' w-full text-center'>
+                <button className='main-btn w-full mt-3' type='submit'>
                   {loading ? 'Validating...' : 'Validate'}
                 </button>
 

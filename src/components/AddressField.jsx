@@ -3,7 +3,7 @@ import { countriesList } from './CountriesList';
 
 function AddressField({ coydata, getData }) {
   return (
-    <div className='d-flex flex-wrap justify-content-between mb-5'>
+    <div className='flex flex-wrap justify-between mb-5'>
       <div className=' inputWrapper'>
         <label>
           {' '}

@@ -29,7 +29,7 @@ const MyAccount = () => {
         <h3>My Account</h3>
       </hgroup>
 
-      <section className=' my-5 col-11 mx-auto'>
+      <section className=' my-5 w-11/12 mx-auto'>
         <div className='mt-3'>
           <label htmlFor='email' className='labelTitle'>
             {' '}
@@ -51,7 +51,7 @@ const MyAccount = () => {
           <div
             id='changePass'
             onClick={() => handleShow('changePass')}
-            className='changePass d-flex justify-content-between align-items-center p-3'
+            className='changePass flex justify-between items-center p-3'
           >
             <h6>Change Password</h6>{' '}
             <small>
@@ -60,7 +60,7 @@ const MyAccount = () => {
             </small>{' '}
           </div>
         </div>
-        <div className='mt-3 d-flex gap-5'>
+        <div className='mt-3 flex gap-5'>
           <div>
             <h6 htmlFor='email' className='labelTitle'>
               {' '}
@@ -72,7 +72,7 @@ const MyAccount = () => {
               time you sign in.
             </p>
           </div>
-          <div className=' d-flex justify-content-between align-items-center p-3 form-check form-switch'>
+          <div className=' flex justify-between items-center p-3 form-check form-switch'>
             <input
               name='newsLetter'
               id='newsLetter'
@@ -87,7 +87,7 @@ const MyAccount = () => {
       </section>
 
       <hr />
-      <section className='my-5 col-11 mx-auto'>
+      <section className='my-5 w-11/12 mx-auto'>
         <div>
           <h6 htmlFor='email' className='labelTitle'>
             Linked Accounts
@@ -95,8 +95,8 @@ const MyAccount = () => {
           <p>We use this to let you sign in easily.</p>
         </div>
 
-        <div className='d-flex justify-content-between mt-3'>
-          <button className='d-flex gap-2'>
+        <div className='flex justify-between mt-3'>
+          <button className='flex gap-2'>
             <span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -131,7 +131,7 @@ const MyAccount = () => {
       </section>
       <hr />
 
-      <section className='my-5 col-11 mx-auto d-flex justify-content-between'>
+      <section className='my-5 w-11/12 mx-auto flex justify-between'>
         <div>
           <h6 htmlFor='email' className='labelTitle'>
             Delete Account
@@ -145,7 +145,7 @@ const MyAccount = () => {
       </section>
       <hr />
 
-      {/* <div className='d-flex justify-content-end my-3 col-11 mx-auto'>
+      {/* <div className='flex justify-end my-3 w-11/12 mx-auto'>
         <button className='main-btn' type='button'>
           Save Changes
         </button>

@@ -4,12 +4,12 @@ import TabContents from '@/components/Tabs/TabContents';
 import TabTitle from '@/components/Tabs/TabTitle';
 import './Settings.scss';
 
-function Settings() {
+const Settings = () => {
   const [activeTab, setActiveTab] = useState('tab1');
 
   return (
-    <main className=' settings d-flex flex-column flex-lg-row justify-content-between'>
-      <article className='d-flex flex-column col-12 col-lg-2 my-5 my-lg-0'>
+    <main className=' settings flex flex-col lg:flex-row justify-between'>
+      <article className='flex flex-col w-full lg:w-2/12 my-5 lg:my-0'>
         {TabsData.TabTitle.map((tab) => (
           <section key={tab.id} className='tabTitle '>
             <TabTitle
@@ -22,13 +22,13 @@ function Settings() {
         ))}
       </article>
 
-      <article className='tabContents  col-12 col-lg-9'>
+      <article className='tabContents  w-full lg:w-9/12'>
         {TabsData.TabContents.map(({ id, comp }) => (
           <TabContents key={id} id={id} activeTab={activeTab} comps={comp} />
         ))}
       </article>
     </main>
   );
-}
+};
 
 export default Settings;

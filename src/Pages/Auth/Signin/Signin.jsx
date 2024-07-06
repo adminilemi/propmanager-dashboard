@@ -10,7 +10,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import BrandLogo from '@/components/BrandLogo';
-import { Spinner } from 'react-bootstrap';
+import Spinner from '@/spinner/Spinner';
 import * as API from '@/api/apis';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import { useCookies } from '@/Hooks/cookiesHook';
@@ -95,20 +95,19 @@ const Signin = () => {
   };
 
   return (
-    <div
-      className={` SignIn d-flex flex-column flex-md-row justify-content-between`}
-    >
-      <section className='d-flex flex-column aside'>
-        <header className='border-bottom py-3 px-4 mb-3'>
-          <div className='col-2 '>
-            <BrandLogo />
+    <div className={` SignIn flex flex-col md:flex-row justify-between`}>
+      <section className='flex flex-col aside'>
+        <header className='border-bottom py-2 mb-3 '>
+          <div className='container'>
+            <BrandLogo className='w-[10%]' />
           </div>
         </header>
-        <aside className='col-7 mx-auto'>
+
+        <aside className='w-7/12 mx-auto'>
           <h2> Welcome back,</h2>
           <p>Welcome back! Please enter your details.</p>
           <form
-            className={` form d-flex flex-column justify-content-between mt-5`}
+            className={`form flex flex-col justify-between mt-5`}
             onSubmit={handleSignIn}
           >
             <section className='mb-3'>
@@ -130,15 +129,13 @@ const Signin = () => {
                 />
               </div>
             </section>
-            <section className='col-12 mb-3'>
+            <section className='w-full mb-3'>
               <div className=''>
                 <label htmlFor='password' className='labelTitle'>
                   {' '}
                   Password{' '}
                 </label>
-                <div
-                  className={` inputContainer d-flex flex-row align-items-center`}
-                >
+                <div className={` inputContainer flex flex-row items-center`}>
                   <input
                     ref={inputRef}
                     id='password'
@@ -167,15 +164,15 @@ const Signin = () => {
               </div>
             </section>
 
-            <div className=' col-12 text-center'>
-              <button className='main-btn col-12 mt-1' type='submit'>
+            <div className=' w-full text-center'>
+              <button className='main-btn w-full mt-1' type='submit'>
                 {loading ? <Spinner /> : 'Log In'}
               </button>
 
               <span className='error_message'> {errors.errMessage} </span>
             </div>
-            <div className=' col-12 text-center mt-3'>
-              <button className='outline-btn col-12 mt-1'>
+            <div className=' w-full text-center mt-3'>
+              <button className='outline-btn w-full mt-1'>
                 <span>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
