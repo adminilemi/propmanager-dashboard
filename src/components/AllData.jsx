@@ -3,6 +3,10 @@ import Profile from './DashboardComps/SettingsComps/Profile/Profile';
 import MyAccount from './DashboardComps/SettingsComps/MyAccount/MyAccount';
 import MyNotifications from './DashboardComps/SettingsComps/MyNotifications/MyNotifications';
 import allState from './nigeria-state-and-lgas.json';
+import Due from '@/assets/due.png';
+import Active from '@/assets/active.png';
+import All from '@/assets/all.png';
+import Chat from '@/assets/chat.png';
 
 export const propertiesData = [
   {
@@ -1342,6 +1346,65 @@ export const diamond = [
   },
 ];
 
+export const tenantReq = [
+  {
+    id: 1,
+    title: 'Valentino Parker',
+    subTitle: 'Palm Harbor',
+    date: 'Dec 7, 2021',
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png',
+  },
+  {
+    id: 2,
+    title: 'Sofia Clear',
+    subTitle: 'Beverly Springfield',
+    date: 'Dec 7, 2021',
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png',
+  },
+  {
+    id: 3,
+    title: 'Chris Justice',
+    subTitle: 'Cove Red',
+    date: 'Dec 7, 2021',
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png',
+  },
+  {
+    id: 4,
+    title: 'Edin Kaolo',
+    subTitle: 'Kelapa Bafing',
+    date: 'Dec 7, 2021',
+    imageUrl: 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png',
+  },
+];
+
+export const rents = (data) => {
+  return [
+    {
+      id: 3,
+      title: `${data?.totalProperties} Total Listing (s)`,
+      subTitle: 'Total listed  Property. ',
+      icon: All,
+    },
+    {
+      id: 2,
+      title: `${data?.vacantProperties} 5 Listing`,
+      subTitle: 'Active Listing.',
+      icon: Active,
+    },
+    {
+      id: 4,
+      title: `${data?.occupiedProperties} Due  Listing (s)`,
+      subTitle: 'Expired Listing.',
+      icon: Due,
+    },
+    {
+      id: 1,
+      title: `${data?.clientReq || 0}  Clients Request`,
+      subTitle: '',
+      icon: Chat,
+    },
+  ];
+};
 // {
 //   id: 2,
 //   title: 'Home',

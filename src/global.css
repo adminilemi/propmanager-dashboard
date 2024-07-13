@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .container {
-  @apply w-[92%] lg:w-[87%] mx-auto;
+  @apply w-[97%] lg:w-[95%] mx-auto;
 }
 
 :root {
@@ -85,6 +85,7 @@ body {
 
 .card {
   border: solid 2px var(--mainLight) !important;
+  border-radius: 10px;
   background-color: transparent;
 }
 
