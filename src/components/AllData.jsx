@@ -770,7 +770,6 @@ export const pricingPlan = {
 // ==== Chart Datas Start ====
 
 export const monthlyChartData = (data) => {
-  console.log('data>>>', data);
   return {
     labels: [
       'Jan',
@@ -834,52 +833,35 @@ export const monthlyChartData = (data) => {
 };
 
 export const weeklyChartData = (data) => {
-  console.log('weekeData>>', data);
   return {
     labels: Object.keys(data),
 
     datasets: [
       // rent
       {
-        minBarLength: 0,
-        data: [
-          data?.Jan?.Vacant,
-          data?.Feb?.Vacant,
-          data?.Mar?.Vacant,
-          data?.Apr?.Vacant,
-          data?.May?.Vacant,
-        ],
-
-        backgroundColor: ' #5F259F',
+        data: Object.values(data).map((item) => item?.rent),
+        lineTension: 0.5,
+        borderColor: '#5F259F',
+        pointBorderColor: '#FFB812',
+        backgroundColor: ' #FFB812',
       },
       // sale
       {
-        // categoryPercentage: 1,
-        minBarLength: 0,
-        data: [
-          data?.Jan?.Occupied,
-          data?.Feb?.Occupied,
-          data?.Mar?.Occupied,
-          data?.Apr?.Occupied,
-          data?.May?.Occupied,
-        ],
-
-        backgroundColor: '#e0def7',
+        data: Object.values(data).map((item) => item?.sale),
+        backgroundColor: '#100A55',
+        borderColor: '#FFB812',
+        pointBorderColor: '#100A55',
+        lineTension: 0.5,
       },
 
       // shortlets
       {
-        // categoryPercentage: 1,
-        minBarLength: 0,
-        data: [
-          data?.Jan?.Occupied,
-          data?.Feb?.Occupied,
-          data?.Mar?.Occupied,
-          data?.Apr?.Occupied,
-          data?.May?.Occupied,
-        ],
+        data: Object.values(data).map((item) => item?.shortlet),
 
-        backgroundColor: '#e0def7',
+        pointBorderColor: '#100A55',
+        borderColor: '#A09C9C',
+        backgroundColor: ' #5F259F',
+        lineTension: 0.5,
       },
     ],
   };
@@ -1097,6 +1079,7 @@ export const chartOptions = {
     },
   },
 };
+
 // ==== Chart Datas End ====
 
 export const free = [

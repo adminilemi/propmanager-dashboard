@@ -107,6 +107,10 @@ export const apiSLice = createApi({
     }),
 
     getAgentWeeklyStats: builder.query({
+      query: (id) => `/property/count-by-week/${id} `,
+    }),
+
+    getAgentLastWeekStats: builder.query({
       query: (id) => `/property/count-by-last-week/${id} `,
     }),
   }),
@@ -117,6 +121,7 @@ export const {
   useGetAgentQuery,
   useGetAgentWeeklyStatsQuery,
   useGetAgentMonthlyStatsQuery,
+  useGetAgentLastWeekStatsQuery,
   useGetAgentStatsQuery,
   useCreatePropertyMutation,
   useGetAllPropertiesQuery,
@@ -125,41 +130,3 @@ export const {
   useCreateSubscriptionsMutation,
   useCheckSubValidityQuery,
 } = apiSLice;
-
-const s = {
-  'Jun 30': {
-    rent: 0,
-    sale: 0,
-    shortlet: 0,
-  },
-  'Jul 1': {
-    rent: 0,
-    sale: 0,
-    shortlet: 0,
-  },
-  'Jul 2': {
-    rent: 0,
-    sale: 0,
-    shortlet: 0,
-  },
-  'Jul 3': {
-    rent: 0,
-    sale: 0,
-    shortlet: 0,
-  },
-  'Jul 4': {
-    rent: 0,
-    sale: 0,
-    shortlet: 0,
-  },
-  'Jul 5': {
-    rent: 0,
-    sale: 0,
-    shortlet: 0,
-  },
-  'Jul 6': {
-    rent: 0,
-    sale: 0,
-    shortlet: 0,
-  },
-};

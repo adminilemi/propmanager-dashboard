@@ -7,25 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import {
   useCheckSubValidityQuery,
+  useGetAgentLastWeekStatsQuery,
   useGetAgentMonthlyStatsQuery,
   useGetAgentQuery,
   useGetAgentStatsQuery,
   useGetAgentWeeklyStatsQuery,
   // useGetAgentWeeklyStatsQuery,
 } from '@/api/apiSlice';
-import {
-  chartOptions,
-  monthlyChartData,
-  rents,
-  weeklyChartData,
-} from '@/components/AllData';
-import {
-  FaCircle,
-  FaFacebook,
-  FaInstagram,
-  FaPhone,
-  FaPhoneAlt,
-} from 'react-icons/fa';
+import { monthlyChartData, rents, weeklyChartData } from '@/components/AllData';
+import { FaCircle, FaFacebook, FaInstagram, FaPhoneAlt } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { getSubPlanData } from '@/Redux/Features/userDatasSlice';
 import HomeSkeleton from '@/components/DashboardComps/HomeComps/HomeSkeleton';
@@ -33,6 +23,28 @@ import {
   MdOutlineMarkUnreadChatAlt,
   MdOutlineTipsAndUpdates,
 } from 'react-icons/md';
+import LineChart from '@/components/DashboardComps/HomeComps/Charts/LineChart';
+
+const chartOptions = {
+  plugins: {
+    legend: {
+      display: false, // Hide the legend
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      beginAtZero: true,
+    },
+    y: {
+      grid: {
+        display: false,
+      },
+    },
+  },
+};
 
 const Home = () => {
   const { authUser } = useSelector(selectUserData);
@@ -60,12 +72,6 @@ const Home = () => {
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
   };
-
-  // console.log('monthly>>>', monthlyData);
-  console.log('weekly>>', weeklyData);
-
-  const s = Object.keys(weeklyData);
-  console.log(s);
 
   useEffect(() => {
     refetch();
@@ -196,33 +202,30 @@ const Home = () => {
                 </div>
               </div>
 
-              <BarCharts
+              <LineChart
                 // data={monthlyChartData(monthlyData)}
-                data={
-                  selectedOption === 'Monthly'
-                    ? monthlyChartData(monthlyData)
-                    : weeklyChartData(weeklyData)
-                }
+                data={weeklyChartData(
+                  selectedOption === 'Monthly' ? monthlyData : weeklyData,
+                )}
                 options={chartOptions}
               />
-              <div className='w-full'>
-                <div className='flex justify-between items-center mt-3'>
-                  <div className=' flex items-center gap-3 chartLabel'>
-                    <div className='flex items-center'>
-                      {' '}
-                      <FaCircle size={10} color='#5F259F' className='me-1' />
-                      <span>Occupied</span>
-                    </div>
-                    <div className='flex items-center'>
-                      {' '}
-                      <FaCircle size={10} color='#E0DEF7' className='me-1' />
-                      <span>Vacant </span>
-                    </div>
-                  </div>
-
-                  <Link className='viewMore'>View more →</Link>
-                </div>
-              </div>
+              <ul className='w-full flex items-center gap-4 mt-4'>
+                <li className='flex items-center !text-xs font-semibold text-Grey6'>
+                  {' '}
+                  <FaCircle size={10} color='#5F259F' className='me-1' />
+                  <span>Rent</span>
+                </li>
+                <li className='flex items-center !text-xs font-semibold text-Grey6'>
+                  {' '}
+                  <FaCircle size={10} color='#FFB812' className='me-1' />
+                  <span>Sale </span>
+                </li>
+                <li className='flex items-center !text-xs font-semibold text-Grey6'>
+                  {' '}
+                  <FaCircle size={10} color='#A09C9C' className='me-1' />
+                  <span>Shortlet </span>
+                </li>
+              </ul>
             </section>
           </article>{' '}
         </section>
