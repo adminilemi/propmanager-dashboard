@@ -15,16 +15,16 @@ function Sidebar() {
   return (
     <main className=' sidebarContainer'>
       <article className={`sidebar `}>
-        <div className='w-4/12 ps-2 mb-5 mt-3 flex gap-3 align-items-end'>
-          <BrandLogo sidebar />{' '}
+        <div className='w-4/12 ps-2 mb-5 mt-3 flex gap-3 items-center'>
+          <BrandLogo sidebar={toggleSideBar} />{' '}
           <div
             onClick={() => setToggleSideBar(!toggleSideBar)}
             className='pe-1'
           >
             {toggleSideBar ? (
-              <GoSidebarExpand size={30} />
+              <GoSidebarExpand className='text-grey-300' size={25} />
             ) : (
-              <GoSidebarCollapse size={30} />
+              <GoSidebarCollapse className='text-grey-300' size={25} />
             )}
           </div>
         </div>

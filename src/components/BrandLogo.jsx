@@ -1,20 +1,22 @@
 import React from 'react';
-import Logo from '../assets/property4u-logo-white.png';
 import { Link } from 'react-router-dom';
-import IlemiIcon from './SGVs/IlemiIcon';
+import { Property4uIcon } from '@/SVGs/SVGsExport';
 
 function BrandLogo({ sidebar, className }) {
   return (
     <Link to='/' className={`${className} flex`}>
       {sidebar ? (
-        <div className='w-full'>
-          <IlemiIcon />
+        <div className='w-full flex items-center gap-3'>
+          <Property4uIcon />
+          <div className='flex flex-col'>
+            <h4 className='text-sm'>Property4U.ng</h4>
+            <small className='text-[10px]'>Property Manager</small>
+          </div>
         </div>
       ) : (
-        <figure>
-          {' '}
-          <img src={Logo} alt='Ilemi Logo' />
-        </figure>
+        <div className='w-full'>
+          <Property4uIcon />
+        </div>
       )}
     </Link>
   );

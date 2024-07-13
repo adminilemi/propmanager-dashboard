@@ -10,9 +10,15 @@ import {
   useGetAgentMonthlyStatsQuery,
   useGetAgentQuery,
   useGetAgentStatsQuery,
+  useGetAgentWeeklyStatsQuery,
   // useGetAgentWeeklyStatsQuery,
 } from '@/api/apiSlice';
-import { chartOptions, monthlyChartData, rents } from '@/components/AllData';
+import {
+  chartOptions,
+  monthlyChartData,
+  rents,
+  weeklyChartData,
+} from '@/components/AllData';
 import {
   FaCircle,
   FaFacebook,
@@ -20,7 +26,7 @@ import {
   FaPhone,
   FaPhoneAlt,
 } from 'react-icons/fa';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getSubPlanData } from '@/Redux/Features/userDatasSlice';
 import HomeSkeleton from '@/components/DashboardComps/HomeComps/HomeSkeleton';
 import {
@@ -31,6 +37,7 @@ import {
 const Home = () => {
   const { authUser } = useSelector(selectUserData);
   const dispatch = useDispatch();
+  const [selectedOption, setSelectedOption] = useState('Weekly');
 
   // This will run everytime to check change in subscriptions
   const {
@@ -48,13 +55,17 @@ const Home = () => {
 
   const { data, isLoading } = useGetAgentStatsQuery(authUser.userId);
   const { data: monthlyData } = useGetAgentMonthlyStatsQuery(authUser.userId);
-  // const { data: weeklyData } = useGetAgentWeeklyStatsQuery(authUser.userId);
+  const { data: weeklyData } = useGetAgentWeeklyStatsQuery(authUser.userId);
 
-  // const [selectedOption, setSelectedOption] = useState('Weekly');
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
-  // const handleSelectChange = (e) => {
-  //   setSelectedOption(e.target.value);
-  // };
+  // console.log('monthly>>>', monthlyData);
+  console.log('weekly>>', weeklyData);
+
+  const s = Object.keys(weeklyData);
+  console.log(s);
 
   useEffect(() => {
     refetch();
@@ -178,10 +189,7 @@ const Home = () => {
                 </div>
 
                 <div>
-                  <select
-                    // onChange={handleSelectChange}
-                    className='chartSelect'
-                  >
+                  <select onChange={handleSelectChange} className='chartSelect'>
                     <option value='Weekly'>Weekly</option>
                     <option value='Monthly'>Monthly</option>
                   </select>
@@ -189,12 +197,12 @@ const Home = () => {
               </div>
 
               <BarCharts
-                data={monthlyChartData(monthlyData)}
-                // data={
-                //   selectedOption === 'Monthly'
-                //     ? monthlyChartData(monthlyData)
-                //     : weeklyChartData(weeklyData)
-                // }
+                // data={monthlyChartData(monthlyData)}
+                data={
+                  selectedOption === 'Monthly'
+                    ? monthlyChartData(monthlyData)
+                    : weeklyChartData(weeklyData)
+                }
                 options={chartOptions}
               />
               <div className='w-full'>

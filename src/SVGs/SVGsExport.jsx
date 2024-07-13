@@ -1,5 +1,5 @@
 import * as React from 'react';
-const IlemiIcon = (props) => (
+export const Property4uLogo = (props) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     xmlSpace='preserve'
@@ -54,4 +54,59 @@ const IlemiIcon = (props) => (
     </g>
   </svg>
 );
-export default IlemiIcon;
+
+export const Property4uIcon = (props) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width={47}
+    height={59}
+    fill='none'
+    {...props}
+  >
+    <mask
+      id='a'
+      width={32}
+      height={58}
+      x={15}
+      y={0}
+      maskUnits='userSpaceOnUse'
+      style={{
+        maskType: 'luminance',
+      }}
+    >
+      <path fill='#fff' d='M15.725.708H46.27v57.284H15.725V.708Z' />
+    </mask>
+    <g mask='url(#a)'>
+      <path
+        fill='#5F259F'
+        fillRule='evenodd'
+        d='M31.906 15.218h2.3v2.47h-2.3v-2.47Zm0 3.833h2.3v2.47h-2.3v-2.47Zm0 3.828h2.3v2.47h-2.3v-2.47Zm0 3.832h2.3v2.47h-2.3v-2.47Zm0 3.832h2.3v2.47h-2.3v-2.47Zm0 3.833h2.3v2.47h-2.3v-2.47Zm0-22.99h2.3v2.47h-2.3v-2.47Zm8.303.657-9.986-4.794v36.314l9.113 8.167V19.914l.873.707v-8.578ZM34.46.708h-8.547v13.428l.871-.571v26.918l2.57 2.301V5.807l5.108 2.454V.708h-.002ZM24.137 16.402l1.776-1.167v24.468l-1.776-1.59V16.402Zm-6.793-.687h2.012v2.162h-2.012v-2.162Zm0 3.352h2.012v2.162h-2.012v-2.162Zm0 3.356h2.012v2.162h-2.012v-2.162Zm0 3.354h2.012v2.162h-2.012v-2.162Zm0 3.353h2.012v2.161h-2.012V29.13Zm0-16.769h2.012v2.162h-2.012V12.36Zm-1.377-2.41 7.3-4.795v32.176l-7.296-6.543V9.95h-.004Zm30.141 16.637-5.9-4.794V52.51l5.9 5.285V26.588Z'
+        clipRule='evenodd'
+      />
+    </g>
+    <path
+      fill='#001E60'
+      fillRule='evenodd'
+      d='m1.028 36.897 13.674-4.62L.749 44.782l.279-7.884Z'
+      clipRule='evenodd'
+    />
+    <path
+      fill='#5F259F'
+      fillRule='evenodd'
+      d='M.751 45.485 15.97 31.85l29.595 26.52h-9.397V54.7L15.966 36.58 3.39 47.85c-2.13 0 1.976-.44-.627-.44L.751 45.485c2.603 0-2.602 0 0 0Z'
+      clipRule='evenodd'
+    />
+    <path
+      fill='#001E60'
+      fillRule='evenodd'
+      d='M15.966 37.633 34.986 54.7h-1.893L15.966 39.326l-10.21 9.152-.948-.848 11.158-9.997Z'
+      clipRule='evenodd'
+    />
+    <path
+      fill='#001E60'
+      fillRule='evenodd'
+      d='M15.529 51.287h-2.125v-2.28h2.125v2.28Zm2.869-2.28v2.28h-2.123v-2.28h2.123Zm-2.123-3.087h2.123v2.28h-2.123v-2.28Zm-2.873 0h2.123v2.28h-2.123v-2.28Z'
+      clipRule='evenodd'
+    />
+  </svg>
+);

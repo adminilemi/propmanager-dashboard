@@ -770,6 +770,7 @@ export const pricingPlan = {
 // ==== Chart Datas Start ====
 
 export const monthlyChartData = (data) => {
+  console.log('data>>>', data);
   return {
     labels: [
       'Jan',
@@ -833,33 +834,49 @@ export const monthlyChartData = (data) => {
 };
 
 export const weeklyChartData = (data) => {
+  console.log('weekeData>>', data);
   return {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    labels: Object.keys(data),
 
     datasets: [
-      // registered
+      // rent
       {
         minBarLength: 0,
         data: [
-          data?.Jan.Vacant,
-          data?.Feb.Vacant,
-          data?.Mar.Vacant,
-          data?.Apr.Vacant,
-          data?.May.Vacant,
+          data?.Jan?.Vacant,
+          data?.Feb?.Vacant,
+          data?.Mar?.Vacant,
+          data?.Apr?.Vacant,
+          data?.May?.Vacant,
         ],
 
         backgroundColor: ' #5F259F',
       },
-      // Verified
+      // sale
       {
         // categoryPercentage: 1,
         minBarLength: 0,
         data: [
-          data?.Jan.Occupied,
-          data?.Feb.Occupied,
-          data?.Mar.Occupied,
-          data?.Apr.Occupied,
-          data?.May.Occupied,
+          data?.Jan?.Occupied,
+          data?.Feb?.Occupied,
+          data?.Mar?.Occupied,
+          data?.Apr?.Occupied,
+          data?.May?.Occupied,
+        ],
+
+        backgroundColor: '#e0def7',
+      },
+
+      // shortlets
+      {
+        // categoryPercentage: 1,
+        minBarLength: 0,
+        data: [
+          data?.Jan?.Occupied,
+          data?.Feb?.Occupied,
+          data?.Mar?.Occupied,
+          data?.Apr?.Occupied,
+          data?.May?.Occupied,
         ],
 
         backgroundColor: '#e0def7',
