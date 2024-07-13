@@ -161,7 +161,7 @@ const AgentNIN = ({ onPrevious }) => {
       <form className='mb-5 listingInfo' onSubmit={handleSubmit}>
         <section className='flex flex-col justify-between '>
           <section className='flex flex-col lg:flex-row w-full mb-5 justify-between'>
-            <article className='w-full lg:5 mb-5'>
+            <article className='w-full lg:w-5/12 mb-5'>
               <p className='viewMore'> NIN Document Verification (Front)</p>
 
               <ProfileImage
@@ -173,7 +173,7 @@ const AgentNIN = ({ onPrevious }) => {
                 placeholderImage={ninf}
               />
             </article>
-            <article className='w-full lg:5 mb-5'>
+            <article className='w-full lg:w-5/12 mb-5'>
               <p className='viewMore'> NIN Document Verification (Back)</p>
 
               <ProfileImage

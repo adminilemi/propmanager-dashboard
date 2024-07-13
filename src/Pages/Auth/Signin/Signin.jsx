@@ -172,7 +172,7 @@ const Signin = () => {
               <span className='error_message'> {errors.errMessage} </span>
             </div>
             <div className=' w-full text-center mt-3'>
-              <button className='outline-btn w-full mt-1'>
+              <button className='outline-btn w-full mt-1 flex items-center justify-center gap-3'>
                 <span>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'

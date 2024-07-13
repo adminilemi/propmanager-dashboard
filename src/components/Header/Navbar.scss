@@ -50,6 +50,7 @@
         // margin-right: 0.6em;
         cursor: pointer;
       }
+
       .userLogo {
         border: solid 2px var(--mainLight);
         border-radius: 10px;
@@ -98,6 +99,7 @@
   .userPopUp {
     position: absolute;
     top: 70%;
+    right: 0;
     border-radius: 8px;
     border: 1px solid var(--grey-grey-5, #e5e7ef);
     background: rgba(255, 255, 255, 0.96);

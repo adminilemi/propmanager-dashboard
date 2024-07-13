@@ -5,11 +5,11 @@ const CustomUploadToCloudinary = ({ uploadChange, loading, id }) => {
   const fileInputRef = useRef(null);
 
   return (
-    <div>
+    <div className='w-full flex'>
       <label
         htmlFor={id}
         style={{ cursor: 'pointer' }}
-        className='main-btn w-full text-center'
+        className='main-btn !w-full text-center'
       >
         {loading ? <Spinner /> : 'Upload'}
       </label>
@@ -18,7 +18,7 @@ const CustomUploadToCloudinary = ({ uploadChange, loading, id }) => {
         ref={fileInputRef}
         type='file'
         onChange={uploadChange}
-        className='d-none'
+        className='hidden'
       />
     </div>
   );

@@ -11,7 +11,7 @@ const Onboarding = () => {
         <header className='border-bottom mb-3 '>
           <div className='container py-2 px-2 px-lg-5'>
             <div className='col-1 py-2 '>
-              <BrandLogo />
+              <BrandLogo className='w-[10%]' />
             </div>
           </div>
         </header>

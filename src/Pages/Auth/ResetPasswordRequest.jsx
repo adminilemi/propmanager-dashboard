@@ -9,7 +9,7 @@ import RightSide from '@/components/RightSide';
 import BrandLogo from '@/components/BrandLogo';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 
-function ResetPasswordRequest() {
+const ResetPasswordRequest = () => {
   const { errors, setErrors, loading, setLoading } = useGlobalHooks();
   const [resetEmail, setResetEmail] = useState({ email: '' });
   const navigate = useNavigate();
@@ -53,14 +53,14 @@ function ResetPasswordRequest() {
 
   return (
     <div className={` reset flex flex-col md:flex-row `}>
-      <section className='flex flex-col aside py-3'>
-        <header className='border-bottom py-2 mb-3 '>
+      <section className='flex flex-col aside '>
+        <header className='border-bottom py-2 mb-3 bg-mainColor'>
           <div className='container'>
             <BrandLogo className='w-[10%]' />
           </div>
         </header>
 
-        <aside className='w-9/12 mx-auto'>
+        <aside className='w-9/12 mx-auto mt-10'>
           <form
             className={` form flex flex-col`}
             onSubmit={handleResetPassword}
@@ -108,6 +108,6 @@ function ResetPasswordRequest() {
       <RightSide title='Get the right people to get your job done right' />
     </div>
   );
-}
+};
 
 export default ResetPasswordRequest;
