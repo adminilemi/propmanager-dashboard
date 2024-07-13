@@ -16,7 +16,7 @@ import {
 import UserPop from '../UserPop/UserPop';
 // import { getNotifs, selectNotifs } from '../../Redux/Features/notifsSlice';
 
-function NavBar() {
+const NavBar = () => {
   const toggle = useSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   const { authUser } = useSelector(selectUserData);
@@ -56,7 +56,7 @@ function NavBar() {
         </Modal>
       )}
       {toggle['user'] && (
-        <Modal id='user' className='userPopUp w-full md:6 m-3'>
+        <Modal id='user' className='userPopUp w-full md:w-6/12 m-3'>
           <UserPop
             coyLogo={logoImage}
             companyName={userName || authUser.userName}
@@ -66,6 +66,6 @@ function NavBar() {
       )}
     </div>
   );
-}
+};
 
 export default NavBar;

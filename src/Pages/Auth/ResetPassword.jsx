@@ -8,7 +8,7 @@ import RightSide from '@/components/RightSide';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 
-function ResetPassword() {
+const ResetPassword = () => {
   const { errors, setErrors, loading, setLoading } = useGlobalHooks();
   const [updatePassword, setUpdatePassword] = useState({
     uniqueVerificationCode: '',
@@ -59,8 +59,8 @@ function ResetPassword() {
     <div
       className={` changePassword flex flex-col md:flex-row justify-between`}
     >
-      <section className='flex flex-col aside py-3'>
-        <header className='border-bottom py-2 mb-3 '>
+      <section className='flex flex-col aside'>
+        <header className='border-bottom py-2 mb-3 bg-mainColor'>
           <div className='container'>
             <BrandLogo className='w-[10%]' />
           </div>
@@ -160,6 +160,6 @@ function ResetPassword() {
       <RightSide title='Get the right people to get your job done right' />
     </div>
   );
-}
+};
 
 export default ResetPassword;

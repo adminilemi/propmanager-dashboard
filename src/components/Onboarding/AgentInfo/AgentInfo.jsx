@@ -80,7 +80,7 @@ const AgentInfo = ({ onNext }) => {
 
       <form onSubmit={handleSubmit} className='flex flex-col'>
         <div className='flex flex-col w-full mb-5'>
-          <div className='w-full md:5 mb-5'>
+          <div className='w-full md:w-5/12 mb-5'>
             <label> Upload Profile Image</label>
             <ProfileImage
               loading={loading}
