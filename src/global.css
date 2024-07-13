@@ -93,7 +93,8 @@ body {
   border-right: solid 1px var(--Grey5);
   min-height: 100vh;
   background: var(--white);
-  width: auto;
+  padding: 0.3em;
+  /* width: auto; */
 }
 
 .rightSide {
@@ -197,13 +198,18 @@ h4 {
 /* ===Dashboard title start=== */
 
 .sidebarActive {
-  background: #f0effb;
+  /* background: #f0effb;
   color: var(--mainColor);
   padding: 0.6em 1em;
   border-right: solid 4px var(--pryColor);
   border-radius: 10px;
-  /* width: 90%; */
-  margin: 0.5em auto;
+  width: 90%;
+  margin: 0.5em auto; */
+  border-radius: 10px;
+  background: #f0effb;
+  color: var(--mainColor);
+  padding: 0.6em 1em;
+  margin: 0.5em 0;
 }
 .sidebarActive h4 {
   color: var(--mainColor);
@@ -224,7 +230,6 @@ svg[Attributes] {
 .sidebarNotActive {
   color: var(--Grey6);
   padding: 0.6em 1em;
-  /* width: 90%; */
   margin: 0.5em 0;
 }
 

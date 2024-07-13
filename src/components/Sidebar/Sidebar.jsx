@@ -7,19 +7,18 @@ import BrandLogo from '../BrandLogo';
 import { GoSidebarCollapse, GoSidebarExpand } from 'react-icons/go';
 
 function Sidebar() {
-  const [toggleSideBar, setToggleSideBar] = useState(true);
+  const [toggleSideBar, setToggleSideBar] = useState(false);
 
   const Employer = SidebarData.Employer;
   const Account = SidebarData.Account;
 
   return (
-    <main className=' sidebarContainer'>
+    <main className=' sidebarContainer relative'>
       <article className={`sidebar `}>
-        <div className='w-4/12 ps-2 mb-5 mt-3 flex gap-3 items-center'>
-          <BrandLogo sidebar={toggleSideBar} />{' '}
+        <div className='mb-5 mt-3 flex flex-col gap-3  items-start '>
           <div
             onClick={() => setToggleSideBar(!toggleSideBar)}
-            className='pe-1'
+            // className='absolute -right-4'
           >
             {toggleSideBar ? (
               <GoSidebarExpand className='text-grey-300' size={25} />
@@ -27,6 +26,7 @@ function Sidebar() {
               <GoSidebarCollapse className='text-grey-300' size={25} />
             )}
           </div>
+          <BrandLogo sidebar={toggleSideBar} />{' '}
         </div>
         <ul className='mt-5 mt-lg-0  flex flex-col justify-between'>
           {Employer.map((tab) => (
