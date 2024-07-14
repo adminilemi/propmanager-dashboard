@@ -1,6 +1,7 @@
 import AddProperty from '@/Pages/AddProperty/AddProperty';
 import Home from '@/Pages/Home/Home';
 import Insight from '@/Pages/Insight/Insight';
+import Leads from '@/Pages/Leads/Leads';
 import Listings from '@/Pages/Listings/Listings';
 import Logout from '@/Pages/Logout/Logout';
 import Messages from '@/Pages/Messages/Messages';
@@ -11,6 +12,7 @@ import Tenants from '@/Pages/Tenants/Tenants';
 
 const dashboardRoutes = [
   { path: '/', name: 'Dashboard', element: <Home /> },
+  { path: '/leads', name: 'Leads', element: <Leads /> },
   { path: '/insight', name: 'Insight', element: <Insight /> },
   { path: '/listings', name: 'Listings', element: <Listings /> },
   { path: '/tenants', name: 'Tenants', element: <Tenants /> },

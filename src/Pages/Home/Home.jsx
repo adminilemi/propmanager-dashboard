@@ -89,6 +89,8 @@ const Home = () => {
     return <HomeSkeleton />;
   }
 
+  const chartDatas = selectedOption === 'Monthly' ? monthlyData : weeklyData;
+
   return (
     <main className='Overviews flex flex-col  '>
       <h1 className='mb-5'> Dashboard</h1>
@@ -204,9 +206,7 @@ const Home = () => {
 
               <LineChart
                 // data={monthlyChartData(monthlyData)}
-                data={weeklyChartData(
-                  selectedOption === 'Monthly' ? monthlyData : weeklyData,
-                )}
+                data={weeklyChartData(chartDatas)}
                 options={chartOptions}
               />
               <ul className='w-full flex items-center gap-4 mt-4'>

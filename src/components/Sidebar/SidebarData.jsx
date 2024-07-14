@@ -39,37 +39,37 @@ export const SidebarData = {
       url: '/',
     },
 
-    // {
-    //   id: 'tab2',
-    //   icon: (
-    //     <svg
-    //       xmlns='http://www.w3.org/2000/svg'
-    //       width='20'
-    //       height='20'
-    //       viewBox='0 0 20 20'
-    //       fill='none'
-    //     >
-    //       <g>
-    //         <path
-    //           d='M6.91647 15.0332V14.0665C4.9998 12.9082 3.4248 10.6498 3.4248 8.24982C3.4248 4.12482 7.21647 0.891487 11.4998 1.82482C13.3831 2.24149 15.0331 3.49149 15.8915 5.21649C17.6331 8.71649 15.7998 12.4332 13.1081 14.0582V15.0248C13.1081 15.2665 13.1998 15.8248 12.3081 15.8248H7.71647C6.7998 15.8332 6.91647 15.4748 6.91647 15.0332Z'
-    //           stroke='#100A55'
-    //           strokeWidth='2'
-    //           strokeLinecap='round'
-    //           strokeLinejoin='round'
-    //         />
-    //         <path
-    //           d='M7.08301 18.3335C8.99134 17.7918 11.008 17.7918 12.9163 18.3335'
-    //           stroke='#100A55'
-    //           strokeWidth='2'
-    //           strokeLinecap='round'
-    //           strokeLinejoin='round'
-    //         />
-    //       </g>
-    //     </svg>
-    //   ),
-    //   title: 'Insight',
-    //   url: '/insight',
-    // },
+    {
+      id: 'tab2',
+      icon: (
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='20'
+          height='20'
+          viewBox='0 0 20 20'
+          fill='none'
+        >
+          <g>
+            <path
+              d='M6.91647 15.0332V14.0665C4.9998 12.9082 3.4248 10.6498 3.4248 8.24982C3.4248 4.12482 7.21647 0.891487 11.4998 1.82482C13.3831 2.24149 15.0331 3.49149 15.8915 5.21649C17.6331 8.71649 15.7998 12.4332 13.1081 14.0582V15.0248C13.1081 15.2665 13.1998 15.8248 12.3081 15.8248H7.71647C6.7998 15.8332 6.91647 15.4748 6.91647 15.0332Z'
+              stroke='#100A55'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+            <path
+              d='M7.08301 18.3335C8.99134 17.7918 11.008 17.7918 12.9163 18.3335'
+              stroke='#100A55'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </g>
+        </svg>
+      ),
+      title: 'Leads',
+      url: '/leads',
+    },
     {
       id: 'tab3',
       icon: (

@@ -7,6 +7,10 @@ import Due from '@/assets/due.png';
 import Active from '@/assets/active.png';
 import All from '@/assets/all.png';
 import Chat from '@/assets/chat.png';
+import ListingStats from './DashboardComps/LeadsComp/ListingStats';
+import LeadsComp from './DashboardComps/LeadsComp/Leads';
+import ClientRquest from './DashboardComps/LeadsComp/ClientRequest';
+import LeadsStats from './DashboardComps/LeadsComp/LeadsStat';
 
 export const propertiesData = [
   {
@@ -539,6 +543,34 @@ export const TabsData = {
     { id: 'tab3', comp: <MyNotifications /> },
   ],
 };
+export const LeadsData = {
+  TabTitle: [
+    {
+      id: 'tab1',
+      title: 'Listing Data',
+    },
+
+    {
+      id: 'tab2',
+      title: 'Leads',
+    },
+    {
+      id: 'tab3',
+      title: 'Client Requests',
+    },
+    {
+      id: 'tab4',
+      title: 'Leads Data',
+    },
+  ],
+
+  TabContents: [
+    { id: 'tab1', comp: <ListingStats /> },
+    { id: 'tab2', comp: <LeadsComp /> },
+    { id: 'tab3', comp: <ClientRquest /> },
+    { id: 'tab4', comp: <LeadsStats /> },
+  ],
+};
 
 export const pricingPlan = {
   Monthly: [
@@ -834,12 +866,12 @@ export const monthlyChartData = (data) => {
 
 export const weeklyChartData = (data) => {
   return {
-    labels: Object.keys(data),
+    labels: Object?.keys(data),
 
     datasets: [
       // rent
       {
-        data: Object.values(data).map((item) => item?.rent),
+        data: Object?.values(data)?.map((item) => item?.rent),
         lineTension: 0.5,
         borderColor: '#5F259F',
         pointBorderColor: '#FFB812',
@@ -847,7 +879,7 @@ export const weeklyChartData = (data) => {
       },
       // sale
       {
-        data: Object.values(data).map((item) => item?.sale),
+        data: Object?.values(data)?.map((item) => item?.sale),
         backgroundColor: '#100A55',
         borderColor: '#FFB812',
         pointBorderColor: '#100A55',
@@ -856,7 +888,7 @@ export const weeklyChartData = (data) => {
 
       // shortlets
       {
-        data: Object.values(data).map((item) => item?.shortlet),
+        data: Object?.values(data)?.map((item) => item?.shortlet),
 
         pointBorderColor: '#100A55',
         borderColor: '#A09C9C',

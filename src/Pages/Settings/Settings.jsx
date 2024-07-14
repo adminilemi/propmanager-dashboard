@@ -17,6 +17,8 @@ const Settings = () => {
               id={tab.id}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
+              activeClass='active'
+              notActiveClass='notActive'
             />
           </section>
         ))}

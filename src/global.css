@@ -195,6 +195,22 @@ h4 {
   color: var(--Grey2);
 }
 
+/* React date picker */
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  display: flex !important;
+}
+
+.react-datepicker-wrapper {
+  display: flex !important;
+  width: 100%;
+}
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+  top: 17%;
+  right: 0;
+}
+
 /* ===Dashboard title start=== */
 
 .sidebarActive {
@@ -389,6 +405,7 @@ button:disabled {
   left: 5%;
 }
 
+/* ====TABS STYLES START=== */
 .tabTitle {
   cursor: pointer;
 }
@@ -420,6 +437,29 @@ button:disabled {
   color: var(--Grey6);
   font-weight: 500;
 }
+
+.leadsActive {
+  background: var(--mainColor);
+  padding: 1em 1.5em;
+}
+
+.leadsActive h4 {
+  color: var(--white) !important;
+  font-weight: 700;
+}
+
+.leadsNotActive {
+  color: var(--Grey6);
+  padding: 1em 1.5em;
+  border-right: solid 2px var(--Line);
+}
+
+.leadsNotActive h4 {
+  color: var(--mainColor);
+  font-weight: 500;
+}
+
+/* ====TABS STYLES ENDS=== */
 
 input::placeholder {
   font-size: 14px;
