@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import './Sidebar.scss';
 import { SidebarData } from './SidebarData';
 import { NavLink } from 'react-router-dom';
-import BrandLogo from '../BrandLogo';
 import { GoSidebarCollapse, GoSidebarExpand } from 'react-icons/go';
+import SidebarIcon from '../SidebarIcon';
 
 function Sidebar() {
   const [toggleSideBar, setToggleSideBar] = useState(false);
@@ -26,7 +26,7 @@ function Sidebar() {
               <GoSidebarCollapse className='text-grey-300' size={25} />
             )}
           </div>
-          <BrandLogo sidebar={toggleSideBar} />{' '}
+          <SidebarIcon sidebar={toggleSideBar} />{' '}
         </div>
         <ul className='mt-5 mt-lg-0  flex flex-col justify-between'>
           {Employer.map((tab) => (

@@ -97,7 +97,7 @@ const Signin = () => {
   return (
     <div className={` SignIn flex flex-col md:flex-row justify-between`}>
       <section className='flex flex-col aside'>
-        <header className='border-bottom py-2 mb-3 '>
+        <header className='border-bottom py-2 mb-3 bg-mainColor'>
           <div className='container'>
             <BrandLogo className='w-[10%]' />
           </div>
