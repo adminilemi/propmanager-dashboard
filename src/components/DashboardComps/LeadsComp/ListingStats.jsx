@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DateFiltering from './DateFiltering';
 import { ListingStatCard } from './Cards';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
+import Paginate from '@/components/Paginate';
 
 const datas = [
   { id: 1, date: '09/07/2024', rent: 12, sale: 34, shortlet: 20 },
   { id: 2, date: '20/07/2024', rent: 12, sale: 34, shortlet: 20 },
   { id: 3, date: '19/07/2024', rent: 12, sale: 34, shortlet: 20 },
   { id: 4, date: '29/07/2024', rent: 12, sale: 34, shortlet: 20 },
+  { id: 5, date: '29/07/2024', rent: 12, sale: 34, shortlet: 20 },
+  { id: 6, date: '29/07/2024', rent: 12, sale: 34, shortlet: 20 },
+  { id: 7, date: '29/07/2024', rent: 12, sale: 34, shortlet: 20 },
 ];
 
 const ListingStats = () => {
+  const { handleSearch } = useGlobalHooks();
+  const [filteredData, setFilteredData] = useState([]);
   return (
     <section className='mt-9'>
       <DateFiltering className='w-full lg:w-9/12 my-10' />
@@ -23,7 +30,7 @@ const ListingStats = () => {
           <li className='w-3/12 text-center'>For Shortlet</li>
         </ul>
         <ul className='flex flex-col   container'>
-          {datas.map(({ date, id, rent, sale, shortlet }) => (
+          {filteredData.map(({ date, id, rent, sale, shortlet }) => (
             <li
               key={id}
               className='flex justify-between  w-full bg-[#F9FAFA] border-b-2 py-2 px-5 my-[1px] '
@@ -38,6 +45,13 @@ const ListingStats = () => {
           ))}
         </ul>
       </section>
+
+      <Paginate
+        data={datas}
+        handleSearch={handleSearch}
+        currentPage={filteredData}
+        setCurrentPage={setFilteredData}
+      />
     </section>
   );
 };

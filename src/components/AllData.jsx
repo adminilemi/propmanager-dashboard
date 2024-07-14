@@ -8,7 +8,7 @@ import Active from '@/assets/active.png';
 import All from '@/assets/all.png';
 import Chat from '@/assets/chat.png';
 import ListingStats from './DashboardComps/LeadsComp/ListingStats';
-import LeadsComp from './DashboardComps/LeadsComp/Leads';
+import LeadsComp from './DashboardComps/LeadsComp/LeadsComp';
 import ClientRquest from './DashboardComps/LeadsComp/ClientRequest';
 import LeadsStats from './DashboardComps/LeadsComp/LeadsStat';
 
@@ -547,7 +547,7 @@ export const LeadsData = {
   TabTitle: [
     {
       id: 'tab1',
-      title: 'Listing Data',
+      title: 'Listing Stat',
     },
 
     {
@@ -560,7 +560,7 @@ export const LeadsData = {
     },
     {
       id: 'tab4',
-      title: 'Leads Data',
+      title: 'Leads Stat',
     },
   ],
 

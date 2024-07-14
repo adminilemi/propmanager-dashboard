@@ -549,8 +549,8 @@ select {
   -webkit-appearance: none;
   background: #f7f7fd url('./assets/selectIcon.svg') no-repeat;
   background-position: 95% 50%;
-  border-color: #e0def7 !important;
-  padding: 0.77em 1em !important;
+  border-color: #e0def7;
+  padding: 0.77em 1em;
 }
 
 .chevIcons {
@@ -803,10 +803,10 @@ select {
 
 .paginContainer a {
   display: block;
-  width: 2.5em;
-  height: 2.5em;
-  background: var(--white);
-  color: var(--Grey3);
+  width: 1.5em;
+  height: 1.5em;
+  background: var(--mainDark);
+  color: var(--white);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -814,18 +814,19 @@ select {
 }
 
 .paginContainer a:hover {
-  background-color: var(--white);
+  background-color: var(--mainColor);
 }
 
 .paginContainer .activePage a {
   background: var(--mainDark);
   color: var(--white);
-  width: 2.5em;
-  height: 2.5em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .paginContainer .disabled a {
   pointer-events: none;
+  color: var(--Grey3);
   background-color: grey; /* Adjust the color for the disabled state */
   border: 1px solid lightgrey; /* Adjust the border color for the disabled state */
 }

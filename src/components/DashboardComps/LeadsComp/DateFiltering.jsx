@@ -13,12 +13,6 @@ const DateFiltering = ({ className }) => {
         >
           Select Date from:
         </label>
-        {/* <input
-          type='date'
-          name='startDate'
-          id='startDate'
-          className='form-control flex-1'
-        /> */}
 
         <div className='flex-1'>
           <DatePicker

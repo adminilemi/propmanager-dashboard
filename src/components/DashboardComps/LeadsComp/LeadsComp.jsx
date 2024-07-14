@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import DateFiltering from './DateFiltering';
-import { ClientReqCard, ListingStatCard } from './Cards';
-import { useGlobalHooks } from '@/Hooks/globalHooks';
+import { LeadsCard } from './Cards';
+import LeadsFiltering from './LeadsFiltering';
 import Paginate from '@/components/Paginate';
+import { useGlobalHooks } from '@/Hooks/globalHooks';
 
 const datas = [
   {
@@ -11,34 +11,39 @@ const datas = [
     name: 'Adeshewa abiodun',
     phone: '08134567898',
     medium: 'Whatsapp',
+    propDeets: 'Newly Detached Semi Bungalow , 4 Bedroom Flat...',
   },
   {
     id: 'R000765',
     date: '20/07/2024',
     name: 'Adetewa Sabiodun',
     phone: 'Not Displayed',
-    medium: 'Message',
+    medium: 'Phone',
+    propDeets: 'Newly Detached Semi Bungalow , 4 Bedroom Flat...',
   },
   {
     id: 'R000766',
     date: '19/07/2024',
     name: 'Ademewa Babiodun',
     phone: '08134567898',
-    medium: 'Phone',
+    medium: 'Whatsapp',
+    propDeets: 'Newly Detached Semi Bungalow , 4 Bedroom Flat...',
   },
   {
     id: 'R000767',
     date: '29/07/2024',
     name: 'Aderewa Cabiodun',
     phone: '08134567898',
-    medium: 'Whatsapp',
+    medium: 'Messages',
+    propDeets: 'Newly Detached Semi Bungalow , 4 Bedroom Flat...',
   },
   {
     id: 'R000768',
     date: '29/07/2024',
     name: 'Aderewa Cabiodun',
     phone: '08134567898',
-    medium: 'Message',
+    medium: 'Whatsapp',
+    propDeets: 'Newly Detached Semi Bungalow , 4 Bedroom Flat...',
   },
   {
     id: 'R000769',
@@ -46,15 +51,23 @@ const datas = [
     name: 'Aderewa Cabiodun',
     phone: '08134567898',
     medium: 'Phone',
+    propDeets: 'Newly Detached Semi Bungalow , 4 Bedroom Flat...',
+  },
+  {
+    id: 'R000771',
+    date: '29/07/2024',
+    name: 'Aderewa Cabiodun',
+    phone: '08134567898',
+    medium: 'Whatsapp',
+    propDeets: 'Newly Detached Semi Bungalow , 4 Bedroom Flat...',
   },
 ];
-
-const ClientRquest = () => {
+const LeadsComp = () => {
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState([]);
   return (
     <section className='mt-9'>
-      <DateFiltering className='w-full lg:w-9/12 my-10' />
+      <LeadsFiltering className='w-full lg:w-9/12 my-10' />
       <h2 className='text-lg font-bold'>Leads Daily</h2>
 
       <section className='my-5'>
@@ -63,28 +76,22 @@ const ClientRquest = () => {
           <li className='w-2/12 text-center'>Client Name</li>
           <li className='w-2/12 text-center'>Client Phone</li>
           <li className='w-2/12 text-center'>Medium</li>
-          <li className='w-2/12 text-center'>Request ID</li>
-          <li className='w-3/12 text-center'>Action</li>
+          <li className='w-2/12 text-center'>Property ID</li>
+          <li className='w-3/12 text-center'>Property Details</li>
         </ul>
         <ul className='flex flex-col   container'>
-          {filteredData.map(({ date, id, name, medium, phone }) => (
+          {filteredData.map(({ date, id, name, medium, phone, propDeets }) => (
             <li
               key={id}
               className='flex items-center justify-between  w-full bg-[#F9FAFA] border-b-2 py-2 px-5 my-[1px] '
             >
-              <ClientReqCard
+              <LeadsCard
                 date={date}
                 name={name}
                 medium={medium}
-                reqId={id}
+                propId={id}
                 phone={phone}
-                actionTitle={
-                  medium === 'Whatsapa'
-                    ? 'Connect to Whatsapp'
-                    : medium === 'Phone'
-                    ? ' Send SMS'
-                    : ' Send A Message'
-                }
+                propertyDeets={propDeets}
               />
             </li>
           ))}
@@ -101,4 +108,4 @@ const ClientRquest = () => {
   );
 };
 
-export default ClientRquest;
+export default LeadsComp;
