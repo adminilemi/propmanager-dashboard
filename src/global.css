@@ -440,7 +440,7 @@ button:disabled {
 
 .leadsActive {
   background: var(--mainColor);
-  padding: 1em 1.5em;
+  padding: 0.7em 1.5em;
 }
 
 .leadsActive h4 {
@@ -450,7 +450,7 @@ button:disabled {
 
 .leadsNotActive {
   color: var(--Grey6);
-  padding: 1em 1.5em;
+  padding: 0.7em 1.5em;
   border-right: solid 2px var(--Line);
 }
 

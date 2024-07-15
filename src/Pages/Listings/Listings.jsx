@@ -18,7 +18,7 @@ import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { FaCopy } from 'react-icons/fa';
 import Spinner from '@/spinner/Spinner';
 
-function Listings() {
+const Listings = () => {
   const { authUser } = useSelector(selectUserData);
   const searchTerms = useSelector(selectSearch);
   const { handleSearch } = useGlobalHooks();
@@ -32,9 +32,9 @@ function Listings() {
     setToggle((prev) => ({ [id]: !prev[id] }));
   };
 
-  useEffect(() => {
-    handleSearch(data, searchTerms, setFilteredData, 'Property_Name');
-  }, [searchTerms, data]);
+  // useEffect(() => {
+  //   handleSearch(data, searchTerms, setFilteredData, 'Property_Name');
+  // }, [searchTerms, data]);
 
   const handleCopyAgentLink = async () => {
     try {
@@ -48,13 +48,13 @@ function Listings() {
     }
   };
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  // if (isLoading) {
+  //   return <Spinner />;
+  // }
 
   return (
     <main className='listings flex flex-col py-8'>
-      {!checkPlanValidity ? (
+      {/* {!checkPlanValidity ? (
         <section className='emptyStateContainer w-11/12 h-[85vh] m-auto flex flex-col items-center '>
           <EmptyState
             icons={noShift}
@@ -82,128 +82,127 @@ function Listings() {
             </Link>
           </div>
         </section>
-      ) : (
-        <section className='flex flex-col lg:flex-row justify-between'>
-          <article className='w-full lg:w-4/12 listSide'>
-            <div className='w-11/12 pb-5 flex flex-col mx-auto '>
-              <div className='flex flex-col lg:flex-row justify-between items-center'>
-                <h1 className='my-3'> Listings</h1>
-                <div>
-                  <Link to='/addproperty' className='main-btn'>
-                    {' '}
-                    + Add Property
-                  </Link>
-                </div>
-              </div>
-              <button
-                onClick={handleCopyAgentLink}
-                className='main-btn my-4 flex items-center gap-3'
-              >
-                {' '}
-                <FaCopy /> Copy your unique link
-              </button>
-            </div>
-            <hgroup className='w-11/12  mx-auto flex justify-between'>
-              <h1 className='my-3'>
-                {' '}
-                Properties <span className='count'> {data.length} </span>
-              </h1>
-              <h1 className='my-3'>
-                {' '}
-                <BsFilter />
-              </h1>
-            </hgroup>
-
-            <div className='w-11/12  my-3 mx-auto'>
-              <Search placeholder='Search...' />
-            </div>
-
-            {filteredData.length === 0 && searchTerms !== '' ? (
+      ) : ( */}
+      <section className='flex flex-col lg:flex-row justify-between'>
+        <article className='w-full lg:w-4/12 listSide'>
+          <div className='w-11/12 pb-5 flex flex-col mx-auto '>
+            <div className='flex flex-col lg:flex-row justify-between items-center'>
+              <h1 className='my-3'> Listings</h1>
               <div>
-                <p> There&apos;s no match to your search</p>{' '}
+                <Link to='/addproperty' className='main-btn'>
+                  {' '}
+                  + Add Property
+                </Link>
               </div>
-            ) : (
-              <ul className='listCard'>
-                {filteredData.map(
-                  (
-                    {
-                      ExteriorImages,
-                      InteriorImages,
-                      StreetAddress,
-                      status,
-                      SquareFoot,
-                      Property_Name,
-                    },
-                    idx,
-                  ) => (
-                    <li
-                      key={idx}
-                      className={
-                        toggle[idx]
-                          ? 'cardActive flex justify-between'
-                          : 'flex justify-between'
-                      }
-                      onClick={() => toggleAccordion(idx)}
-                    >
-                      <figure className='w-3/12'>
-                        <img
-                          src={ExteriorImages[0]?.url || InteriorImages[0]?.url}
-                          alt=''
-                        />
-                      </figure>
-                      <div className='w-8/12 flex justify-between'>
-                        <div className='listTitle flex flex-col justify-between py-2'>
-                          <h4>{Property_Name} </h4>
-                          <p>{StreetAddress.substring(0, 18)}... </p>
-                        </div>
+            </div>
+            <button
+              onClick={handleCopyAgentLink}
+              className='main-btn my-4 flex items-center gap-3'
+            >
+              {' '}
+              <FaCopy /> Copy your unique link
+            </button>
+          </div>
+          <hgroup className='w-11/12  mx-auto flex justify-between'>
+            <h1 className='my-3'>
+              {' '}
+              Properties <span className='count'> {data?.length} </span>
+            </h1>
+            <h1 className='my-3'>
+              {' '}
+              <BsFilter />
+            </h1>
+          </hgroup>
 
-                        <div>
-                          <div className='flex gap-1 '>
-                            <div>
-                              <button
-                                className={
-                                  status === 'ACTIVE' || status === 'Occupied'
-                                    ? 'verify'
-                                    : status === 'Maintenance'
-                                    ? 'del'
-                                    : status === 'Vacant'
-                                    ? 'view'
-                                    : 'archive'
-                                }
-                              >
-                                {' '}
-                                {status}{' '}
-                              </button>
-                            </div>
-                          </div>
-                          <small>{SquareFoot} </small>
-                        </div>
+          <div className='w-11/12  my-3 mx-auto'>
+            <Search placeholder='Search...' />
+          </div>
+
+          {filteredData?.length === 0 && searchTerms !== '' ? (
+            <div>
+              <p> There&apos;s no match to your search</p>{' '}
+            </div>
+          ) : (
+            <ul className='listCard'>
+              {filteredData?.map(
+                (
+                  {
+                    ExteriorImages,
+                    InteriorImages,
+                    StreetAddress,
+                    status,
+                    SquareFoot,
+                    Property_Name,
+                  },
+                  idx,
+                ) => (
+                  <li
+                    key={idx}
+                    className={
+                      toggle[idx]
+                        ? 'cardActive flex justify-between'
+                        : 'flex justify-between'
+                    }
+                    onClick={() => toggleAccordion(idx)}
+                  >
+                    <figure className='w-3/12'>
+                      <img
+                        src={ExteriorImages[0]?.url || InteriorImages[0]?.url}
+                        alt=''
+                      />
+                    </figure>
+                    <div className='w-8/12 flex justify-between'>
+                      <div className='listTitle flex flex-col justify-between py-2'>
+                        <h4>{Property_Name} </h4>
+                        <p>{StreetAddress?.substring(0, 18)}... </p>
                       </div>
-                    </li>
-                  ),
-                )}
-              </ul>
-            )}
-          </article>
 
-          <article className='w-full lg:8'>
-            <section className=''>
-              <AddGifBanner images={gif} />
-            </section>
+                      <div>
+                        <div className='flex gap-1 '>
+                          <div>
+                            <button
+                              className={
+                                status === 'ACTIVE' || status === 'Occupied'
+                                  ? 'verify'
+                                  : status === 'Maintenance'
+                                  ? 'del'
+                                  : status === 'Vacant'
+                                  ? 'view'
+                                  : 'archive'
+                              }
+                            >
+                              {' '}
+                              {status}{' '}
+                            </button>
+                          </div>
+                        </div>
+                        <small>{SquareFoot} </small>
+                      </div>
+                    </div>
+                  </li>
+                ),
+              )}
+            </ul>
+          )}
+        </article>
 
-            {filteredData.map((item, idx) => (
-              <ListingDeetsCard
-                id={idx}
-                key={item._id}
-                propData={item}
-                toggle={toggle}
-              />
-            ))}
-          </article>
-        </section>
-      )}
+        <article className='w-full lg:8'>
+          <section className=''>
+            <AddGifBanner images={gif} />
+          </section>
+
+          {filteredData.map((item, idx) => (
+            <ListingDeetsCard
+              id={idx}
+              key={item._id}
+              propData={item}
+              toggle={toggle}
+            />
+          ))}
+        </article>
+      </section>
     </main>
   );
-}
+};
 
 export default Listings;
