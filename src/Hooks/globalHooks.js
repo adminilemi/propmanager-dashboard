@@ -27,6 +27,10 @@ export const useGlobalHooks = () => {
     dispatch(toggleShow(id));
   };
 
+  const handleError = (verb, message) => {
+    setErrors({ error: verb, errMessage: message });
+  };
+
   const btnTaps = () => {
     setShow(true);
     setTimeout(() => {
@@ -225,6 +229,7 @@ export const useGlobalHooks = () => {
     formatTime,
     openModal,
     open,
+    handleError,
     setOpen,
     getJobCreationDate,
     removeDuplicateItems,

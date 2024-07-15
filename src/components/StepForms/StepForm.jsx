@@ -10,6 +10,7 @@ import PropertyAddress from './PropertyAddress/PropertyAddress';
 import ListingInfo from './ListingInfo/ListingInfo';
 import PropertyImages from './PropertyImages/PropertyImages';
 import PropertyVideos from './PropertyVideos/PropertyVideos';
+import Pricing from './Pricing/Priciing';
 
 function StepForm() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -17,6 +18,7 @@ function StepForm() {
   const StepLabels = [
     { title: 'Property Address', icon: <TbSquareRoundedNumber1Filled /> },
     { title: 'Listing Information', icon: <TbSquareRoundedNumber2Filled /> },
+    { title: 'Pricing', icon: <TbSquareRoundedNumber2Filled /> },
     { title: 'Property Images', icon: <TbSquareRoundedNumber3Filled /> },
     { title: 'Property Videos', icon: <TbSquareRoundedNumber3Filled /> },
   ];
@@ -27,22 +29,34 @@ function StepForm() {
   const handlePrevious = () => {
     setCurrentStep((prev) => prev - 1);
   };
+
+  const data = [
+    { comp: <PropertyAddress onNext={handleNext} /> },
+    { comp: <ListingInfo onPrevious={handlePrevious} onNext={handleNext} /> },
+    { comp: <Pricing onPrevious={handlePrevious} onNext={handleNext} /> },
+    {
+      comp: <PropertyImages onPrevious={handlePrevious} onNext={handleNext} />,
+    },
+
+    {
+      comp: <PropertyVideos onPrevious={handlePrevious} onNext={handleNext} />,
+    },
+  ];
+
   return (
     <section className='flex flex-col  justify-between mt-5'>
-      <article className='w-full mb-5 border-bottom'>
-        <div className='w-full md:w-9/12 mx-auto'>
+      <article className='w-full lg:w-7/12 mx-auto mb-5 border-bottom'>
+        <div className=''>
           <StepFormLabel stepLabels={StepLabels} currentStep={currentStep} />
         </div>
       </article>
-      <article className='container card py-4 px-3'>
-        {currentStep === 0 && <PropertyAddress onNext={handleNext} />}
-        {currentStep === 1 && (
-          <ListingInfo onPrevious={handlePrevious} onNext={handleNext} />
+      <article className='w-full lg:w-7/12 mx-auto'>
+        {data.map(
+          ({ comp }, idx) =>
+            currentStep === idx && (
+              <React.Fragment key={idx}>{comp}</React.Fragment>
+            ),
         )}
-        {currentStep === 2 && (
-          <PropertyImages onPrevious={handlePrevious} onNext={handleNext} />
-        )}
-        {currentStep === 3 && <PropertyVideos onPrevious={handlePrevious} />}
       </article>
     </section>
   );

@@ -8,7 +8,7 @@ const AddProperty = () => {
   const nav = useNavigate();
 
   return (
-    <main className='addproperty flex flex-col '>
+    <main className='container flex flex-col '>
       <div>
         <button
           onClick={() => nav(-1)}
@@ -21,8 +21,8 @@ const AddProperty = () => {
 
       <section className='text-center mb-3 mt-5 w-full md:6 mx-auto'>
         {' '}
-        <h2>Add New Property</h2>
-        <p className='my-2'>
+        <h2 className='font-bold'>Add New Property</h2>
+        <p className='my-4 text-grey-300 '>
           Make sure you have filled in all the necessary fields and have
           uploaded all the required files.
         </p>{' '}

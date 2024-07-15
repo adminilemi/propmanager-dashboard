@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Inputs } from '@/components/AllData';
 import {
   addAddress,
   selectProperty,
 } from '@/Redux/Features/createPropertySlice';
+import allState from '@/components/nigeria-state-and-lgas.json';
 
 const initialState = {
+  ElectricityBand: '',
+  Property_Category: '',
   Property_Name: '',
   StreetAddress: '',
   UnitNumber: '',
@@ -15,10 +18,13 @@ const initialState = {
   YearBuilt: '',
 };
 
-function PropertyAddress({ onNext }) {
+const PropertyAddress = ({ onNext }) => {
   const { address } = useSelector(selectProperty);
+  const [getLga, setGetLga] = useState([]);
 
   const [propData, setPropData] = useState(address || initialState);
+
+  console.log(address);
 
   const dispatch = useDispatch();
 
@@ -34,14 +40,29 @@ function PropertyAddress({ onNext }) {
     onNext();
   };
 
+  useEffect(() => {
+    if (propData?.State !== '') {
+      const lgaData = allState.find((s) => s?.state === propData?.State);
+
+      setGetLga(lgaData?.lgas);
+    }
+  }, [propData?.State]);
+
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col'>
-      <div className='flex flex-col w-full mb-5'>
-        <section className='flex flex-wrap justify-between '>
-          {Inputs(propData).map(
+    <form onSubmit={handleSubmit} className='flex flex-col '>
+      <section className='flex flex-col w-full mb-5 card p-4'>
+        <ul className='flex flex-wrap justify-between '>
+          {Inputs(propData, allState, getLga).map(
             ({ id, label, type, placeholder, value, options, required }) =>
               options ? (
-                <div key={id} className=' inputWrapper flex flex-col'>
+                <li
+                  key={id}
+                  className={
+                    id === 'Property_Category'
+                      ? ' inputWrapper !w-full flex flex-col'
+                      : ' inputWrapper flex flex-col'
+                  }
+                >
                   <label>
                     {' '}
                     {label} <em>*</em>{' '}
@@ -51,20 +72,23 @@ function PropertyAddress({ onNext }) {
                     id={id}
                     name={label}
                     className='form-control'
-                    defaultValue={value}
+                    value={value}
                     onChange={handleChange}
                     required
                   >
-                    <option value=''> Select state </option>
-                    {options.map(({ name }) => (
-                      <option key={name} value={name}>
-                        {name}
+                    <option value=''> {placeholder} </option>
+                    {options.map((item) => (
+                      <option
+                        key={item['state'] || item?.id || item}
+                        value={item['state'] || item?.title || item}
+                      >
+                        {item['state'] || item?.title || item}
                       </option>
                     ))}
                   </select>
-                </div>
+                </li>
               ) : (
-                <div key={id} className=' inputWrapper flex flex-col'>
+                <li key={id} className=' inputWrapper flex flex-col'>
                   <label>
                     {' '}
                     {label} {required && <em>*</em>}
@@ -80,19 +104,19 @@ function PropertyAddress({ onNext }) {
                     onChange={handleChange}
                     required={required}
                   />
-                </div>
+                </li>
               ),
           )}
-        </section>
-      </div>
+        </ul>
+      </section>
 
-      <div className='w-full text-end mt-5'>
+      <section className='w-full text-end mt-2'>
         <button className='main-btn' type='submit'>
           Next
         </button>
-      </div>
+      </section>
     </form>
   );
-}
+};
 
 export default PropertyAddress;

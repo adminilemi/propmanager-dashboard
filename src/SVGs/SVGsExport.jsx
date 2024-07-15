@@ -110,3 +110,120 @@ export const Property4uIcon = (props) => (
     />
   </svg>
 );
+
+export const HomeIcon = (props) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width={20}
+    height={20}
+    fill='none'
+    {...props}
+  >
+    <path
+      stroke='#000929'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeMiterlimit={10}
+      strokeWidth={2}
+      d='M1.667 18.333h16.666'
+    />
+    <path
+      stroke='#000929'
+      strokeLinejoin='round'
+      strokeMiterlimit={10}
+      strokeWidth={2}
+      d='M2.458 18.333 2.5 8.308c0-.508.242-.991.642-1.308l5.833-4.542a1.676 1.676 0 0 1 2.05 0l5.833 4.534c.409.316.642.8.642 1.316v10.025'
+    />
+    <path
+      stroke='#000929'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeMiterlimit={10}
+      strokeWidth={2}
+      d='M12.917 9.167H7.083c-.691 0-1.25.558-1.25 1.25v7.917h8.334v-7.917c0-.692-.559-1.25-1.25-1.25ZM8.333 13.542v1.25'
+    />
+  </svg>
+);
+
+export const ShortletIcon = (props) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width={22}
+    height={20}
+    fill='none'
+    {...props}
+  >
+    <g
+      stroke='#000929'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeMiterlimit={10}
+      strokeWidth={2}
+    >
+      <path d='M1.833 18.333h18.334M17.483 18.342v-3.717M17.5 9.075a1.828 1.828 0 0 0-1.833 1.834V12.8c0 1.017.816 1.833 1.833 1.833a1.828 1.828 0 0 0 1.833-1.833v-1.892A1.828 1.828 0 0 0 17.5 9.075ZM2.75 18.334V5.025c0-1.675.833-2.516 2.492-2.516h5.191c1.659 0 2.484.841 2.484 2.516v13.309M5.833 6.875h4.125M5.833 10h4.125M7.875 18.333v-3.125' />
+    </g>
+  </svg>
+);
+
+export const ApartmentIcon = (props) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width={20}
+    height={20}
+    fill='none'
+    {...props}
+  >
+    <g
+      stroke='#000929'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeMiterlimit={10}
+      strokeWidth={2}
+    >
+      <path d='M10.833 18.334H4.167c-1.667 0-2.5-.834-2.5-2.5V9.167c0-1.667.833-2.5 2.5-2.5h4.166v9.167c0 1.666.834 2.5 2.5 2.5ZM8.425 3.333c-.067.25-.092.525-.092.833v2.5H4.167V5c0-.917.75-1.667 1.666-1.667h2.592ZM11.667 6.667v4.167M15 6.667v4.167M14.167 14.167H12.5a.836.836 0 0 0-.833.833v3.334H15V15a.836.836 0 0 0-.833-.833Z' />
+      <path d='M8.333 15.834V4.167c0-1.667.834-2.5 2.5-2.5h5c1.667 0 2.5.833 2.5 2.5v11.667c0 1.666-.833 2.5-2.5 2.5h-5c-1.666 0-2.5-.834-2.5-2.5Z' />
+    </g>
+  </svg>
+);
+
+export const TownIcon = (props) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width={20}
+    height={20}
+    fill='none'
+    {...props}
+  >
+    <g
+      stroke='#000929'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeMiterlimit={10}
+      strokeWidth={2}
+    >
+      <path d='M5.583 15H3.458c-1.191 0-1.791-.6-1.791-1.791v-9.75c0-1.192.6-1.792 1.791-1.792h3.584c1.191 0 1.791.6 1.791 1.792V5' />
+      <path d='M14.475 7.017v9.3c0 1.341-.667 2.016-2.008 2.016H7.6c-1.342 0-2.017-.675-2.017-2.016v-9.3C5.583 5.675 6.258 5 7.6 5h4.867c1.341 0 2.008.675 2.008 2.017Z' />
+      <path d='M11.167 5V3.46c0-1.192.6-1.792 1.791-1.792h3.584c1.191 0 1.791.6 1.791 1.792v9.75c0 1.191-.6 1.791-1.791 1.791h-2.067M8.333 9.167h3.334M8.333 11.667h3.334M10 18.333v-2.5' />
+    </g>
+  </svg>
+);
+
+export const DormIcon = (props) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width={20}
+    height={20}
+    fill='none'
+    {...props}
+  >
+    <g
+      stroke='#000929'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeMiterlimit={10}
+      strokeWidth={2}
+    >
+      <path d='M1.667 18.333h16.666M14.167 1.667H5.833C3.333 1.667 2.5 3.159 2.5 5v13.334h15V5c0-1.841-.833-3.333-3.333-3.333ZM5.833 13.75h2.5M11.667 13.75h2.5M5.833 10h2.5M11.667 10h2.5M5.833 6.25h2.5M11.667 6.25h2.5' />
+    </g>
+  </svg>
+);

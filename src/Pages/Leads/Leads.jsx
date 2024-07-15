@@ -9,9 +9,9 @@ const Leads = () => {
 
   return (
     <main className=' container my-5 flex flex-col justify-between'>
-      <article className='flex flex-wrap items-center card  w-fit overflow-hidden'>
+      <ul className='flex flex-wrap items-center card  w-fit overflow-hidden'>
         {LeadsData.TabTitle.map((tab) => (
-          <section key={tab.id} className='tabTitle'>
+          <div key={tab.id} className='tabTitle'>
             <TabTitle
               title={tab.title}
               id={tab.id}
@@ -20,9 +20,9 @@ const Leads = () => {
               activeClass='leadsActive'
               notActiveClass='leadsNotActive'
             />
-          </section>
+          </div>
         ))}
-      </article>
+      </ul>
 
       <article className='tabContents  w-full '>
         {LeadsData.TabContents.map(({ id, comp }) => (

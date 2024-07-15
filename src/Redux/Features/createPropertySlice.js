@@ -18,7 +18,7 @@ export const createPropertySlice = createSlice({
     },
 
     addListingInfo: (state, action) => {
-      state.listingInfo = action.payload;
+      state.listingInfo = { ...state.listingInfo, ...action.payload };
     },
 
     addExteriorImages: (state, action) => {

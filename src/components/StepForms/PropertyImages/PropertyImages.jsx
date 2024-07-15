@@ -12,10 +12,11 @@ import { selectGlobal } from '@/Redux/Features/globalSlice';
 import { selectSubPlan } from '@/Redux/Features/userDatasSlice';
 import { diamond, free, gold, platinum, silver } from '@/components/AllData';
 import { Link } from 'react-router-dom';
+import ErrorMessage from '@/components/ErrorMessage';
 
 const PropertyImages = ({ onPrevious, onNext }) => {
   const { InteriorImages } = useSelector(selectProperty);
-  const { errors, setErrors, uploadFilesToServer } = useGlobalHooks();
+  const { errors, handleError, uploadFilesToServer } = useGlobalHooks();
   const [loading, setLoading] = useState(false);
   const toggle = useSelector(selectGlobal);
   const planData = useSelector(selectSubPlan);
@@ -26,64 +27,93 @@ const PropertyImages = ({ onPrevious, onNext }) => {
   const [imageData, setImageData] = useState({ Interior: [] });
   const [uploadMessage, setUploadMessage] = useState({ title: '' });
 
+  console.log(free);
+
+  // create a lookup object
+  const planLimits = {
+    SILVER: { limit: '4', image: silver },
+    GOLD: { limit: '8', image: gold },
+    PLATINUM: { limit: '12', image: platinum },
+    DIAMOND: { limit: '', image: diamond },
+    FREE: { limit: '2', image: free },
+  };
+
   useEffect(() => {
-    if (planData.planName === 'SILVER') {
-      setImageData({ Interior: fromReduxStor || silver });
-      setUploadMessage({
-        title: (
-          <small className='messageUpload'>
-            You can only upload 4 images for this package,{' '}
-            <Link to='/subscription' className='upgrade'>
-              Upgrade Now
-            </Link>{' '}
-            to upload more.{' '}
-          </small>
-        ),
-      });
-    } else if (planData.planName === 'GOLD') {
-      setImageData({ Interior: fromReduxStor || gold });
-      setUploadMessage({
-        title: (
-          <small className='messageUpload'>
-            You can only upload 8 images for this package,{' '}
-            <Link to='/subscription' className='upgrade'>
-              Upgrade Now
-            </Link>{' '}
-            to upload more{' '}
-          </small>
-        ),
-      });
-    } else if (planData.planName === 'PLATINUM') {
-      setImageData({ Interior: fromReduxStor || platinum });
-      setUploadMessage({
-        title: (
-          <small className='messageUpload'>
-            You can only upload 12 images for this package,{' '}
-            <Link to='/subscription' className='upgrade'>
-              Upgrade Now
-            </Link>{' '}
-            to upload more.{' '}
-          </small>
-        ),
-      });
-    } else if (planData.planName === 'DIAMOND') {
-      setImageData({ Interior: fromReduxStor || diamond });
-      setUploadMessage({ title: '' });
-    } else {
-      setImageData({ Interior: fromReduxStor || free });
-      setUploadMessage({
-        title: (
-          <small className='messageUpload'>
-            You can only upload 5 images for this package,{' '}
-            <Link to='/subscription' className='upgrade'>
-              Upgrade Now
-            </Link>{' '}
-            to upload more.{' '}
-          </small>
-        ),
-      });
-    }
+    const subName = planData?.planName || 'FREE';
+    const subLimit = planLimits[subName];
+
+    setImageData({ Interior: fromReduxStor || subLimit?.image });
+    setUploadMessage({
+      title: subLimit?.limit ? (
+        <small className='messageUpload'>
+          You can only upload {subLimit?.limit} images for this package,{' '}
+          <Link to='/subscription' className='upgrade'>
+            Upgrade Now
+          </Link>{' '}
+          to upload more.{' '}
+        </small>
+      ) : null,
+    });
   }, [planData]);
+
+  // useEffect(() => {
+  //   if (planData.planName === 'SILVER') {
+  //     setImageData({ Interior: fromReduxStor || silver });
+  //     setUploadMessage({
+  //       title: (
+  //         <small className='messageUpload'>
+  //           You can only upload 4 images for this package,{' '}
+  //           <Link to='/subscription' className='upgrade'>
+  //             Upgrade Now
+  //           </Link>{' '}
+  //           to upload more.{' '}
+  //         </small>
+  //       ),
+  //     });
+  //   } else if (planData.planName === 'GOLD') {
+  //     setImageData({ Interior: fromReduxStor || gold });
+  //     setUploadMessage({
+  //       title: (
+  //         <small className='messageUpload'>
+  //           You can only upload 8 images for this package,{' '}
+  //           <Link to='/subscription' className='upgrade'>
+  //             Upgrade Now
+  //           </Link>{' '}
+  //           to upload more{' '}
+  //         </small>
+  //       ),
+  //     });
+  //   } else if (planData.planName === 'PLATINUM') {
+  //     setImageData({ Interior: fromReduxStor || platinum });
+  //     setUploadMessage({
+  //       title: (
+  //         <small className='messageUpload'>
+  //           You can only upload 12 images for this package,{' '}
+  //           <Link to='/subscription' className='upgrade'>
+  //             Upgrade Now
+  //           </Link>{' '}
+  //           to upload more.{' '}
+  //         </small>
+  //       ),
+  //     });
+  //   } else if (planData.planName === 'DIAMOND') {
+  //     setImageData({ Interior: fromReduxStor || diamond });
+  //     setUploadMessage({ title: '' });
+  //   } else {
+  //     setImageData({ Interior: fromReduxStor || free });
+  //     setUploadMessage({
+  //       title: (
+  //         <small className='messageUpload'>
+  //           You can only upload 5 images for this package,{' '}
+  //           <Link to='/subscription' className='upgrade'>
+  //             Upgrade Now
+  //           </Link>{' '}
+  //           to upload more.{' '}
+  //         </small>
+  //       ),
+  //     });
+  //   }
+  // }, [planData]);
 
   const uploadFiles = async (e, id, cat) => {
     setLoading({ [id]: true });
@@ -119,25 +149,17 @@ const PropertyImages = ({ onPrevious, onNext }) => {
   const handleDataSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      planData.planName === 'BASIC' ||
-      planData.planName === 'SILVER' ||
-      planData.planName === 'GOLD' ||
-      planData.planName === 'PLATINUM'
-    ) {
+    if (Object.keys(planLimits).includes(planData?.planName || 'FREE')) {
       for (let i = 0; i < imageData.Interior.length; i++) {
         if (imageData.Interior[i].url === '') {
           console.log(imageData.Interior[i].url);
-          setErrors({
-            error: true,
-            errMessage: 'Please upload all Images',
-          });
+          handleError(true, 'Please upload all Images');
           return;
         }
       }
     }
 
-    setErrors({ error: false, errMessage: '' });
+    handleError(false, '');
 
     dispatch(addExteriorImages(imageData.Exterior));
     dispatch(addInteriorImages(imageData.Interior));
@@ -163,6 +185,12 @@ const PropertyImages = ({ onPrevious, onNext }) => {
     }
   };
 
+  useEffect(() => {
+    if (errors.error) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [errors.error]);
+
   return (
     <main className='productUpload w-full'>
       {/* Interior */}
@@ -175,7 +203,7 @@ const PropertyImages = ({ onPrevious, onNext }) => {
 
         {!toggle['Interior'] && (
           <section className='flex flex-wrap gap-2 justify-between w-full'>
-            {imageData.Interior.map(({ name, url }) => (
+            {imageData?.Interior?.map(({ name, url }) => (
               <ImageContainer
                 key={name}
                 images={url}
@@ -184,16 +212,20 @@ const PropertyImages = ({ onPrevious, onNext }) => {
                 loading={loading}
                 uploadFiles={uploadFiles}
                 removeImage={handleRmoveImage}
+                error={errors.error}
               />
             ))}
           </section>
         )}
       </section>
 
-      <div className='flex flex-row justify-between mt-5'>
-        <button onClick={onPrevious} type='button' className='outline-btn'>
-          {' '}
-          Back{' '}
+      <section className='flex flex-row justify-end gap-3 mt-5'>
+        <button
+          onClick={onPrevious}
+          className='outline-btn bg-[#F7F7FD] !text-mainColor !border-0'
+          type='button'
+        >
+          Previous{' '}
         </button>
         <button
           id='submitIt'
@@ -204,9 +236,9 @@ const PropertyImages = ({ onPrevious, onNext }) => {
           Next
           {/* {loading['submitIt'] ? <Spinner /> : 'Submit'} */}
         </button>
-      </div>
-      <div className='flex justify-center'>
-        {errors.error && <p className='error_message'>{errors.errMessage}</p>}
+      </section>
+      <div className='flex justify-center mt-5'>
+        {errors.error && <ErrorMessage message={errors.errMessage} />}
       </div>
     </main>
   );

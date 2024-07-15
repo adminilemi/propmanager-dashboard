@@ -47,6 +47,7 @@ export const ClientReqCard = ({
     </>
   );
 };
+
 export const LeadsCard = ({
   name,
   phone,
@@ -74,6 +75,51 @@ export const LeadsCard = ({
       <p className='w-3/12 text-xs text-Grey6 font-semibold text-center'>
         {propertyDeets}{' '}
       </p>
+    </>
+  );
+};
+
+export const AllListingCard = ({
+  title,
+  bed,
+  bath,
+  date,
+  toilet,
+  price,
+  sqm,
+  status,
+}) => {
+  return (
+    <>
+      <input
+        type='checkbox'
+        className='mr-2 text-xs text-Grey6 font-semibold'
+      />
+      <p className='w-1/12 text-xs text-Grey6 font-semibold'>{date}</p>
+      <p className='w-2/12 text-xs text-Grey6 font-semibold '>{title}</p>
+      <p className='w-1/12 text-xs text-Grey6 font-semibold text-center'>
+        {bed}
+      </p>
+
+      <p className='w-1/12 text-xs text-Grey6 font-semibold text-center'>
+        {bath}
+      </p>
+      <p className='w-1/12 text-xs text-Grey6 font-semibold text-center'>
+        {toilet}
+      </p>
+      <p className='w-1/12 text-xs text-Grey6 font-semibold '>{price} </p>
+      <p className='w-1/12 text-xs text-Grey6 font-semibold '>{sqm} </p>
+
+      <select
+        name='status'
+        id='status'
+        className='w-1/12 text-xs text-Grey6 font-semibold '
+        defaultValue={status}
+      >
+        <option value='Active'>Active</option>
+        <option value='Close'>Close</option>
+        <option value='Reactivate'>Reactivate</option>
+      </select>
     </>
   );
 };

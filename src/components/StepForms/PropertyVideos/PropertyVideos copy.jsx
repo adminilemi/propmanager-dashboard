@@ -35,14 +35,34 @@ const PropertyVideos = ({ onPrevious }) => {
   const navigate = useNavigate();
 
   const [videoData, setVideoData] = useState({
-    YoutubeVideo: '',
-    instagramVideo: Videos[0]?.url || '',
+    title: Videos[0]?.title || '',
+    url: Videos[0]?.url || '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setVideoData((prev) => ({ ...prev, [name]: value }));
+  const uploadFiles = async (e, id) => {
+    setLoading({ [id]: true });
+
+    const file = e.target.files[0];
+    try {
+      const result = await uploadFilesToServer(file);
+
+      setVideoData((prev) => ({
+        ...prev,
+
+        title: result.original_filename,
+        url: result.secure_url,
+      }));
+
+      setLoading({ [id]: false });
+    } catch (error) {
+      console.log(error);
+      setLoading({ [id]: false });
+    }
   };
+
+  useEffect(() => {
+    videoData.url !== '' && dispatch(addVideos([videoData]));
+  }, [videoData.url]);
 
   const propData = {
     AgentId: authUser.userId,
@@ -51,13 +71,11 @@ const PropertyVideos = ({ onPrevious }) => {
     ExteriorImages,
     Amenities,
     InteriorImages,
-    ...videoData,
+    Videos: [videoData],
   };
 
   const handleDataSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(propData);
 
     try {
       const rsp = await createProp(propData);
@@ -77,67 +95,44 @@ const PropertyVideos = ({ onPrevious }) => {
     }
   };
 
+  const handleRmoveImage = () => {
+    setVideoData((prev) => ({ ...prev, url: '' }));
+  };
+
   return (
-    <form onSubmit={handleDataSubmit}>
+    <main>
       {/* Exterior */}
       <section className='flex flex-col w-full'>
         <div className='sectHeader flex justify-between border-bottom pb-2 mb-3'>
-          <h5 className='font-bold'>Video (Optional)</h5>
+          <h5>Video (Optional)</h5>
         </div>
 
-        <ul className='flex flex-wrap gap-4 justify-between w-full card p-4'>
-          <li className='w-full'>
-            <label htmlFor='YoutubeVideo' className='labelTitle'>
-              Youtube Video
-            </label>
-
-            <input
-              id='YoutubeVideo'
-              name='YoutubeVideo'
-              type='url'
-              className='form-control !bg-transparent'
-              placeholder='Link to your youtube video'
-              defaultValue={videoData.YoutubeVideo}
-              onChange={handleChange}
-              required
-            />
-          </li>
-          <li className='w-full'>
-            <label htmlFor='instagramVideo' className='labelTitle'>
-              Instagram Video
-            </label>
-
-            <input
-              id='instagramVideo'
-              name='instagramVideo'
-              type='url'
-              placeholder='Link to your instagram video'
-              className='form-control !bg-transparent'
-              defaultValue={videoData.instagramVideo}
-              onChange={handleChange}
-              required
-            />
-          </li>
-        </ul>
+        <section className='flex flex-col md:flex-row justify-between w-full'>
+          <VideoContainer
+            videoLink={videoData.url}
+            cat='Video'
+            id='productVideo'
+            loading={loading}
+            uploadFiles={uploadFiles}
+            removeImage={handleRmoveImage}
+            planName={checkActivePlan?.planName}
+          />
+        </section>
       </section>
-
-      <section className='flex flex-row justify-end gap-3 mt-5'>
-        <button
-          onClick={onPrevious}
-          className='outline-btn bg-[#F7F7FD] !text-mainColor !border-0'
-          type='button'
-        >
-          Previous{' '}
+      <div className='flex flex-row justify-between mt-5'>
+        <button onClick={onPrevious} type='button' className='outline-btn'>
+          {' '}
+          Back{' '}
         </button>
         <button
           id='submitData'
-          type='submit'
-          // onClick={handleDataSubmit}
+          type='button'
+          onClick={handleDataSubmit}
           className='main-btn'
         >
           {isLoading ? <Spinner /> : 'Submit'}
         </button>
-      </section>
+      </div>
 
       {errors.error && (
         <div className='bg-danger w-8/12 mx-auto rounded p-2 listLimit'>
@@ -150,7 +145,7 @@ const PropertyVideos = ({ onPrevious }) => {
           </h4>
         </div>
       )}
-    </form>
+    </main>
   );
 };
 

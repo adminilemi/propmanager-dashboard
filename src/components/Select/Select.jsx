@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { HiMiniChevronDown } from 'react-icons/hi2';
 import './Select.scss';
 
-function Select({
+const Select = ({
   options,
   onSelectChange,
   id,
   selectedOption,
   setSelectedOption,
   errors,
-}) {
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // const [error, setError] = useState(false);
@@ -44,7 +44,7 @@ function Select({
   };
 
   return (
-    <div id={id} className='custom-select' ref={popupRef}>
+    <div id={id} className='custom-select my-3' ref={popupRef}>
       <div
         className={
           (errors?.error && errors?.errMessage.includes('categories')) ||
@@ -62,16 +62,16 @@ function Select({
           {options.map((option) => (
             <li
               key={option.id}
-              className='option'
+              className='option flex items-center gap-3'
               onClick={() => handleOptionClick(option.title)}
             >
-              {option.title}
+              {option?.icon} {option.title}
             </li>
           ))}
         </ul>
       )}
     </div>
   );
-}
+};
 
 export default Select;

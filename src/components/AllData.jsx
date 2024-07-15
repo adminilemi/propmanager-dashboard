@@ -11,6 +11,15 @@ import ListingStats from './DashboardComps/LeadsComp/ListingStats';
 import LeadsComp from './DashboardComps/LeadsComp/LeadsComp';
 import ClientRquest from './DashboardComps/LeadsComp/ClientRequest';
 import LeadsStats from './DashboardComps/LeadsComp/LeadsStat';
+import AllListing from './DashboardComps/ListingComps/AllListing';
+import OtherListings from './DashboardComps/ListingComps/OtherListing';
+import {
+  ApartmentIcon,
+  DormIcon,
+  HomeIcon,
+  ShortletIcon,
+  TownIcon,
+} from '@/SVGs/SVGsExport';
 
 export const propertiesData = [
   {
@@ -294,21 +303,39 @@ export const nigeriaStates = [
   { name: 'Zamfara', capital: 'Gusau', region: 'North West' },
 ];
 
-export const Inputs = (val) => {
+export const Inputs = (val, state, lga) => {
   return [
     {
       id: 'Property_Name',
       type: 'text',
-      label: 'Property Type',
-      value: val.Property_Name,
+      label: 'Property Name',
+      value: val?.Property_Name,
       placeholder: 'Enter property name or estate name',
       required: false,
     },
     {
+      id: 'YearBuilt',
+      label: 'Year Built',
+      type: 'number',
+      value: val?.YearBuilt,
+      placeholder: 'Enter Year Built',
+      required: true,
+    },
+    {
+      id: 'Property_Category',
+      type: 'text',
+      label: 'Property Purpose',
+      value: val?.Property_Category,
+      placeholder: 'Select purpose of this listing',
+      options: propertyCategories,
+      required: false,
+    },
+
+    {
       id: 'StreetAddress',
       type: 'text',
       label: 'Street Address',
-      value: val.StreetAddress,
+      value: val?.StreetAddress,
       placeholder: 'Enter Street Address',
       required: true,
     },
@@ -316,34 +343,34 @@ export const Inputs = (val) => {
       id: 'UnitNumber',
       type: 'text',
       label: 'Unit Number',
-      value: val.UnitNumber,
+      value: val?.UnitNumber,
       placeholder: 'Enter Unit Number',
       required: true,
     },
     {
       id: 'State',
       label: 'State',
-      value: val.State,
-      placeholder: 'Enter state',
-      options: nigeriaStates,
+      value: val?.State,
+      placeholder: 'Select state',
+      options: state,
       required: true,
     },
     {
       id: 'City',
-      type: 'text',
       label: 'City',
-      value: val.City,
-      placeholder: 'Enter city',
+      value: val?.City,
+      placeholder: 'Select LGA',
+      options: lga,
       required: true,
     },
-
     {
-      id: 'YearBuilt',
-      label: 'Year Built',
-      type: 'number',
-      value: val.YearBuilt,
-      placeholder: 'Enter Year Built',
-      required: false,
+      id: 'ElectricityBand',
+      type: 'text',
+      label: 'Electricity Band',
+      value: val?.ElectricityBand,
+      placeholder: 'Select Electricity Band',
+      options: ['Band A', 'Band B', 'Band C', 'Band D'],
+      required: true,
     },
   ];
 };
@@ -406,117 +433,270 @@ export const propertyCategories = [
     id: 3,
     title: 'Sell',
   },
-  {
-    id: 4,
-    title: 'Buy',
-  },
+  // {
+  //   id: 4,
+  //   title: 'Buy',
+  // },
   {
     id: 5,
-    title: 'Shortlets',
+    title: 'Shortlet',
   },
 ];
 
-export const propertyType = [
+export const paymentType = [
   {
     id: 1,
-    title: 'Shop',
+    title: 'Monthly',
   },
   {
     id: 2,
-    title: 'Office space',
+    title: 'Yearly',
   },
   {
     id: 3,
-    title: 'Flats and apartments',
+    title: 'Daily',
   },
   {
     id: 4,
-    title: 'Lands',
+    title: 'SQM',
+  },
+];
+export const propertyType = [
+  {
+    id: 1,
+    title: 'Home',
+    icon: <HomeIcon />,
+  },
+  {
+    id: 2,
+    title: 'Shortlets',
+    icon: <ShortletIcon />,
+  },
+  {
+    id: 3,
+    title: 'Apartment',
+    icon: <ApartmentIcon />,
+  },
+  {
+    id: 4,
+    title: 'Town House',
+    icon: <TownIcon />,
   },
   {
     id: 5,
-    title: 'Semi detached bungalow',
+    title: 'Dorm / Room / Student housing',
+    icon: <DormIcon />,
   },
   {
     id: 6,
-    title: 'Semi detached duplex',
+    title: 'Others',
+    icon: <DormIcon />,
+  },
+];
+
+export const propertySubType = [
+  {
+    id: 1,
+    title: 'Blocks of Flats',
+    icon: <HomeIcon />,
   },
   {
-    id: 7,
-    title: 'Co-working space',
+    id: 2,
+    title: 'Detached Bungalow',
+    icon: <ShortletIcon />,
   },
   {
-    id: 8,
-    title: 'Detached bungalow',
+    id: 3,
+    title: 'Detached Duplex',
+    icon: <ApartmentIcon />,
   },
   {
-    id: 9,
-    title: 'Warehouse',
+    id: 4,
+    title: 'Semi-Detached Bungalow',
+    icon: <TownIcon />,
   },
   {
-    id: 10,
-    title: 'Shop in a mall',
+    id: 5,
+    title: 'Semi-Detached Duplex',
+    icon: <DormIcon />,
   },
   {
-    id: 11,
-    title: 'Self contain',
+    id: 6,
+    title: 'Terraced Bungalow',
+    icon: <DormIcon />,
   },
-  {
-    id: 12,
-    title: 'Mini flats',
-  },
-  {
-    id: 13,
-    title: 'Detached duplex',
-  },
-  {
-    id: 14,
-    title: 'Houses',
-  },
-  {
-    id: 15,
-    title: 'Terraced bungalow',
-  },
-  {
-    id: 16,
-    title: 'Commercial properties',
-  },
-  {
-    id: 17,
-    title: 'Terraced duplex',
-  },
+];
+// export const propertySubType = [
+//   {
+//     id: 1,
+//     title: 'Shop',
+//   },
+//   {
+//     id: 2,
+//     title: 'Office space',
+//   },
+//   {
+//     id: 3,
+//     title: 'Flats and apartments',
+//   },
+//   {
+//     id: 4,
+//     title: 'Lands',
+//   },
+//   {
+//     id: 5,
+//     title: 'Semi detached bungalow',
+//   },
+//   {
+//     id: 6,
+//     title: 'Semi detached duplex',
+//   },
+//   {
+//     id: 7,
+//     title: 'Co-working space',
+//   },
+//   {
+//     id: 8,
+//     title: 'Detached bungalow',
+//   },
+//   {
+//     id: 9,
+//     title: 'Warehouse',
+//   },
+//   {
+//     id: 10,
+//     title: 'Shop in a mall',
+//   },
+//   {
+//     id: 11,
+//     title: 'Self contain',
+//   },
+//   {
+//     id: 12,
+//     title: 'Mini flats',
+//   },
+//   {
+//     id: 13,
+//     title: 'Detached duplex',
+//   },
+//   {
+//     id: 14,
+//     title: 'Houses',
+//   },
+//   {
+//     id: 15,
+//     title: 'Terraced bungalow',
+//   },
+//   {
+//     id: 16,
+//     title: 'Commercial properties',
+//   },
+//   {
+//     id: 17,
+//     title: 'Terraced duplex',
+//   },
+// ];
+
+export const maxPrice = [
+  { title: '500,000', value: 500000 },
+  { title: '600,000', value: 600000 },
+  { title: '700,000', value: 700000 },
+  { title: '800,000', value: 800000 },
+  { title: '900,000', value: 900000 },
+  { title: '1 million', value: 1000000 },
+  { title: '2 million', value: 2000000 },
+  { title: '3 Millon', value: 3000000 },
+  { title: '5 Million', value: 5000000 },
+  { title: '10 Million', value: 10000000 },
+  { title: '20 Million', value: 20000000 },
+  { title: '30 Million', value: 30000000 },
+  { title: '40 Million', value: 40000000 },
+  { title: '50 Million', value: 50000000 },
+  { title: '100 Millon', value: 100000000 },
+  { title: '200 Millon', value: 200000000 },
+  { title: '300 Millon', value: 300000000 },
+  { title: '500 Millon', value: 500000000 },
+  { title: '600 Million', value: 600000000 },
+  { title: '700 Million', value: 700000000 },
+  { title: '800 Million', value: 800000000 },
+  { title: '900 Million', value: 900000000 },
+  { title: '1 Billion', value: 1000000000 },
+  { title: '2 Billion', value: 2000000000 },
+  { title: '5 Billion', value: 5000000000 },
+  { title: '10 Billion', value: 10000000000 },
+];
+
+export const minPrice = [
+  { title: '50,000', value: 500000 },
+  { title: '100,000', value: 100000 },
+  { title: '200,000', value: 200000 },
+  { title: '300,000', value: 300000 },
+  { title: '400,000', value: 400000 },
+  { title: '500,000', value: 500000 },
+  { title: '600,000', value: 600000 },
+  { title: '700,000', value: 700000 },
+  { title: '800,000', value: 800000 },
+  { title: '900,000', value: 900000 },
+  { title: '1 million', value: 1000000 },
+  { title: '2 million', value: 2000000 },
+  { title: '3 Millon', value: 3000000 },
+  { title: '5 Million', value: 5000000 },
+  { title: '10 Million', value: 10000000 },
+  { title: '20 Million', value: 20000000 },
+  { title: '30 Million', value: 30000000 },
+  { title: '40 Million', value: 40000000 },
+  { title: '50 Million', value: 50000000 },
+  { title: '100 million', value: 100000000 },
 ];
 
 export const amenitiesList = [
   {
+    title: 'Boys Quater',
+  },
+  {
+    title: 'Child care',
+  },
+  {
+    title: 'Dranaige System',
+  },
+  {
+    title: 'Front Desk Service',
+  },
+  {
+    title: 'Big Compound',
+  },
+  {
+    title: '24 Hours Security',
+  },
+  {
+    title: 'All Room Ensuit',
+  },
+  {
+    title: 'Big Compound',
+  },
+  {
+    title: 'C of O',
+  },
+  {
+    title: 'CCTV Cameras',
+  },
+  {
+    title: 'Church Nearby',
+  },
+  {
+    title: 'Elevator',
+  },
+  {
+    title: 'GYM',
+  },
+  {
     title: 'A/C',
   },
   {
-    title: 'Deck',
+    title: 'Swimming Pool',
   },
   {
-    title: 'Pet Friendly',
-  },
-  {
-    title: 'Free Parking Spots',
-  },
-  {
-    title: 'Pool',
-  },
-  {
-    title: 'Yard',
-  },
-  {
-    title: 'Free Wi-Fi',
-  },
-  {
-    title: 'Gym',
-  },
-  {
-    title: 'Hardwood Floor',
-  },
-  {
-    title: 'Jacuzzi',
+    title: 'Free WiFi',
   },
 ];
 
@@ -543,6 +723,7 @@ export const TabsData = {
     { id: 'tab3', comp: <MyNotifications /> },
   ],
 };
+
 export const LeadsData = {
   TabTitle: [
     {
@@ -569,6 +750,35 @@ export const LeadsData = {
     { id: 'tab2', comp: <LeadsComp /> },
     { id: 'tab3', comp: <ClientRquest /> },
     { id: 'tab4', comp: <LeadsStats /> },
+  ],
+};
+
+export const ListingData = {
+  TabTitle: [
+    {
+      id: 'tab1',
+      title: 'All',
+    },
+
+    {
+      id: 'tab2',
+      title: 'Published',
+    },
+    {
+      id: 'tab3',
+      title: 'Closed',
+    },
+    {
+      id: 'tab4',
+      title: 'Expired',
+    },
+  ],
+
+  TabContents: [
+    { id: 'tab1', comp: <AllListing /> },
+    { id: 'tab2', comp: <OtherListings /> },
+    { id: 'tab3', comp: <OtherListings /> },
+    { id: 'tab4', comp: <OtherListings /> },
   ],
 };
 
@@ -1125,21 +1335,21 @@ export const free = [
     title: '',
     url: '',
   },
-  {
-    name: 'upload3',
-    title: '',
-    url: '',
-  },
-  {
-    name: 'upload4',
-    title: '',
-    url: '',
-  },
-  {
-    name: 'upload5',
-    title: '',
-    url: '',
-  },
+  // {
+  //   name: 'upload3',
+  //   title: '',
+  //   url: '',
+  // },
+  // {
+  //   name: 'upload4',
+  //   title: '',
+  //   url: '',
+  // },
+  // {
+  //   name: 'upload5',
+  //   title: '',
+  //   url: '',
+  // },
 ];
 
 export const silver = [
@@ -1300,6 +1510,7 @@ export const platinum = [
     url: '',
   },
 ];
+
 export const diamond = [
   {
     name: 'upload1',
@@ -1437,362 +1648,3 @@ export const rents = (data) => {
     },
   ];
 };
-// {
-//   id: 2,
-//   title: 'Home',
-//   icon: (
-//     <svg
-//       xmlns='http://www.w3.org/2000/svg'
-//       width='20'
-//       height='20'
-//       viewBox='0 0 20 20'
-//       fill='none'
-//     >
-//       <path
-//         d='M1.66699 18.3333H18.3337'
-//         stroke='#5F259F'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M2.45801 18.3333L2.49968 8.30832C2.49968 7.79998 2.74134 7.3167 3.14134 7.00003L8.97467 2.45835C9.57467 1.99169 10.4163 1.99169 11.0247 2.45835L16.858 6.99169C17.2663 7.30835 17.4997 7.79165 17.4997 8.30832V18.3333'
-//         stroke='#5F259F'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M12.9163 9.16667H7.08301C6.39134 9.16667 5.83301 9.72501 5.83301 10.4167V18.3333H14.1663V10.4167C14.1663 9.72501 13.608 9.16667 12.9163 9.16667Z'
-//         stroke='#5F259F'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M8.33301 13.5417V14.7917'
-//         stroke='#5F259F'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//     </svg>
-//   ),
-// },
-// {
-//   id: 3,
-//   title: 'Shortlets',
-//   icon: (
-//     <svg
-//       xmlns='http://www.w3.org/2000/svg'
-//       width='22'
-//       height='20'
-//       viewBox='0 0 22 20'
-//       fill='none'
-//     >
-//       <path
-//         d='M1.83301 18.3333H20.1663'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M17.4834 18.3417V14.625'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M17.5003 9.07501C16.4837 9.07501 15.667 9.89169 15.667 10.9084V12.8C15.667 13.8167 16.4837 14.6333 17.5003 14.6333C18.517 14.6333 19.3337 13.8167 19.3337 12.8V10.9084C19.3337 9.89169 18.517 9.07501 17.5003 9.07501Z'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M2.75 18.3333V5.02503C2.75 3.35003 3.58338 2.50835 5.24171 2.50835H10.4334C12.0917 2.50835 12.9167 3.35003 12.9167 5.02503V18.3333'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M5.83301 6.875H9.95802'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M5.83301 10H9.95802'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M7.875 18.3333V15.2083'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//     </svg>
-//   ),
-// },
-// {
-//   id: 4,
-//   title: 'Apartment',
-//   icon: (
-//     <svg
-//       xmlns='http://www.w3.org/2000/svg'
-//       width='20'
-//       height='20'
-//       viewBox='0 0 20 20'
-//       fill='none'
-//     >
-//       <path
-//         d='M10.8337 18.3333H4.16699C2.50033 18.3333 1.66699 17.5 1.66699 15.8333V9.16667C1.66699 7.50001 2.50033 6.66667 4.16699 6.66667H8.33366V15.8333C8.33366 17.5 9.16699 18.3333 10.8337 18.3333Z'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M8.42531 3.33333C8.35865 3.58333 8.33366 3.85833 8.33366 4.16666V6.66666H4.16699V4.99999C4.16699 4.08333 4.91699 3.33333 5.83366 3.33333H8.42531Z'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M11.667 6.66667V10.8333'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M15 6.66667V10.8333'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M14.167 14.1667H12.5003C12.042 14.1667 11.667 14.5417 11.667 15V18.3333H15.0003V15C15.0003 14.5417 14.6253 14.1667 14.167 14.1667Z'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M8.33301 15.8333V4.16667C8.33301 2.50001 9.16634 1.66667 10.833 1.66667H15.833C17.4997 1.66667 18.333 2.50001 18.333 4.16667V15.8333C18.333 17.5 17.4997 18.3333 15.833 18.3333H10.833C9.16634 18.3333 8.33301 17.5 8.33301 15.8333Z'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//     </svg>
-//   ),
-// },
-// {
-//   id: 5,
-//   title: 'Townhouse',
-//   icon: (
-//     <svg
-//       xmlns='http://www.w3.org/2000/svg'
-//       width='20'
-//       height='20'
-//       viewBox='0 0 20 20'
-//       fill='none'
-//     >
-//       <path
-//         d='M5.58367 15H3.45868C2.26701 15 1.66699 14.4 1.66699 13.2083V3.45834C1.66699 2.26668 2.26701 1.66666 3.45868 1.66666H7.042C8.23367 1.66666 8.83364 2.26668 8.83364 3.45834V4.99999'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M14.4747 7.01665V16.3167C14.4747 17.6583 13.808 18.3333 12.4663 18.3333H7.59966C6.25799 18.3333 5.58301 17.6583 5.58301 16.3167V7.01665C5.58301 5.67499 6.25799 5 7.59966 5H12.4663C13.808 5 14.4747 5.67499 14.4747 7.01665Z'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M11.167 4.99999V3.45834C11.167 2.26668 11.767 1.66666 12.9586 1.66666H16.542C17.7336 1.66666 18.3336 2.26668 18.3336 3.45834V13.2083C18.3336 14.4 17.7336 15 16.542 15H14.4753'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M8.33301 9.16666H11.6663'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M8.33301 11.6667H11.6663'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M10 18.3333V15.8333'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//     </svg>
-//   ),
-// },
-// {
-//   id: 6,
-//   title: 'Dorm / Room / Student housing',
-//   icon: (
-//     <svg
-//       xmlns='http://www.w3.org/2000/svg'
-//       width='20'
-//       height='20'
-//       viewBox='0 0 20 20'
-//       fill='none'
-//     >
-//       <path
-//         d='M1.66699 18.3333H18.3337'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M14.1667 1.66666H5.83333C3.33333 1.66666 2.5 3.15832 2.5 4.99999V18.3333H17.5V4.99999C17.5 3.15832 16.6667 1.66666 14.1667 1.66666Z'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M5.83301 13.75H8.33301'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M11.667 13.75H14.167'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M5.83301 10H8.33301'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M11.667 10H14.167'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M5.83301 6.25H8.33301'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//       <path
-//         d='M11.667 6.25H14.167'
-//         stroke='#000929'
-//         strokeWidth='2'
-//         strokeMiterlimit='10'
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//       />
-//     </svg>
-//   ),
-// },
-// {
-//   id: 7,
-//   title: 'Other',
-//   icon: (
-//     <svg
-//       xmlns='http://www.w3.org/2000/svg'
-//       width='20'
-//       height='20'
-//       viewBox='0 0 20 20'
-//       fill='none'
-//     >
-//       <g opacity='0.5' clipPath='url(#clip0_649_4830)'>
-//         <path
-//           d='M4.16634 10.8333C4.62658 10.8333 4.99967 10.4602 4.99967 9.99999C4.99967 9.53975 4.62658 9.16666 4.16634 9.16666C3.7061 9.16666 3.33301 9.53975 3.33301 9.99999C3.33301 10.4602 3.7061 10.8333 4.16634 10.8333Z'
-//           stroke='#000929'
-//           strokeWidth='2'
-//           strokeLinecap='round'
-//           strokeLinejoin='round'
-//         />
-//         <path
-//           d='M10.0003 10.8333C10.4606 10.8333 10.8337 10.4602 10.8337 9.99999C10.8337 9.53975 10.4606 9.16666 10.0003 9.16666C9.54009 9.16666 9.16699 9.53975 9.16699 9.99999C9.16699 10.4602 9.54009 10.8333 10.0003 10.8333Z'
-//           stroke='#000929'
-//           strokeWidth='2'
-//           strokeLinecap='round'
-//           strokeLinejoin='round'
-//         />
-//         <path
-//           d='M15.8333 10.8333C16.2936 10.8333 16.6667 10.4602 16.6667 9.99999C16.6667 9.53975 16.2936 9.16666 15.8333 9.16666C15.3731 9.16666 15 9.53975 15 9.99999C15 10.4602 15.3731 10.8333 15.8333 10.8333Z'
-//           stroke='#000929'
-//           strokeWidth='2'
-//           strokeLinecap='round'
-//           strokeLinejoin='round'
-//         />
-//       </g>
-//       <defs>
-//         <clipPath id='clip0_649_4830'>
-//           <rect width='20' height='20' fill='white' />
-//         </clipPath>
-//       </defs>
-//     </svg>
-//   ),
-// },

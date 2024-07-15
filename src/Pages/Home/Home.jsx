@@ -66,8 +66,11 @@ const Home = () => {
   );
 
   const { data, isLoading } = useGetAgentStatsQuery(authUser.userId);
-  const { data: monthlyData } = useGetAgentMonthlyStatsQuery(authUser.userId);
-  const { data: weeklyData } = useGetAgentWeeklyStatsQuery(authUser.userId);
+  const { data: monthlyData, isLoading: getting } =
+    useGetAgentMonthlyStatsQuery(authUser.userId);
+  const { data: weeklyData, isLoading: waiting } = useGetAgentWeeklyStatsQuery(
+    authUser.userId,
+  );
 
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
@@ -85,7 +88,7 @@ const Home = () => {
     dispatch(getSubPlanData(updateSub));
   }, [loading, data]);
 
-  if (loading || isLoading) {
+  if (loading || isLoading || getting || waiting) {
     return <HomeSkeleton />;
   }
 
