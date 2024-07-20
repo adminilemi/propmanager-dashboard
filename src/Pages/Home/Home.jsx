@@ -94,6 +94,9 @@ const Home = () => {
 
   const chartDatas = selectedOption === 'Monthly' ? monthlyData : weeklyData;
 
+  console.log('week>>>', weeklyData);
+  console.log('monthly>>>', monthlyData);
+
   return (
     <main className='Overviews flex flex-col  '>
       <h1 className='mb-5'> Dashboard</h1>

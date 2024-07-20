@@ -1,3 +1,4 @@
+import { formatNumInThousands, readableDateTime } from '@/utils';
 import React from 'react';
 
 export const ListingStatCard = ({ rent, sale, shortlet, date }) => {
@@ -91,11 +92,10 @@ export const AllListingCard = ({
 }) => {
   return (
     <>
-      <input
-        type='checkbox'
-        className='mr-2 text-xs text-Grey6 font-semibold'
-      />
-      <p className='w-1/12 text-xs text-Grey6 font-semibold'>{date}</p>
+      <p className='w-1/12 text-xs text-Grey6 font-semibold flex items-center gap-3'>
+        <input type='checkbox' className='text-xs text-Grey6 font-semibold' />
+        {readableDateTime(date)}
+      </p>
       <p className='w-2/12 text-xs text-Grey6 font-semibold '>{title}</p>
       <p className='w-1/12 text-xs text-Grey6 font-semibold text-center'>
         {bed}
@@ -107,7 +107,9 @@ export const AllListingCard = ({
       <p className='w-1/12 text-xs text-Grey6 font-semibold text-center'>
         {toilet}
       </p>
-      <p className='w-1/12 text-xs text-Grey6 font-semibold '>{price} </p>
+      <p className='w-1/12 text-xs text-Grey6 font-semibold '>
+        {formatNumInThousands(price)}{' '}
+      </p>
       <p className='w-1/12 text-xs text-Grey6 font-semibold '>{sqm} </p>
 
       <select

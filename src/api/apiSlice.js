@@ -1,3 +1,4 @@
+import { queryBuilder } from '@/utils';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 
@@ -113,6 +114,15 @@ export const apiSLice = createApi({
     getAgentLastWeekStats: builder.query({
       query: (id) => `/property/count-by-last-week/${id} `,
     }),
+
+    // ===LISTING===
+
+    listingFiltering: builder.query({
+      query: (params) =>
+        `/property/agent-property-filter/filter?${queryBuilder(params)} `,
+    }),
+
+    // ===LISTING===
   }),
 });
 
@@ -129,4 +139,8 @@ export const {
   useChangePasswordMutation,
   useCreateSubscriptionsMutation,
   useCheckSubValidityQuery,
+
+  // ====== LISTING=====
+  useListingFilteringQuery,
+  // ====== LISTING=====
 } = apiSLice;

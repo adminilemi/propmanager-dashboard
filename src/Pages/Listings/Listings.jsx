@@ -26,6 +26,8 @@ const Listings = () => {
 
   return (
     <main className=' container my-5 flex flex-col justify-between'>
+      <h1 className='mb-8'>My Listings</h1>
+
       <section className='flex flex-wrap items-center gap-y-6 justify-between'>
         <ul className='flex flex-wrap items-center card  w-fit overflow-hidden'>
           {ListingData.TabTitle.map((tab) => (

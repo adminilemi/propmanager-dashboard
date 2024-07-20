@@ -1,75 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import allState from '@/components/nigeria-state-and-lgas.json';
-import { maxPrice, minPrice, propertyType } from '@/components/AllData';
+import {
+  ListingInitialState,
+  maxPrice,
+  minPrice,
+  propertyCategories,
+  propertyType,
+} from '@/components/AllData';
 import Search from '@/components/Search';
+import { bedAndCo } from '@/components/StepForms/ListingInfo/ListingInfo';
+import DatePicker from 'react-datepicker';
 
-const initialState = {
-  minPrice: '',
-  maxPrice: '',
-  propertyType: '',
-  name: '',
-  State: '',
-  LGA: '',
-};
-
-const FilteringComp = ({ className }) => {
-  const [propData, setPropData] = useState(initialState);
-  const [getLga, setGetLga] = useState([]);
+const FilteringComp = ({ className, setStateData }) => {
+  const [formData, setFormData] = useState(ListingInitialState);
+  const [clicked, setClicked] = useState(false);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setPropData((prev) => ({ ...prev, [id]: value }));
+    setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  useEffect(() => {
-    if (propData?.State !== '') {
-      const lgaData = allState.find((s) => s?.state === propData?.State);
+  const handleFilter = (e) => {
+    e.preventDefault();
 
-      setGetLga(lgaData?.lgas);
-    }
-  }, [propData?.State]);
+    setStateData((prev) => ({ ...prev, ...formData }));
+    setClicked(true);
+  };
+
+  const handleClear = () => {
+    setFormData({ ...ListingInitialState });
+    setClicked(false);
+    setStateData((prev) => ({ ...prev, ...ListingInitialState }));
+  };
 
   return (
     <form
       className={`${className} flex flex-wrap gap-5 justify-between items-center `}
+      onSubmit={handleFilter}
     >
       <article className='flex flex-wrap gap-3 items-center w-full'>
         <Search className='w-full lg:w-[50%]' placeholder='Search by title' />
         <select
-          id='State'
-          name='State'
+          id='PropertyType'
+          name='PropertyType'
           className='form-control !bg-transparent w-full lg:w-[15%]'
-          defaultValue={propData?.State}
-          onChange={handleChange}
-          required
-        >
-          <option value=''> Choose State </option>
-          {allState?.map(({ state }) => (
-            <option key={state} value={state}>
-              {state}
-            </option>
-          ))}
-        </select>
-        <select
-          id='LGA'
-          name='LGA'
-          className='form-control !bg-transparent w-full lg:w-[15%]'
-          defaultValue={propData?.LGA}
-          onChange={handleChange}
-          required
-        >
-          <option value=''> Choose Locality </option>
-          {getLga?.map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-        <select
-          id='propertyType'
-          name='propertyType'
-          className='form-control !bg-transparent w-full lg:w-[15%]'
-          defaultValue={propData?.propertyType}
+          value={formData?.PropertyType}
           onChange={handleChange}
           required
         >
@@ -80,11 +55,27 @@ const FilteringComp = ({ className }) => {
             </option>
           ))}
         </select>
+        <select
+          id='BedRooms'
+          name='BedRooms'
+          className='form-control !bg-transparent w-full lg:w-[15%]'
+          value={formData?.BedRooms}
+          onChange={handleChange}
+          required
+        >
+          <option value=''> Choose Type </option>
+          {bedAndCo?.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
 
         <select
-          id='minPrice'
-          name='minPrice'
+          id='minMonthlyRent'
+          name='minMonthlyRent'
           onChange={handleChange}
+          value={formData?.minMonthlyRent}
           className='form-control !bg-transparent w-full lg:w-[15%]'
         >
           <option value=''>Min Price</option>
@@ -97,9 +88,10 @@ const FilteringComp = ({ className }) => {
         </select>
 
         <select
-          id='maxPrice'
-          name='maxPrice'
+          id='maxMonthlyRent'
+          name='maxMonthlyRent'
           onChange={handleChange}
+          value={formData?.maxMonthlyRent}
           className='form-control !bg-transparent w-full lg:w-[15%]'
         >
           <option value=''>Max Price</option>
@@ -111,21 +103,81 @@ const FilteringComp = ({ className }) => {
           ))}
         </select>
 
-        <div className=' w-full lg:w-[15%]'>
-          <input
-            type='text'
-            name='name'
-            id='name'
-            placeholder='Name or Phone'
-            className='form-control '
-            defaultValue={propData?.name}
-            onChange={handleChange}
+        <select
+          id='status'
+          name='status'
+          onChange={handleChange}
+          value={formData?.status}
+          className='form-control !bg-transparent w-full lg:w-[15%]'
+        >
+          <option value=''>Max Price</option>
+
+          {['Active', 'InActive']?.map((item, idx) => (
+            <option key={idx} value={item.toUpperCase()}>
+              {item}
+            </option>
+          ))}
+        </select>
+        <select
+          id='Property_Category'
+          name='Property_Category'
+          onChange={handleChange}
+          value={formData?.Property_Category}
+          className='form-control !bg-transparent w-full lg:w-[15%]'
+        >
+          <option value=''>Category</option>
+
+          {propertyCategories?.map(({ title, value }, idx) => (
+            <option key={idx} value={value}>
+              {title}
+            </option>
+          ))}
+        </select>
+
+        <div className='flex-1'>
+          <DatePicker
+            id='startDate'
+            name='startDate'
+            onChange={(date) => {
+              setFormData((prev) => ({
+                ...prev,
+                startDate: date?.toISOString(),
+              }));
+            }}
+            selected={formData?.startDate}
+            className='form-control'
+            placeholderText='Start Date'
+            showIcon
           />
         </div>
+        <div className='flex-1'>
+          <DatePicker
+            id='endDate'
+            name='endDate'
+            onChange={(date) =>
+              setFormData((prev) => ({ ...prev, endDate: date?.toISOString() }))
+            }
+            selected={formData?.endDate}
+            className='form-control'
+            placeholderText='End Date'
+            showIcon
+          />
+        </div>
+
         <div className='grow'>
-          <button className='main-btn w-full' type='submit'>
-            Submit
-          </button>
+          {clicked ? (
+            <button
+              className='main-btn w-full'
+              type='button'
+              onClick={handleClear}
+            >
+              Clear Filter
+            </button>
+          ) : (
+            <button className='main-btn w-full' type='submit'>
+              Submit
+            </button>
+          )}
         </div>
       </article>
     </form>

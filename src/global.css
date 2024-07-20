@@ -208,8 +208,12 @@ h4 {
 }
 
 .react-datepicker__input-container .react-datepicker__calendar-icon {
-  top: 17%;
+  top: 27%;
   right: 0;
+}
+
+.react-datepicker__view-calendar-icon input {
+  padding: 0.77em 1em !important;
 }
 
 /* ===Dashboard title start=== */
@@ -577,7 +581,8 @@ select {
 }
 .emptyStateContainer {
   display: flex;
-  place-content: center;
+  place-items: center;
+  justify-content: center;
   border: solid 1px var(--Line);
   border-radius: 8px;
   padding: 5em 2em;
@@ -638,7 +643,7 @@ select {
 
 .verify {
   font-size: 0.7rem;
-  padding: 0.75em 1em;
+  padding: 0.5em 1em;
   align-items: center;
   border-radius: 1rem;
   font-weight: 700;
@@ -657,7 +662,7 @@ select {
   color: var(--mainColor);
   font-weight: 700;
   border-radius: 1rem;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   background: color-mix(in sRGB, transparent 90%, var(--mainColor) 10%);
 }
 

@@ -31,7 +31,27 @@ const Paginate = ({
     };
 
     handleSearch(data, searchQuery, updateCurrentPage, searchParams);
-  }, [searchQuery, data, itemOffset, itemsPerPage, setCurrentPage]);
+  }, [
+    searchQuery,
+    data,
+    itemOffset,
+    itemsPerPage,
+    setCurrentPage,
+    searchParams,
+    setCurrentPage,
+  ]);
+
+  useEffect(() => {
+    // Reset pagination when data changes
+    if (data.length === 0) {
+      setCurrentPage([]);
+      setPageCount(0);
+    } else {
+      const endOffset = itemOffset + itemsPerPage;
+      setCurrentPage(data.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(data.length / itemsPerPage));
+    }
+  }, [data, itemOffset, itemsPerPage, setCurrentPage]);
 
   return (
     <section className='mt-3 flex justify-between w-full container'>

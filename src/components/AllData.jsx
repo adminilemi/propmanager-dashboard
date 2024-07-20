@@ -776,10 +776,26 @@ export const ListingData = {
 
   TabContents: [
     { id: 'tab1', comp: <AllListing /> },
-    { id: 'tab2', comp: <OtherListings /> },
-    { id: 'tab3', comp: <OtherListings /> },
-    { id: 'tab4', comp: <OtherListings /> },
+    { id: 'tab2', comp: <OtherListings vacantVal={0} /> },
+    { id: 'tab3', comp: <OtherListings vacantVal={1} /> },
+    { id: 'tab4', comp: <OtherListings vacantVal={1} /> },
   ],
+};
+
+export const ListingInitialState = {
+  minMonthlyRent: '',
+  maxMonthlyRent: '',
+  PropertyType: '',
+  name: '',
+  State: '',
+  LGA: '',
+  Property_Category: '',
+  startDate: '',
+  endDate: '',
+  BedRooms: '',
+  status: '',
+  limit: 0,
+  skip: 0,
 };
 
 export const pricingPlan = {
@@ -1630,7 +1646,7 @@ export const rents = (data) => {
     },
     {
       id: 2,
-      title: `${data?.vacantProperties} 5 Listing`,
+      title: `${data?.vacantProperties} Listing`,
       subTitle: 'Active Listing.',
       icon: Active,
     },
@@ -1648,3 +1664,83 @@ export const rents = (data) => {
     },
   ];
 };
+
+export const datas = [
+  {
+    id: 1,
+    date: '09/07/2024',
+    title: 'New Jarus',
+    bed: 3,
+    bath: 4,
+    toilet: 1,
+    price: '200,000',
+    sqm: '33.5',
+    status: 'Active',
+  },
+  {
+    id: 2,
+    date: '09/07/2024',
+    title: 'Bana Island',
+    bed: 1,
+    bath: 2,
+    toilet: 2,
+    price: '200,000',
+    sqm: '33.5',
+    status: 'Active',
+  },
+  {
+    id: 3,
+    date: '09/07/2024',
+    title: 'Main Bungalow ',
+    bed: 13,
+    bath: 43,
+    toilet: 12,
+    price: '10,000,000',
+    sqm: '33.5',
+    status: 'Active',
+  },
+  {
+    id: 4,
+    date: '09/07/2024',
+    title: 'Old Detached Semi Bungalow ',
+    bed: 13,
+    bath: 14,
+    toilet: 11,
+    price: '2,000,000',
+    sqm: '33.5',
+    status: 'Active',
+  },
+  {
+    id: 5,
+    date: '09/07/2024',
+    title: 'Newly Detached Multi-Semi Bungalow ',
+    bed: 5,
+    bath: 8,
+    toilet: 11,
+    price: '3,000,000',
+    sqm: '33.5',
+    status: 'Active',
+  },
+  {
+    id: 6,
+    date: '09/07/2024',
+    title: 'Newly Undetached Semi Bungalow ',
+    bed: 5,
+    bath: 8,
+    toilet: 11,
+    price: '3,000,000',
+    sqm: '33.5',
+    status: 'Active',
+  },
+  {
+    id: 7,
+    date: '09/07/2024',
+    title: 'Newly Detached Semi Bungalow ',
+    bed: 5,
+    bath: 8,
+    toilet: 11,
+    price: '3,000,000',
+    sqm: '33.5',
+    status: 'Active',
+  },
+];

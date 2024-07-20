@@ -14,6 +14,7 @@ import {
   selectUserName,
 } from '@/Redux/Features/userAuthSlice';
 import UserPop from '../UserPop/UserPop';
+import { greetings } from '@/utils';
 // import { getNotifs, selectNotifs } from '../../Redux/Features/notifsSlice';
 
 const NavBar = () => {
@@ -22,15 +23,20 @@ const NavBar = () => {
   const { authUser } = useSelector(selectUserData);
   const userName = useSelector(selectUserName);
   const logoImage = useSelector(selectUserAvatar);
-  const name = useSelector(selectPageName);
+
   // const notifs = useSelector(selectNotifs);
   // const dispatch = useDispatch();
 
   return (
     <header className='navbar '>
-      <section className='container flex items-center justify-center'>
-        {/* <h1> {name} </h1> */}
-        <section className=' w-full flex flex-row heading justify-end'>
+      <section className='container flex flex-wrap items-center justify-between'>
+        <hgroup className='grow'>
+          <h1>
+            {' '}
+            {greetings()}, {userName || authUser.userName}{' '}
+          </h1>
+        </hgroup>
+        <section className=' flex-1 flex flex-row heading justify-end'>
           <div className='flex  heading gap-3 '>
             <button
               type='button'
