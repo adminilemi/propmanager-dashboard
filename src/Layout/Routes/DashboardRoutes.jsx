@@ -3,6 +3,7 @@ import Home from '@/Pages/Home/Home';
 import Insight from '@/Pages/Insight/Insight';
 import Leads from '@/Pages/Leads/Leads';
 import Listings from '@/Pages/Listings/Listings';
+import ViewProperty from '@/Pages/Listings/ViewProperty';
 import Logout from '@/Pages/Logout/Logout';
 import Messages from '@/Pages/Messages/Messages';
 import SeeAllProperties from '@/Pages/Properties/SeeAllProperties';
@@ -15,6 +16,11 @@ const dashboardRoutes = [
   { path: '/leads', name: 'Leads', element: <Leads /> },
   { path: '/insight', name: 'Insight', element: <Insight /> },
   { path: '/listings', name: 'Listings', element: <Listings /> },
+  {
+    path: '/listings/property/:id',
+    name: 'View Listings',
+    element: <ViewProperty />,
+  },
   { path: '/tenants', name: 'Tenants', element: <Tenants /> },
   { path: '/messages', name: 'Messages', element: <Messages /> },
   { path: '/subscription', name: 'Subscription', element: <Subscription /> },

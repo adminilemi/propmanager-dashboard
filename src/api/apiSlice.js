@@ -122,6 +122,17 @@ export const apiSLice = createApi({
         `/property/agent-property-filter/filter?${queryBuilder(params)} `,
     }),
 
+    getListingStat: builder.query({
+      query: (params) =>
+        `/property/agent/property-stats/count-by-category?${queryBuilder(
+          params,
+        )} `,
+    }),
+
+    getPropertyById: builder.query({
+      query: (id) => `/property/property-by-id/${id}`,
+    }),
+
     // ===LISTING===
   }),
 });
@@ -142,5 +153,7 @@ export const {
 
   // ====== LISTING=====
   useListingFilteringQuery,
+  useGetListingStatQuery,
+  useGetPropertyByIdQuery,
   // ====== LISTING=====
 } = apiSLice;

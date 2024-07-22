@@ -85,7 +85,7 @@ body {
 }
 
 .card {
-  border: solid 2px var(--mainLight) !important;
+  border: solid 1.5px var(--mainLight) !important;
   border-radius: 10px;
   background-color: transparent;
 }
@@ -102,8 +102,7 @@ body {
   width: 100%;
 }
 
-ul,
-li {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;

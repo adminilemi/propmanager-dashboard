@@ -23,15 +23,22 @@ export const generateRandomIntId = () => {
 };
 
 export const queryBuilder = (params) => {
-  const urlParams = new URLSearchParams({ AgentId: params?.AgentId });
+  const urlParams = new URLSearchParams(
+    params?.AgentId
+      ? { AgentId: params?.AgentId }
+      : { agentId: params?.agentId },
+  );
 
   for (const key in params) {
-    if (params[key] !== undefined && params[key] !== '' && key !== 'AgentId') {
+    if (
+      params[key] !== undefined &&
+      params[key] !== '' &&
+      key !== 'AgentId' &&
+      key !== 'agentId'
+    ) {
       urlParams.append(key, params[key]);
     }
   }
-
-  console.log(urlParams);
 
   return urlParams.toString();
 };
@@ -54,4 +61,10 @@ export const greetings = () => {
   } else {
     return 'Good evening';
   }
+};
+
+export const getDateAfterDays = (date, days) => {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
 };

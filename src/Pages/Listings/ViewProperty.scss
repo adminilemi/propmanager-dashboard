@@ -1,0 +1,109 @@
+.propDeets {
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  h6 {
+    font-weight: 700;
+  }
+
+  figure {
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 10px;
+    img {
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        transition: all 0.5s ease-in-out;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .sliderBtn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    button {
+      color: var(--mainColor);
+      padding: 0.5em;
+      background: var(--mainLight);
+    }
+  }
+
+  .propDeetsBtns {
+    button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--mainColor);
+      font-weight: 700;
+      border-radius: 8px;
+      border: 1.5px solid #e0def7;
+      background: #f7f7fd;
+      padding: 0.5em 0.9em;
+      font-size: 0.8rem;
+    }
+  }
+
+  .propBanner {
+    border: solid 2px var(--Line);
+    border-radius: 10px;
+    li {
+      h5 {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--Grey6);
+        margin-bottom: 0.7em;
+      }
+
+      h6 {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .Desc {
+    h4 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+  }
+
+  .agentDeets {
+    padding: 0.6em 0.9em;
+    border-radius: 8px;
+    border: 1.5px solid var(--Line);
+    background: #f7f7fd;
+
+    h5 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    small {
+      font-size: 0.8rem;
+      color: var(--Grey6);
+    }
+  }
+
+  .rentalFeatures {
+    margin: 2em auto;
+    small {
+      font-size: 0.7rem;
+      color: var(--Grey6);
+    }
+
+    h6 {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+  }
+}

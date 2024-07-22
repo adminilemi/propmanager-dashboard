@@ -19,6 +19,7 @@ const AllListing = () => {
     AgentId: authUser?.userId,
     ...ListingInitialState,
   });
+
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState([]);
 
@@ -36,7 +37,7 @@ const AllListing = () => {
 
   return (
     <section className='mt-9'>
-      <FilteringComp stateData={propData} setStateData={setPropData} />
+      <FilteringComp setStateData={setPropData} />
       {/* <h2 className='text-lg font-bold mt-10'>All Listings</h2> */}
 
       <section className='my-5'>

@@ -1,0 +1,35 @@
+main {
+  .applyNow {
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    small,
+    span,
+    p {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--Grey6);
+    }
+
+    a {
+      padding: 0.6em 1em !important;
+
+      span {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--white);
+      }
+    }
+
+    .selected {
+      border: solid 1px var(--mainLight);
+      border-radius: 8px;
+      padding: 0.6em 1em;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--black);
+    }
+  }
+}

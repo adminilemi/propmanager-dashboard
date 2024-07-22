@@ -2,6 +2,7 @@ import React from 'react';
 // import { BsThreeDotsVertical } from 'react-icons/bs';
 import './PropertyCard.scss';
 import { formatNumInThousands } from '@/utils';
+import { Link } from 'react-router-dom';
 
 const PropertyCard = ({
   id,
@@ -16,7 +17,8 @@ const PropertyCard = ({
   paymentType,
 }) => {
   return (
-    <main
+    <Link
+      to={`/listings/property/${id}`}
       key={id}
       className='productCard flex flex-col card  !border-[1px] w-full '
     >
@@ -185,7 +187,7 @@ const PropertyCard = ({
           </small>
         </li>
       </ul>
-    </main>
+    </Link>
   );
 };
 

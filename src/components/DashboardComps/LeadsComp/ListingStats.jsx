@@ -3,6 +3,11 @@ import DateFiltering from './DateFiltering';
 import { ListingStatCard } from './Cards';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import Paginate from '@/components/Paginate';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '@/Redux/Features/userAuthSlice';
+import { selectSearch } from '@/Redux/Features/globalSlice';
+import { useGetListingStatQuery } from '@/api/apiSlice';
+import { getDateAfterDays } from '@/utils';
 
 const datas = [
   { id: 1, date: '09/07/2024', rent: 12, sale: 34, shortlet: 20 },
@@ -17,9 +22,26 @@ const datas = [
 const ListingStats = () => {
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState([]);
+
+  const { authUser } = useSelector(selectUserData);
+  const searchQuery = useSelector(selectSearch);
+
+  const [propData, setPropData] = useState({
+    agentId: authUser?.userId,
+    startDate: new Date().toISOString(),
+    endDate: getDateAfterDays(new Date(), 30).toISOString(),
+  });
+
+  const { data, isLoading } = useGetListingStatQuery(propData);
+
+  console.log(data);
+
   return (
     <section className='mt-9'>
-      <DateFiltering className='w-full lg:w-9/12 my-10' />
+      <DateFiltering
+        className='w-full lg:w-9/12 my-10'
+        setStateData={setPropData}
+      />
       <h2 className='text-lg font-bold'>Properties Posted Daily</h2>
 
       <section className='my-5'>
