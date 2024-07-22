@@ -7,8 +7,6 @@ import {
 } from '@/Redux/Features/createPropertySlice';
 
 import { paymentType } from '@/components/AllData';
-import { MdInfo } from 'react-icons/md';
-import ErrorMessage from '@/components/ErrorMessage';
 
 const Pricing = ({ onNext, onPrevious }) => {
   const { listingInfo } = useSelector(selectProperty);

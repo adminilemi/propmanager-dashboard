@@ -5,7 +5,6 @@ import { useGlobalHooks } from '@/Hooks/globalHooks';
 import Paginate from '@/components/Paginate';
 import { useSelector } from 'react-redux';
 import { selectUserData } from '@/Redux/Features/userAuthSlice';
-import { selectSearch } from '@/Redux/Features/globalSlice';
 import { useGetListingStatQuery } from '@/api/apiSlice';
 import { getDateAfterDays } from '@/utils';
 
@@ -24,7 +23,7 @@ const ListingStats = () => {
   const [filteredData, setFilteredData] = useState([]);
 
   const { authUser } = useSelector(selectUserData);
-  const searchQuery = useSelector(selectSearch);
+  // const searchQuery = useSelector(selectSearch);
 
   const [propData, setPropData] = useState({
     agentId: authUser?.userId,
@@ -32,7 +31,7 @@ const ListingStats = () => {
     endDate: getDateAfterDays(new Date(), 30).toISOString(),
   });
 
-  const { data, isLoading } = useGetListingStatQuery(propData);
+  const { data } = useGetListingStatQuery(propData);
 
   console.log(data);
 

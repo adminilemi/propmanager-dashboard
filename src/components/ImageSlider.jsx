@@ -30,8 +30,8 @@ export const ImageSlider = ({ imageData }) => {
         className='mySwiper '
       >
         {imageData?.map(({ _id, url }) => (
-          <SwiperSlide className='!w-full'>
-            <figure key={_id} className='overflow-hidden'>
+          <SwiperSlide key={_id} className='!w-full'>
+            <figure className='overflow-hidden'>
               <img
                 src={url !== '' ? url : ''}
                 alt='Ilemi product image'
@@ -42,7 +42,7 @@ export const ImageSlider = ({ imageData }) => {
         ))}
       </Swiper>
 
-      {/* <button
+      <button
         onClick={next}
         className='btnNext absolute top-[45%] left-3 z-40 bg-mainColor w-[30px] h-[30px] rounded-full grid place-items-center text-white'
       >
@@ -53,7 +53,7 @@ export const ImageSlider = ({ imageData }) => {
         className='btnPrev absolute top-[45%] right-3 lg:right-50 z-40 bg-mainColor w-[30px] h-[30px] rounded-full grid place-items-center text-white'
       >
         <FaChevronRight />
-      </button> */}
+      </button>
     </section>
   );
 };

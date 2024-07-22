@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import allState from '@/components/nigeria-state-and-lgas.json';
+import React, { useState } from 'react';
 import {
   ListingInitialState,
   maxPrice,

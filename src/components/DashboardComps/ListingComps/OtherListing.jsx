@@ -3,7 +3,6 @@ import { useGlobalHooks } from '@/Hooks/globalHooks';
 import Paginate from '@/components/Paginate';
 import FilteringComp from './FilteringComp';
 import { ListingInitialState } from '@/components/AllData';
-import Skeleton from 'react-loading-skeleton';
 import { selectSearch } from '@/Redux/Features/globalSlice';
 import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import { useSelector } from 'react-redux';

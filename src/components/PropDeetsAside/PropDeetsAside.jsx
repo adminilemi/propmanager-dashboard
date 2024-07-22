@@ -1,8 +1,4 @@
 import React from 'react';
-import { MdCall } from 'react-icons/md';
-import { FiPlayCircle } from 'react-icons/fi';
-import { BiHomeAlt2 } from 'react-icons/bi';
-import { FaWhatsapp } from 'react-icons/fa';
 import './PropDeetsStyle.scss';
 import sidebarAdGif from '@/assets/newSmallBanner.gif';
 import AddGifBanner from '../AddGifBanner';

@@ -2,19 +2,17 @@ import './Home.scss';
 import { IoLogoWhatsapp } from 'react-icons/io';
 
 import { Link } from 'react-router-dom';
-import BarCharts from '@/components/DashboardComps/HomeComps/Charts/BarCharts';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import {
   useCheckSubValidityQuery,
-  useGetAgentLastWeekStatsQuery,
   useGetAgentMonthlyStatsQuery,
   useGetAgentQuery,
   useGetAgentStatsQuery,
   useGetAgentWeeklyStatsQuery,
   // useGetAgentWeeklyStatsQuery,
 } from '@/api/apiSlice';
-import { monthlyChartData, rents, weeklyChartData } from '@/components/AllData';
+import { rents, weeklyChartData } from '@/components/AllData';
 import { FaCircle, FaFacebook, FaInstagram, FaPhoneAlt } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { getSubPlanData } from '@/Redux/Features/userDatasSlice';

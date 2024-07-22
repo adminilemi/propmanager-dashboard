@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DateFiltering from './DateFiltering';
-import { ClientReqCard, ListingStatCard } from './Cards';
+import { ClientReqCard } from './Cards';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import Paginate from '@/components/Paginate';
 

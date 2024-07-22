@@ -7,16 +7,15 @@ import { Link } from 'react-router-dom';
 import { useGetAllPropertiesQuery } from '@/api/apiSlice';
 import { selectUserData } from '@/Redux/Features/userAuthSlice';
 import { useSelector } from 'react-redux';
-import EmptyState from '@/components/EmptyState/EmptyState';
-import noShift from '@/assets/noSift.png';
+// import EmptyState from '@/components/EmptyState/EmptyState';
+// import noShift from '@/assets/noSift.png';
 import gif from '@/assets/newBanner.gif';
 import { selectSearch } from '@/Redux/Features/globalSlice';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import AddGifBanner from '@/components/AddGifBanner';
-import { selectSubValidity } from '@/Redux/Features/userDatasSlice';
+// import { selectSubValidity } from '@/Redux/Features/userDatasSlice';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { FaCopy } from 'react-icons/fa';
-import Spinner from '@/spinner/Spinner';
 
 const Listings = () => {
   const { authUser } = useSelector(selectUserData);
@@ -24,17 +23,17 @@ const Listings = () => {
   const { handleSearch } = useGlobalHooks();
   const { showAlert } = useSweetAlert();
   const [filteredData, setFilteredData] = useState([]);
-  const checkPlanValidity = useSelector(selectSubValidity);
-  const { data, isLoading } = useGetAllPropertiesQuery(authUser.userId);
+  // const checkPlanValidity = useSelector(selectSubValidity);
+  const { data } = useGetAllPropertiesQuery(authUser.userId);
   const [toggle, setToggle] = useState({ [0]: true });
 
   const toggleAccordion = (id) => {
     setToggle((prev) => ({ [id]: !prev[id] }));
   };
 
-  // useEffect(() => {
-  //   handleSearch(data, searchTerms, setFilteredData, 'Property_Name');
-  // }, [searchTerms, data]);
+  useEffect(() => {
+    handleSearch(data, searchTerms, setFilteredData, 'Property_Name');
+  }, [searchTerms, data]);
 
   const handleCopyAgentLink = async () => {
     try {

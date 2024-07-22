@@ -46,8 +46,6 @@ const ListingInfo = ({ onNext, onPrevious }) => {
 
   const dispatch = useDispatch();
 
-  const today = new Date().toISOString().split('T')[0];
-
   // For Select comp
   const handleOnSelectChange = (id, val) => {
     setSelectValues((prevState) => ({

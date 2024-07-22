@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
-import VideoContainer from '@/components/Cloudinary/VideoContainer';
 import { useSelector } from 'react-redux';
 import {
-  addVideos,
   resetState,
   selectProperty,
 } from '@/Redux/Features/createPropertySlice';
@@ -13,7 +11,6 @@ import { useDispatch } from 'react-redux';
 import Spinner from '@/spinner/Spinner';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { Link, useNavigate } from 'react-router-dom';
-import { selectSubPlan } from '@/Redux/Features/userDatasSlice';
 
 const PropertyVideos = ({ onPrevious }) => {
   const { showAlert } = useSweetAlert();
@@ -26,10 +23,8 @@ const PropertyVideos = ({ onPrevious }) => {
     Videos,
   } = useSelector(selectProperty);
   const { authUser } = useSelector(selectUserData);
-  const { errors, setErrors, loading, setLoading, uploadFilesToServer } =
-    useGlobalHooks();
+  const { errors, setErrors } = useGlobalHooks();
   const [createProp, { isLoading }] = useCreatePropertyMutation();
-  const checkActivePlan = useSelector(selectSubPlan);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

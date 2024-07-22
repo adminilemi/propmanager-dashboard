@@ -2,7 +2,7 @@ import React from 'react';
 import './Navbar.scss';
 import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { useGlobalHooks } from '../../Hooks/globalHooks';
-import { selectGlobal, selectPageName } from '../../Redux/Features/globalSlice';
+import { selectGlobal } from '../../Redux/Features/globalSlice';
 import Notifications from '../Notifications/Notifications';
 import UserLogo from '../UserPop/UserLogo';
 

@@ -54,7 +54,7 @@ const ViewProperty = () => {
     // PriceHistory,
     PropertyType,
     Property_Name,
-    SecurityDeposit,
+    // SecurityDeposit,
     SquareFoot,
     StreetAddress,
     // TotalApplicants,
@@ -72,14 +72,7 @@ const ViewProperty = () => {
   //     : formatDate(DateAvalaibality);
   // };
 
-  const {
-    CompanyName,
-    profilePic,
-    phoneNumber,
-    lastName,
-    firstName,
-    WhatsappNumber,
-  } = user;
+  const { CompanyName, profilePic, lastName, firstName } = user;
 
   const rentalFeatures = [
     {
