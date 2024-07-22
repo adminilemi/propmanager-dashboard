@@ -2,7 +2,7 @@ import React from 'react';
 import OnboardingForm from './OnboardingForm';
 import './Onboarding.scss';
 import RightSide from '../RightSide';
-import BrandLogo from '../BrandLogo';
+import BrandLogo from '../SidebarIcon';
 
 const Onboarding = () => {
   return (

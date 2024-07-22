@@ -31,7 +31,7 @@ function UserPop({ coyLogo, companyName }) {
   return (
     <main className='w-full UserPop'>
       <header className='flex flex-row justify-between items-center'>
-        <div className='w-full md:6 flex flex-row items-center justify-between'>
+        <div className='w-full  flex flex-row items-center justify-between p-3'>
           <div className='w-5/12'>
             <UserLogo coyLogo={coyLogo} />
           </div>

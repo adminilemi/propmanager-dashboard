@@ -10,40 +10,41 @@ import {
 import { useGlobalHooks } from '@/Hooks/globalHooks';
 import {
   amenitiesList,
-  propertyCategories,
+  propertySubType,
   propertyType,
 } from '@/components/AllData';
-import { MdInfo } from 'react-icons/md';
+import ErrorMessage from '@/components/ErrorMessage';
+
+export const bedAndCo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const ListingInfo = ({ onNext, onPrevious }) => {
   const { Amenities, listingInfo } = useSelector(selectProperty);
 
   const [selectValues, setSelectValues] = useState(
     listingInfo || {
-      Property_Category: '',
+      PropertySubType: '',
       PropertyType: '',
       Description: '',
       BedRooms: '',
       Baths: '',
-      MonthlyRent: '',
+      Toilets: '',
       SecurityDeposit: '',
       DateAvalaibality: '',
-      LeaseDuration: '',
+      PostingDuration: '',
       SquareFoot: '',
+      NearestBustop: '',
     },
   );
 
   const [amenities, setAmenities] = useState(Amenities || []);
   const [customOptions, setCustomOptions] = useState({
     PropertyType: listingInfo?.PropertyType || null,
-    Property_Category: listingInfo?.Property_Category || null,
+    PropertySubType: listingInfo?.PropertySubType || null,
   });
 
   const { errors, setErrors } = useGlobalHooks();
 
   const dispatch = useDispatch();
-
-  const today = new Date().toISOString().split('T')[0];
 
   // For Select comp
   const handleOnSelectChange = (id, val) => {
@@ -86,7 +87,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
       return;
     }
 
-    if (selectValues.Property_Category === '') {
+    if (selectValues.PropertySubType === '') {
       setErrors({
         error: true,
         errMessage:
@@ -105,24 +106,9 @@ const ListingInfo = ({ onNext, onPrevious }) => {
 
   return (
     <form className='mb-5 listingInfo' onSubmit={handleSubmit}>
-      <section className='flex flex-col justify-between '>
-        <article className='w-full flex flex-col md:flex-row gap-2 '>
-          <div className='inputWrapper'>
-            <label htmlFor='PropertyType' className='labelTitle'>
-              {' '}
-              Property Category <em>*</em>{' '}
-            </label>
-
-            <Select
-              id='Property_Category'
-              options={propertyCategories}
-              selectedOption={customOptions.Property_Category}
-              setSelectedOption={setCustomOptions}
-              onSelectChange={handleOnSelectChange}
-              error={errors}
-            />
-          </div>
-          <div className='inputWrapper'>
+      <section className='flex flex-col justify-between card p-4'>
+        <article className='w-full flex flex-wrap justify-between gap-2 '>
+          <div className='w-full'>
             <label htmlFor='PropertyType' className='labelTitle'>
               {' '}
               Property Type <em>*</em>{' '}
@@ -134,8 +120,53 @@ const ListingInfo = ({ onNext, onPrevious }) => {
               selectedOption={customOptions.PropertyType}
               setSelectedOption={setCustomOptions}
               onSelectChange={handleOnSelectChange}
+              error={errors}
+            />
+          </div>
+          <div className='inputWrapper'>
+            <label htmlFor='PropertyType' className='labelTitle'>
+              {' '}
+              Property Sub Type <em>*</em>{' '}
+            </label>
+
+            <Select
+              id='PropertySubType'
+              options={propertySubType}
+              selectedOption={customOptions.PropertySubType}
+              setSelectedOption={setCustomOptions}
+              onSelectChange={handleOnSelectChange}
               errors={errors}
             />
+          </div>
+
+          <div className=' inputWrapper'>
+            <label htmlFor='PostingDuration' className='labelTitle'>
+              {' '}
+              Posting Duration <em>*</em>{' '}
+            </label>
+            <select
+              id='PostingDuration'
+              name='PostingDuration'
+              className='form-control'
+              defaultValue={selectValues.PostingDuration}
+              onChange={(e) =>
+                handleOnSelectChange('PostingDuration', e.target.value)
+              }
+              required
+            >
+              <option value='' disabled>
+                {' '}
+                Select Duration
+              </option>
+              {['6 Months', '12 Months', '2 Years', '3 Years'].map(
+                (item, idx) => (
+                  <option value={item} key={idx}>
+                    {' '}
+                    {item}{' '}
+                  </option>
+                ),
+              )}
+            </select>
           </div>
         </article>
 
@@ -148,7 +179,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
             <select
               id='BedRooms'
               name='BedRooms'
-              className='form-select'
+              className='form-control'
               defaultValue={selectValues.BedRooms}
               onChange={(e) => handleOnSelectChange('BedRooms', e.target.value)}
               required
@@ -158,7 +189,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
                 How many Bed
               </option>
 
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, idx) => (
+              {bedAndCo.map((item, idx) => (
                 <option value={item} key={idx}>
                   {' '}
                   {item}{' '}
@@ -175,7 +206,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
             <select
               id='Baths'
               name='Baths'
-              className='form-select'
+              className='form-control'
               defaultValue={selectValues.Baths}
               onChange={(e) => handleOnSelectChange('Baths', e.target.value)}
               required
@@ -184,7 +215,7 @@ const ListingInfo = ({ onNext, onPrevious }) => {
                 {' '}
                 How many baths
               </option>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, idx) => (
+              {bedAndCo.map((item, idx) => (
                 <option value={item} key={idx}>
                   {' '}
                   {item}{' '}
@@ -192,30 +223,37 @@ const ListingInfo = ({ onNext, onPrevious }) => {
               ))}
             </select>
           </div>
-
           <div className=' inputWrapper'>
-            <label htmlFor='SquareFoot' className='labelTitle'>
+            <label htmlFor='Baths' className='labelTitle'>
               {' '}
-              Square Feet
+              Toilets <em>*</em>
             </label>
-            <input
-              id='SquareFoot'
-              name='SquareFoot'
-              type='number'
-              placeholder='example: 128, 0r 169.56'
-              className={'form-control'}
-              defaultValue={selectValues.SquareFoot}
-              onChange={(e) =>
-                handleOnSelectChange('SquareFoot', e.target.value)
-              }
-            />
+            <select
+              id='Toilets'
+              name='Toilets'
+              className='form-control'
+              defaultValue={selectValues.Toilets}
+              onChange={(e) => handleOnSelectChange('Toilets', e.target.value)}
+              required
+            >
+              <option value='' disabled>
+                {' '}
+                How many toilets
+              </option>
+              {bedAndCo.map((item, idx) => (
+                <option value={item} key={idx}>
+                  {' '}
+                  {item}{' '}
+                </option>
+              ))}
+            </select>
           </div>
         </article>
 
-        <article className='flex flex-col md:flex-row gap-2 justify-between'>
+        {/* <article className='flex flex-col md:flex-row gap-2 justify-between'>
           <div className='inputWrapper'>
             <label htmlFor='MonthlyRent' className='labelTitle'>
-              {selectValues?.Property_Category === 'Shortlets'
+              {selectValues?.PropertySubType === 'Shortlets'
                 ? 'Daily Rent'
                 : 'Yearly Rent'}{' '}
               <em>*</em>
@@ -254,6 +292,63 @@ const ListingInfo = ({ onNext, onPrevious }) => {
               />
             </div>
           </div>
+        </article> */}
+        <article className='w-full flex flex-col md:flex-row gap-1 justify-between mt-3'>
+          <div className=' inputWrapper'>
+            <label htmlFor='SquareFoot' className='labelTitle'>
+              {' '}
+              Square Feet
+            </label>
+            <input
+              id='SquareFoot'
+              name='SquareFoot'
+              type='number'
+              placeholder='example: 128, 0r 169.56'
+              className={'form-control'}
+              defaultValue={selectValues.SquareFoot}
+              onChange={(e) =>
+                handleOnSelectChange('SquareFoot', e.target.value)
+              }
+            />
+          </div>
+
+          <div className=' inputWrapper'>
+            <label htmlFor='NearestBustop' className='labelTitle'>
+              {' '}
+              Nearest Bus stop
+            </label>
+            <input
+              id='NearestBustop'
+              name='NearestBustop'
+              type='text'
+              placeholder='Enter Nearst bus stop'
+              className={'form-control'}
+              defaultValue={selectValues.NearestBustop}
+              onChange={(e) =>
+                handleOnSelectChange('NearestBustop', e.target.value)
+              }
+            />
+          </div>
+        </article>
+
+        <article className='w-full flex flex-col'>
+          <label htmlFor='Description' className='labelTitle'>
+            {' '}
+            Description
+          </label>
+
+          <textarea
+            id='Description'
+            name='Description'
+            placeholder='Enter  desciption'
+            className='form-control'
+            defaultValue={selectValues.Description}
+            onChange={(e) =>
+              handleOnSelectChange('Description', e.target.value)
+            }
+            rows='3'
+            required
+          ></textarea>
         </article>
 
         <article className='w-full flex flex-col my-4'>
@@ -278,90 +373,23 @@ const ListingInfo = ({ onNext, onPrevious }) => {
             ))}
           </div>
         </article>
-
-        <article className='w-full flex flex-col'>
-          <label htmlFor='Description' className='labelTitle'>
-            {' '}
-            Description
-          </label>
-
-          <textarea
-            id='Description'
-            name='Description'
-            placeholder='Enter  desciption'
-            className='form-control'
-            defaultValue={selectValues.Description}
-            onChange={(e) =>
-              handleOnSelectChange('Description', e.target.value)
-            }
-            rows='3'
-            required
-          ></textarea>
-        </article>
-
-        <article className='w-full flex flex-col md:flex-row gap-1 justify-between mt-3'>
-          <div className='inputWrapper '>
-            <label htmlFor='DateAvalaibality' className='labelTitle'>
-              {' '}
-              Date Available <em>*</em>
-            </label>
-            <input
-              id='DateAvalaibality'
-              name='DateAvalaibality'
-              type='date'
-              className={'form-control'}
-              defaultValue={selectValues.DateAvalaibality}
-              onChange={(e) =>
-                handleOnSelectChange('DateAvalaibality', e.target.value)
-              }
-              min={today}
-              required
-            />
-          </div>
-
-          <div className=' inputWrapper'>
-            <label htmlFor='LeaseDuration' className='labelTitle'>
-              {' '}
-              Lease Duration
-            </label>
-            <select
-              id='LeaseDuration'
-              name='LeaseDuration'
-              className='form-select'
-              defaultValue={selectValues.LeaseDuration}
-              onChange={(e) =>
-                handleOnSelectChange('LeaseDuration', e.target.value)
-              }
-              required
-            >
-              <option value='' disabled>
-                {' '}
-                Select Duration
-              </option>
-              {['6 Months', '12 Months', '2 Years', '3 Years'].map(
-                (item, idx) => (
-                  <option value={item} key={idx}>
-                    {' '}
-                    {item}{' '}
-                  </option>
-                ),
-              )}
-            </select>
-          </div>
-        </article>
       </section>
-      <div className='flex flex-row justify-between mt-5'>
-        <button onClick={onPrevious} className='outline-btn' type='button'>
-          Back{' '}
+      <section className='flex gap-3 justify-end mt-5'>
+        <button
+          onClick={onPrevious}
+          className='outline-btn bg-[#F7F7FD] !text-mainColor !border-0'
+          type='button'
+        >
+          Previous{' '}
         </button>
         <button className='main-btn' type='submit'>
           {' '}
           Next{' '}
         </button>
-      </div>
+      </section>
 
       <div className='flex justify-center'>
-        {errors.error && <p className='error_message'>{errors.errMessage}</p>}
+        {errors.error && <ErrorMessage message={errors.errMessage} />}
       </div>
     </form>
   );

@@ -9,7 +9,7 @@ const Settings = () => {
 
   return (
     <main className=' settings flex flex-col lg:flex-row justify-between'>
-      <article className='flex flex-col w-full lg:w-2/12 my-5 lg:my-0'>
+      <ul className='flex flex-col w-full lg:w-2/12 my-5 lg:my-0'>
         {TabsData.TabTitle.map((tab) => (
           <section key={tab.id} className='tabTitle '>
             <TabTitle
@@ -17,10 +17,12 @@ const Settings = () => {
               id={tab.id}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
+              activeClass='active'
+              notActiveClass='notActive'
             />
           </section>
         ))}
-      </article>
+      </ul>
 
       <article className='tabContents  w-full lg:w-9/12'>
         {TabsData.TabContents.map(({ id, comp }) => (

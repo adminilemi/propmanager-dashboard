@@ -95,7 +95,7 @@ function AddressField({ coydata, getData }) {
         <select
           id='country'
           name='country'
-          className=' form-select'
+          className=' form-control'
           onChange={getData}
           defaultValue={coydata.country}
           required

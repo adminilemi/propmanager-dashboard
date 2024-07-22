@@ -30,7 +30,7 @@ function SeeAllProperties() {
             </select>
           </div>
           <div className='flex gap-2 w-4/12'>
-            <select className='form-select flex-fill'>
+            <select className='form-control flex-fill'>
               <option>By Date</option>
               <option>By Time</option>
               <option>By Price</option>

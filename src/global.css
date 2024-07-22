@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .container {
-  @apply w-[92%] lg:w-[87%] mx-auto;
+  @apply w-[97%] lg:w-[95%] mx-auto;
 }
 
 :root {
@@ -54,7 +54,8 @@ body {
   min-height: 100vh;
   max-width: 1800px;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: var(--Grey7);
+  background-color: var(--white);
+  /* background-color: var(--Grey7); */
   color: #000929;
 }
 
@@ -84,7 +85,8 @@ body {
 }
 
 .card {
-  border: solid 2px var(--mainLight) !important;
+  border: solid 1.5px var(--mainLight) !important;
+  border-radius: 10px;
   background-color: transparent;
 }
 
@@ -92,15 +94,15 @@ body {
   border-right: solid 1px var(--Grey5);
   min-height: 100vh;
   background: var(--white);
-  width: auto;
+  padding: 0.3em;
+  /* width: auto; */
 }
 
 .rightSide {
   width: 100%;
 }
 
-ul,
-li {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -118,7 +120,7 @@ button {
 .labelTitle {
   font-size: 0.875rem;
   color: var(--Grey1);
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5em;
 }
 
 img {
@@ -193,16 +195,41 @@ h4 {
   color: var(--Grey2);
 }
 
+/* React date picker */
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  display: flex !important;
+}
+
+.react-datepicker-wrapper {
+  display: flex !important;
+  width: 100%;
+}
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+  top: 27%;
+  right: 0;
+}
+
+.react-datepicker__view-calendar-icon input {
+  padding: 0.77em 1em !important;
+}
+
 /* ===Dashboard title start=== */
 
 .sidebarActive {
-  background: #f0effb;
+  /* background: #f0effb;
   color: var(--mainColor);
   padding: 0.6em 1em;
   border-right: solid 4px var(--pryColor);
   border-radius: 10px;
-  /* width: 90%; */
-  margin: 0.5em auto;
+  width: 90%;
+  margin: 0.5em auto; */
+  border-radius: 10px;
+  background: #f0effb;
+  color: var(--mainColor);
+  padding: 0.6em 1em;
+  margin: 0.5em 0;
 }
 .sidebarActive h4 {
   color: var(--mainColor);
@@ -223,7 +250,6 @@ svg[Attributes] {
 .sidebarNotActive {
   color: var(--Grey6);
   padding: 0.6em 1em;
-  /* width: 90%; */
   margin: 0.5em 0;
 }
 
@@ -326,13 +352,14 @@ button:disabled {
 .form-control {
   display: block;
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: 0.77em 1em;
+  margin: 0.75em 0;
   font-size: 1rem;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--Line);
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -371,18 +398,17 @@ button:disabled {
 
 .search input {
   display: flex;
-  padding: 0.75rem 3.375rem 0.75rem 3.1875rem;
-  border-radius: 0.5rem;
   padding-left: 3rem !important;
-  border: 2px solid var(--Line);
+  border: 1px solid var(--Line);
 }
 
 .searchIcon {
   position: absolute;
   font-size: 1.5rem;
-  left: 5%;
+  left: 2%;
 }
 
+/* ====TABS STYLES START=== */
 .tabTitle {
   cursor: pointer;
 }
@@ -414,6 +440,29 @@ button:disabled {
   color: var(--Grey6);
   font-weight: 500;
 }
+
+.leadsActive {
+  background: var(--mainColor);
+  padding: 0.7em 1.5em;
+}
+
+.leadsActive h4 {
+  color: var(--white) !important;
+  font-weight: 700;
+}
+
+.leadsNotActive {
+  color: var(--Grey6);
+  padding: 0.7em 1.5em;
+  border-right: solid 2px var(--Line);
+}
+
+.leadsNotActive h4 {
+  color: var(--mainColor);
+  font-weight: 500;
+}
+
+/* ====TABS STYLES ENDS=== */
 
 input::placeholder {
   font-size: 14px;
@@ -481,13 +530,6 @@ hr {
   color: var(--rated);
 }
 
-textarea,
-input {
-  padding: 0.77em 1em !important;
-  background: #f7f7fd !important;
-  border-color: #e0def7 !important;
-}
-
 textarea:focus,
 select:focus,
 input:focus {
@@ -503,8 +545,8 @@ select {
   -webkit-appearance: none;
   background: #f7f7fd url('./assets/selectIcon.svg') no-repeat;
   background-position: 95% 50%;
-  border-color: #e0def7 !important;
-  padding: 0.77em 1em !important;
+  border-color: #e0def7;
+  /* padding: 0.77em 1em !important; */
 }
 
 .chevIcons {
@@ -538,7 +580,8 @@ select {
 }
 .emptyStateContainer {
   display: flex;
-  place-content: center;
+  place-items: center;
+  justify-content: center;
   border: solid 1px var(--Line);
   border-radius: 8px;
   padding: 5em 2em;
@@ -599,7 +642,7 @@ select {
 
 .verify {
   font-size: 0.7rem;
-  padding: 0.75em 1em;
+  padding: 0.5em 1em;
   align-items: center;
   border-radius: 1rem;
   font-weight: 700;
@@ -618,7 +661,7 @@ select {
   color: var(--mainColor);
   font-weight: 700;
   border-radius: 1rem;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   background: color-mix(in sRGB, transparent 90%, var(--mainColor) 10%);
 }
 
@@ -692,16 +735,16 @@ select {
   margin-bottom: 1em;
 
   label {
-    margin-bottom: 0.7em;
+    margin-bottom: 0.7em !important;
     font-size: 14px;
     color: var(--Grey1);
   }
 
-  textarea,
+  /* textarea,
   select,
   input {
     padding: 1em;
-  }
+  } */
 
   small {
     font-size: 0.8rem;
@@ -757,10 +800,10 @@ select {
 
 .paginContainer a {
   display: block;
-  width: 2.5em;
-  height: 2.5em;
-  background: var(--white);
-  color: var(--Grey3);
+  width: 1.5em;
+  height: 1.5em;
+  background: var(--mainDark);
+  color: var(--white);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -768,18 +811,19 @@ select {
 }
 
 .paginContainer a:hover {
-  background-color: var(--white);
+  background-color: var(--mainColor);
 }
 
 .paginContainer .activePage a {
   background: var(--mainDark);
   color: var(--white);
-  width: 2.5em;
-  height: 2.5em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .paginContainer .disabled a {
   pointer-events: none;
+  color: var(--Grey3);
   background-color: grey; /* Adjust the color for the disabled state */
   border: 1px solid lightgrey; /* Adjust the border color for the disabled state */
 }

@@ -5,6 +5,7 @@ export const globalSlice = createSlice({
   initialState: {
     count: 0,
     searchQuery: '',
+    pageName: '',
   },
 
   reducers: {
@@ -24,11 +25,17 @@ export const globalSlice = createSlice({
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
     },
+
+    updatePageName: (state, action) => {
+      state.pageName = action.payload;
+    },
   },
 });
 
-export const { toggleShow, increment, setSearchQuery } = globalSlice.actions;
+export const { toggleShow, increment, setSearchQuery, updatePageName } =
+  globalSlice.actions;
 
 export const selectGlobal = (state) => state.globalSlice;
 export const selectSearch = (state) => state.globalSlice.searchQuery;
+export const selectPageName = (state) => state.globalSlice.pageName;
 export default globalSlice.reducer;

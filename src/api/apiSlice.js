@@ -1,3 +1,4 @@
+import { queryBuilder } from '@/utils';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 
@@ -107,8 +108,32 @@ export const apiSLice = createApi({
     }),
 
     getAgentWeeklyStats: builder.query({
+      query: (id) => `/property/count-by-week/${id} `,
+    }),
+
+    getAgentLastWeekStats: builder.query({
       query: (id) => `/property/count-by-last-week/${id} `,
     }),
+
+    // ===LISTING===
+
+    listingFiltering: builder.query({
+      query: (params) =>
+        `/property/agent-property-filter/filter?${queryBuilder(params)} `,
+    }),
+
+    getListingStat: builder.query({
+      query: (params) =>
+        `/property/agent/property-stats/count-by-category?${queryBuilder(
+          params,
+        )} `,
+    }),
+
+    getPropertyById: builder.query({
+      query: (id) => `/property/property-by-id/${id}`,
+    }),
+
+    // ===LISTING===
   }),
 });
 
@@ -117,6 +142,7 @@ export const {
   useGetAgentQuery,
   useGetAgentWeeklyStatsQuery,
   useGetAgentMonthlyStatsQuery,
+  useGetAgentLastWeekStatsQuery,
   useGetAgentStatsQuery,
   useCreatePropertyMutation,
   useGetAllPropertiesQuery,
@@ -124,4 +150,10 @@ export const {
   useChangePasswordMutation,
   useCreateSubscriptionsMutation,
   useCheckSubValidityQuery,
+
+  // ====== LISTING=====
+  useListingFilteringQuery,
+  useGetListingStatQuery,
+  useGetPropertyByIdQuery,
+  // ====== LISTING=====
 } = apiSLice;

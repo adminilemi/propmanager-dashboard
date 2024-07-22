@@ -9,6 +9,7 @@ const ImageContainer = ({
   uploadFiles,
   title,
   removeImage,
+  error,
 }) => {
   const placeholderImageUrl =
     'https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg';
@@ -16,7 +17,7 @@ const ImageContainer = ({
   return (
     <article className='imageContainer'>
       {title && <small className=''> {title} </small>}
-      <div className='card p-3 mb-3 mt-3'>
+      <div className={error ? 'errors card p-3 my-3' : 'card p-3 my-3'}>
         <figure className='p-3'>
           {images !== '' ? (
             <img src={images} alt='' />

@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useGlobalHooks } from '@/Hooks/globalHooks';
-import VideoContainer from '@/components/Cloudinary/VideoContainer';
 import { useSelector } from 'react-redux';
 import {
-  addVideos,
   resetState,
   selectProperty,
 } from '@/Redux/Features/createPropertySlice';
@@ -13,7 +11,6 @@ import { useDispatch } from 'react-redux';
 import Spinner from '@/spinner/Spinner';
 import { useSweetAlert } from '@/Hooks/useSweetAlert';
 import { Link, useNavigate } from 'react-router-dom';
-import { selectSubPlan } from '@/Redux/Features/userDatasSlice';
 
 const PropertyVideos = ({ onPrevious }) => {
   const { showAlert } = useSweetAlert();
@@ -26,43 +23,21 @@ const PropertyVideos = ({ onPrevious }) => {
     Videos,
   } = useSelector(selectProperty);
   const { authUser } = useSelector(selectUserData);
-  const { errors, setErrors, loading, setLoading, uploadFilesToServer } =
-    useGlobalHooks();
+  const { errors, setErrors } = useGlobalHooks();
   const [createProp, { isLoading }] = useCreatePropertyMutation();
-  const checkActivePlan = useSelector(selectSubPlan);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [videoData, setVideoData] = useState({
-    title: Videos[0]?.title || '',
-    url: Videos[0]?.url || '',
+    YoutubeVideo: '',
+    instagramVideo: Videos[0]?.url || '',
   });
 
-  const uploadFiles = async (e, id) => {
-    setLoading({ [id]: true });
-
-    const file = e.target.files[0];
-    try {
-      const result = await uploadFilesToServer(file);
-
-      setVideoData((prev) => ({
-        ...prev,
-
-        title: result.original_filename,
-        url: result.secure_url,
-      }));
-
-      setLoading({ [id]: false });
-    } catch (error) {
-      console.log(error);
-      setLoading({ [id]: false });
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setVideoData((prev) => ({ ...prev, [name]: value }));
   };
-
-  useEffect(() => {
-    videoData.url !== '' && dispatch(addVideos([videoData]));
-  }, [videoData.url]);
 
   const propData = {
     AgentId: authUser.userId,
@@ -71,11 +46,13 @@ const PropertyVideos = ({ onPrevious }) => {
     ExteriorImages,
     Amenities,
     InteriorImages,
-    Videos: [videoData],
+    ...videoData,
   };
 
   const handleDataSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(propData);
 
     try {
       const rsp = await createProp(propData);
@@ -95,44 +72,67 @@ const PropertyVideos = ({ onPrevious }) => {
     }
   };
 
-  const handleRmoveImage = () => {
-    setVideoData((prev) => ({ ...prev, url: '' }));
-  };
-
   return (
-    <main>
+    <form onSubmit={handleDataSubmit}>
       {/* Exterior */}
       <section className='flex flex-col w-full'>
         <div className='sectHeader flex justify-between border-bottom pb-2 mb-3'>
-          <h5>Video (Optional)</h5>
+          <h5 className='font-bold'>Video (Optional)</h5>
         </div>
 
-        <section className='flex flex-col md:flex-row justify-between w-full'>
-          <VideoContainer
-            videoLink={videoData.url}
-            cat='Video'
-            id='productVideo'
-            loading={loading}
-            uploadFiles={uploadFiles}
-            removeImage={handleRmoveImage}
-            planName={checkActivePlan?.planName}
-          />
-        </section>
+        <ul className='flex flex-wrap gap-4 justify-between w-full card p-4'>
+          <li className='w-full'>
+            <label htmlFor='YoutubeVideo' className='labelTitle'>
+              Youtube Video
+            </label>
+
+            <input
+              id='YoutubeVideo'
+              name='YoutubeVideo'
+              type='url'
+              className='form-control !bg-transparent'
+              placeholder='Link to your youtube video'
+              defaultValue={videoData.YoutubeVideo}
+              onChange={handleChange}
+              required
+            />
+          </li>
+          <li className='w-full'>
+            <label htmlFor='instagramVideo' className='labelTitle'>
+              Instagram Video
+            </label>
+
+            <input
+              id='instagramVideo'
+              name='instagramVideo'
+              type='url'
+              placeholder='Link to your instagram video'
+              className='form-control !bg-transparent'
+              defaultValue={videoData.instagramVideo}
+              onChange={handleChange}
+              required
+            />
+          </li>
+        </ul>
       </section>
-      <div className='flex flex-row justify-between mt-5'>
-        <button onClick={onPrevious} type='button' className='outline-btn'>
-          {' '}
-          Back{' '}
+
+      <section className='flex flex-row justify-end gap-3 mt-5'>
+        <button
+          onClick={onPrevious}
+          className='outline-btn bg-[#F7F7FD] !text-mainColor !border-0'
+          type='button'
+        >
+          Previous{' '}
         </button>
         <button
           id='submitData'
-          type='button'
-          onClick={handleDataSubmit}
+          type='submit'
+          // onClick={handleDataSubmit}
           className='main-btn'
         >
           {isLoading ? <Spinner /> : 'Submit'}
         </button>
-      </div>
+      </section>
 
       {errors.error && (
         <div className='bg-danger w-8/12 mx-auto rounded p-2 listLimit'>
@@ -145,7 +145,7 @@ const PropertyVideos = ({ onPrevious }) => {
           </h4>
         </div>
       )}
-    </main>
+    </form>
   );
 };
 

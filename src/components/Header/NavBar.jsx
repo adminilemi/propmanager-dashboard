@@ -14,6 +14,7 @@ import {
   selectUserName,
 } from '@/Redux/Features/userAuthSlice';
 import UserPop from '../UserPop/UserPop';
+import { greetings } from '@/utils';
 // import { getNotifs, selectNotifs } from '../../Redux/Features/notifsSlice';
 
 const NavBar = () => {
@@ -22,33 +23,41 @@ const NavBar = () => {
   const { authUser } = useSelector(selectUserData);
   const userName = useSelector(selectUserName);
   const logoImage = useSelector(selectUserAvatar);
-  // const name = useSelector(selectUserName);
+
   // const notifs = useSelector(selectNotifs);
   // const dispatch = useDispatch();
 
   return (
-    <div className='navbar flex flex-col align-items-end'>
-      <header className=' w-full flex flex-row heading justify-end'>
-        <div className='flex  heading gap-3 '>
-          <button
-            type='button'
-            onClick={() => handleShow('notif')}
-            id='notif'
-            className='notifs'
-          >
-            <MdOutlineNotificationsNone className='Icons' />
-            <span>
-              <small> </small>
-            </span>
-          </button>
+    <header className='navbar '>
+      <section className='container flex flex-wrap items-center justify-between'>
+        <hgroup className='grow'>
+          <h1>
+            {' '}
+            {greetings()}, {userName || authUser.userName}{' '}
+          </h1>
+        </hgroup>
+        <section className=' flex-1 flex flex-row heading justify-end'>
+          <div className='flex  heading gap-3 '>
+            <button
+              type='button'
+              onClick={() => handleShow('notif')}
+              id='notif'
+              className='notifs'
+            >
+              <MdOutlineNotificationsNone className='Icons' />
+              <span>
+                <small> </small>
+              </span>
+            </button>
 
-          <UserLogo
-            coyLogo={logoImage}
-            userName={userName || authUser.userName}
-            chev
-          />
-        </div>
-      </header>
+            <UserLogo
+              coyLogo={logoImage}
+              userName={userName || authUser.userName}
+              chev
+            />
+          </div>
+        </section>
+      </section>
 
       {toggle['notif'] && (
         <Modal id='notif' className='notifPopUp m-3'>
@@ -64,7 +73,7 @@ const NavBar = () => {
           />
         </Modal>
       )}
-    </div>
+    </header>
   );
 };
 
